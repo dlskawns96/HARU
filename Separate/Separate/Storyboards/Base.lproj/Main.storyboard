@@ -50,13 +50,52 @@
                     <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="pMg-mT-vw1">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKR-j1-Fjq">
+                                <rect key="frame" x="0.0" y="56" width="390" height="734"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Kw-X9-TN5">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="87.666666666666671"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-Q8-dfd">
+                                                <rect key="frame" x="10" y="10.000000000000002" width="380" height="18.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="dI6-Q8-dfd" firstAttribute="leading" secondItem="2Kw-X9-TN5" secondAttribute="leading" constant="10" id="6B2-fV-xCV"/>
+                                            <constraint firstAttribute="bottom" secondItem="dI6-Q8-dfd" secondAttribute="bottom" constant="59" id="CSr-qZ-WmX"/>
+                                            <constraint firstItem="dI6-Q8-dfd" firstAttribute="top" secondItem="2Kw-X9-TN5" secondAttribute="top" constant="10" id="v85-yj-QJw"/>
+                                            <constraint firstAttribute="trailing" secondItem="dI6-Q8-dfd" secondAttribute="trailing" id="xRM-Eb-h7M"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2Kw-X9-TN5" firstAttribute="leading" secondItem="TMO-cn-rOv" secondAttribute="leading" id="4eh-ki-gXw"/>
+                                    <constraint firstItem="2Kw-X9-TN5" firstAttribute="trailing" secondItem="TMO-cn-rOv" secondAttribute="trailing" id="HWb-Oh-Am2"/>
+                                    <constraint firstItem="2Kw-X9-TN5" firstAttribute="top" secondItem="TMO-cn-rOv" secondAttribute="top" id="Rri-tl-pbg"/>
+                                    <constraint firstItem="2Kw-X9-TN5" firstAttribute="width" secondItem="Lf2-c3-29Y" secondAttribute="width" id="cns-KE-JTy"/>
+                                    <constraint firstItem="2Kw-X9-TN5" firstAttribute="bottom" secondItem="TMO-cn-rOv" secondAttribute="bottom" id="fvN-ro-jBX"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="TMO-cn-rOv"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Lf2-c3-29Y"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="APh-64-njb"/>
-                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="pKR-j1-Fjq" secondAttribute="bottom" id="4SB-Nr-2Q5"/>
+                            <constraint firstItem="pKR-j1-Fjq" firstAttribute="leading" secondItem="APh-64-njb" secondAttribute="leading" id="IPA-cV-usM"/>
+                            <constraint firstItem="APh-64-njb" firstAttribute="trailing" secondItem="pKR-j1-Fjq" secondAttribute="trailing" id="agS-K8-s8a"/>
+                            <constraint firstItem="pKR-j1-Fjq" firstAttribute="top" secondItem="APh-64-njb" secondAttribute="top" id="i5i-VL-j4I"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ktd-x1-UcR"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1851" y="-31"/>
+            <point key="canvasLocation" x="1850.7692307692307" y="-31.279620853080566"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YUS-C9-X5S">
@@ -98,9 +137,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

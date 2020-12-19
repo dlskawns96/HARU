@@ -15,7 +15,7 @@ class ScheduleSetVC: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        navigationItem.title = "Title"
+        navigationItem.title = "Set Schedule"
     }
 }
 
