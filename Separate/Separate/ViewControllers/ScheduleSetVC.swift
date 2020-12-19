@@ -11,11 +11,12 @@ class ScheduleSetVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = "Set Schedule"
     }
+    
+    // TODO: 다른 영역 터치 했을 때 키보드 사라지게 하기
 }
 
