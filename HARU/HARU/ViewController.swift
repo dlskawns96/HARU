@@ -9,6 +9,7 @@ import UIKit
 import FSCalendar
 
 class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
+    
     @IBOutlet weak var fsCalendar: FSCalendar!
     var eventStartDates: [NSDate] = []
     var eventEndDates: [NSDate] = []
@@ -32,6 +33,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         fsCalendar.appearance.headerTitleColor = .black
         fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
         fsCalendar.appearance.borderRadius = 0
+        
+        
     }
 
 //    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -46,6 +49,19 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
 //    let sampledate = formatter.date(from: "2020-08-22")
 //    events = [xmas!, sampledate!]
 //    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        //print(dateFormatter.string(from: date))
+                    
+        guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        controller.paramDate = dateFormatter.string(from: date)
+
+        self.present(controller, animated: true, completion: nil)
+    }
+
     
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
         
