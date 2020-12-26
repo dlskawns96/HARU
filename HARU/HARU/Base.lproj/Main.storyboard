@@ -103,7 +103,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40" scale="large"/>
                                 </state>
                                 <connections>
-                                    <action selector="addBtn:" destination="Nzo-Wt-ceS" eventType="touchUpInside" id="p2Y-U6-nTk"/>
+                                    <segue destination="t3z-4x-omQ" kind="presentation" id="poh-Bp-OMD"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 + 일기 보여주기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pd8-1f-KoN">
@@ -134,27 +134,32 @@
             </objects>
             <point key="canvasLocation" x="756.52173913043487" y="318.75"/>
         </scene>
-        <!--Add Schedule Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="ERB-zj-B8n">
+            <objects>
+                <navigationController id="t3z-4x-omQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MWt-hr-18n">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="mPm-kw-g2S" kind="relationship" relationship="rootViewController" id="ZkB-p5-NxI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="opr-c4-0bD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1583" y="319"/>
+        </scene>
+        <!--새 일정 + 일기-->
         <scene sceneID="9mK-tF-9ma">
             <objects>
                 <viewController storyboardIdentifier="AddScheduleController" id="mPm-kw-g2S" customClass="AddScheduleController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rvr-TU-KGf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3g5-dE-aXi">
-                                <rect key="frame" x="20" y="25" width="18.5" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="multiply" catalog="system" symbolScale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="CloseBtn:" destination="mPm-kw-g2S" eventType="touchUpInside" id="UW5-fj-7wp"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 + 일기 등록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaz-oH-D00">
-                                <rect key="frame" x="126" y="433" width="162" height="30"/>
+                                <rect key="frame" x="126" y="406" width="162" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -165,14 +170,24 @@
                         <constraints>
                             <constraint firstItem="xaz-oH-D00" firstAttribute="centerY" secondItem="Rvr-TU-KGf" secondAttribute="centerY" id="5ea-JU-Q4V"/>
                             <constraint firstItem="xaz-oH-D00" firstAttribute="centerX" secondItem="Rvr-TU-KGf" secondAttribute="centerX" id="Jt0-P4-g63"/>
-                            <constraint firstItem="3g5-dE-aXi" firstAttribute="top" secondItem="Rvr-TU-KGf" secondAttribute="top" constant="25" id="bnk-3X-z9q"/>
-                            <constraint firstItem="3g5-dE-aXi" firstAttribute="leading" secondItem="Rce-ee-JxB" secondAttribute="leading" constant="20" id="dsc-e5-zhh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="새 일정 + 일기" id="hZb-AQ-Nvd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Z6b-2A-SQy">
+                            <connections>
+                                <action selector="cancleBtn:" destination="mPm-kw-g2S" id="84x-mP-VeM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="0OI-dr-fAa">
+                            <connections>
+                                <action selector="saveBtn:" destination="mPm-kw-g2S" id="EHi-GZ-GlM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V2I-du-lf5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634.7826086956522" y="317.41071428571428"/>
+            <point key="canvasLocation" x="2391" y="319"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="3RP-To-fyY">

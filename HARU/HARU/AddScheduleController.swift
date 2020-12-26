@@ -8,13 +8,18 @@
 import UIKit
 
 class AddScheduleController : UIViewController {
+
     
-    @IBAction func CloseBtn(_ sender: Any) {
+    @IBAction func cancleBtn(_ sender: Any) {
         
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-
-       
     }
+    
+    @IBAction func saveBtn(_ sender: Any) {
+        
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
