@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DAC709FEAA6782D0D541943E /* Pods_HARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */; };
+		EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1219B42594C255007EDE8E /* CalendarLoader.swift */; };
 		EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F83692594749C008B8ED5 /* AppDelegate.swift */; };
 		EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F836B2594749C008B8ED5 /* SceneDelegate.swift */; };
 		EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F836D2594749C008B8ED5 /* ViewController.swift */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39EBF39A9C1E3087EF09460E /* Pods-HARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARU.debug.xcconfig"; path = "Target Support Files/Pods-HARU/Pods-HARU.debug.xcconfig"; sourceTree = "<group>"; };
+		54D27E88A803569AC424E619 /* Pods-HARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARU.release.xcconfig"; path = "Target Support Files/Pods-HARU/Pods-HARU.release.xcconfig"; sourceTree = "<group>"; };
+		5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA1219B42594C255007EDE8E /* CalendarLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLoader.swift; sourceTree = SOURCE_ROOT; };
 		EA7F83662594749C008B8ED5 /* HARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7F83692594749C008B8ED5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7F836B2594749C008B8ED5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC709FEAA6782D0D541943E /* Pods_HARU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43A1F05D4F2035B392D1F5DC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				39EBF39A9C1E3087EF09460E /* Pods-HARU.debug.xcconfig */,
+				54D27E88A803569AC424E619 /* Pods-HARU.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EA7F835D2594749C008B8ED5 = {
 			isa = PBXGroup;
 			children = (
 				EA7F83682594749C008B8ED5 /* HARU */,
 				EA7F83672594749C008B8ED5 /* Products */,
+				43A1F05D4F2035B392D1F5DC /* Pods */,
+				FBACACBB553BC2094FE0DC7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +74,7 @@
 		EA7F83682594749C008B8ED5 /* HARU */ = {
 			isa = PBXGroup;
 			children = (
+				EA1219B42594C255007EDE8E /* CalendarLoader.swift */,
 				EA7F83692594749C008B8ED5 /* AppDelegate.swift */,
 				EA7F836B2594749C008B8ED5 /* SceneDelegate.swift */,
 				EA7F836D2594749C008B8ED5 /* ViewController.swift */,
@@ -67,6 +86,14 @@
 			path = HARU;
 			sourceTree = "<group>";
 		};
+		FBACACBB553BC2094FE0DC7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA7F837A2594749D008B8ED5 /* Build configuration list for PBXNativeTarget "HARU" */;
 			buildPhases = (
+				2298598556C9FF7E0CEBBC53 /* [CP] Check Pods Manifest.lock */,
 				EA7F83622594749C008B8ED5 /* Sources */,
 				EA7F83632594749C008B8ED5 /* Frameworks */,
 				EA7F83642594749C008B8ED5 /* Resources */,
+				FCD4B666BF6E8255CDE86249 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,11 +161,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2298598556C9FF7E0CEBBC53 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HARU-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCD4B666BF6E8255CDE86249 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HARU/Pods-HARU-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HARU/Pods-HARU-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HARU/Pods-HARU-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EA7F83622594749C008B8ED5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */,
 				EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */,
 				EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */,
 				EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */,
@@ -283,6 +355,7 @@
 		};
 		EA7F837B2594749D008B8ED5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39EBF39A9C1E3087EF09460E /* Pods-HARU.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +375,7 @@
 		};
 		EA7F837C2594749D008B8ED5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54D27E88A803569AC424E619 /* Pods-HARU.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
