@@ -7,6 +7,7 @@
 
 import Foundation
 import EventKit
+import UIKit
 
 class CalendarLoader {
     
@@ -15,12 +16,11 @@ class CalendarLoader {
         var endDate: NSDate
         var title: String
         var calendarName: String
-        var color: String
+        var color: UIColor
     }
     
-    var titles : [String] = []
-    var startDates : [NSDate] = []
-    var endDates : [NSDate] = []
+    // To save calendars properties
+    var loadedEvents: [EVENT] = []
     
     let eventStore = EKEventStore()
     let calendars : [EKCalendar]
@@ -46,12 +46,13 @@ class CalendarLoader {
             }
         
         calendars = eventStore.calendars(for: .event)
+        
         if auth {
-            getEvents()
+            loadEvents()
         }
     }
     
-    func getEvents() {
+    func loadEvents() {
         for calendar in calendars {
             let oneMonthAgo = NSDate(timeIntervalSinceNow: -30*24*3600)
             let oneMonthAfter = NSDate(timeIntervalSinceNow: +30*24*3600)
@@ -61,11 +62,11 @@ class CalendarLoader {
             let events = eventStore.events(matching: predicate)
 
             for event in events {
-                print(event)
-                print(event.calendar.title)
-                titles.append(event.title)
-                startDates.append(event.startDate as NSDate)
-                endDates.append(event.endDate as NSDate)
+                let calendarColor = UIColor(cgColor: calendar.cgColor)
+                let ev = EVENT(startDate: event.startDate as NSDate, endDate: event.endDate as NSDate, title: event.title,
+                                  calendarName: event.calendar.title, color: calendarColor)
+                
+                loadedEvents.append(ev)
             }
         }
     }
