@@ -78,18 +78,26 @@
 		EA7F83682594749C008B8ED5 /* HARU */ = {
 			isa = PBXGroup;
 			children = (
+				EAE11ECC25985CBB00A35EBF /* ViewControllers */,
 				EA1219B42594C255007EDE8E /* CalendarLoader.swift */,
 				EA7F83692594749C008B8ED5 /* AppDelegate.swift */,
 				EA7F836B2594749C008B8ED5 /* SceneDelegate.swift */,
-				EA7F836D2594749C008B8ED5 /* ViewController.swift */,
 				EA7F836F2594749C008B8ED5 /* Main.storyboard */,
 				EA7F83722594749D008B8ED5 /* Assets.xcassets */,
 				EA7F83742594749D008B8ED5 /* LaunchScreen.storyboard */,
 				EA7F83772594749D008B8ED5 /* Info.plist */,
+			);
+			path = HARU;
+			sourceTree = "<group>";
+		};
+		EAE11ECC25985CBB00A35EBF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EA7F836D2594749C008B8ED5 /* ViewController.swift */,
 				1FE6078D2597514100A0882D /* SelectDateController.swift */,
 				1FD1F0AE25977590008F1F90 /* AddScheduleController.swift */,
 			);
-			path = HARU;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		FBACACBB553BC2094FE0DC7F /* Frameworks */ = {
