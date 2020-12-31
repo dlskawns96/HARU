@@ -89,7 +89,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-Pq-4S6">
-                                <rect key="frame" x="20" y="84" width="39" height="27"/>
+                                <rect key="frame" x="20" y="154" width="39" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -112,7 +112,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40" scale="large"/>
                                 </state>
                                 <connections>
-                                    <segue destination="t3z-4x-omQ" kind="presentation" id="poh-Bp-OMD"/>
+                                    <action selector="addBtn:" destination="Nzo-Wt-ceS" eventType="touchUpInside" id="M79-jN-arU"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 + 일기 보여주기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pd8-1f-KoN">
@@ -121,11 +121,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
+                                <rect key="frame" x="68" y="66" width="276" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="일정"/>
+                                    <segment title="일기"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="Nzo-Wt-ceS" eventType="valueChanged" id="5jv-sf-76G"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fMY-fW-zjr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IdW-Pq-4S6" firstAttribute="top" secondItem="7bv-nV-OXI" secondAttribute="bottom" constant="30" id="AMh-Lz-Xig"/>
+                            <constraint firstItem="IdW-Pq-4S6" firstAttribute="top" secondItem="7bv-nV-OXI" secondAttribute="bottom" constant="100" id="AMh-Lz-Xig"/>
                             <constraint firstItem="fMY-fW-zjr" firstAttribute="bottom" secondItem="nAL-jz-r8u" secondAttribute="bottom" constant="40" id="To7-eV-vxJ"/>
                             <constraint firstItem="pd8-1f-KoN" firstAttribute="centerX" secondItem="gqT-Gu-Dfh" secondAttribute="centerX" id="Ufa-c1-9vd"/>
                             <constraint firstItem="pd8-1f-KoN" firstAttribute="centerY" secondItem="gqT-Gu-Dfh" secondAttribute="centerY" id="YES-eY-J8w"/>
@@ -136,7 +147,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addBtn" destination="nAL-jz-r8u" id="36T-Q6-nb7"/>
                         <outlet property="date" destination="IdW-Pq-4S6" id="x0F-OS-ggf"/>
+                        <outlet property="segment" destination="PEA-2V-ho5" id="uZj-fk-nEK"/>
+                        <outlet property="text" destination="pd8-1f-KoN" id="Ujs-3S-lB2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gca-Xa-dfn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -146,9 +160,9 @@
         <!--Navigation Controller-->
         <scene sceneID="ERB-zj-B8n">
             <objects>
-                <navigationController id="t3z-4x-omQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AddScheduleController" id="t3z-4x-omQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MWt-hr-18n">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -159,17 +173,17 @@
             </objects>
             <point key="canvasLocation" x="1583" y="319"/>
         </scene>
-        <!--새 일정 + 일기-->
+        <!--새 일정-->
         <scene sceneID="9mK-tF-9ma">
             <objects>
-                <viewController storyboardIdentifier="AddScheduleController" id="mPm-kw-g2S" customClass="AddScheduleController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mPm-kw-g2S" customClass="AddScheduleController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rvr-TU-KGf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Rce-ee-JxB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="새 일정 + 일기" id="hZb-AQ-Nvd">
+                    <navigationItem key="navigationItem" title="새 일정" id="hZb-AQ-Nvd">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Z6b-2A-SQy">
                             <connections>
                                 <action selector="cancleBtn:" destination="mPm-kw-g2S" id="84x-mP-VeM"/>
@@ -185,6 +199,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V2I-du-lf5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2389.8550724637685" y="318.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6Wo-8S-sIc">
+            <objects>
+                <navigationController storyboardIdentifier="AddDiaryController" id="B4o-5a-XFs" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ulp-fz-W2P">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="gp5-W4-C5t" kind="relationship" relationship="rootViewController" id="VjP-Qh-ZgV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jiA-32-vrn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1583" y="1070"/>
+        </scene>
+        <!--새 일기-->
+        <scene sceneID="eNJ-Ri-LEQ">
+            <objects>
+                <viewController id="gp5-W4-C5t" customClass="AddDiaryController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5t3-Yw-Abt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tco-ff-Ld1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="새 일기" id="FEQ-mD-GCm">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="m2g-rG-8mU">
+                            <connections>
+                                <action selector="cancleBtn:" destination="gp5-W4-C5t" id="O1k-8i-J4q"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="QKx-Pv-xhr">
+                            <connections>
+                                <action selector="saveBtn:" destination="gp5-W4-C5t" id="P56-Hl-OLr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Quh-sq-6pg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2390" y="1069"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="3RP-To-fyY">
