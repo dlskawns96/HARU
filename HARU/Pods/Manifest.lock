@@ -1,16 +1,20 @@
 PODS:
+  - AFDateHelper (4.3.0)
   - FSCalendar (2.8.2)
 
 DEPENDENCIES:
+  - AFDateHelper
   - FSCalendar
 
 SPEC REPOS:
   trunk:
+    - AFDateHelper
     - FSCalendar
 
 SPEC CHECKSUMS:
+  AFDateHelper: b769c07d3d4784ee9a74633285304261bb27dc52
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
 
-PODFILE CHECKSUM: c3ce36f6d6cb3c5fe6f514bd89462a97e7ff3d4e
+PODFILE CHECKSUM: b48d39fb463779fe6eb74040625bb1f1a2ee40da
 
 COCOAPODS: 1.10.0
