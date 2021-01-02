@@ -12,8 +12,8 @@ import UIKit
 class CalendarLoader {
     
     struct EVENT {
-        var startDate: NSDate
-        var endDate: NSDate
+        var startDate: Date
+        var endDate: Date
         var title: String
         var calendarName: String
         var color: UIColor
@@ -54,16 +54,15 @@ class CalendarLoader {
     
     func loadEvents() {
         for calendar in calendars {
-            let oneMonthAgo = NSDate(timeIntervalSinceNow: -30*24*3600)
-            let oneMonthAfter = NSDate(timeIntervalSinceNow: +30*24*3600)
+            let oneMonthAgo = Date(timeIntervalSinceNow: -30*24*3600)
+            let oneMonthAfter = Date(timeIntervalSinceNow: +30*24*3600)
 
-            let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [calendar])
+            let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo, end: oneMonthAfter, calendars: [calendar])
 
             let events = eventStore.events(matching: predicate)
-
             for event in events {
                 let calendarColor = UIColor(cgColor: calendar.cgColor)
-                let ev = EVENT(startDate: event.startDate as NSDate, endDate: event.endDate as NSDate, title: event.title,
+                let ev = EVENT(startDate: event.startDate, endDate: event.endDate, title: event.title,
                                   calendarName: event.calendar.title, color: calendarColor)
                 
                 loadedEvents.append(ev)
