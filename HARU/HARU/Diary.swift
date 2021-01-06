@@ -20,7 +20,9 @@ class Diary {
     
     static var diaryList = [
         
-        Diary(content: "Today is good", date: "2021-01-02")
+        Diary(content: "Today is good", date: "2021-01-02"),
+        Diary(content: "Today is bad", date: "2021-01-02")
+
     ]
 
 }

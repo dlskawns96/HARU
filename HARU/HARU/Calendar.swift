@@ -15,11 +15,16 @@ class Calendar {
     var identifier : String
     
     init(title : String, startDate : String, endDate : String, indentifier : String){
-        
+    
         self.title = title
         self.startDate = startDate
         self.endDate = endDate
         self.identifier = indentifier
         
     }
+    
+    static var calendarList = [
+        
+        Calendar(title: "title", startDate: "test", endDate: "test", indentifier: "test")
+    ]
 }
