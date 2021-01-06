@@ -27,7 +27,11 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
         self.tableView.delegate = self
         
     }
-    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        tableView.reloadData()
+//    }
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
        return count

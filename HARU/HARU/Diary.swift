@@ -10,9 +10,9 @@ import Foundation
 class Diary {
     
     var content : String
-    var date : String
+    var date : Date
     
-    init(content: String, date: String) {
+    init(content: String, date: Date) {
         
         self.content = content
         self.date = date
@@ -20,8 +20,8 @@ class Diary {
     
     static var diaryList = [
         
-        Diary(content: "Today is good", date: "2021-01-02"),
-        Diary(content: "Today is bad", date: "2021-01-02")
+        Diary(content: "Today is good", date: Date()),
+        Diary(content: "Today is bad", date: Date())
 
     ]
 
