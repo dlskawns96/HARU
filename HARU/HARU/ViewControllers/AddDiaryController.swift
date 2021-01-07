@@ -30,10 +30,14 @@ class AddDiaryController : UIViewController {
         
         let newDiary = Diary(content: diary, date: Date())
         Diary.diaryList.append(newDiary)
+        
+        NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
     
         dismiss(animated: true, completion: nil)
     }
     
 }
 
-
+extension AddDiaryController {
+    static let newDiary = Notification.Name(rawValue: "newDiary")
+}

@@ -10,28 +10,48 @@ import UIKit
 class SelectDateController : UIViewController, UITableViewDataSource, UITableViewDelegate {
 
 
-    @IBOutlet weak var date: UILabel!
     @IBOutlet weak var segment: UISegmentedControl!
-    @IBOutlet weak var text: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
    
-    var paramDate : String = ""
-    var count : Int = Calendar.calendarList.count
+    //var paramDate : String = ""
+    var count: Int = Calendar.calendarList.count
+    var token: NSObjectProtocol?
     
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        self.date.text = paramDate
-        self.text.text = "일정"
+        //self.date.text = paramDate
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in
+            self.reloadTableView()
+            print("reload")
+        }
+        
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        tableView.reloadData()
-//    }
    
+    func reloadTableView(){
+        
+        switch segment.selectedSegmentIndex
+        {
+        case 0:
+            count = Calendar.calendarList.count
+            tableView.reloadData()
+        case 1:
+            count = Diary.diaryList.count
+            tableView.reloadData()
+        default:
+            break
+        }
+        
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
        return count
@@ -61,21 +81,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func indexChanged(_ sender: Any) {
-        
-        switch segment.selectedSegmentIndex
-        {
-        case 0:
-            self.text.text = "일정"
-            count = Calendar.calendarList.count
-            tableView.reloadData()
-        case 1:
-            self.text.text = "일기"
-            count = Diary.diaryList.count
-            tableView.reloadData()
-        default:
-            break
-        }
-        
+        reloadTableView()
     }
     
     

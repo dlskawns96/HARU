@@ -92,12 +92,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-Pq-4S6">
-                                <rect key="frame" x="20" y="154" width="39" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAL-jz-r8u">
                                 <rect key="frame" x="326" y="766" width="58" height="56"/>
                                 <color key="tintColor" systemColor="opaqueSeparatorColor"/>
@@ -105,12 +99,6 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40" scale="large"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 + 일기 보여주기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pd8-1f-KoN">
-                                <rect key="frame" x="104.5" y="433" width="205" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
                                 <rect key="frame" x="68" y="66" width="276" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -172,23 +160,17 @@
                         <viewLayoutGuide key="safeArea" id="fMY-fW-zjr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IdW-Pq-4S6" firstAttribute="top" secondItem="7bv-nV-OXI" secondAttribute="bottom" constant="100" id="AMh-Lz-Xig"/>
                             <constraint firstItem="OWg-Zv-5p1" firstAttribute="top" secondItem="gqT-Gu-Dfh" secondAttribute="top" constant="25" id="SKg-VU-wih"/>
                             <constraint firstItem="fMY-fW-zjr" firstAttribute="bottom" secondItem="nAL-jz-r8u" secondAttribute="bottom" constant="40" id="To7-eV-vxJ"/>
-                            <constraint firstItem="pd8-1f-KoN" firstAttribute="centerX" secondItem="gqT-Gu-Dfh" secondAttribute="centerX" id="Ufa-c1-9vd"/>
-                            <constraint firstItem="pd8-1f-KoN" firstAttribute="centerY" secondItem="gqT-Gu-Dfh" secondAttribute="centerY" id="YES-eY-J8w"/>
                             <constraint firstItem="7bv-nV-OXI" firstAttribute="top" secondItem="gqT-Gu-Dfh" secondAttribute="top" constant="25" id="huR-8R-uRx"/>
                             <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="OWg-Zv-5p1" secondAttribute="trailing" constant="30" id="mzM-Hn-JPe"/>
                             <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="nAL-jz-r8u" secondAttribute="trailing" constant="30" id="rFM-Cs-i1W"/>
-                            <constraint firstItem="IdW-Pq-4S6" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" constant="20" id="sCu-sB-aZA"/>
                             <constraint firstItem="7bv-nV-OXI" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" constant="20" id="wcG-Tr-BZx"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="date" destination="IdW-Pq-4S6" id="x0F-OS-ggf"/>
                         <outlet property="segment" destination="PEA-2V-ho5" id="uZj-fk-nEK"/>
                         <outlet property="tableView" destination="Dv9-Ji-GgT" id="rmV-HQ-EEg"/>
-                        <outlet property="text" destination="pd8-1f-KoN" id="Ujs-3S-lB2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gca-Xa-dfn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

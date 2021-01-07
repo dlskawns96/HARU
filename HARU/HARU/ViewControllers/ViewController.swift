@@ -41,9 +41,9 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         
         guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        controller.paramDate = dateFormatter.string(from: date)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        controller.paramDate = dateFormatter.string(from: date)
         
         self.present(controller, animated: true, completion: nil)
     }
