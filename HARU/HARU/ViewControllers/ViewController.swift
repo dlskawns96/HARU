@@ -38,39 +38,39 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         //print(dateFormatter.string(from: date))
-
+        
         guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         controller.paramDate = dateFormatter.string(from: date)
-
+        
         self.present(controller, animated: true, completion: nil)
     }
-
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        
-        let eves = loadedEvents.filter({$0.startDate.compare(.isSameDay(as: date))})
-        return eves.count
-    }
     
-    // 이벤트를 색 지정
-    // TODO: 있는 이벤트들의 Date 만 모아서 datesWithEvent, datesWithMultipleEvents로 만들기
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-        print(date)
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
         let eves = loadedEvents.filter({$0.startDate.compare(.isSameDay(as: date))})
         
-        if eves.count == 1 {
-            return [eves[0].color]
-        }
-        if eves.count > 1 {
-            var colors:[UIColor] = []
-            eves.forEach {
-                colors.append($0.color)
+        if eves.count != 0 {
+            var posY = 50
+            for eve in eves {
+                let lab = UILabel(frame: CGRect(x: 0, y: posY, width: Int(cell.bounds.width), height: 15))
+                lab.font = .systemFont(ofSize: 12, weight: .regular)
+                lab.text = eve.title
+                lab.textColor = UIColor.init(named: "#32C77F")
+                cell.addSubview(lab)
+                lab.backgroundColor = eve.color
+                posY = posY + 15
             }
-            return colors
+            
+        } else {
+            for view in cell.subviews {
+                if view is UILabel {
+                    view.removeFromSuperview()
+                }
+            }
         }
-        return nil
     }
 }
 
