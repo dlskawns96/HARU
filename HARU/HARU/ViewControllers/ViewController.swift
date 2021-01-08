@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 import FSCalendar
 import AFDateHelper
 
@@ -66,5 +67,25 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
             }
         }
     }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        print("fsCalendar.currentPage")
+        print(fsCalendar.currentPage)
+        if !(date.compare(.isSameMonth(as: fsCalendar.currentPage))) {
+            return nil
+        }
+        if getWeekDay(for: date) == "Sunday" {
+            return .red
+        }
+        if getWeekDay(for: date) == "Saturday" {
+            return .blue
+        }
+        
+        return nil
+    }
+    
+    func getWeekDay(for date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
+    }
 }
-
