@@ -14,7 +14,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
    
     //var paramDate : String = ""
-    var count: Int = Calendar.calendarList.count
+    var count: Int = HCalendar.calendarList.count
     var token: NSObjectProtocol?
     
     deinit {
@@ -41,7 +41,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
         switch segment.selectedSegmentIndex
         {
         case 0:
-            count = Calendar.calendarList.count
+            count = HCalendar.calendarList.count
             tableView.reloadData()
         case 1:
             count = Diary.diaryList.count
@@ -68,7 +68,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
         switch segment.selectedSegmentIndex
         {
         case 0:
-            let target = Calendar.calendarList[indexPath.row]
+            let target = HCalendar.calendarList[indexPath.row]
             cell.textLabel?.text = target.title
         case 1:
             let target = Diary.diaryList[indexPath.row]

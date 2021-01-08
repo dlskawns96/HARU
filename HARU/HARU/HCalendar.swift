@@ -1,13 +1,13 @@
 //
-//  Calendar.swift
+//  HCalendar.swift
 //  HARU
 //
-//  Created by Cho Si Yeon on 2020/12/31.
+//  Created by Cho Si Yeon on 2021/01/09.
 //
 
 import Foundation
 
-class Calendar {
+class HCalendar {
     
     var title : String
     var startDate : String
@@ -25,6 +25,6 @@ class Calendar {
     
     static var calendarList = [
         
-        Calendar(title: "title", startDate: "test", endDate: "test", indentifier: "test")
+        HCalendar(title: "title", startDate: "test", endDate: "test", indentifier: "test")
     ]
 }

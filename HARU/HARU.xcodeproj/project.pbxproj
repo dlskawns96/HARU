@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15325A5F1CB00969F09 /* Alert.swift */; };
-		1F962C1A259DCD5B0006B4AB /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F962C19259DCD5B0006B4AB /* Calendar.swift */; };
+		1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15625A8AF0900969F09 /* HCalendar.swift */; };
 		1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B80259E807700AC8142 /* AddDiaryController.swift */; };
 		1FC02B84259E83D600AC8142 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B83259E83D600AC8142 /* Diary.swift */; };
 		1FD1F0AF25977590008F1F90 /* AddScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD1F0AE25977590008F1F90 /* AddScheduleController.swift */; };
@@ -25,7 +25,7 @@
 
 /* Begin PBXFileReference section */
 		1F84D15325A5F1CB00969F09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		1F962C19259DCD5B0006B4AB /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		1F84D15625A8AF0900969F09 /* HCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCalendar.swift; sourceTree = "<group>"; };
 		1FC02B80259E807700AC8142 /* AddDiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryController.swift; sourceTree = "<group>"; };
 		1FC02B83259E83D600AC8142 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		1FD1F0AE25977590008F1F90 /* AddScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleController.swift; sourceTree = "<group>"; };
@@ -94,9 +94,9 @@
 				EA7F83722594749D008B8ED5 /* Assets.xcassets */,
 				EA7F83742594749D008B8ED5 /* LaunchScreen.storyboard */,
 				EA7F83772594749D008B8ED5 /* Info.plist */,
-				1F962C19259DCD5B0006B4AB /* Calendar.swift */,
 				1FC02B83259E83D600AC8142 /* Diary.swift */,
 				1F84D15325A5F1CB00969F09 /* Alert.swift */,
+				1F84D15625A8AF0900969F09 /* HCalendar.swift */,
 			);
 			path = HARU;
 			sourceTree = "<group>";
@@ -239,11 +239,11 @@
 				EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */,
 				1FD1F0AF25977590008F1F90 /* AddScheduleController.swift in Sources */,
 				1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */,
+				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
 				1FC02B84259E83D600AC8142 /* Diary.swift in Sources */,
 				EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */,
 				EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */,
 				1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */,
-				1F962C1A259DCD5B0006B4AB /* Calendar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
