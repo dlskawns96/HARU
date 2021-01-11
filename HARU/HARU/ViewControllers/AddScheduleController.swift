@@ -8,7 +8,7 @@
 import UIKit
 import EventKit
 
-class AddScheduleController : UIViewController {
+class AddScheduleController : UITableViewController {
   
     var savedEventId : String = ""
     var hTitle : String = "Test"
