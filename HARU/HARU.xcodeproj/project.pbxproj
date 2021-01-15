@@ -11,7 +11,6 @@
 		1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15625A8AF0900969F09 /* HCalendar.swift */; };
 		1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B80259E807700AC8142 /* AddDiaryController.swift */; };
 		1FC02B84259E83D600AC8142 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B83259E83D600AC8142 /* Diary.swift */; };
-		1FD1F0AF25977590008F1F90 /* AddScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD1F0AE25977590008F1F90 /* AddScheduleController.swift */; };
 		1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6078D2597514100A0882D /* SelectDateController.swift */; };
 		DAC709FEAA6782D0D541943E /* Pods_HARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */; };
 		EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1219B42594C255007EDE8E /* CalendarLoader.swift */; };
@@ -21,6 +20,7 @@
 		EA7F83712594749C008B8ED5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7F836F2594749C008B8ED5 /* Main.storyboard */; };
 		EA7F83732594749D008B8ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7F83722594749D008B8ED5 /* Assets.xcassets */; };
 		EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7F83742594749D008B8ED5 /* LaunchScreen.storyboard */; };
+		EAE87E7A25AD85BC00AF18A5 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,6 @@
 		1F84D15625A8AF0900969F09 /* HCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCalendar.swift; sourceTree = "<group>"; };
 		1FC02B80259E807700AC8142 /* AddDiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryController.swift; sourceTree = "<group>"; };
 		1FC02B83259E83D600AC8142 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
-		1FD1F0AE25977590008F1F90 /* AddScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleController.swift; sourceTree = "<group>"; };
 		1FE6078D2597514100A0882D /* SelectDateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateController.swift; sourceTree = "<group>"; };
 		39EBF39A9C1E3087EF09460E /* Pods-HARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARU.debug.xcconfig"; path = "Target Support Files/Pods-HARU/Pods-HARU.debug.xcconfig"; sourceTree = "<group>"; };
 		54D27E88A803569AC424E619 /* Pods-HARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARU.release.xcconfig"; path = "Target Support Files/Pods-HARU/Pods-HARU.release.xcconfig"; sourceTree = "<group>"; };
@@ -42,6 +41,7 @@
 		EA7F83722594749D008B8ED5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA7F83752594749D008B8ED5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA7F83772594749D008B8ED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +106,8 @@
 			children = (
 				EA7F836D2594749C008B8ED5 /* ViewController.swift */,
 				1FE6078D2597514100A0882D /* SelectDateController.swift */,
-				1FD1F0AE25977590008F1F90 /* AddScheduleController.swift */,
 				1FC02B80259E807700AC8142 /* AddDiaryController.swift */,
+				EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -235,9 +235,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */,
+				EAE87E7A25AD85BC00AF18A5 /* AddEventViewController.swift in Sources */,
 				1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */,
 				EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */,
-				1FD1F0AF25977590008F1F90 /* AddScheduleController.swift in Sources */,
 				1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */,
 				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
 				1FC02B84259E83D600AC8142 /* Diary.swift in Sources */,
