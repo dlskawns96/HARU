@@ -40,6 +40,10 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        controller.selectedDate = dateFormatter.string(from: date)
+
         self.present(controller, animated: true, completion: nil)
     }
     

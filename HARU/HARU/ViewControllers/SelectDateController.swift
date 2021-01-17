@@ -16,6 +16,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
     //var paramDate : String = ""
     var count: Int = HCalendar.calendarList.count
     var token: NSObjectProtocol?
+    var selectedDate: String = ""
     
     deinit {
         if let token = token {
@@ -44,7 +45,10 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
             count = HCalendar.calendarList.count
             tableView.reloadData()
         case 1:
-            count = Diary.diaryList.count
+            //count = Diary.diaryList.count
+            count = Diary.returnDiaryCount(date: selectedDate)
+//            let target = Diary.diaryList
+//            if(target.date)
             tableView.reloadData()
         default:
             break
@@ -71,8 +75,12 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
             let target = HCalendar.calendarList[indexPath.row]
             cell.textLabel?.text = target.title
         case 1:
-            let target = Diary.diaryList[indexPath.row]
-            cell.textLabel?.text = target.content
+            //let target = Diary.diaryList[indexPath.row]
+            //let target = Diary.returnDiary("2021-01-09")
+            print(Diary.returnDiary(date: selectedDate))
+            let row = indexPath.row
+            let list = Diary.returnDiary(date: selectedDate)
+            cell.textLabel?.text = list[row]
         default:
             break
         }
