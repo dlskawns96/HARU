@@ -18,6 +18,12 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
     var token: NSObjectProtocol?
     var selectedDate: String = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        CoreDataManager.shared.fetchDiary()
+        tableView.reloadData()
+    }
+    
     deinit {
         if let token = token {
             NotificationCenter.default.removeObserver(token)
@@ -46,7 +52,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
             tableView.reloadData()
         case 1:
             //count = Diary.diaryList.count
-            count = Diary.returnDiaryCount(date: selectedDate)
+            count = CoreDataManager.returnDiaryCount(date: selectedDate)
 //            let target = Diary.diaryList
 //            if(target.date)
             tableView.reloadData()
@@ -77,9 +83,9 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
         case 1:
             //let target = Diary.diaryList[indexPath.row]
             //let target = Diary.returnDiary("2021-01-09")
-            print(Diary.returnDiary(date: selectedDate))
+            print(CoreDataManager.returnDiary(date: selectedDate))
             let row = indexPath.row
-            let list = Diary.returnDiary(date: selectedDate)
+            let list = CoreDataManager.returnDiary(date: selectedDate)
             cell.textLabel?.text = list[row]
         default:
             break

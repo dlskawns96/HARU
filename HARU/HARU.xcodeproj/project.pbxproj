@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185B925B4579100C4743F /* Data.xcdatamodeld */; };
+		1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */; };
 		1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15325A5F1CB00969F09 /* Alert.swift */; };
 		1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15625A8AF0900969F09 /* HCalendar.swift */; };
 		1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B80259E807700AC8142 /* AddDiaryController.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F3185BA25B4579100C4743F /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1F84D15325A5F1CB00969F09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		1F84D15625A8AF0900969F09 /* HCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCalendar.swift; sourceTree = "<group>"; };
 		1FC02B80259E807700AC8142 /* AddDiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryController.swift; sourceTree = "<group>"; };
@@ -56,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F3185BE25B45AE200C4743F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		43A1F05D4F2035B392D1F5DC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +98,8 @@
 		EA7F83682594749C008B8ED5 /* HARU */ = {
 			isa = PBXGroup;
 			children = (
+				1F3185BE25B45AE200C4743F /* Data */,
+				1F3185B925B4579100C4743F /* Data.xcdatamodeld */,
 				EAE11ECC25985CBB00A35EBF /* ViewControllers */,
 				EA7F83692594749C008B8ED5 /* AppDelegate.swift */,
 				EA1219B42594C255007EDE8E /* CalendarLoader.swift */,
@@ -240,6 +254,8 @@
 				1FD1F0AF25977590008F1F90 /* AddScheduleController.swift in Sources */,
 				1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */,
 				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
+				1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */,
+				1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */,
 				1FC02B84259E83D600AC8142 /* Diary.swift in Sources */,
 				EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */,
 				EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */,
@@ -447,6 +463,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1F3185B925B4579100C4743F /* Data.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1F3185BA25B4579100C4743F /* Data.xcdatamodel */,
+			);
+			currentVersion = 1F3185BA25B4579100C4743F /* Data.xcdatamodel */;
+			path = Data.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EA7F835E2594749C008B8ED5 /* Project object */;
 }

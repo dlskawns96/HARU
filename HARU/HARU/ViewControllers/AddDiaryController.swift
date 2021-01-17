@@ -27,11 +27,14 @@ class AddDiaryController : UIViewController {
             alert(message: "내용을 입력하세요.")
             return
         }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        let newDiary = Diary(content: diary, date: dateFormatter.string(from: Date()))
-        Diary.diaryList.append(newDiary)
+//        let newDiary = Diary(content: diary, date: dateFormatter.string(from: Date()))
+//        Diary.diaryList.append(newDiary)
+        
+        CoreDataManager.shared.addDiary(diary, dateFormatter.string(from: Date()))
         
         NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
     
