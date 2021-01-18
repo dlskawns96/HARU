@@ -125,6 +125,7 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
     }
 }
 
+// 화면 아무데나 터치하면 키보드 숨기기
 extension UIViewController
 {
     func hideKeyboard()
