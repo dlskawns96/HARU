@@ -35,10 +35,21 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         fsCalendar.appearance.headerTitleColor = .black
         fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
         fsCalendar.appearance.borderRadius = 0
+        
+        for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
+            if weekday.text == "일" {
+                weekday.textColor = .red
+            } else if weekday.text == "토" {
+                weekday.textColor = .blue
+            } else {
+                weekday.textColor = .black
+            }
+        }
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
+        controller.modalPresentationStyle = .pageSheet
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -73,9 +84,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        print("fsCalendar.currentPage")
-        print(fsCalendar.currentPage)
-        if !(date.compare(.isSameMonth(as: fsCalendar.currentPage))) {
+        let isSameMon: Bool = date.isSameAs(as: .month, from: calendar.currentPage)
+        if !isSameMon {
             return nil
         }
         if getWeekDay(for: date) == "Sunday" {
@@ -84,12 +94,32 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         if getWeekDay(for: date) == "Saturday" {
             return .blue
         }
-        
         return nil
+    }
+    
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        calendar.reloadData()
     }
     
     func getWeekDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()
         return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
+    }
+}
+
+extension Date {
+
+    func isSameAs(as compo: Calendar.Component, from date: Date) -> Bool {
+        var cal = Calendar.current
+        cal.locale = Locale(identifier: "ko_KR")
+        return cal.component(compo, from: date) == cal.component(compo, from: self)
+    }
+    
+    func dayBefore() -> Date {
+            return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+    }
+    
+    var noon: Date {
+            return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
     }
 }

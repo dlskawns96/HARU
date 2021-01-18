@@ -110,8 +110,8 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
         switch segment.selectedSegmentIndex
         {
         case 0:
-            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddScheduleController") else { return }
-            
+            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddEventViewController") else { return }
+            controller.modalPresentationStyle = .pageSheet
             self.present(controller, animated: true, completion: nil)
         case 1:
             guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
