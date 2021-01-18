@@ -18,14 +18,115 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var repeatTimeStepper: UIStepper!
     @IBOutlet weak var repeatTimeTextField: UITextField!
+    @IBOutlet weak var scrollViewContainer: UIView!
     
-    var pickerData: [[String]] = [[String]]()
+    var pickerData: [[String]] = [["Every"], ["1", "2", "3", "4", "5", "6", "7"], ["days", "weeks"]]
     var activeField: UITextField!
+    var isKeyboardUp: Bool = false
 
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
 
+        setFSCalendar()
+        setPickerView(pickerView: repeatPicker, enable: false, row: 3, inComponent: 1, animated: true)
+        
+        self.eventTitleTextField.delegate = self
+        self.repeatTimeTextField.delegate = self
+        
+        repeatSwitch.isOn = false
+        
+        repeatTimeTextField.keyboardType = .numberPad
+        repeatTimeStepper.value = 0
+        
+        registerForKeyboardNotifications()
+        hideKeyboard()
+    }
+    
+    // MARK: - IBActions
+    @IBAction func cancelBtnClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveBtnClicked(_ sender: Any) {
+    }
+    
+    @IBAction func repeatSwitchValueChanged(_ sender: Any) {
+        if self.repeatSwitch.isOn {
+            pickerEnable(picker: repeatPicker, enable: true)
+        } else {
+            pickerEnable(picker: repeatPicker, enable: false)
+        }
+    }
+    
+    @IBAction func repeatTimeStepperValueChanged(_ sender: UIStepper) {
+        repeatTimeTextField.text = Int(sender.value).description
+    }
+    
+    // MARK: - Functions
+    
+    func getWeekDay(for date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
+    }
+    
+    
+    /// 텍스트 필드 위치를 키보드 보다 위로 이동시키기
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    /// 이 메서드는 UIKeyboardDidShow 노티피케이션을 받으면 호출된다.
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardFrame.height, right: 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+
+        // 활성화된 텍스트 필드가 키보드에 의해 가려진다면 가려지지 않도록 스크롤한다.
+        var rect = self.view.frame
+        rect.size.height -= keyboardFrame.height
+        if rect.contains(activeField.frame.origin) {
+            scrollView.scrollRectToVisible(activeField.frame, animated: true)
+        }
+    }
+
+    /// 이 메서드는 UIKeyboardWillHide 노티피케이션을 받으면 호출된다.
+    @objc func keyboardWillHide(_ notification: Notification) {
+        let contentInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+}
+
+// MARK: - Extensions
+
+extension AddEventViewController {
+    /// 화면 아무데나 터치하면 키보드 숨기기
+    func hideKeyboard()
+    {
+        let tappy = UITapGestureRecognizer(target: self,
+                                       action: #selector(dismissKeyboard))
+        
+        // 터치 감지를 하면서 감지한 터치 동작 취소하지 않기
+        tappy.cancelsTouchesInView = false
+        view.addGestureRecognizer(tappy)
+    }
+    @objc func dismissKeyboard()
+    {
+        print("self", self.isKeyboardUp)
+        if self.isKeyboardUp {
+            view.endEditing(true)
+        }
+    }
+}
+
+// Implemetation FSCalendar DataSource, Delegate
+extension AddEventViewController: FSCalendarDataSource, FSCalendarDelegate {
+    func setFSCalendar() {
         fsCalendar.delegate = self
         fsCalendar.dataSource = self
         
@@ -46,103 +147,8 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
                 weekday.textColor = .black
             }
         }
-        
-        pickerData = [["Every"], ["1", "2", "3", "4", "5", "6", "7"], ["days", "weeks"]]
-        
-        self.repeatPicker.dataSource = self
-        self.repeatPicker.delegate = self
-        self.eventTitleTextField.delegate = self
-        self.repeatTimeTextField.delegate = self
-        
-        repeatPicker.selectRow(3, inComponent: 1, animated: true)
-        pickerEnable(picker: repeatPicker, enable: false)
-        
-        repeatSwitch.isOn = false
-        
-        repeatTimeTextField.keyboardType = .numberPad
-        repeatTimeStepper.value = 0
-        
-        registerForKeyboardNotifications()
-        hideKeyboard()
-    }  // viewDidLoad()
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
     }
     
-    
-    @IBAction func cancelBtnClicked(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func saveBtnClicked(_ sender: Any) {
-    }
-    
-    @IBAction func repeatSwitchValueChanged(_ sender: Any) {
-        if self.repeatSwitch.isOn {
-            pickerEnable(picker: repeatPicker, enable: true)
-        } else {
-            pickerEnable(picker: repeatPicker, enable: false)
-        }
-    }
-    
-    @IBAction func repeatTimeStepperValueChanged(_ sender: UIStepper) {
-        repeatTimeTextField.text = Int(sender.value).description
-    }
-    
-    func getWeekDay(for date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
-    }
-    
-    // 텍스트 필드 위치를 키보드 보다 위로 이동시키기
-    func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    // 이 메서드는 UIKeyboardDidShow 노티피케이션을 받으면 호출된다.
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardFrame.height, right: 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-
-        // 활성화된 텍스트 필드가 키보드에 의해 가려진다면 가려지지 않도록 스크롤한다.
-        var rect = self.view.frame
-        rect.size.height -= keyboardFrame.height
-        if rect.contains(activeField.frame.origin) {
-            scrollView.scrollRectToVisible(activeField.frame, animated: true)
-        }
-    }
-
-    // 이 메서드는 UIKeyboardWillHide 노티피케이션을 받으면 호출된다.
-    @objc func keyboardWillHide(_ notification: Notification) {
-        let contentInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-}
-
-// 화면 아무데나 터치하면 키보드 숨기기
-extension UIViewController
-{
-    func hideKeyboard()
-    {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(UIViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    @objc func dismissKeyboard()
-    {
-        view.endEditing(true)
-    }
-}
-
-// Implemetation FSCalendar DataSource, Delegate
-extension AddEventViewController: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let isSameMon: Bool = date.isSameAs(as: .month, from: calendar.currentPage)
         if !isSameMon {
@@ -164,6 +170,14 @@ extension AddEventViewController: FSCalendarDataSource, FSCalendarDelegate {
 
 // Implemetation UIPickerView DataSource, Delegate
 extension AddEventViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func setPickerView(pickerView: UIPickerView, enable: Bool,
+                       row: Int = 0, inComponent: Int = 0, animated: Bool = true) {
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        pickerView.selectRow(row, inComponent: inComponent, animated: animated)
+        pickerEnable(picker: pickerView, enable: enable)
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         3
     }
@@ -185,10 +199,12 @@ extension AddEventViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 
 extension AddEventViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        isKeyboardUp = true
         activeField = textField
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        isKeyboardUp = false
         activeField = nil
     }
     

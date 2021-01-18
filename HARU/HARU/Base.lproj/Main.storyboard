@@ -344,6 +344,7 @@
                         <outlet property="repeatTimeStepper" destination="8hw-iY-FLz" id="1T1-EY-v3J"/>
                         <outlet property="repeatTimeTextField" destination="lQ4-dh-g6u" id="6N4-oT-wgi"/>
                         <outlet property="scrollView" destination="OQM-ds-2jQ" id="9Zk-uK-CiF"/>
+                        <outlet property="scrollViewContainer" destination="tic-6w-Cm6" id="2lz-gU-NFN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EA7-Pg-ulU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
