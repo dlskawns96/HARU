@@ -53,8 +53,10 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        controller.selectedDate = dateFormatter.string(from: date)
-
+        
+        let AD = UIApplication.shared.delegate as? AppDelegate
+        AD?.selectedDate = dateFormatter.string(from: date)
+        
         self.present(controller, animated: true, completion: nil)
     }
     
@@ -108,7 +110,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
 }
 
 extension Date {
-
+    
     func isSameAs(as compo: Calendar.Component, from date: Date) -> Bool {
         var cal = Calendar.current
         cal.locale = Locale(identifier: "ko_KR")
@@ -116,10 +118,10 @@ extension Date {
     }
     
     func dayBefore() -> Date {
-            return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
     }
     
     var noon: Date {
-            return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
     }
 }

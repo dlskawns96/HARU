@@ -8,15 +8,15 @@
 import UIKit
 
 class SelectDateController : UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-
+    
+    
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-   
-    //var paramDate : String = ""
+    
     var count: Int = HCalendar.calendarList.count
     var token: NSObjectProtocol?
-    var selectedDate: String = ""
+    
+    let AD = UIApplication.shared.delegate as? AppDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,7 +32,6 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        //self.date.text = paramDate
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
@@ -42,7 +41,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
-   
+    
     func reloadTableView(){
         
         switch segment.selectedSegmentIndex
@@ -51,10 +50,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
             count = HCalendar.calendarList.count
             tableView.reloadData()
         case 1:
-            //count = Diary.diaryList.count
-            count = CoreDataManager.returnDiaryCount(date: selectedDate)
-//            let target = Diary.diaryList
-//            if(target.date)
+            count = CoreDataManager.returnDiaryCount(date: (AD?.selectedDate)!)
             tableView.reloadData()
         default:
             break
@@ -64,16 +60,13 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-       return count
-
+        return count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-   
-        //let target = Diary.diaryList[indexPath.row]
-        //cell.textLabel?.text = target.content
         
         switch segment.selectedSegmentIndex
         {
@@ -81,11 +74,9 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
             let target = HCalendar.calendarList[indexPath.row]
             cell.textLabel?.text = target.title
         case 1:
-            //let target = Diary.diaryList[indexPath.row]
-            //let target = Diary.returnDiary("2021-01-09")
-            print(CoreDataManager.returnDiary(date: selectedDate))
+            print(CoreDataManager.returnDiary(date: (AD?.selectedDate)!))
             let row = indexPath.row
-            let list = CoreDataManager.returnDiary(date: selectedDate)
+            let list = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
             cell.textLabel?.text = list[row]
         default:
             break
@@ -106,7 +97,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
     
     
     @IBAction func addBtn(_ sender: Any) {
-
+        
         switch segment.selectedSegmentIndex
         {
         case 0:
@@ -120,7 +111,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
         default:
             break
         }
-
+        
     }
     
     

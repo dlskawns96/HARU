@@ -63,6 +63,7 @@
 		1F3185BE25B45AE200C4743F /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				1F3185B925B4579100C4743F /* Data.xcdatamodeld */,
 				1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */,
 			);
 			path = Data;
@@ -99,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				1F3185BE25B45AE200C4743F /* Data */,
-				1F3185B925B4579100C4743F /* Data.xcdatamodeld */,
 				EAE11ECC25985CBB00A35EBF /* ViewControllers */,
 				EA7F83692594749C008B8ED5 /* AppDelegate.swift */,
 				EA1219B42594C255007EDE8E /* CalendarLoader.swift */,
