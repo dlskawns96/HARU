@@ -8,15 +8,16 @@
 import UIKit
 
 class SelectDateController : UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-
+    
+    
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-   
+    
     //var paramDate : String = ""
     var count: Int = HCalendar.calendarList.count
     var token: NSObjectProtocol?
     var selectedDate: String = ""
+    var loadedEvents: [CalendarLoader.EVENT] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,7 +43,7 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
-   
+    
     func reloadTableView(){
         
         switch segment.selectedSegmentIndex
@@ -53,8 +54,8 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
         case 1:
             //count = Diary.diaryList.count
             count = CoreDataManager.returnDiaryCount(date: selectedDate)
-//            let target = Diary.diaryList
-//            if(target.date)
+            //            let target = Diary.diaryList
+            //            if(target.date)
             tableView.reloadData()
         default:
             break
@@ -64,14 +65,14 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-       return count
-
+        return count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-   
+        
         //let target = Diary.diaryList[indexPath.row]
         //cell.textLabel?.text = target.content
         
@@ -106,21 +107,23 @@ class SelectDateController : UIViewController, UITableViewDataSource, UITableVie
     
     
     @IBAction func addBtn(_ sender: Any) {
-
-        switch segment.selectedSegmentIndex
-        {
-        case 0:
-            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddEventViewController") else { return }
-            controller.modalPresentationStyle = .pageSheet
-            self.present(controller, animated: true, completion: nil)
-        case 1:
-            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
-            
-            self.present(controller, animated: true, completion: nil)
-        default:
-            break
+        
+        switch segment.selectedSegmentIndex {
+            case 0:
+                let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
+                guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
+                guard let childView = controller.viewControllers.first as? AddEventViewController else {return}
+                controller.modalPresentationStyle = .pageSheet
+                childView.loadedEvents = self.loadedEvents
+                self.present(controller, animated: true, completion: nil)
+            case 1:
+                guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
+                
+                self.present(controller, animated: true, completion: nil)
+            default:
+                break
         }
-
+        
     }
     
     

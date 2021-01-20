@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import DropDown
 
 class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
 
@@ -19,11 +20,18 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
     @IBOutlet weak var repeatTimeStepper: UIStepper!
     @IBOutlet weak var repeatTimeTextField: UITextField!
     @IBOutlet weak var scrollViewContainer: UIView!
+    @IBOutlet weak var calendarSelectBtn: UIButton!
     
     var pickerData: [[String]] = [["Every"], ["1", "2", "3", "4", "5", "6", "7"], ["days", "weeks"]]
     var activeField: UITextField!
     var isKeyboardUp: Bool = false
-
+    
+    // 캘린더 드랍다운 메뉴를 위한 오브젝트
+    var loadedEvents: [CalendarLoader.EVENT] = []
+    let calendars = CalendarLoader().loadCalendars()
+    let calendarDropDown = DropDown()
+    var calendarTitles = [String: CGColor]()
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +50,8 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
         
         registerForKeyboardNotifications()
         hideKeyboard()
+        
+        setCalendarDropDown()
     }
     
     // MARK: - IBActions
@@ -62,6 +72,10 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
     
     @IBAction func repeatTimeStepperValueChanged(_ sender: UIStepper) {
         repeatTimeTextField.text = Int(sender.value).description
+    }
+    
+    @IBAction func calendarSelectBtnClicked(_ sender: Any) {
+        calendarDropDown.show()
     }
     
     // MARK: - Functions
@@ -100,6 +114,25 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
+    
+    func setCalendarDropDown() {
+        for calendar in calendars {
+            calendarTitles[calendar.title] = calendar.cgColor
+        }
+        calendarDropDown.dataSource = Array(calendarTitles.keys)
+        print("DATASOURCE", calendarDropDown.dataSource)
+        calendarDropDown.anchorView = calendarSelectBtn
+        calendarDropDown.bottomOffset = CGPoint(x: calendarSelectBtn.fs_width / 2.0, y: (calendarDropDown.anchorView?.plainView.bounds.height)!)
+        
+        // 커스텀셀 지정
+        calendarDropDown.cellNib = UINib(nibName: "CalendarDropDownCell", bundle: nil)
+        calendarDropDown.customCellConfiguration = {(index: Index, item: String, cell: DropDownCell) -> Void in
+            guard let cell = cell as? CalendarDropDownCell else { return }
+            print("INDEX", index)
+            cell.CalendarColorView.backgroundColor = UIColor(cgColor: self.calendarTitles[Array(self.calendarTitles.keys)[index]]!)
+            
+        }
+    }
 }
 
 // MARK: - Extensions
@@ -117,7 +150,6 @@ extension AddEventViewController {
     }
     @objc func dismissKeyboard()
     {
-        print("self", self.isKeyboardUp)
         if self.isKeyboardUp {
             view.endEditing(true)
         }
