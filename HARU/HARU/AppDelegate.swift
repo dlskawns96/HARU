@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import DropDown
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,7 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: UISceneSession Lifecycle
-
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        DropDown.startListeningToKeyboard()
+    }
 
 }
 
