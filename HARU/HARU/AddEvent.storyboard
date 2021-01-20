@@ -24,7 +24,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y22-vL-sf5">
                                                 <rect key="frame" x="8" y="8" width="398" height="34"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="systemGray4Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -63,6 +63,48 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qDu-82-UmV">
+                                                <rect key="frame" x="202" y="96.5" width="83" height="32"/>
+                                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                <segments>
+                                                    <segment title="오전"/>
+                                                    <segment title="오후"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvc-KZ-GtW" userLabel="시간표시">
+                                                <rect key="frame" x="305" y="95" width="101" height="34"/>
+                                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                </accessibility>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D2o-WW-jk9" userLabel="시">
+                                                <rect key="frame" x="305" y="95" width="49" height="34"/>
+                                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="49" id="9bI-tu-mdd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DRS-4n-E5N" userLabel="분">
+                                                <rect key="frame" x="357" y="95" width="49" height="34"/>
+                                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="49" id="WuL-ek-pOS"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eq3-hl-nXP" customClass="FSCalendar">
                                                 <rect key="frame" x="8" y="135" width="398" height="424"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -142,8 +184,10 @@
                                             <constraint firstItem="PUb-vf-CYN" firstAttribute="top" secondItem="Sh0-YE-oRr" secondAttribute="top" id="2st-jA-10R"/>
                                             <constraint firstItem="Sh0-YE-oRr" firstAttribute="leading" secondItem="tic-6w-Cm6" secondAttribute="leading" constant="8" id="2xe-zy-gLb"/>
                                             <constraint firstItem="UZk-uS-ftf" firstAttribute="trailing" secondItem="zCh-Md-yol" secondAttribute="trailing" id="4EV-bJ-ffS"/>
+                                            <constraint firstItem="yvc-KZ-GtW" firstAttribute="centerY" secondItem="GfX-PR-rpl" secondAttribute="centerY" id="5T1-Ue-5UN"/>
                                             <constraint firstAttribute="bottom" secondItem="ned-Tv-X4Y" secondAttribute="bottom" constant="620" id="6ZW-J1-1dK"/>
                                             <constraint firstAttribute="trailing" secondItem="zCh-Md-yol" secondAttribute="trailing" constant="8" id="7Lk-xB-Qr9"/>
+                                            <constraint firstItem="yvc-KZ-GtW" firstAttribute="height" secondItem="D2o-WW-jk9" secondAttribute="height" id="9uv-Vo-tWr"/>
                                             <constraint firstAttribute="trailing" secondItem="y22-vL-sf5" secondAttribute="trailing" constant="8" id="B49-on-AYP"/>
                                             <constraint firstAttribute="trailing" secondItem="CGw-1d-qFg" secondAttribute="trailing" constant="8" id="Be5-zG-Ngx"/>
                                             <constraint firstAttribute="trailing" secondItem="ned-Tv-X4Y" secondAttribute="trailing" constant="10" id="DjS-z0-QRX"/>
@@ -153,21 +197,29 @@
                                             <constraint firstItem="Sh0-YE-oRr" firstAttribute="leading" secondItem="K2T-Hm-1RY" secondAttribute="trailing" constant="-97" id="Gzi-2E-CBV"/>
                                             <constraint firstItem="GfX-PR-rpl" firstAttribute="top" secondItem="zCh-Md-yol" secondAttribute="bottom" constant="8" id="I0k-Hc-QdW"/>
                                             <constraint firstItem="zCh-Md-yol" firstAttribute="top" secondItem="y22-vL-sf5" secondAttribute="bottom" constant="20" id="Iqj-TT-8L4"/>
+                                            <constraint firstItem="DRS-4n-E5N" firstAttribute="centerY" secondItem="yvc-KZ-GtW" secondAttribute="centerY" id="Mr3-MJ-o7h"/>
+                                            <constraint firstItem="DRS-4n-E5N" firstAttribute="trailing" secondItem="yvc-KZ-GtW" secondAttribute="trailing" id="OFH-VK-EhA"/>
                                             <constraint firstItem="UZk-uS-ftf" firstAttribute="centerY" secondItem="zCh-Md-yol" secondAttribute="centerY" id="Of0-xK-k8Y"/>
                                             <constraint firstAttribute="trailing" secondItem="PUb-vf-CYN" secondAttribute="trailing" id="Qmh-kJ-ES6"/>
                                             <constraint firstItem="y22-vL-sf5" firstAttribute="top" secondItem="tic-6w-Cm6" secondAttribute="top" constant="8" id="RMc-5I-hOI"/>
                                             <constraint firstItem="K2T-Hm-1RY" firstAttribute="top" secondItem="PUb-vf-CYN" secondAttribute="top" id="Suz-Tq-MWP"/>
                                             <constraint firstItem="y22-vL-sf5" firstAttribute="leading" secondItem="tic-6w-Cm6" secondAttribute="leading" constant="8" id="TSo-jK-RjW"/>
                                             <constraint firstAttribute="height" constant="1200" id="VIu-Zj-ZoZ"/>
+                                            <constraint firstItem="yvc-KZ-GtW" firstAttribute="leading" secondItem="qDu-82-UmV" secondAttribute="trailing" constant="20" id="ZQM-Ru-X88"/>
                                             <constraint firstAttribute="trailing" secondItem="Eq3-hl-nXP" secondAttribute="trailing" constant="8" id="b3R-lI-Txd"/>
+                                            <constraint firstItem="yvc-KZ-GtW" firstAttribute="leading" secondItem="D2o-WW-jk9" secondAttribute="leading" id="cFf-Nd-ZPR"/>
                                             <constraint firstItem="ned-Tv-X4Y" firstAttribute="leading" secondItem="tic-6w-Cm6" secondAttribute="leading" constant="10" id="cd9-Jx-hQs"/>
+                                            <constraint firstItem="DRS-4n-E5N" firstAttribute="leading" secondItem="D2o-WW-jk9" secondAttribute="trailing" constant="3" id="cmn-M9-R42"/>
                                             <constraint firstItem="zCh-Md-yol" firstAttribute="leading" secondItem="tic-6w-Cm6" secondAttribute="leading" constant="8" id="dOT-K7-nzB"/>
+                                            <constraint firstItem="qDu-82-UmV" firstAttribute="centerY" secondItem="GfX-PR-rpl" secondAttribute="centerY" id="dqw-eO-cSz"/>
                                             <constraint firstItem="PUb-vf-CYN" firstAttribute="top" secondItem="ned-Tv-X4Y" secondAttribute="bottom" constant="20" id="e86-kH-YuY"/>
+                                            <constraint firstAttribute="trailing" secondItem="yvc-KZ-GtW" secondAttribute="trailing" constant="8" id="j62-Bo-U4b"/>
                                             <constraint firstItem="UZk-uS-ftf" firstAttribute="leading" secondItem="Yov-PM-hCO" secondAttribute="trailing" constant="10" id="l1m-cY-Uh9"/>
                                             <constraint firstItem="CGw-1d-qFg" firstAttribute="top" secondItem="PUb-vf-CYN" secondAttribute="bottom" constant="3" id="nH4-qL-pZn"/>
                                             <constraint firstItem="4xb-4a-V5i" firstAttribute="centerY" secondItem="zCh-Md-yol" secondAttribute="centerY" id="nMg-hd-z6z"/>
                                             <constraint firstItem="GfX-PR-rpl" firstAttribute="leading" secondItem="tic-6w-Cm6" secondAttribute="leading" constant="8" id="neg-zx-CGZ"/>
                                             <constraint firstItem="Yov-PM-hCO" firstAttribute="centerY" secondItem="zCh-Md-yol" secondAttribute="centerY" id="ofc-Px-h05"/>
+                                            <constraint firstItem="D2o-WW-jk9" firstAttribute="centerY" secondItem="yvc-KZ-GtW" secondAttribute="centerY" id="uFk-m7-yVz"/>
                                             <constraint firstItem="4xb-4a-V5i" firstAttribute="leading" secondItem="zCh-Md-yol" secondAttribute="leading" id="xEy-DL-hgW"/>
                                             <constraint firstItem="Eq3-hl-nXP" firstAttribute="top" secondItem="GfX-PR-rpl" secondAttribute="bottom" constant="11" id="xkB-Um-xWp"/>
                                         </constraints>
@@ -209,12 +261,15 @@
                         <outlet property="calendarSelectBtn" destination="zCh-Md-yol" id="gNy-65-Dyx"/>
                         <outlet property="eventTitleTextField" destination="y22-vL-sf5" id="dub-Ak-HfS"/>
                         <outlet property="fsCalendar" destination="Eq3-hl-nXP" id="ZXT-sN-th6"/>
+                        <outlet property="hourTextField" destination="D2o-WW-jk9" id="sbp-4G-diP"/>
+                        <outlet property="minuteTextField" destination="DRS-4n-E5N" id="16X-MY-r4p"/>
                         <outlet property="repeatPicker" destination="PUb-vf-CYN" id="dY5-KS-6XX"/>
                         <outlet property="repeatSwitch" destination="K2T-Hm-1RY" id="SST-D6-ozK"/>
                         <outlet property="repeatTimeStepper" destination="8hw-iY-FLz" id="1T1-EY-v3J"/>
                         <outlet property="repeatTimeTextField" destination="lQ4-dh-g6u" id="6N4-oT-wgi"/>
                         <outlet property="scrollView" destination="OQM-ds-2jQ" id="9Zk-uK-CiF"/>
                         <outlet property="scrollViewContainer" destination="tic-6w-Cm6" id="2lz-gU-NFN"/>
+                        <outlet property="timeLabel" destination="yvc-KZ-GtW" id="Q70-vf-2lY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EA7-Pg-ulU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -246,6 +301,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

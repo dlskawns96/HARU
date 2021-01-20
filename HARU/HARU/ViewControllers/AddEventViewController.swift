@@ -22,6 +22,10 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
     @IBOutlet weak var scrollViewContainer: UIView!
     @IBOutlet weak var calendarSelectBtn: UIButton!
     
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var hourTextField: UITextField!
+    @IBOutlet weak var minuteTextField: UITextField!
+    
     var pickerData: [[String]] = [["Every"], ["1", "2", "3", "4", "5", "6", "7"], ["days", "weeks"]]
     var activeField: UITextField!
     var isKeyboardUp: Bool = false
@@ -47,11 +51,13 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
         
         repeatTimeTextField.keyboardType = .numberPad
         repeatTimeStepper.value = 0
-        
-        registerForKeyboardNotifications()
-        hideKeyboard()
-        
+
         setCalendarDropDown()
+        setTimeSelectViews()
+        
+        // 키보드 숨김, 스크롤 설정
+        hideKeyboard()
+        registerForKeyboardNotifications()
     }
     
     // MARK: - IBActions
@@ -103,7 +109,7 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
         // 활성화된 텍스트 필드가 키보드에 의해 가려진다면 가려지지 않도록 스크롤한다.
         var rect = self.view.frame
         rect.size.height -= keyboardFrame.height
-        if rect.contains(activeField.frame.origin) {
+        if (activeField != nil) && rect.contains(activeField.frame.origin) {
             scrollView.scrollRectToVisible(activeField.frame, animated: true)
         }
     }
@@ -120,7 +126,6 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
             calendarTitles[calendar.title] = calendar.cgColor
         }
         calendarDropDown.dataSource = Array(calendarTitles.keys)
-        print("DATASOURCE", calendarDropDown.dataSource)
         calendarDropDown.anchorView = calendarSelectBtn
         calendarDropDown.bottomOffset = CGPoint(x: calendarSelectBtn.fs_width / 2.0, y: (calendarDropDown.anchorView?.plainView.bounds.height)!)
         
@@ -128,10 +133,17 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
         calendarDropDown.cellNib = UINib(nibName: "CalendarDropDownCell", bundle: nil)
         calendarDropDown.customCellConfiguration = {(index: Index, item: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? CalendarDropDownCell else { return }
-            print("INDEX", index)
             cell.CalendarColorView.backgroundColor = UIColor(cgColor: self.calendarTitles[Array(self.calendarTitles.keys)[index]]!)
             
         }
+    }
+    
+    func setTimeSelectViews() {
+//        timeLabel.layer.cornerRadius = 6
+        self.hourTextField.delegate = self
+        self.minuteTextField.delegate = self
+        hourTextField.keyboardType = .numberPad
+        minuteTextField.keyboardType = .numberPad
     }
 }
 
@@ -243,6 +255,18 @@ extension AddEventViewController: UITextFieldDelegate {
     // Return 버튼 누르면 키보드 숨기기
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == hourTextField || textField == minuteTextField {
+            let currentText = textField.text ?? ""
+            guard let stringRange = Range(range, in: currentText) else { return false }
+         
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+         
+            return updatedText.count <= 2
+        }
         return true
     }
 }
