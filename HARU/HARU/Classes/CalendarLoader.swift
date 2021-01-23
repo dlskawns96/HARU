@@ -69,4 +69,8 @@ class CalendarLoader {
             }
         }
     }
+    
+    func loadCalendars() -> [EKCalendar] {
+        return calendars
+    }
 }

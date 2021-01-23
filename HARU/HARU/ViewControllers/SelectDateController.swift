@@ -9,7 +9,6 @@ import UIKit
 
 class SelectDateController : UIViewController {
     
-    
     @IBOutlet weak var segment: UISegmentedControl!
     
     @IBOutlet weak var scheduleView: UIView!
@@ -41,6 +40,7 @@ class SelectDateController : UIViewController {
     
     @IBAction func addBtn(_ sender: Any) {
         
+
         switch segment.selectedSegmentIndex
         {
         case 0:
