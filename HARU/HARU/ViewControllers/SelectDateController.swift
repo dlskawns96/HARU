@@ -44,7 +44,9 @@ class SelectDateController : UIViewController {
         switch segment.selectedSegmentIndex
         {
         case 0:
-            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddEventViewController") else { return }
+            let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
+            guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
+            guard let childView = controller.viewControllers.first as? AddEventViewController else {return}
             controller.modalPresentationStyle = .pageSheet
             self.present(controller, animated: true, completion: nil)
         case 1:

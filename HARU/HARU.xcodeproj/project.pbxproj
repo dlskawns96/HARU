@@ -156,6 +156,7 @@
 				1FE6078D2597514100A0882D /* SelectDateController.swift */,
 				1FC02B80259E807700AC8142 /* AddDiaryController.swift */,
 				EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */,
+                EA9C881025B94687003FD749 /* EventDateSelectViewController.swift */,
 
 				1FF13FC825BB129D008624D8 /* DiaryViewController.swift */,
 				1FF13FCB25BB12B6008624D8 /* ScheduleViewController.swift */,

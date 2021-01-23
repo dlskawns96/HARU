@@ -55,8 +55,6 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        controller.selectedDate = dateFormatter.string(from: date)
-        controller.loadedEvents = self.loadedEvents
         let AD = UIApplication.shared.delegate as? AppDelegate
         AD?.selectedDate = dateFormatter.string(from: date)
         self.present(controller, animated: true, completion: nil)
