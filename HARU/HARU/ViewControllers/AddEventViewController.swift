@@ -6,12 +6,10 @@
 //
 
 import UIKit
-import FSCalendar
 import DropDown
 
-class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
+class AddEventViewController: UIViewController {
 
-    @IBOutlet weak var fsCalendar: FSCalendar!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var eventTitleTextField: UITextField!
@@ -21,10 +19,8 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
     @IBOutlet weak var repeatTimeTextField: UITextField!
     @IBOutlet weak var scrollViewContainer: UIView!
     @IBOutlet weak var calendarSelectBtn: UIButton!
-    
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var hourTextField: UITextField!
-    @IBOutlet weak var minuteTextField: UITextField!
+    @IBOutlet weak var selectedCalendarTitle: UILabel!
+    @IBOutlet weak var selectedCalendarView: UIView!
     
     var pickerData: [[String]] = [["Every"], ["1", "2", "3", "4", "5", "6", "7"], ["days", "weeks"]]
     var activeField: UITextField!
@@ -36,12 +32,20 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
     let calendarDropDown = DropDown()
     var calendarTitles = [String: CGColor]()
     
+    // 새로 생성할 이벤트를 저장할 오브젝트
+    var newEvent = NewEvent()
+    @IBOutlet weak var eventStartDateLabel: UILabel!
+    @IBOutlet weak var eventStartTimeLabel: UILabel!
+    @IBOutlet weak var eventEndDateLabel: UILabel!
+    @IBOutlet weak var eventEndTimeLabel: UILabel!
+    
+    let dateFormatter = DateFormatter()
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
 
-        setFSCalendar()
         setPickerView(pickerView: repeatPicker, enable: false, row: 3, inComponent: 1, animated: true)
         
         self.eventTitleTextField.delegate = self
@@ -53,11 +57,12 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
         repeatTimeStepper.value = 0
 
         setCalendarDropDown()
-        setTimeSelectViews()
-        
+        initDateSelectViews()
         // 키보드 숨김, 스크롤 설정
         hideKeyboard()
         registerForKeyboardNotifications()
+        
+        dateFormatter.locale = Locale(identifier: "ko_KR")
     }
     
     // MARK: - IBActions
@@ -66,6 +71,26 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
     }
     
     @IBAction func saveBtnClicked(_ sender: Any) {
+        
+    }
+    
+    @IBAction func startDateSelectBtnClicked(_ sender: Any) {
+        guard let uvc = self.storyboard?.instantiateViewController(withIdentifier: "EventDateSelectViewController")
+                as? EventDateSelectViewController else { return }
+        uvc.delegate = self
+        uvc.viewTitleText = "시작"
+        self.present(uvc, animated: true)
+    }
+    
+    @IBAction func endDateSelectBtnClicked(_ sender: Any) {
+        guard let uvc = self.storyboard?.instantiateViewController(withIdentifier: "EventDateSelectViewController")
+                as? EventDateSelectViewController else { return }
+        uvc.viewTitleText = "종료"
+        uvc.delegate = self
+        if newEvent.startDate != nil {
+            uvc.startDate = newEvent.startDate
+        }
+        self.present(uvc, animated: true)
     }
     
     @IBAction func repeatSwitchValueChanged(_ sender: Any) {
@@ -85,12 +110,18 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
     }
     
     // MARK: - Functions
+    func initDateSelectViews() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 M월 d일"
+        let dateString = dateFormatter.string(from: Date())
+        eventStartDateLabel.text = dateString
+        eventEndDateLabel.text = dateString
+    }
     
     func getWeekDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()
         return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
     }
-    
     
     /// 텍스트 필드 위치를 키보드 보다 위로 이동시키기
     func registerForKeyboardNotifications() {
@@ -136,18 +167,40 @@ class AddEventViewController: UIViewController, FSCalendarDelegateAppearance {
             cell.CalendarColorView.backgroundColor = UIColor(cgColor: self.calendarTitles[Array(self.calendarTitles.keys)[index]]!)
             
         }
-    }
-    
-    func setTimeSelectViews() {
-//        timeLabel.layer.cornerRadius = 6
-        self.hourTextField.delegate = self
-        self.minuteTextField.delegate = self
-        hourTextField.keyboardType = .numberPad
-        minuteTextField.keyboardType = .numberPad
+        calendarDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.selectedCalendarTitle.text = item
+            let color = UIColor(cgColor: self.calendarTitles[Array(self.calendarTitles.keys)[index]]!)
+            self.selectedCalendarView.backgroundColor = color
+            newEvent.calendar.title = item
+            newEvent.calendar.color = color
+        }
     }
 }
 
 // MARK: - Extensions
+
+// EventDateSelectViewController로 부터 선택한 날짜 받아오기
+extension AddEventViewController: PassSelectDate {
+    func passSelectDate(selectedDate: Date, isStart: Bool) {
+        dateFormatter.dateFormat = "yyyy년 M월 d일"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")!
+        
+        if isStart {
+            newEvent.startDate = selectedDate
+            print(dateFormatter.string(from: newEvent.startDate))
+            eventStartDateLabel.text = dateFormatter.string(from: newEvent.startDate)
+            eventEndDateLabel.text = dateFormatter.string(from: newEvent.startDate)
+            dateFormatter.dateFormat = "a hh:mm"
+            eventStartTimeLabel.text = dateFormatter.string(from: newEvent.startDate)
+            eventEndTimeLabel.text = dateFormatter.string(from: newEvent.startDate)
+        } else {
+            newEvent.endDate = selectedDate
+            eventEndDateLabel.text = dateFormatter.string(from: newEvent.endDate)
+            dateFormatter.dateFormat = "a hh:mm"
+            eventEndTimeLabel.text = dateFormatter.string(from: newEvent.endDate)
+        }
+    }
+}
 
 extension AddEventViewController {
     /// 화면 아무데나 터치하면 키보드 숨기기
@@ -165,50 +218,6 @@ extension AddEventViewController {
         if self.isKeyboardUp {
             view.endEditing(true)
         }
-    }
-}
-
-// Implemetation FSCalendar DataSource, Delegate
-extension AddEventViewController: FSCalendarDataSource, FSCalendarDelegate {
-    func setFSCalendar() {
-        fsCalendar.delegate = self
-        fsCalendar.dataSource = self
-        
-        fsCalendar.locale = Locale(identifier: "ko_KR")
-        fsCalendar.headerHeight = 50
-        fsCalendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        fsCalendar.appearance.headerDateFormat = "YYYY년 M월"
-        fsCalendar.appearance.headerTitleColor = .black
-        fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
-        fsCalendar.appearance.borderRadius = 0
-        
-        for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
-            if weekday.text == "일" {
-                weekday.textColor = .red
-            } else if weekday.text == "토" {
-                weekday.textColor = .blue
-            } else {
-                weekday.textColor = .black
-            }
-        }
-    }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        let isSameMon: Bool = date.isSameAs(as: .month, from: calendar.currentPage)
-        if !isSameMon {
-            return nil
-        }
-        if getWeekDay(for: date) == "Sunday" {
-            return .red
-        }
-        if getWeekDay(for: date) == "Saturday" {
-            return .blue
-        }
-        return nil
-    }
-    
-    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        calendar.reloadData()
     }
 }
 
@@ -259,14 +268,6 @@ extension AddEventViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == hourTextField || textField == minuteTextField {
-            let currentText = textField.text ?? ""
-            guard let stringRange = Range(range, in: currentText) else { return false }
-         
-            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-         
-            return updatedText.count <= 2
-        }
         return true
     }
 }
