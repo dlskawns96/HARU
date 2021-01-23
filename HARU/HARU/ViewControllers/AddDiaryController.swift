@@ -11,18 +11,18 @@ class AddDiaryController : UIViewController {
     
     @IBOutlet weak var diaryTextView: UITextView!
     
+    //static var selectedDate: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func cancleBtn(_ sender: Any) {
-        
-        //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveBtn(_ sender: Any) {
-
+        
         guard let diary = diaryTextView.text, diary.count > 0 else {
             alert(message: "내용을 입력하세요.")
             return
@@ -31,13 +31,10 @@ class AddDiaryController : UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-//        let newDiary = Diary(content: diary, date: dateFormatter.string(from: Date()))
-//        Diary.diaryList.append(newDiary)
-        
-        CoreDataManager.shared.addDiary(diary, dateFormatter.string(from: Date()))
-        
+        let AD = UIApplication.shared.delegate as? AppDelegate
+        CoreDataManager.shared.addDiary(diary, AD?.selectedDate)
         NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
-    
+        
         dismiss(animated: true, completion: nil)
     }
     
