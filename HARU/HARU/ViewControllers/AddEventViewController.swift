@@ -7,6 +7,7 @@
 
 import UIKit
 import DropDown
+import EventKit
 
 class AddEventViewController: UIViewController {
 
@@ -41,6 +42,9 @@ class AddEventViewController: UIViewController {
     
     let dateFormatter = DateFormatter()
     
+    // 이벤트를 캘린더에 저장하기 위한 오브젝트
+    let eventStore: EKEventStore = EKEventStore()
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +75,7 @@ class AddEventViewController: UIViewController {
     }
     
     @IBAction func saveBtnClicked(_ sender: Any) {
-        
+        saveNewEvent()
     }
     
     @IBAction func startDateSelectBtnClicked(_ sender: Any) {
@@ -174,6 +178,30 @@ class AddEventViewController: UIViewController {
             newEvent.calendar.title = item
             newEvent.calendar.color = color
         }
+    }
+    
+    /// 새로운 이벤트 저장
+    func saveNewEvent() {
+        
+        let event: EKEvent = EKEvent(eventStore: eventStore)
+        
+        let calendars = eventStore.calendars(for: .event)
+            for calendar in calendars {
+                if calendar.title == newEvent.calendar.title {
+                    event.calendar = calendar
+                    event.title = eventTitleTextField.text
+                    event.startDate = newEvent.startDate
+                    event.endDate = newEvent.endDate
+                    do {
+                        try eventStore.save(event, span: .thisEvent)
+                    }
+                    catch {
+                       print("Error saving event in calendar")             }
+                    }
+                print("Event saved!")
+                //TODO: 이벤트 저장하고 캘린더 다시로드
+            }
+
     }
 }
 

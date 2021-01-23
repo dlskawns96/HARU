@@ -20,8 +20,8 @@ class NewEvent {
     var repeating: (eveyWeek: Bool, cycle: Int, time: Int)!
     
     init() {
-        self.eventTitle = nil
-        self.calendar = nil
+        self.eventTitle = ""
+        self.calendar = ("nil", .black)
         self.startDate = nil
         self.endDate = nil
         self.repeating = nil
