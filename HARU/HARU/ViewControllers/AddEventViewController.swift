@@ -162,7 +162,7 @@ class AddEventViewController: UIViewController {
         }
         calendarDropDown.dataSource = Array(calendarTitles.keys)
         calendarDropDown.anchorView = calendarSelectBtn
-        calendarDropDown.bottomOffset = CGPoint(x: calendarSelectBtn.fs_width / 2.0, y: (calendarDropDown.anchorView?.plainView.bounds.height)!)
+        calendarDropDown.bottomOffset = CGPoint(x: 0, y: (calendarDropDown.anchorView?.plainView.bounds.height)!)
         
         // 커스텀셀 지정
         calendarDropDown.cellNib = UINib(nibName: "CalendarDropDownCell", bundle: nil)

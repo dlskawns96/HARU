@@ -29,7 +29,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCh-Md-yol" userLabel="캘린더버튼">
-                                                <rect key="frame" x="351" y="62" width="55" height="30"/>
+                                                <rect key="frame" x="208" y="62" width="198" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="kEL-8I-uAX"/>
                                                 </constraints>
@@ -184,7 +184,7 @@
                                             <constraint firstItem="Sh0-YE-oRr" firstAttribute="leading" secondItem="K2T-Hm-1RY" secondAttribute="trailing" constant="-97" id="Gzi-2E-CBV"/>
                                             <constraint firstItem="GfX-PR-rpl" firstAttribute="top" secondItem="zCh-Md-yol" secondAttribute="bottom" constant="20" id="I0k-Hc-QdW"/>
                                             <constraint firstItem="zCh-Md-yol" firstAttribute="top" secondItem="y22-vL-sf5" secondAttribute="bottom" constant="20" id="Iqj-TT-8L4"/>
-                                            <constraint firstItem="zCh-Md-yol" firstAttribute="leading" secondItem="Yov-PM-hCO" secondAttribute="leading" id="JhW-J5-kiF"/>
+                                            <constraint firstItem="zCh-Md-yol" firstAttribute="leading" secondItem="4xb-4a-V5i" secondAttribute="leading" constant="200" id="JhW-J5-kiF"/>
                                             <constraint firstItem="UZk-uS-ftf" firstAttribute="centerY" secondItem="zCh-Md-yol" secondAttribute="centerY" id="Of0-xK-k8Y"/>
                                             <constraint firstItem="gbI-vd-y6w" firstAttribute="top" secondItem="GfX-PR-rpl" secondAttribute="bottom" constant="20" id="QHM-Wn-69c"/>
                                             <constraint firstAttribute="trailing" secondItem="PUb-vf-CYN" secondAttribute="trailing" id="Qmh-kJ-ES6"/>
