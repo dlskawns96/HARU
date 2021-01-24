@@ -35,24 +35,39 @@ class CoreDataManager {
         newDiary.date = date
         
         CoreDataManager.diaryList.insert(newDiary, at: 0)
-        
         saveContext()
     }
     
-    static func returnDiary(date:String) -> [String] {
-        
-        var list = [String]()
-        
-        for item in CoreDataManager.diaryList
-        {
-            if item.date == date
+//    static func returnDiary(date:String) -> [String] {
+//
+//        var list = [String]()
+//
+//        for item in CoreDataManager.diaryList
+//        {
+//            if item.date == date
+//            {
+//                list.append(item.content!)
+//
+//            }
+//        }
+//        return list
+//    }
+    
+        static func returnDiary(date:String) -> String {
+    
+            var list:String = ""
+    
+            for item in CoreDataManager.diaryList
             {
-                list.append(item.content!)
-                
+                if item.date == date
+                {
+                    list = item.content!
+                    //list.append(item.content!)
+    
+                }
             }
+            return list
         }
-        return list
-    }
     
     static func returnDiaryCount(date:String) -> Int {
         
