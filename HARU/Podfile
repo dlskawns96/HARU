@@ -8,4 +8,5 @@ target 'HARU' do
   # Pods for HARU
   pod 'FSCalendar'
   pod 'AFDateHelper'
+  pod 'DropDown'
 end

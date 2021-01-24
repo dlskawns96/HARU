@@ -19,6 +19,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     var loadedEvents: [CalendarLoader.EVENT] = []
     var labels: [UILabel] = []
     
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,16 +48,15 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         }
     }
     
+    // MARK: - Implement protocols
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
         controller.modalPresentationStyle = .pageSheet
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
         let AD = UIApplication.shared.delegate as? AppDelegate
         AD?.selectedDate = dateFormatter.string(from: date)
-        
         self.present(controller, animated: true, completion: nil)
     }
     
@@ -103,12 +103,14 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         calendar.reloadData()
     }
     
+    // MARK: - Functions
     func getWeekDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()
         return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
     }
 }
 
+// MARK: - Extensions
 extension Date {
     
     func isSameAs(as compo: Calendar.Component, from date: Date) -> Bool {
