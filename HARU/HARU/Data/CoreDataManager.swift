@@ -17,12 +17,15 @@ class CoreDataManager {
     }
     
     static var diaryList = [Diary]()
+    //static var diaryList = [String:String]()
+    static var diaryList2 = [String:String]()
     
     func fetchDiary() {
         let request: NSFetchRequest<Diary> = Diary.fetchRequest()
         
         do {
             CoreDataManager.diaryList = try mainContext.fetch(request)
+            //CoreDataManager.diaryList2 = try mainContext.fetch
         } catch  {
             print(error)
         }
