@@ -17,21 +17,18 @@ class CoreDataManager {
     }
     
     static var diaryList = [Diary]()
-    //static var diaryList = [String:String]()
-    static var diaryList2 = [String:String]()
     
     func fetchDiary() {
         let request: NSFetchRequest<Diary> = Diary.fetchRequest()
         
         do {
             CoreDataManager.diaryList = try mainContext.fetch(request)
-            //CoreDataManager.diaryList2 = try mainContext.fetch
         } catch  {
             print(error)
         }
         
     }
-
+    
     func saveDiary(_ content: String?, _ date: String?) {
         let newDiary = Diary(context: mainContext)
         newDiary.content = content
@@ -48,45 +45,29 @@ class CoreDataManager {
             if item.date == date
             {
                 item.content = content
-
+                
             }
         }
         
         saveContext()
     }
-//    static func returnDiary(date:String) -> [String] {
-//
-//        var list = [String]()
-//
-//        for item in CoreDataManager.diaryList
-//        {
-//            if item.date == date
-//            {
-//                list.append(item.content!)
-//
-//            }
-//        }
-//        return list
-//    }
-    
-        static func returnDiary(date:String) -> String {
-    
-            var list:String = ""
-    
-            for item in CoreDataManager.diaryList
+    static func returnDiary(date:String) -> String {
+        
+        var list:String = ""
+        
+        for item in CoreDataManager.diaryList
+        {
+            if item.date == date
             {
-                if item.date == date
-                {
-                    list = item.content!
-                    //list.append(item.content!)
-    
-                }
+                list = item.content!
+                
             }
-            return list
         }
+        return list
+    }
     
-
-        var mainContext: NSManagedObjectContext {
+    
+    var mainContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
     

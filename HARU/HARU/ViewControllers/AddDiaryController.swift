@@ -12,8 +12,6 @@ class AddDiaryController : UIViewController {
     var editTarget: String?
     @IBOutlet weak var diaryTextView: UITextView!
     
-    //static var selectedDate: String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let editDiary = editTarget, editDiary.count > 0 {
@@ -45,18 +43,10 @@ class AddDiaryController : UIViewController {
             NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
         }
         else {
-            //let AD = UIApplication.shared.delegate as? AppDelegate
             CoreDataManager.shared.saveDiary(diary, AD?.selectedDate)
             NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
         }
-        
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-//
-//        let AD = UIApplication.shared.delegate as? AppDelegate
-//        CoreDataManager.shared.saveDiary(diary, AD?.selectedDate)
-//        NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
-//
+
         dismiss(animated: true, completion: nil)
     }
     
