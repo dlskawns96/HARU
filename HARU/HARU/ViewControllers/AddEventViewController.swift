@@ -11,17 +11,16 @@ import EventKit
 
 class AddEventViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var repeatPicker: UIPickerView!
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var repeatTimeStepper: UIStepper!
     @IBOutlet weak var repeatTimeTextField: UITextField!
-    @IBOutlet weak var scrollViewContainer: UIView!
     @IBOutlet weak var calendarSelectBtn: UIButton!
     @IBOutlet weak var selectedCalendarTitle: UILabel!
     @IBOutlet weak var selectedCalendarView: UIView!
+    @IBOutlet weak var repeatGroup: UIView!
     
     var pickerData: [[String]] = [["Every"], ["1", "2", "3", "4", "5", "6", "7"], ["days", "weeks"]]
     var activeField: UITextField!
@@ -63,10 +62,19 @@ class AddEventViewController: UIViewController {
         setCalendarDropDown()
         initDateSelectViews()
         // 키보드 숨김, 스크롤 설정
-        hideKeyboard()
-        registerForKeyboardNotifications()
         
         dateFormatter.locale = Locale(identifier: "ko_KR")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        hideKeyboard()
+        keyboard()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //observer해제
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - IBActions
@@ -127,35 +135,6 @@ class AddEventViewController: UIViewController {
         return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
     }
     
-    /// 텍스트 필드 위치를 키보드 보다 위로 이동시키기
-    func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    /// 이 메서드는 UIKeyboardDidShow 노티피케이션을 받으면 호출된다.
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardFrame.height, right: 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-
-        // 활성화된 텍스트 필드가 키보드에 의해 가려진다면 가려지지 않도록 스크롤한다.
-        var rect = self.view.frame
-        rect.size.height -= keyboardFrame.height
-        if (activeField != nil) && rect.contains(activeField.frame.origin) {
-            scrollView.scrollRectToVisible(activeField.frame, animated: true)
-        }
-    }
-
-    /// 이 메서드는 UIKeyboardWillHide 노티피케이션을 받으면 호출된다.
-    @objc func keyboardWillHide(_ notification: Notification) {
-        let contentInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
     func setCalendarDropDown() {
         for calendar in calendars {
             calendarTitles[calendar.title] = calendar.cgColor
@@ -203,6 +182,28 @@ class AddEventViewController: UIViewController {
             }
 
     }
+    
+    func keyboard() {
+        //observer등록
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func textViewMoveUp(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.3, animations: { [self] in
+                            print(keyboardSize.origin.y, repeatGroup.globalFrame!.origin.y)
+                            let y = keyboardSize.origin.y - repeatGroup.globalFrame!.origin.y
+                            self.repeatGroup.transform = CGAffineTransform(translationX: 0, y: 2.0 * y)})
+        }
+    }
+
+    @objc func textViewMoveDown(_ notification: NSNotification) {
+        self.repeatGroup.transform = .identity
+
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) { self.view.endEditing(true) }
 }
 
 // MARK: - Extensions
@@ -297,5 +298,12 @@ extension AddEventViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
+    }
+}
+
+extension UIView {
+    var globalFrame: CGRect? {
+        let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
+        return self.superview?.convert(self.frame, to: rootView)
     }
 }
