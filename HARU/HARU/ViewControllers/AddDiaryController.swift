@@ -37,17 +37,26 @@ class AddDiaryController : UIViewController {
             return
         }
         
-//        if let editDiary = editTarget, editDiary.count > 0 {
-//
-//        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
         let AD = UIApplication.shared.delegate as? AppDelegate
-        CoreDataManager.shared.addDiary(diary, AD?.selectedDate)
-        NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
         
+        if let editDiary = editTarget, editDiary.count > 0 {
+            
+            CoreDataManager.shared.updateDiary(diary, AD?.selectedDate)
+            NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
+        }
+        else {
+            //let AD = UIApplication.shared.delegate as? AppDelegate
+            CoreDataManager.shared.saveDiary(diary, AD?.selectedDate)
+            NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
+        }
+        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//
+//        let AD = UIApplication.shared.delegate as? AppDelegate
+//        CoreDataManager.shared.saveDiary(diary, AD?.selectedDate)
+//        NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
+//
         dismiss(animated: true, completion: nil)
     }
     

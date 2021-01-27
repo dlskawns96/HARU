@@ -31,8 +31,8 @@ class CoreDataManager {
         }
         
     }
-    
-    func addDiary(_ content: String?, _ date: String?) {
+
+    func saveDiary(_ content: String?, _ date: String?) {
         let newDiary = Diary(context: mainContext)
         newDiary.content = content
         newDiary.date = date
@@ -41,6 +41,19 @@ class CoreDataManager {
         saveContext()
     }
     
+    func updateDiary(_ content: String?, _ date: String?) {
+        
+        for item in CoreDataManager.diaryList
+        {
+            if item.date == date
+            {
+                item.content = content
+
+            }
+        }
+        
+        saveContext()
+    }
 //    static func returnDiary(date:String) -> [String] {
 //
 //        var list = [String]()
@@ -72,22 +85,8 @@ class CoreDataManager {
             return list
         }
     
-    static func returnDiaryCount(date:String) -> Int {
-        
-        var count: Int = 0
-        
-        for item in CoreDataManager.diaryList
-        {
-            if item.date == date
-            {
-                count += 1
-                
-            }
-        }
-        return count
-    }
-    
-    var mainContext: NSManagedObjectContext {
+
+        var mainContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
     
