@@ -13,6 +13,7 @@ class SelectDateController : UIViewController {
     
     @IBOutlet weak var scheduleView: UIView!
     @IBOutlet weak var diaryView: UIView!
+    @IBOutlet weak var addBtn: UIButton!
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     

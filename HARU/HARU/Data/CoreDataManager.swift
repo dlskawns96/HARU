@@ -51,6 +51,7 @@ class CoreDataManager {
         
         saveContext()
     }
+    
     static func returnDiary(date:String) -> String {
         
         var list:String = ""
@@ -64,6 +65,22 @@ class CoreDataManager {
             }
         }
         return list
+    }
+    
+    static func returnDiary(date:String, type:String) -> Bool {
+        
+        var result:Bool = false
+        
+        for item in CoreDataManager.diaryList
+        {
+            if item.date == date
+            {
+                result = true
+            }
+        }
+        
+        return result
+        
     }
     
     

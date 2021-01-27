@@ -161,6 +161,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addBtn" destination="OWg-Zv-5p1" id="m7e-1Q-xFY"/>
                         <outlet property="diaryView" destination="p5e-RQ-CTY" id="hgv-Wu-Ogo"/>
                         <outlet property="scheduleView" destination="Mbs-x2-jbM" id="bXm-eq-AiI"/>
                         <outlet property="segment" destination="PEA-2V-ho5" id="uZj-fk-nEK"/>
