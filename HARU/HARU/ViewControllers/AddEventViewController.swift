@@ -61,6 +61,7 @@ class AddEventViewController: UIViewController {
 
         setCalendarDropDown()
         initDateSelectViews()
+        initNewEvent()
         // 키보드 숨김, 스크롤 설정
         
         dateFormatter.locale = Locale(identifier: "ko_KR")
@@ -108,8 +109,14 @@ class AddEventViewController: UIViewController {
     @IBAction func repeatSwitchValueChanged(_ sender: Any) {
         if self.repeatSwitch.isOn {
             pickerEnable(picker: repeatPicker, enable: true)
+            UIView.animate(withDuration: 0.2, animations: { [self] in
+                self.repeatGroup.transform = CGAffineTransform(translationX: 0, y: -10)
+            })
+            enableView(view: repeatGroup, enable: true)
         } else {
             pickerEnable(picker: repeatPicker, enable: false)
+            self.repeatGroup.transform = .identity
+            enableView(view: repeatGroup, enable: false)
         }
     }
     
@@ -122,12 +129,19 @@ class AddEventViewController: UIViewController {
     }
     
     // MARK: - Functions
+    func enableView(view: UIView, enable: Bool) {
+        view.isHidden = !enable
+        view.isUserInteractionEnabled = enable
+    }
+    
     func initDateSelectViews() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 M월 d일"
         let dateString = dateFormatter.string(from: Date())
         eventStartDateLabel.text = dateString
         eventEndDateLabel.text = dateString
+        selectedCalendarTitle.text = calendars[0].title
+        selectedCalendarView.backgroundColor = UIColor(cgColor: calendars[0].cgColor)
     }
     
     func getWeekDay(for date: Date) -> String {
@@ -183,6 +197,12 @@ class AddEventViewController: UIViewController {
 
     }
     
+    func initNewEvent() {
+        newEvent.calendar.title = calendars[0].title
+        newEvent.startDate = Date()
+        newEvent.endDate = Date()
+    }
+    
     func keyboard() {
         //observer등록
         NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveUp), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -194,13 +214,15 @@ class AddEventViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: { [self] in
                             print(keyboardSize.origin.y, repeatGroup.globalFrame!.origin.y)
                             let y = keyboardSize.origin.y - repeatGroup.globalFrame!.origin.y
-                            self.repeatGroup.transform = CGAffineTransform(translationX: 0, y: 2.0 * y)})
+                            self.repeatGroup.transform = CGAffineTransform(translationX: 0, y: 2.0 * y)
+                            self.repeatPicker.isHidden = true})
         }
     }
 
     @objc func textViewMoveDown(_ notification: NSNotification) {
+        self.view.endEditing(true)
+        self.repeatPicker.isHidden = false
         self.repeatGroup.transform = .identity
-
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) { self.view.endEditing(true) }
