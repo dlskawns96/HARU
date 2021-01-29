@@ -50,6 +50,9 @@ class AddEventViewController: UIViewController {
     var repeatPeriod: Int = 0
     var repeatCycle: String = "days"
     
+    // ViewController에 이벤트 변화사항 보내주기 위한 delegate
+    var eventChagnedDelegate: EventReload?
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +94,8 @@ class AddEventViewController: UIViewController {
     
     @IBAction func saveBtnClicked(_ sender: Any) {
         saveNewEvent()
+        eventChagnedDelegate?.newEventAdded()
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func startDateSelectBtnClicked(_ sender: Any) {
@@ -286,7 +291,7 @@ extension AddEventViewController: PassSelectDate {
         
         if isStart {
             newEvent.startDate = selectedDate
-            print(dateFormatter.string(from: newEvent.startDate))
+            newEvent.endDate = selectedDate
             eventStartDateLabel.text = dateFormatter.string(from: newEvent.startDate)
             eventEndDateLabel.text = dateFormatter.string(from: newEvent.startDate)
             dateFormatter.dateFormat = "a hh:mm"
@@ -406,4 +411,9 @@ extension Date {
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         return dateFormatter.string(from: self)
     }
+}
+
+protocol EventReload {
+    func newEventAdded()
+    func eventDeleted()
 }
