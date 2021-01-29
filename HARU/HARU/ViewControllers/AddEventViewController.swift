@@ -40,9 +40,15 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var eventEndTimeLabel: UILabel!
     
     let dateFormatter = DateFormatter()
+    let dateFormat = "yyyy-MM-dd HH:mm:ss"
     
     // 이벤트를 캘린더에 저장하기 위한 오브젝트
     let eventStore: EKEventStore = EKEventStore()
+    
+    // 반복 횟수를 결정할 변수
+    var isRepeat: Bool = false
+    var repeatPeriod: Int = 0
+    var repeatCycle: String = "days"
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -57,7 +63,7 @@ class AddEventViewController: UIViewController {
         repeatSwitch.isOn = false
         
         repeatTimeTextField.keyboardType = .numberPad
-        repeatTimeStepper.value = 0
+        repeatTimeStepper.value = 1
 
         setCalendarDropDown()
         initDateSelectViews()
@@ -108,12 +114,14 @@ class AddEventViewController: UIViewController {
     
     @IBAction func repeatSwitchValueChanged(_ sender: Any) {
         if self.repeatSwitch.isOn {
+            isRepeat = true
             pickerEnable(picker: repeatPicker, enable: true)
             UIView.animate(withDuration: 0.2, animations: { [self] in
                 self.repeatGroup.transform = CGAffineTransform(translationX: 0, y: -10)
             })
             enableView(view: repeatGroup, enable: true)
         } else {
+            isRepeat = false
             pickerEnable(picker: repeatPicker, enable: false)
             self.repeatGroup.transform = .identity
             enableView(view: repeatGroup, enable: false)
@@ -142,6 +150,7 @@ class AddEventViewController: UIViewController {
         eventEndDateLabel.text = dateString
         selectedCalendarTitle.text = calendars[0].title
         selectedCalendarView.backgroundColor = UIColor(cgColor: calendars[0].cgColor)
+        repeatTimeTextField.text = "1"
     }
     
     func getWeekDay(for date: Date) -> String {
@@ -173,34 +182,73 @@ class AddEventViewController: UIViewController {
         }
     }
     
+    func makeRepeatingEvents(creteriaEvent: NewEvent, calendar: EKCalendar) -> [EKEvent] {
+        var events: [EKEvent] = []
+        
+        
+        let repeatTime = Int(repeatTimeTextField.text!)!
+        let title = eventTitleTextField.text!
+        let startDate = creteriaEvent.startDate
+        let endDate = creteriaEvent.endDate
+        
+        for n in 1...repeatTime {
+            let event = EKEvent(eventStore: eventStore)
+            event.calendar = calendar
+            event.title = title + " \(n) / \(repeatTime)"
+            
+            if repeatCycle == "days" {
+                event.startDate = startDate?.adjust(.day, offset: repeatPeriod * (n - 1))
+                event.endDate = endDate?.adjust(.day, offset: repeatPeriod * (n - 1))
+            }
+            if repeatCycle == "weeks" {
+                event.startDate = startDate?.adjust(.day, offset: repeatPeriod * (n - 1) * 7)
+                event.endDate = endDate?.adjust(.day, offset: repeatPeriod * (n - 1) * 7)
+            }
+            
+            events.append(event)
+        }
+        return events
+    }
+    
     /// 새로운 이벤트 저장
     func saveNewEvent() {
-        
-        let event: EKEvent = EKEvent(eventStore: eventStore)
+        var events: [EKEvent] = []
         
         let calendars = eventStore.calendars(for: .event)
             for calendar in calendars {
                 if calendar.title == newEvent.calendar.title {
-                    event.calendar = calendar
-                    event.title = eventTitleTextField.text
-                    event.startDate = newEvent.startDate
-                    event.endDate = newEvent.endDate
+                    if isRepeat {
+                        events = makeRepeatingEvents(creteriaEvent: newEvent, calendar: calendar)
+                        print(events)
+                    } else {
+                        let event = EKEvent(eventStore: eventStore)
+                        event.calendar = calendar
+                        event.title = eventTitleTextField.text
+                        event.startDate = newEvent.startDate
+                        event.endDate = newEvent.endDate
+                        events.append(event)
+                    }
                     do {
-                        try eventStore.save(event, span: .thisEvent)
+                        for event in events {
+                            try eventStore.save(event, span: .thisEvent)
+                        }
                     }
                     catch {
-                       print("Error saving event in calendar")             }
+                       print("Error saving event in calendar")
                     }
-                print("Event saved!")
-                //TODO: 이벤트 저장하고 캘린더 다시로드
+                    print("Event saved!")
+                    return
+                }
             }
-
     }
     
     func initNewEvent() {
         newEvent.calendar.title = calendars[0].title
-        newEvent.startDate = Date()
-        newEvent.endDate = Date()
+        var cal = Calendar.current
+        cal.locale = Locale(identifier: "ko_KR")
+        let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!.adjust(.hour, offset: 9)
+        newEvent.startDate = now
+        newEvent.endDate = now
     }
     
     func keyboard() {
@@ -295,6 +343,15 @@ extension AddEventViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return pickerData[component][row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 1 {
+            repeatPeriod = Int(pickerData[component][row])!
+        }
+        if component == 2 {
+            repeatCycle = pickerData[component][row]
+        }
+    }
+    
     func pickerEnable(picker: UIPickerView, enable: Bool) {
         picker.isHidden = !enable
         picker.isUserInteractionEnabled = enable
@@ -327,5 +384,26 @@ extension UIView {
     var globalFrame: CGRect? {
         let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
         return self.superview?.convert(self.frame, to: rootView)
+    }
+}
+
+extension Date {
+    func toString( dateFormat format: String ) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.locale = Locale.current
+        return dateFormatter.string(from: self)
+    }
+    
+    func toStringKST( dateFormat format: String ) -> String {
+        return self.toString(dateFormat: format)
+    }
+    
+    func toStringUTC( dateFormat format: String ) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        return dateFormatter.string(from: self)
     }
 }
