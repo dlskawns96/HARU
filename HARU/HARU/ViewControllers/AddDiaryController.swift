@@ -9,14 +9,15 @@ import UIKit
 
 class AddDiaryController : UIViewController {
     
-    var editTarget: String?
+    var record:Diary?
+    static var editTarget: String?
     var originalDiary: String?
     
     @IBOutlet weak var diaryTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let editDiary = editTarget, editDiary.count > 0 {
+        if let editDiary = AddDiaryController.editTarget, editDiary.count > 0 {
             navigationItem.title = "일기 수정"
             diaryTextView.text = editDiary
             originalDiary = editDiary
@@ -52,7 +53,7 @@ class AddDiaryController : UIViewController {
         
         let AD = UIApplication.shared.delegate as? AppDelegate
         
-        if let editDiary = editTarget, editDiary.count > 0 {
+        if let editDiary = AddDiaryController.editTarget, editDiary.count > 0 {
             CoreDataManager.shared.updateDiary(diary, AD?.selectedDate)
             NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
         }

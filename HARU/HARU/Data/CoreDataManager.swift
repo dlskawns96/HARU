@@ -10,6 +10,7 @@ import CoreData
 
 class CoreDataManager {
     
+    
     static let shared = CoreDataManager()
     
     private init() {
@@ -52,6 +53,12 @@ class CoreDataManager {
         saveContext()
     }
     
+    func deleteDiary(_ diary: Diary?) {
+        if let diary = diary {
+            mainContext.delete(diary)
+            saveContext()
+        }
+    }
     static func returnDiary(date:String) -> String {
         
         var list:String = ""
@@ -83,6 +90,19 @@ class CoreDataManager {
         
     }
     
+    static func returnDiaryCount(date:String) -> Int {
+        
+        var count: Int = 0
+        
+        for item in CoreDataManager.diaryList
+        {
+            if item.date == date
+            {
+                count += 1
+            }
+        }
+        return count
+    }
     
     var mainContext: NSManagedObjectContext {
         return persistentContainer.viewContext
@@ -114,6 +134,5 @@ class CoreDataManager {
         }
     }
     
-    
-    
 }
+

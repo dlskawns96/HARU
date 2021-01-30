@@ -156,8 +156,7 @@
 				1FE6078D2597514100A0882D /* SelectDateController.swift */,
 				1FC02B80259E807700AC8142 /* AddDiaryController.swift */,
 				EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */,
-                EA9C881025B94687003FD749 /* EventDateSelectViewController.swift */,
-
+				EA9C881025B94687003FD749 /* EventDateSelectViewController.swift */,
 				1FF13FC825BB129D008624D8 /* DiaryViewController.swift */,
 				1FF13FCB25BB12B6008624D8 /* ScheduleViewController.swift */,
 			);
@@ -453,13 +452,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				DEVELOPMENT_TEAM = 8C7RC2WQ7N;
 				INFOPLIST_FILE = HARU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LNJ.HARU;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARU2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -473,13 +472,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				DEVELOPMENT_TEAM = 8C7RC2WQ7N;
 				INFOPLIST_FILE = HARU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LNJ.HARU;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARU2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
