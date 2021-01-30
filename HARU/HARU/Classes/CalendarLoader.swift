@@ -53,6 +53,7 @@ class CalendarLoader {
     }
     
     func loadEvents() {
+        loadedEvents = []
         for calendar in calendars {
             let oneMonthAgo = Date(timeIntervalSinceNow: -30*24*3600)
             let oneMonthAfter = Date(timeIntervalSinceNow: +30*24*3600)

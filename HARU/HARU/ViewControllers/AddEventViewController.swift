@@ -51,7 +51,7 @@ class AddEventViewController: UIViewController {
     var repeatCycle: String = "days"
     
     // ViewController에 이벤트 변화사항 보내주기 위한 delegate
-    var eventChagnedDelegate: EventReload?
+    var addEventViewControllerDelegate: AddEventViewControllerDelegate?
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -94,7 +94,7 @@ class AddEventViewController: UIViewController {
     
     @IBAction func saveBtnClicked(_ sender: Any) {
         saveNewEvent()
-        eventChagnedDelegate?.newEventAdded()
+        addEventViewControllerDelegate?.newEventAdded()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -413,7 +413,7 @@ extension Date {
     }
 }
 
-protocol EventReload {
+protocol AddEventViewControllerDelegate {
     func newEventAdded()
     func eventDeleted()
 }

@@ -16,6 +16,9 @@ class SelectDateController : UIViewController {
 
     let AD = UIApplication.shared.delegate as? AppDelegate
     
+    var delegate: SelectDateControllerDelegate?
+    var needCalendarReload: Bool = false
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segment.selectedSegmentIndex == 1 {
@@ -37,6 +40,9 @@ class SelectDateController : UIViewController {
         super.viewDidLoad()
         scheduleView.isHidden = false
         diaryView.isHidden = true
+        
+        isModalInPresentation = true
+        self.presentationController?.delegate = self
     }
     
     @IBAction func indexChanged(_ sender: Any) {
@@ -67,6 +73,7 @@ class SelectDateController : UIViewController {
             guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
             guard let childView = controller.viewControllers.first as? AddEventViewController else {return}
             controller.modalPresentationStyle = .pageSheet
+            childView.addEventViewControllerDelegate = self
             self.present(controller, animated: true, completion: nil)
         case 1:
             guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
@@ -78,4 +85,31 @@ class SelectDateController : UIViewController {
         
     }
     
+}
+
+// AddEventController 로 부터 일정 수정 사항이 있는지 받아오기 위한 delegate
+extension SelectDateController: AddEventViewControllerDelegate {
+    func newEventAdded() {
+        needCalendarReload = true
+    }
+    
+    func eventDeleted() {
+        needCalendarReload = true
+    }
+    
+    /// 구현: 이벤트 수정 사항이 없이 그냥 종료 됐을 때 처리
+}
+
+protocol SelectDateControllerDelegate: class {
+    func SelectDateControllerDidCancel(_ selectDateController: SelectDateController)
+    func SelectDateControllerDidFinish(_ selectDateController: SelectDateController)
+}
+
+extension SelectDateController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        dismiss(animated: true)
+        if needCalendarReload {
+            self.delegate?.SelectDateControllerDidFinish(self)
+        }
+    }
 }
