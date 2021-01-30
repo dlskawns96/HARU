@@ -9,12 +9,21 @@ import UIKit
 
 class AddDiaryController : UIViewController {
     
+    var editTarget: String?
     @IBOutlet weak var diaryTextView: UITextView!
     
     //static var selectedDate: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let editDiary = editTarget, editDiary.count > 0 {
+            navigationItem.title = "일기 수정"
+            diaryTextView.text = editDiary
+        }
+        else {
+            navigationItem.title = "새 일기"
+            diaryTextView.text = ""
+        }
     }
     
     @IBAction func cancleBtn(_ sender: Any) {
@@ -27,6 +36,10 @@ class AddDiaryController : UIViewController {
             alert(message: "내용을 입력하세요.")
             return
         }
+        
+//        if let editDiary = editTarget, editDiary.count > 0 {
+//
+//        }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
