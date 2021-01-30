@@ -92,9 +92,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
-                                <rect key="frame" x="68" y="66" width="276" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
+                                <rect key="frame" x="50" y="66" width="314" height="32"/>
                                 <segments>
                                     <segment title="일정"/>
                                     <segment title="일기"/>
@@ -125,6 +124,7 @@
                                     <action selector="closeBtn:" destination="Nzo-Wt-ceS" eventType="touchUpInside" id="uF1-Jm-qwy"/>
                                 </connections>
                             </button>
+
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mbs-x2-jbM">
                                 <rect key="frame" x="0.0" y="163" width="414" height="651"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -132,6 +132,7 @@
                                     <segue destination="qpH-h7-Zcs" kind="embed" id="4Hp-Sn-6s8"/>
                                 </connections>
                             </containerView>
+
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5e-RQ-CTY">
                                 <rect key="frame" x="0.0" y="163" width="414" height="651"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -154,9 +155,20 @@
                         <viewLayoutGuide key="safeArea" id="fMY-fW-zjr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Mbs-x2-jbM" firstAttribute="leading" secondItem="p5e-RQ-CTY" secondAttribute="leading" id="0IO-Dk-Dtk"/>
+                            <constraint firstItem="PEA-2V-ho5" firstAttribute="top" secondItem="fMY-fW-zjr" secondAttribute="top" constant="22" id="0ef-Ae-qk2"/>
+                            <constraint firstItem="Mbs-x2-jbM" firstAttribute="height" secondItem="p5e-RQ-CTY" secondAttribute="height" id="5HH-if-Q9y"/>
+                            <constraint firstItem="Mbs-x2-jbM" firstAttribute="top" secondItem="p5e-RQ-CTY" secondAttribute="top" id="F85-kf-4ad"/>
+                            <constraint firstItem="p5e-RQ-CTY" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" id="HYu-h6-W31"/>
+                            <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="p5e-RQ-CTY" secondAttribute="trailing" id="JUy-pq-plW"/>
+                            <constraint firstItem="Mbs-x2-jbM" firstAttribute="width" secondItem="p5e-RQ-CTY" secondAttribute="width" id="NC1-gk-Ac1"/>
                             <constraint firstItem="OWg-Zv-5p1" firstAttribute="top" secondItem="gqT-Gu-Dfh" secondAttribute="top" constant="25" id="SKg-VU-wih"/>
+                            <constraint firstItem="p5e-RQ-CTY" firstAttribute="top" secondItem="PEA-2V-ho5" secondAttribute="bottom" constant="66" id="Xen-sv-KMC"/>
+                            <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="PEA-2V-ho5" secondAttribute="trailing" constant="50" id="c9L-F4-MA9"/>
+                            <constraint firstItem="fMY-fW-zjr" firstAttribute="bottom" secondItem="p5e-RQ-CTY" secondAttribute="bottom" id="ejA-cy-mXY"/>
                             <constraint firstItem="7bv-nV-OXI" firstAttribute="top" secondItem="gqT-Gu-Dfh" secondAttribute="top" constant="25" id="huR-8R-uRx"/>
                             <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="OWg-Zv-5p1" secondAttribute="trailing" constant="30" id="mzM-Hn-JPe"/>
+                            <constraint firstItem="PEA-2V-ho5" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" constant="50" id="uvA-VQ-l3k"/>
                             <constraint firstItem="7bv-nV-OXI" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" constant="20" id="wcG-Tr-BZx"/>
                         </constraints>
                     </view>

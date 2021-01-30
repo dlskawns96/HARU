@@ -18,12 +18,13 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     var eventTitles: [String] = []
     var loadedEvents: [CalendarLoader.EVENT] = []
     var labels: [UILabel] = []
+    let calendarLoader = CalendarLoader()
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let calendarLoader = CalendarLoader()
+        
         self.loadedEvents = calendarLoader.loadedEvents
         
         fsCalendar.delegate = self
@@ -125,5 +126,19 @@ extension Date {
     
     var noon: Date {
         return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+}
+
+// AddEventViewController 로 부터 새로운 이벤트, 이벤트 삭제 통지 받기
+extension ViewController: EventReload {
+    func newEventAdded() {
+        self.loadedEvents = calendarLoader.loadedEvents
+        fsCalendar.reloadData()
+        print("reload")
+    }
+    
+    func eventDeleted() {
+        self.loadedEvents = calendarLoader.loadedEvents
+        fsCalendar.reloadData()
     }
 }

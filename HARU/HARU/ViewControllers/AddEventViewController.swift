@@ -11,17 +11,16 @@ import EventKit
 
 class AddEventViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var repeatPicker: UIPickerView!
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var repeatTimeStepper: UIStepper!
     @IBOutlet weak var repeatTimeTextField: UITextField!
-    @IBOutlet weak var scrollViewContainer: UIView!
     @IBOutlet weak var calendarSelectBtn: UIButton!
     @IBOutlet weak var selectedCalendarTitle: UILabel!
     @IBOutlet weak var selectedCalendarView: UIView!
+    @IBOutlet weak var repeatGroup: UIView!
     
     var pickerData: [[String]] = [["Every"], ["1", "2", "3", "4", "5", "6", "7"], ["days", "weeks"]]
     var activeField: UITextField!
@@ -41,9 +40,18 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var eventEndTimeLabel: UILabel!
     
     let dateFormatter = DateFormatter()
+    let dateFormat = "yyyy-MM-dd HH:mm:ss"
     
     // 이벤트를 캘린더에 저장하기 위한 오브젝트
     let eventStore: EKEventStore = EKEventStore()
+    
+    // 반복 횟수를 결정할 변수
+    var isRepeat: Bool = false
+    var repeatPeriod: Int = 0
+    var repeatCycle: String = "days"
+    
+    // ViewController에 이벤트 변화사항 보내주기 위한 delegate
+    var eventChagnedDelegate: EventReload?
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -58,15 +66,25 @@ class AddEventViewController: UIViewController {
         repeatSwitch.isOn = false
         
         repeatTimeTextField.keyboardType = .numberPad
-        repeatTimeStepper.value = 0
+        repeatTimeStepper.value = 1
 
         setCalendarDropDown()
         initDateSelectViews()
+        initNewEvent()
         // 키보드 숨김, 스크롤 설정
-        hideKeyboard()
-        registerForKeyboardNotifications()
         
         dateFormatter.locale = Locale(identifier: "ko_KR")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        hideKeyboard()
+        keyboard()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //observer해제
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - IBActions
@@ -76,6 +94,8 @@ class AddEventViewController: UIViewController {
     
     @IBAction func saveBtnClicked(_ sender: Any) {
         saveNewEvent()
+        eventChagnedDelegate?.newEventAdded()
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func startDateSelectBtnClicked(_ sender: Any) {
@@ -99,9 +119,17 @@ class AddEventViewController: UIViewController {
     
     @IBAction func repeatSwitchValueChanged(_ sender: Any) {
         if self.repeatSwitch.isOn {
+            isRepeat = true
             pickerEnable(picker: repeatPicker, enable: true)
+            UIView.animate(withDuration: 0.2, animations: { [self] in
+                self.repeatGroup.transform = CGAffineTransform(translationX: 0, y: -10)
+            })
+            enableView(view: repeatGroup, enable: true)
         } else {
+            isRepeat = false
             pickerEnable(picker: repeatPicker, enable: false)
+            self.repeatGroup.transform = .identity
+            enableView(view: repeatGroup, enable: false)
         }
     }
     
@@ -114,46 +142,25 @@ class AddEventViewController: UIViewController {
     }
     
     // MARK: - Functions
+    func enableView(view: UIView, enable: Bool) {
+        view.isHidden = !enable
+        view.isUserInteractionEnabled = enable
+    }
+    
     func initDateSelectViews() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 M월 d일"
         let dateString = dateFormatter.string(from: Date())
         eventStartDateLabel.text = dateString
         eventEndDateLabel.text = dateString
+        selectedCalendarTitle.text = calendars[0].title
+        selectedCalendarView.backgroundColor = UIColor(cgColor: calendars[0].cgColor)
+        repeatTimeTextField.text = "1"
     }
     
     func getWeekDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()
         return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
-    }
-    
-    /// 텍스트 필드 위치를 키보드 보다 위로 이동시키기
-    func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    /// 이 메서드는 UIKeyboardDidShow 노티피케이션을 받으면 호출된다.
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardFrame.height, right: 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-
-        // 활성화된 텍스트 필드가 키보드에 의해 가려진다면 가려지지 않도록 스크롤한다.
-        var rect = self.view.frame
-        rect.size.height -= keyboardFrame.height
-        if (activeField != nil) && rect.contains(activeField.frame.origin) {
-            scrollView.scrollRectToVisible(activeField.frame, animated: true)
-        }
-    }
-
-    /// 이 메서드는 UIKeyboardWillHide 노티피케이션을 받으면 호출된다.
-    @objc func keyboardWillHide(_ notification: Notification) {
-        let contentInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
     }
     
     func setCalendarDropDown() {
@@ -180,29 +187,98 @@ class AddEventViewController: UIViewController {
         }
     }
     
+    func makeRepeatingEvents(creteriaEvent: NewEvent, calendar: EKCalendar) -> [EKEvent] {
+        var events: [EKEvent] = []
+        
+        
+        let repeatTime = Int(repeatTimeTextField.text!)!
+        let title = eventTitleTextField.text!
+        let startDate = creteriaEvent.startDate
+        let endDate = creteriaEvent.endDate
+        
+        for n in 1...repeatTime {
+            let event = EKEvent(eventStore: eventStore)
+            event.calendar = calendar
+            event.title = title + " \(n) / \(repeatTime)"
+            
+            if repeatCycle == "days" {
+                event.startDate = startDate?.adjust(.day, offset: repeatPeriod * (n - 1))
+                event.endDate = endDate?.adjust(.day, offset: repeatPeriod * (n - 1))
+            }
+            if repeatCycle == "weeks" {
+                event.startDate = startDate?.adjust(.day, offset: repeatPeriod * (n - 1) * 7)
+                event.endDate = endDate?.adjust(.day, offset: repeatPeriod * (n - 1) * 7)
+            }
+            
+            events.append(event)
+        }
+        return events
+    }
+    
     /// 새로운 이벤트 저장
     func saveNewEvent() {
-        
-        let event: EKEvent = EKEvent(eventStore: eventStore)
+        var events: [EKEvent] = []
         
         let calendars = eventStore.calendars(for: .event)
             for calendar in calendars {
                 if calendar.title == newEvent.calendar.title {
-                    event.calendar = calendar
-                    event.title = eventTitleTextField.text
-                    event.startDate = newEvent.startDate
-                    event.endDate = newEvent.endDate
+                    if isRepeat {
+                        events = makeRepeatingEvents(creteriaEvent: newEvent, calendar: calendar)
+                        print(events)
+                    } else {
+                        let event = EKEvent(eventStore: eventStore)
+                        event.calendar = calendar
+                        event.title = eventTitleTextField.text
+                        event.startDate = newEvent.startDate
+                        event.endDate = newEvent.endDate
+                        events.append(event)
+                    }
                     do {
-                        try eventStore.save(event, span: .thisEvent)
+                        for event in events {
+                            try eventStore.save(event, span: .thisEvent)
+                        }
                     }
                     catch {
-                       print("Error saving event in calendar")             }
+                       print("Error saving event in calendar")
                     }
-                print("Event saved!")
-                //TODO: 이벤트 저장하고 캘린더 다시로드
+                    print("Event saved!")
+                    return
+                }
             }
-
     }
+    
+    func initNewEvent() {
+        newEvent.calendar.title = calendars[0].title
+        var cal = Calendar.current
+        cal.locale = Locale(identifier: "ko_KR")
+        let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!.adjust(.hour, offset: 9)
+        newEvent.startDate = now
+        newEvent.endDate = now
+    }
+    
+    func keyboard() {
+        //observer등록
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func textViewMoveUp(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.3, animations: { [self] in
+                            print(keyboardSize.origin.y, repeatGroup.globalFrame!.origin.y)
+                            let y = keyboardSize.origin.y - repeatGroup.globalFrame!.origin.y
+                            self.repeatGroup.transform = CGAffineTransform(translationX: 0, y: 2.0 * y)
+                            self.repeatPicker.isHidden = true})
+        }
+    }
+
+    @objc func textViewMoveDown(_ notification: NSNotification) {
+        self.view.endEditing(true)
+        self.repeatPicker.isHidden = false
+        self.repeatGroup.transform = .identity
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) { self.view.endEditing(true) }
 }
 
 // MARK: - Extensions
@@ -215,7 +291,7 @@ extension AddEventViewController: PassSelectDate {
         
         if isStart {
             newEvent.startDate = selectedDate
-            print(dateFormatter.string(from: newEvent.startDate))
+            newEvent.endDate = selectedDate
             eventStartDateLabel.text = dateFormatter.string(from: newEvent.startDate)
             eventEndDateLabel.text = dateFormatter.string(from: newEvent.startDate)
             dateFormatter.dateFormat = "a hh:mm"
@@ -272,6 +348,15 @@ extension AddEventViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return pickerData[component][row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 1 {
+            repeatPeriod = Int(pickerData[component][row])!
+        }
+        if component == 2 {
+            repeatCycle = pickerData[component][row]
+        }
+    }
+    
     func pickerEnable(picker: UIPickerView, enable: Bool) {
         picker.isHidden = !enable
         picker.isUserInteractionEnabled = enable
@@ -298,4 +383,37 @@ extension AddEventViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }
+}
+
+extension UIView {
+    var globalFrame: CGRect? {
+        let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
+        return self.superview?.convert(self.frame, to: rootView)
+    }
+}
+
+extension Date {
+    func toString( dateFormat format: String ) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.locale = Locale.current
+        return dateFormatter.string(from: self)
+    }
+    
+    func toStringKST( dateFormat format: String ) -> String {
+        return self.toString(dateFormat: format)
+    }
+    
+    func toStringUTC( dateFormat format: String ) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        return dateFormatter.string(from: self)
+    }
+}
+
+protocol EventReload {
+    func newEventAdded()
+    func eventDeleted()
 }
