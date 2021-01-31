@@ -64,6 +64,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSRemindersUsageDescription</key>
+	<string>app need your agreement to access reminder</string>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 </dict>

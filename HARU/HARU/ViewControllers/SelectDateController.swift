@@ -41,7 +41,6 @@ class SelectDateController : UIViewController {
         super.viewDidLoad()
         scheduleView.isHidden = false
         diaryView.isHidden = true
-        AddDiaryFunction
         composeBtn.isEnabled = false
         isModalInPresentation = true
         self.presentationController?.delegate = self
