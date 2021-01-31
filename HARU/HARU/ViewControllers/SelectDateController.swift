@@ -76,6 +76,7 @@ class SelectDateController : UIViewController {
             let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
             guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
             controller.modalPresentationStyle = .pageSheet
+            guard let childView = controller.viewControllers.first as? AddEventViewController else {return}
             childView.addEventViewControllerDelegate = self
             self.present(controller, animated: true, completion: nil)
         case 1:
