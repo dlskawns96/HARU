@@ -18,12 +18,12 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     var eventTitles: [String] = []
     var loadedEvents: [CalendarLoader.EVENT] = []
     var labels: [UILabel] = []
+    let calendarLoader = CalendarLoader()
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let calendarLoader = CalendarLoader()
         self.loadedEvents = calendarLoader.loadedEvents
         
         fsCalendar.delegate = self
@@ -52,6 +52,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
         controller.modalPresentationStyle = .pageSheet
+        controller.delegate = self
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -125,5 +126,19 @@ extension Date {
     
     var noon: Date {
         return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+}
+
+// AddEventViewController 로 부터 새로운 이벤트, 이벤트 삭제 통지 받기
+extension ViewController: SelectDateControllerDelegate {
+    func SelectDateControllerDidCancel(_ selectDateController: SelectDateController) {
+        return
+    }
+    
+    func SelectDateControllerDidFinish(_ selectDateController: SelectDateController) {
+        print("Attempt to reload...")
+        calendarLoader.loadEvents()
+        self.loadedEvents = calendarLoader.loadedEvents
+        fsCalendar.reloadData()
     }
 }

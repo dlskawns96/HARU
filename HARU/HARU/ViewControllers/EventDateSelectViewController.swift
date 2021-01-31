@@ -65,9 +65,9 @@ class EventDateSelectViewController: UIViewController {
         if self.selectedDate != nil {
             var h: Int = 9
             var m: Int = 0
-            if hourTextField.text != nil || hourTextField.text != "" {
+            if hourTextField.text != nil && hourTextField.text != "" {
                 h = Int(hourTextField.text!)!
-                if minuteTextField.text != nil || minuteTextField.text != "" {
+                if minuteTextField.text != nil && minuteTextField.text != "" {
                     m = Int(minuteTextField.text!)!
                 } else { m = 0 }
             }
