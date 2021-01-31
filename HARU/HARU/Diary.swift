@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 //class Diary {
 //
 //    var content : String

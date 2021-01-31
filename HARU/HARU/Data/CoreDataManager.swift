@@ -10,6 +10,7 @@ import CoreData
 
 class CoreDataManager {
     
+    
     static let shared = CoreDataManager()
     
     private init() {
@@ -17,22 +18,19 @@ class CoreDataManager {
     }
     
     static var diaryList = [Diary]()
-    //static var diaryList = [String:String]()
-    static var diaryList2 = [String:String]()
     
     func fetchDiary() {
         let request: NSFetchRequest<Diary> = Diary.fetchRequest()
         
         do {
             CoreDataManager.diaryList = try mainContext.fetch(request)
-            //CoreDataManager.diaryList2 = try mainContext.fetch
         } catch  {
             print(error)
         }
         
     }
     
-    func addDiary(_ content: String?, _ date: String?) {
+    func saveDiary(_ content: String?, _ date: String?) {
         let newDiary = Diary(context: mainContext)
         newDiary.content = content
         newDiary.date = date
@@ -41,36 +39,56 @@ class CoreDataManager {
         saveContext()
     }
     
-//    static func returnDiary(date:String) -> [String] {
-//
-//        var list = [String]()
-//
-//        for item in CoreDataManager.diaryList
-//        {
-//            if item.date == date
-//            {
-//                list.append(item.content!)
-//
-//            }
-//        }
-//        return list
-//    }
-    
-        static func returnDiary(date:String) -> String {
-    
-            var list:String = ""
-    
-            for item in CoreDataManager.diaryList
+    func updateDiary(_ content: String?, _ date: String?) {
+        
+        for item in CoreDataManager.diaryList
+        {
+            if item.date == date
             {
-                if item.date == date
-                {
-                    list = item.content!
-                    //list.append(item.content!)
-    
-                }
+                item.content = content
+                
             }
-            return list
         }
+        
+        saveContext()
+    }
+    
+    func deleteDiary(_ diary: Diary?) {
+        if let diary = diary {
+            mainContext.delete(diary)
+            saveContext()
+        }
+    }
+    static func returnDiary(date:String) -> String {
+        
+        var list:String = ""
+        
+        for item in CoreDataManager.diaryList
+        {
+            if item.date == date
+            {
+                list = item.content!
+                
+            }
+        }
+        return list
+    }
+    
+    static func returnDiary(date:String, type:String) -> Bool {
+        
+        var result:Bool = false
+        
+        for item in CoreDataManager.diaryList
+        {
+            if item.date == date
+            {
+                result = true
+            }
+        }
+        
+        return result
+        
+    }
     
     static func returnDiaryCount(date:String) -> Int {
         
@@ -81,7 +99,6 @@ class CoreDataManager {
             if item.date == date
             {
                 count += 1
-                
             }
         }
         return count
@@ -117,6 +134,5 @@ class CoreDataManager {
         }
     }
     
-    
-    
 }
+
