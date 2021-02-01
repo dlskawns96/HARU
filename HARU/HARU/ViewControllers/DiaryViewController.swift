@@ -57,29 +57,34 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
         
-        var touchPoint = CGPoint()
+        let count = CoreDataManager.returnDiaryCount(date: (AD?.selectedDate)!)
         
-        if gestureRecognizer.state == UIGestureRecognizer.State.began {
-            touchPoint = gestureRecognizer.location(in: self.tableView)
+        if count != 0 {
+            
+            var touchPoint = CGPoint()
+            
+            if gestureRecognizer.state == UIGestureRecognizer.State.began {
+                touchPoint = gestureRecognizer.location(in: self.tableView)
+            }
+            let alert = UIAlertController(title:
+                                            "삭제 확인", message: "일기를 삭제할까요?", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] (action) in
+                print("삭제")
+                let indexPath = self?.tableView.indexPathForRow(at: touchPoint)
+                let target = CoreDataManager.diaryList[indexPath!.row]
+                CoreDataManager.shared.deleteDiary(target)
+                CoreDataManager.diaryList.remove(at: indexPath!.row)
+                self?.tableView.reloadData()
+            
+            }
+            alert.addAction(okAction)
+            
+            let cancleAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            alert.addAction(cancleAction)
+            
+            present(alert, animated: true, completion: nil)
         }
-        let alert = UIAlertController(title:
-                                        "삭제 확인", message: "일기를 삭제할까요?", preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] (action) in
-            print("삭제")
-            let indexPath = self?.tableView.indexPathForRow(at: touchPoint)
-            let target = CoreDataManager.diaryList[indexPath!.row]
-            CoreDataManager.shared.deleteDiary(target)
-            CoreDataManager.diaryList.remove(at: indexPath!.row)
-            self?.tableView.reloadData()
-        
-        }
-        alert.addAction(okAction)
-        
-        let cancleAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        alert.addAction(cancleAction)
-        
-        present(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
