@@ -20,7 +20,8 @@ class SelectDateController : UIViewController {
     
     var delegate: SelectDateControllerDelegate?
     var needCalendarReload: Bool = false
-
+    var dateEvents: [NewEvent] = []
+    
     @IBAction func composeBtn(_ sender: Any) {
         if segment.selectedSegmentIndex == 1 {
             guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
@@ -37,6 +38,14 @@ class SelectDateController : UIViewController {
     //        }
     //    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // ScheduleViewController 에 이벤트 정보 넘기기
+        dateEvents = AD?.selectedDateEvents ?? []
+        if let vc = segue.destination as? ScheduleViewController, segue.identifier == "ScheduleViewSegue" {
+            vc.dateEvents = dateEvents
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         scheduleView.isHidden = false
@@ -44,7 +53,6 @@ class SelectDateController : UIViewController {
         composeBtn.isEnabled = false
         isModalInPresentation = true
         self.presentationController?.delegate = self
-
     }
     
     @IBAction func indexChanged(_ sender: Any) {
@@ -87,7 +95,6 @@ class SelectDateController : UIViewController {
         }
         
     }
-    
 }
 
 // AddEventController 로 부터 일정 수정 사항이 있는지 받아오기 위한 delegate

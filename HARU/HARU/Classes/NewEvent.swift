@@ -27,7 +27,7 @@ class NewEvent {
         self.repeating = nil
     }
     
-    init(eventTitle: String, calendar: (title: String, color: UIColor), startDate: Date, endDate: Date, repeating: (eveyWeek: Bool, cycle: Int, time: Int)) {
+    init(eventTitle: String, calendar: (title: String, color: UIColor), startDate: Date, endDate: Date, repeating: (eveyWeek: Bool, cycle: Int, time: Int)? = nil) {
         self.eventTitle = eventTitle
         self.calendar = calendar 
         self.startDate = startDate
