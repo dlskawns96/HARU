@@ -58,6 +58,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let AD = UIApplication.shared.delegate as? AppDelegate
         AD?.selectedDate = dateFormatter.string(from: date)
+        AD?.selectedDateEvents = loadEventsOfDay(for: date)
         self.present(controller, animated: true, completion: nil)
     }
     
@@ -108,6 +109,19 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     func getWeekDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()
         return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
+    }
+    
+    /// 해당 날짜의 이벤트를 리턴 해주는 함수
+    func loadEventsOfDay(for date: Date) -> [NewEvent] {
+        var events: [NewEvent] = []
+        
+        for event in loadedEvents {
+            if event.startDate.compare(.isSameDay(as: date)) {
+                events.append(NewEvent(eventTitle: event.title, calendar: (title: event.calendarName, color: event.color), startDate: event.startDate, endDate: event.endDate))
+            }
+        }
+        
+        return events
     }
 }
 

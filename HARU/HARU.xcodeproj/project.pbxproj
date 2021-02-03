@@ -29,6 +29,7 @@
 		EA7F83732594749D008B8ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7F83722594749D008B8ED5 /* Assets.xcassets */; };
 		EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7F83742594749D008B8ED5 /* LaunchScreen.storyboard */; };
 		EA9C881125B94687003FD749 /* EventDateSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C881025B94687003FD749 /* EventDateSelectViewController.swift */; };
+		EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB148625CAD54300E1D067 /* ScheduleTableViewCell.swift */; };
 		EAE87E7A25AD85BC00AF18A5 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		EA7F83752594749D008B8ED5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA7F83772594749D008B8ED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA9C881025B94687003FD749 /* EventDateSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDateSelectViewController.swift; sourceTree = "<group>"; };
+		EADB148625CAD54300E1D067 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 				EA9C881025B94687003FD749 /* EventDateSelectViewController.swift */,
 				1FF13FC825BB129D008624D8 /* DiaryViewController.swift */,
 				1FF13FCB25BB12B6008624D8 /* ScheduleViewController.swift */,
+				EADB148625CAD54300E1D067 /* ScheduleTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */,
 				1FF13FCC25BB12B6008624D8 /* ScheduleViewController.swift in Sources */,
 				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
+				EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */,
 				1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */,
 				EA07FBEF25B906B6003B2529 /* NewEvent.swift in Sources */,
 				1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */,
