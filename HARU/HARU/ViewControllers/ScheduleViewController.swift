@@ -26,9 +26,10 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ScheduleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ScheduleTableViewCell", for: indexPath) as! ScheduleTableViewCell
         
-        cell.eventTitleLabel.text = dateEvents[0].eventTitle
+        let idx = indexPath.row
+        cell.eventTitleLabel.text = dateEvents[idx].eventTitle
         cell.layer.borderWidth = 2
-        let eventColor = dateEvents[0].calendar.color
+        let eventColor = dateEvents[idx].calendar.color
         cell.layer.borderColor = eventColor.cgColor
         cell.backgroundColor = eventColor.withAlphaComponent(0.25)
         return cell
