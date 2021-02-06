@@ -27,13 +27,16 @@ class AddEventViewController: UIViewController {
     var isKeyboardUp: Bool = false
     
     // 캘린더 드랍다운 메뉴를 위한 오브젝트
-    var loadedEvents: [CalendarLoader.EVENT] = []
+    var loadedEvents: [EKEvent] = []
     let calendars = CalendarLoader().loadCalendars()
     let calendarDropDown = DropDown()
     var calendarTitles = [String: CGColor]()
     
+    // 이벤트를 캘린더에 저장하기 위한 오브젝트
+    let eventStore: EKEventStore = EKEventStore()
+    
     // 새로 생성할 이벤트를 저장할 오브젝트
-    var newEvent = NewEvent()
+    var newEvent: EKEvent! = nil
     @IBOutlet weak var eventStartDateLabel: UILabel!
     @IBOutlet weak var eventStartTimeLabel: UILabel!
     @IBOutlet weak var eventEndDateLabel: UILabel!
@@ -41,9 +44,6 @@ class AddEventViewController: UIViewController {
     
     let dateFormatter = DateFormatter()
     let dateFormat = "yyyy-MM-dd HH:mm:ss"
-    
-    // 이벤트를 캘린더에 저장하기 위한 오브젝트
-    let eventStore: EKEventStore = EKEventStore()
     
     // 반복 횟수를 결정할 변수
     var isRepeat: Bool = false
@@ -67,7 +67,9 @@ class AddEventViewController: UIViewController {
         
         repeatTimeTextField.keyboardType = .numberPad
         repeatTimeStepper.value = 1
-
+        
+        newEvent = EKEvent(eventStore: eventStore)
+        
         setCalendarDropDown()
         initDateSelectViews()
         initNewEvent()
@@ -164,10 +166,13 @@ class AddEventViewController: UIViewController {
     }
     
     func setCalendarDropDown() {
+        var titles: [String] = []
         for calendar in calendars {
             calendarTitles[calendar.title] = calendar.cgColor
+            titles.append(calendar.title)
         }
-        calendarDropDown.dataSource = Array(calendarTitles.keys)
+        
+        calendarDropDown.dataSource = Array(titles)
         calendarDropDown.anchorView = calendarSelectBtn
         calendarDropDown.bottomOffset = CGPoint(x: 0, y: (calendarDropDown.anchorView?.plainView.bounds.height)!)
         
@@ -175,21 +180,19 @@ class AddEventViewController: UIViewController {
         calendarDropDown.cellNib = UINib(nibName: "CalendarDropDownCell", bundle: nil)
         calendarDropDown.customCellConfiguration = {(index: Index, item: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? CalendarDropDownCell else { return }
-            cell.CalendarColorView.backgroundColor = UIColor(cgColor: self.calendarTitles[Array(self.calendarTitles.keys)[index]]!)
+            cell.CalendarColorView.backgroundColor = UIColor(cgColor: self.calendars[index].cgColor)
             
         }
         calendarDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.selectedCalendarTitle.text = item
-            let color = UIColor(cgColor: self.calendarTitles[Array(self.calendarTitles.keys)[index]]!)
+            let color = UIColor(cgColor: self.calendars[index].cgColor)
             self.selectedCalendarView.backgroundColor = color
-            newEvent.calendar.title = item
-            newEvent.calendar.color = color
-        }
+            newEvent.calendar = calendars[index]
+        } 
     }
     
-    func makeRepeatingEvents(creteriaEvent: NewEvent, calendar: EKCalendar) -> [EKEvent] {
+    func makeRepeatingEvents(creteriaEvent: EKEvent, calendar: EKCalendar) -> [EKEvent] {
         var events: [EKEvent] = []
-        
         
         let repeatTime = Int(repeatTimeTextField.text!)!
         let title = eventTitleTextField.text!
@@ -248,10 +251,11 @@ class AddEventViewController: UIViewController {
     }
     
     func initNewEvent() {
-        newEvent.calendar.title = calendars[0].title
         var cal = Calendar.current
         cal.locale = Locale(identifier: "ko_KR")
-        let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!.adjust(.hour, offset: 9)
+//        let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!.adjust(.hour, offset: 9)
+        let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!
+        newEvent.calendar = calendars[0]
         newEvent.startDate = now
         newEvent.endDate = now
     }

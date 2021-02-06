@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import EventKit
 
 class ScheduleViewController: UIViewController {
 
     @IBOutlet weak var ScheduleTableView: UITableView!
-    var dateEvents: [NewEvent] = []
+    var dateEvents: [EKEvent] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +38,9 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: ScheduleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ScheduleTableViewCell", for: indexPath) as! ScheduleTableViewCell
         
         let idx = indexPath.row
-        cell.eventTitleLabel.text = dateEvents[idx].eventTitle
+        cell.eventTitleLabel.text = dateEvents[idx].title
         cell.layer.borderWidth = 2
-        let eventColor = dateEvents[idx].calendar.color
+        let eventColor = UIColor(cgColor: dateEvents[idx].calendar.cgColor)
         cell.layer.borderColor = eventColor.cgColor
         cell.backgroundColor = eventColor.withAlphaComponent(0.25)
         return cell

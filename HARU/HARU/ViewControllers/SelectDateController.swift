@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import EventKit
 
 class SelectDateController : UIViewController {
     
@@ -20,7 +21,7 @@ class SelectDateController : UIViewController {
     
     var delegate: SelectDateControllerDelegate?
     var needCalendarReload: Bool = false
-    var dateEvents: [NewEvent] = []
+    var dateEvents: [EKEvent] = []
     
     @IBAction func composeBtn(_ sender: Any) {
         if segment.selectedSegmentIndex == 1 {

@@ -127,8 +127,9 @@ extension EventDateSelectViewController: FSCalendarDataSource, FSCalendarDelegat
     
     // 날짜 선택 시 콜백 메소드
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectedDate = date.adjust(.day, offset: 1)
-        selectedDate = selectedDate.adjust(hour: -15, minute: 0, second: 0)
+//        selectedDate = date.adjust(.day, offset: 1)
+//        selectedDate = selectedDate.adjust(hour: -15, minute: 0, second: 0)
+        selectedDate = date
     }
  
     // 날짜 선택 해제 시 콜백 메소드
