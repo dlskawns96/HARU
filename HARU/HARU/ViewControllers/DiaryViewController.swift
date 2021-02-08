@@ -7,12 +7,27 @@
 
 import UIKit
 
-class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate{
+class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return evaluationList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return evaluationList[row]
+    }
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var evaluationPicker: UIPickerView!
     
     var diary: Diary?
     var token: NSObjectProtocol?
+    var evaluationList = ["매우 불만족", "불만족", "보통", "만족", "매우 만족"]
+    
     let AD = UIApplication.shared.delegate as? AppDelegate
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +107,9 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        evaluationPicker.dataSource = self
+        evaluationPicker.delegate = self
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
         longPressGesture.delegate = self
