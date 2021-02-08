@@ -53,6 +53,9 @@ class AddEventViewController: UIViewController {
     // ViewController에 이벤트 변화사항 보내주기 위한 delegate
     var addEventViewControllerDelegate: AddEventViewControllerDelegate?
     
+    var newEvents: [EKEvent] = []
+    var isEventAdded: Bool = false
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +79,8 @@ class AddEventViewController: UIViewController {
         // 키보드 숨김, 스크롤 설정
         
         dateFormatter.locale = Locale(identifier: "ko_KR")
+        isModalInPresentation = true
+        self.navigationController?.presentationController?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,8 +101,11 @@ class AddEventViewController: UIViewController {
     
     @IBAction func saveBtnClicked(_ sender: Any) {
         saveNewEvent()
-        addEventViewControllerDelegate?.newEventAdded()
+        addEventViewControllerDelegate?.newEventAdded(newEvents: newEvents)
         self.dismiss(animated: true, completion: nil)
+        if isEventAdded {
+            addEventViewControllerDelegate?.newEventAdded(newEvents: newEvents)
+        }
     }
     
     @IBAction func startDateSelectBtnClicked(_ sender: Any) {
@@ -195,7 +203,8 @@ class AddEventViewController: UIViewController {
         var events: [EKEvent] = []
         
         let repeatTime = Int(repeatTimeTextField.text!)!
-        let title = eventTitleTextField.text!
+        var title: String!
+        title = getEventTitle()
         let startDate = creteriaEvent.startDate
         let endDate = creteriaEvent.endDate
         
@@ -220,25 +229,26 @@ class AddEventViewController: UIViewController {
     
     /// 새로운 이벤트 저장
     func saveNewEvent() {
-        var events: [EKEvent] = []
+        newEvents = []
         
         let calendars = eventStore.calendars(for: .event)
             for calendar in calendars {
                 if calendar.title == newEvent.calendar.title {
                     if isRepeat {
-                        events = makeRepeatingEvents(creteriaEvent: newEvent, calendar: calendar)
-                        print(events)
+                        newEvents = makeRepeatingEvents(creteriaEvent: newEvent, calendar: calendar)
+                        print(newEvents)
                     } else {
                         let event = EKEvent(eventStore: eventStore)
                         event.calendar = calendar
-                        event.title = eventTitleTextField.text
+                        event.title = getEventTitle()
                         event.startDate = newEvent.startDate
                         event.endDate = newEvent.endDate
-                        events.append(event)
+                        newEvents.append(event)
                     }
                     do {
-                        for event in events {
+                        for event in newEvents {
                             try eventStore.save(event, span: .thisEvent)
+                            isEventAdded = true
                         }
                     }
                     catch {
@@ -255,6 +265,7 @@ class AddEventViewController: UIViewController {
         cal.locale = Locale(identifier: "ko_KR")
 //        let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!.adjust(.hour, offset: 9)
         let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!
+        newEvent.title = "새로운 이벤트"
         newEvent.calendar = calendars[0]
         newEvent.startDate = now
         newEvent.endDate = now
@@ -283,6 +294,13 @@ class AddEventViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) { self.view.endEditing(true) }
+    
+    func getEventTitle() -> String {
+        if (eventTitleTextField.text == "" || eventTitleTextField == nil) {
+            return "새로운 이벤트"
+        }
+        return eventTitleTextField.text!
+    }
 }
 
 // MARK: - Extensions
@@ -389,6 +407,16 @@ extension AddEventViewController: UITextFieldDelegate {
     }
 }
 
+extension AddEventViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        print("AddEventViewController Did Attempt to Dismiss")
+        self.dismiss(animated: true, completion: nil)
+        if isEventAdded {
+            addEventViewControllerDelegate?.newEventAdded(newEvents: newEvents)
+        }
+    }
+}
+
 extension UIView {
     var globalFrame: CGRect? {
         let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
@@ -418,6 +446,6 @@ extension Date {
 }
 
 protocol AddEventViewControllerDelegate {
-    func newEventAdded()
+    func newEventAdded(newEvents: [EKEvent])
     func eventDeleted()
 }

@@ -12,16 +12,25 @@ class ScheduleViewController: UIViewController {
 
     @IBOutlet weak var ScheduleTableView: UITableView!
     var dateEvents: [EKEvent] = []
+    let eventHandler = EventHandler()
+    var scheduleVCDelegate: ScheduleViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ScheduleTableView.delegate = self
         ScheduleTableView.dataSource = self
         ScheduleTableView.removeExtraLine()
+        guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
+        controller.delegate = self
     }
     
-    func swipeDelete() {
+    func swipeDelete(indexPath: IndexPath) {
         print("ScheduleViewController - swipeDelete() called")
+        if eventHandler.removeEvent(event: dateEvents[indexPath.row]) {
+            self.scheduleVCDelegate?.eventModified()
+            self.dateEvents.remove(at: indexPath.row)
+            self.ScheduleTableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     func swipeModify() {
@@ -57,7 +66,7 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     // leading swipe
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "삭제", handler: {(action, view, completionHandler) in
-            self.swipeDelete()
+            self.swipeDelete(indexPath: indexPath)
             completionHandler(true)
         })
         action.backgroundColor = .systemRed
@@ -77,8 +86,28 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension ScheduleViewController: SelectDateControllerDelegate {
+    func SelectDateControllerDidCancel(_ selectDateController: SelectDateController) {
+        
+    }
+    
+    func SelectDateControllerDidFinish(_ selectDateController: SelectDateController) {
+        
+    }
+    
+    func insertNewEventToTable(events: [EKEvent]) {
+        print(events)
+        dateEvents = events
+        ScheduleTableView.reloadData()
+    }
+}
+
 extension UITableView {
     func removeExtraLine() {
         tableFooterView = UIView(frame: .zero)
     }
+}
+
+protocol ScheduleViewControllerDelegate {
+    func eventModified()
 }

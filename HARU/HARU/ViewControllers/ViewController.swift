@@ -145,6 +145,10 @@ extension Date {
 
 // AddEventViewController 로 부터 새로운 이벤트, 이벤트 삭제 통지 받기
 extension ViewController: SelectDateControllerDelegate {
+    func insertNewEventToTable(events: [EKEvent]) {
+        
+    }
+    
     func SelectDateControllerDidCancel(_ selectDateController: SelectDateController) {
         return
     }
