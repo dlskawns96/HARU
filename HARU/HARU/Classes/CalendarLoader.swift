@@ -11,16 +11,8 @@ import UIKit
 
 class CalendarLoader {
     
-    struct EVENT {
-        var startDate: Date
-        var endDate: Date
-        var title: String
-        var calendarName: String
-        var color: UIColor
-    }
-    
     // To save calendars properties
-    var loadedEvents: [EVENT] = []
+    var loadedEvents: [EKEvent] = []
     
     let eventStore = EKEventStore()
     let calendars : [EKCalendar]
@@ -55,18 +47,16 @@ class CalendarLoader {
     func loadEvents() {
         loadedEvents = []
         for calendar in calendars {
+            // 이벤트를 가져올 기간
             let oneMonthAgo = Date(timeIntervalSinceNow: -30*24*3600)
             let oneMonthAfter = Date(timeIntervalSinceNow: +30*24*3600)
 
+            // 위에서 정한 기간의 이벤트 가져오기
             let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo, end: oneMonthAfter, calendars: [calendar])
-
             let events = eventStore.events(matching: predicate)
+            
             for event in events {
-                let calendarColor = UIColor(cgColor: calendar.cgColor)
-                let ev = EVENT(startDate: event.startDate, endDate: event.endDate, title: event.title,
-                                  calendarName: event.calendar.title, color: calendarColor)
-                
-                loadedEvents.append(ev)
+                loadedEvents.append(event)
             }
         }
     }

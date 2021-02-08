@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import EventKit
 
 class SelectDateController : UIViewController {
     
@@ -20,7 +21,9 @@ class SelectDateController : UIViewController {
     
     var delegate: SelectDateControllerDelegate?
     var needCalendarReload: Bool = false
-    var dateEvents: [NewEvent] = []
+    var dateEvents: [EKEvent] = []
+    
+    var scheduleVC: ScheduleViewController? = ScheduleViewController()
     
     @IBAction func composeBtn(_ sender: Any) {
         if segment.selectedSegmentIndex == 1 {
@@ -41,8 +44,11 @@ class SelectDateController : UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // ScheduleViewController 에 이벤트 정보 넘기기
         dateEvents = AD?.selectedDateEvents ?? []
-        if let vc = segue.destination as? ScheduleViewController, segue.identifier == "ScheduleViewSegue" {
-            vc.dateEvents = dateEvents
+        scheduleVC = (segue.destination as? ScheduleViewController) ?? nil
+        
+        if (scheduleVC != nil), segue.identifier == "ScheduleViewSegue" {
+            scheduleVC?.dateEvents = dateEvents
+            scheduleVC?.scheduleVCDelegate = self
         }
     }
     
@@ -73,6 +79,11 @@ class SelectDateController : UIViewController {
     
     @IBAction func closeBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        print("SelectDateController - needCalendarReload", needCalendarReload)
+        if needCalendarReload {
+            print("SelectDateController - needCalendarReload")
+            self.delegate?.SelectDateControllerDidFinish(self)
+        }
     }
     
     @IBAction func addBtn(_ sender: Any) {
@@ -99,8 +110,11 @@ class SelectDateController : UIViewController {
 
 // AddEventController 로 부터 일정 수정 사항이 있는지 받아오기 위한 delegate
 extension SelectDateController: AddEventViewControllerDelegate {
-    func newEventAdded() {
+    func newEventAdded(newEvents: [EKEvent]) {
+        print("SelecDateController - newEventAdded()")
         needCalendarReload = true
+        dateEvents.append(contentsOf: newEvents)
+        delegate?.insertNewEventToTable(events: dateEvents)
     }
     
     func eventDeleted() {
@@ -113,13 +127,23 @@ extension SelectDateController: AddEventViewControllerDelegate {
 protocol SelectDateControllerDelegate: class {
     func SelectDateControllerDidCancel(_ selectDateController: SelectDateController)
     func SelectDateControllerDidFinish(_ selectDateController: SelectDateController)
+    
+    func insertNewEventToTable(events: [EKEvent])
 }
 
 extension SelectDateController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
         dismiss(animated: true)
+        print("SelectDateController - needCalendarReload", needCalendarReload)
         if needCalendarReload {
+            print("SelectDateController - needCalendarReload")
             self.delegate?.SelectDateControllerDidFinish(self)
         }
+    }
+}
+
+extension SelectDateController: ScheduleViewControllerDelegate {
+    func eventModified() {
+        needCalendarReload = true
     }
 }

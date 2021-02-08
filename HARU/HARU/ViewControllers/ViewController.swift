@@ -9,6 +9,7 @@ import UIKit
 import Foundation
 import FSCalendar
 import AFDateHelper
+import EventKit
 
 class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
@@ -16,7 +17,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     var eventStartDates: [NSDate] = []
     var eventEndDates: [NSDate] = []
     var eventTitles: [String] = []
-    var loadedEvents: [CalendarLoader.EVENT] = []
+    var loadedEvents: [EKEvent] = []
     var labels: [UILabel] = []
     let calendarLoader = CalendarLoader()
     
@@ -74,7 +75,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
                 lab.text = eve.title
                 lab.textColor = UIColor.init(named: "#32C77F")
                 cell.addSubview(lab)
-                lab.backgroundColor = eve.color
+                lab.backgroundColor = UIColor(cgColor: eve.calendar.cgColor)
                 posY = posY + 15
             }
             
@@ -112,15 +113,14 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     }
     
     /// 해당 날짜의 이벤트를 리턴 해주는 함수
-    func loadEventsOfDay(for date: Date) -> [NewEvent] {
-        var events: [NewEvent] = []
+    func loadEventsOfDay(for date: Date) -> [EKEvent] {
+        var events: [EKEvent] = []
         
         for event in loadedEvents {
             if event.startDate.compare(.isSameDay(as: date)) {
-                events.append(NewEvent(eventTitle: event.title, calendar: (title: event.calendarName, color: event.color), startDate: event.startDate, endDate: event.endDate))
+                events.append(event)
             }
         }
-        
         return events
     }
 }
@@ -145,6 +145,10 @@ extension Date {
 
 // AddEventViewController 로 부터 새로운 이벤트, 이벤트 삭제 통지 받기
 extension ViewController: SelectDateControllerDelegate {
+    func insertNewEventToTable(events: [EKEvent]) {
+        
+    }
+    
     func SelectDateControllerDidCancel(_ selectDateController: SelectDateController) {
         return
     }

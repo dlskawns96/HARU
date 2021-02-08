@@ -19,7 +19,6 @@
 		DAC709FEAA6782D0D541943E /* Pods_HARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */; };
 		EA024A0C25B7BB6200830C4A /* CalendarDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA024A0A25B7BB6200830C4A /* CalendarDropDownCell.swift */; };
 		EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA024A0B25B7BB6200830C4A /* CalendarDropDownCell.xib */; };
-		EA07FBEF25B906B6003B2529 /* NewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07FBEE25B906B6003B2529 /* NewEvent.swift */; };
 		EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1219B42594C255007EDE8E /* CalendarLoader.swift */; };
 		EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3A414825B66CA40074282C /* AddEvent.storyboard */; };
 		EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F83692594749C008B8ED5 /* AppDelegate.swift */; };
@@ -31,6 +30,7 @@
 		EA9C881125B94687003FD749 /* EventDateSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C881025B94687003FD749 /* EventDateSelectViewController.swift */; };
 		EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB148625CAD54300E1D067 /* ScheduleTableViewCell.swift */; };
 		EAE87E7A25AD85BC00AF18A5 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */; };
+		EAFE1BA125CD183F0084B31C /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE1BA025CD183F0084B31C /* EventHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +48,6 @@
 		5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA024A0A25B7BB6200830C4A /* CalendarDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDropDownCell.swift; sourceTree = "<group>"; };
 		EA024A0B25B7BB6200830C4A /* CalendarDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarDropDownCell.xib; sourceTree = "<group>"; };
-		EA07FBEE25B906B6003B2529 /* NewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEvent.swift; sourceTree = "<group>"; };
 		EA1219B42594C255007EDE8E /* CalendarLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarLoader.swift; path = HARU/Classes/CalendarLoader.swift; sourceTree = SOURCE_ROOT; };
 		EA3A414825B66CA40074282C /* AddEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddEvent.storyboard; path = HARU/AddEvent.storyboard; sourceTree = SOURCE_ROOT; };
 		EA7F83662594749C008B8ED5 /* HARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +61,7 @@
 		EA9C881025B94687003FD749 /* EventDateSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDateSelectViewController.swift; sourceTree = "<group>"; };
 		EADB148625CAD54300E1D067 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		EAFE1BA025CD183F0084B31C /* EventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +97,8 @@
 		EA07FBF125B906BE003B2529 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EA07FBEE25B906B6003B2529 /* NewEvent.swift */,
 				EA1219B42594C255007EDE8E /* CalendarLoader.swift */,
+				EAFE1BA025CD183F0084B31C /* EventHandler.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -292,6 +292,7 @@
 			files = (
 				EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */,
 				EAE87E7A25AD85BC00AF18A5 /* AddEventViewController.swift in Sources */,
+				EAFE1BA125CD183F0084B31C /* EventHandler.swift in Sources */,
 				1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */,
 				EA9C881125B94687003FD749 /* EventDateSelectViewController.swift in Sources */,
 				EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */,
@@ -300,7 +301,6 @@
 				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
 				EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */,
 				1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */,
-				EA07FBEF25B906B6003B2529 /* NewEvent.swift in Sources */,
 				1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */,
 				1FC02B84259E83D600AC8142 /* Diary.swift in Sources */,
 				1FF13FC925BB129D008624D8 /* DiaryViewController.swift in Sources */,
