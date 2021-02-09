@@ -15,7 +15,6 @@ class SelectDateController : UIViewController {
     @IBOutlet weak var scheduleView: UIView!
     @IBOutlet weak var diaryView: UIView!
     @IBOutlet weak var addBtn: UIButton!
-    @IBOutlet weak var composeBtn: UIBarButtonItem!
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     
@@ -24,14 +23,7 @@ class SelectDateController : UIViewController {
     var dateEvents: [EKEvent] = []
     
     var scheduleVC: ScheduleViewController? = ScheduleViewController()
-    
-    @IBAction func composeBtn(_ sender: Any) {
-        if segment.selectedSegmentIndex == 1 {
-            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
-            self.present(controller, animated: true, completion: nil)
-            AddDiaryController.editTarget = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-        }
-    }
+
     //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     //
     //        if segment.selectedSegmentIndex == 1 {
@@ -56,7 +48,7 @@ class SelectDateController : UIViewController {
         super.viewDidLoad()
         scheduleView.isHidden = false
         diaryView.isHidden = true
-        composeBtn.isEnabled = false
+        //composeBtn.isEnabled = false
         isModalInPresentation = true
         self.presentationController?.delegate = self
     }
@@ -67,11 +59,9 @@ class SelectDateController : UIViewController {
         case 0:
             scheduleView.isHidden = false
             diaryView.isHidden = true
-            composeBtn.isEnabled = false
         case 1:
             scheduleView.isHidden = true
             diaryView.isHidden = false
-            composeBtn.isEnabled = true
         default:
             break
         }
@@ -98,9 +88,12 @@ class SelectDateController : UIViewController {
             childView.addEventViewControllerDelegate = self
             self.present(controller, animated: true, completion: nil)
         case 1:
+//            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
+//
+//            self.present(controller, animated: true, completion: nil)
             guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
-            
             self.present(controller, animated: true, completion: nil)
+            AddDiaryController.editTarget = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
         default:
             break
         }

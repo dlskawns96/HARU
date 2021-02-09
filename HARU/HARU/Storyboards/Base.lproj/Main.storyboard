@@ -125,54 +125,40 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mbs-x2-jbM">
-                                <rect key="frame" x="0.0" y="160" width="414" height="653"/>
+                                <rect key="frame" x="0.0" y="160" width="414" height="702"/>
                                 <connections>
                                     <segue destination="qpH-h7-Zcs" kind="embed" identifier="ScheduleViewSegue" id="4Hp-Sn-6s8"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5e-RQ-CTY">
-                                <rect key="frame" x="0.0" y="160" width="414" height="653"/>
+                                <rect key="frame" x="0.0" y="160" width="414" height="702"/>
                                 <connections>
                                     <segue destination="OmN-bU-GkM" kind="embed" id="umG-JP-t3P"/>
                                 </connections>
                             </containerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1i-N5-cKn">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                                <items>
-                                    <barButtonItem systemItem="compose" id="jcr-JL-fcz">
-                                        <connections>
-                                            <action selector="composeBtn:" destination="Nzo-Wt-ceS" id="KJm-Wt-7IH"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fMY-fW-zjr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="PEA-2V-ho5" firstAttribute="top" secondItem="fMY-fW-zjr" secondAttribute="top" constant="65" id="0ef-Ae-qk2"/>
-                            <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="K1i-N5-cKn" secondAttribute="trailing" id="7iX-p7-WXU"/>
                             <constraint firstItem="p5e-RQ-CTY" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" id="HYu-h6-W31"/>
                             <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="p5e-RQ-CTY" secondAttribute="trailing" id="JUy-pq-plW"/>
                             <constraint firstItem="Mbs-x2-jbM" firstAttribute="top" secondItem="PEA-2V-ho5" secondAttribute="bottom" constant="20" id="Rh5-Xw-9kc"/>
                             <constraint firstItem="OWg-Zv-5p1" firstAttribute="top" secondItem="gqT-Gu-Dfh" secondAttribute="top" constant="25" id="SKg-VU-wih"/>
-                            <constraint firstItem="fMY-fW-zjr" firstAttribute="bottom" secondItem="K1i-N5-cKn" secondAttribute="bottom" id="UO8-KM-eNr"/>
-                            <constraint firstItem="K1i-N5-cKn" firstAttribute="top" secondItem="p5e-RQ-CTY" secondAttribute="bottom" id="WEa-b4-xJn"/>
                             <constraint firstItem="p5e-RQ-CTY" firstAttribute="top" secondItem="PEA-2V-ho5" secondAttribute="bottom" constant="20" id="Xen-sv-KMC"/>
-                            <constraint firstItem="K1i-N5-cKn" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" id="c2I-b3-nPb"/>
+                            <constraint firstItem="Mbs-x2-jbM" firstAttribute="bottom" secondItem="fMY-fW-zjr" secondAttribute="bottom" id="ZeK-wo-cGg"/>
                             <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="PEA-2V-ho5" secondAttribute="trailing" constant="50" id="c9L-F4-MA9"/>
                             <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="Mbs-x2-jbM" secondAttribute="trailing" id="gf9-tU-dQR"/>
                             <constraint firstItem="Mbs-x2-jbM" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" id="hFA-M2-XVl"/>
                             <constraint firstItem="7bv-nV-OXI" firstAttribute="top" secondItem="gqT-Gu-Dfh" secondAttribute="top" constant="25" id="huR-8R-uRx"/>
+                            <constraint firstItem="p5e-RQ-CTY" firstAttribute="bottom" secondItem="fMY-fW-zjr" secondAttribute="bottom" id="mMR-Pv-Y6a"/>
                             <constraint firstItem="fMY-fW-zjr" firstAttribute="trailing" secondItem="OWg-Zv-5p1" secondAttribute="trailing" constant="30" id="mzM-Hn-JPe"/>
                             <constraint firstItem="PEA-2V-ho5" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" constant="50" id="uvA-VQ-l3k"/>
-                            <constraint firstItem="K1i-N5-cKn" firstAttribute="top" secondItem="Mbs-x2-jbM" secondAttribute="bottom" id="wDM-Hj-2Bi"/>
                             <constraint firstItem="7bv-nV-OXI" firstAttribute="leading" secondItem="fMY-fW-zjr" secondAttribute="leading" constant="20" id="wcG-Tr-BZx"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addBtn" destination="OWg-Zv-5p1" id="m7e-1Q-xFY"/>
-                        <outlet property="composeBtn" destination="jcr-JL-fcz" id="gix-KT-V9r"/>
                         <outlet property="diaryView" destination="p5e-RQ-CTY" id="hgv-Wu-Ogo"/>
                         <outlet property="scheduleView" destination="Mbs-x2-jbM" id="bXm-eq-AiI"/>
                         <outlet property="segment" destination="PEA-2V-ho5" id="uZj-fk-nEK"/>
@@ -278,11 +264,11 @@
             <objects>
                 <viewController storyboardIdentifier="ScheduleViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qpH-h7-Zcs" customClass="ScheduleViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nab-Jk-6aH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="653"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="702"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mqt-Xo-iXr">
-                                <rect key="frame" x="0.0" y="44" width="414" height="609"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="658"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleTableViewCell" id="SFs-5j-fcc" customClass="ScheduleTableViewCell" customModule="HARU" customModuleProvider="target">
@@ -337,7 +323,7 @@
             <objects>
                 <viewController storyboardIdentifier="diaryViewController" id="OmN-bU-GkM" customClass="DiaryViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ykE-pX-lDu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="653"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="702"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7d4-Wg-aVE">
