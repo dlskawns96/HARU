@@ -7,26 +7,15 @@
 
 import UIKit
 
-class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return evaluationList.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return evaluationList[row]
-    }
-    
+class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDelegate {
+        
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var evaluationPicker: UIPickerView!
+    @IBOutlet weak var badBtn: UIButton!
+    @IBOutlet weak var goodBtn: UIButton!
+    @IBOutlet weak var bestBtn: UIButton!
     
     var diary: Diary?
     var token: NSObjectProtocol?
-    var evaluationList = ["매우 불만족", "불만족", "보통", "만족", "매우 만족"]
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     
@@ -69,6 +58,27 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    // 평가
+    
+    
+    @IBAction func badBtn(_ sender: Any) {
+        badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+        goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        
+    }
+    
+    @IBAction func goodBtn(_ sender: Any) {
+        badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+        bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+    }
+    
+    @IBAction func bestBtn(_ sender: Any) {
+        badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+    }
     
     @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
         
@@ -107,9 +117,6 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
-        evaluationPicker.dataSource = self
-        evaluationPicker.delegate = self
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
         longPressGesture.delegate = self

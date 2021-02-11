@@ -354,10 +354,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EZu-X3-KtQ">
-                                        <rect key="frame" x="225" y="0.0" width="189" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="오늘 하루를 평가해주세요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apb-ZI-3uS">
                                         <rect key="frame" x="25" y="40" width="176" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -365,6 +361,31 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKg-SM-TbV">
+                                        <rect key="frame" x="218" y="23" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="😱"/>
+                                        <connections>
+                                            <action selector="badBtn:" destination="OmN-bU-GkM" eventType="touchUpInside" id="HZD-wQ-Jd9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnJ-bB-Mu3">
+                                        <rect key="frame" x="276" y="23" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="🙂"/>
+                                        <connections>
+                                            <action selector="goodBtn:" destination="OmN-bU-GkM" eventType="touchUpInside" id="6Yq-bs-tWr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nr0-wZ-Mp5">
+                                        <rect key="frame" x="334" y="23" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="🥰"/>
+                                        <connections>
+                                            <action selector="bestBtn:" destination="OmN-bU-GkM" eventType="touchUpInside" id="Rq4-7U-QyU"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                             </view>
@@ -372,14 +393,18 @@
                         <viewLayoutGuide key="safeArea" id="ndB-4i-F7L"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="evaluationPicker" destination="EZu-X3-KtQ" id="0NW-WQ-OLk"/>
+                        <outlet property="badBtn" destination="uKg-SM-TbV" id="KOs-UJ-0ce"/>
+                        <outlet property="bestBtn" destination="Nr0-wZ-Mp5" id="g6j-gS-Dzd"/>
+                        <outlet property="goodBtn" destination="CnJ-bB-Mu3" id="29Z-xw-wzU"/>
                         <outlet property="tableView" destination="7d4-Wg-aVE" id="uzG-aZ-ics"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5qc-32-4tn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528.985507246377" y="663.28125"/>
+            <point key="canvasLocation" x="1528.985507246377" y="662.94642857142856"/>
         </scene>
     </scenes>
     <resources>
