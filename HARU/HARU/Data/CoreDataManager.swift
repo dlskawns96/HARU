@@ -59,6 +59,7 @@ class CoreDataManager {
             saveContext()
         }
     }
+    
     static func returnDiary(date:String) -> String {
         
         var list:String = ""
@@ -71,6 +72,7 @@ class CoreDataManager {
                 
             }
         }
+        //print(diaryList)
         return list
     }
     
@@ -102,6 +104,46 @@ class CoreDataManager {
             }
         }
         return count
+    }
+    
+    func saveEvaluation(_ evaluation: Int16?, _ date: String?) {
+
+        var yes: Bool = true
+        for item in CoreDataManager.diaryList
+        {
+            if item.date == date
+            {
+                item.evaluation = evaluation!
+                yes = false
+                break
+            }
+        }
+
+        if yes {
+            
+            let newDiary = Diary(context: mainContext)
+            newDiary.evaluation = evaluation!
+            newDiary.date = date
+            newDiary.content = "nothing"
+
+            CoreDataManager.diaryList.insert(newDiary, at: 0)
+        }
+        
+        saveContext()
+    }
+    
+    static func returnDiaryEvaluation(date:String) -> Int {
+        
+        var evaluation: Int = 0
+        
+        for item in CoreDataManager.diaryList
+        {
+            if item.date == date
+            {
+                evaluation = Int(item.evaluation)
+            }
+        }
+        return evaluation
     }
     
     var mainContext: NSManagedObjectContext {
