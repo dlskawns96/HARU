@@ -50,8 +50,13 @@ class ScheduleViewController: UIViewController {
         }
     }
     
-    func swipeModify() {
-        print("ScheduleViewController - swipeModify() called")
+    func swipeModify(event: EKEvent) {
+        eventHandler.modifyEvent(event: event)
+        guard let controller = self.storyboard!.instantiateViewController(identifier: "EventModifyViewControllerEntry") as UINavigationController? else { return }
+        let vc = controller.viewControllers.first as? EventModifyViewController
+        if vc != nil { vc?.event = event }
+        controller.modalPresentationStyle = .pageSheet
+        self.present(controller, animated: true, completion: nil)
     }
 }
 
@@ -94,7 +99,7 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     // trailing swipe
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "수정", handler: {(action, view, completionHandler) in
-            self.swipeModify()
+            self.swipeModify(event: self.dateEvents[indexPath.row])
             completionHandler(true)
         })
         action.backgroundColor = .systemBlue
