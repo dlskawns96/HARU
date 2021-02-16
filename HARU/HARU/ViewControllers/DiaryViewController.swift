@@ -21,8 +21,32 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         CoreDataManager.shared.fetchDiary()
         tableView.reloadData()
+        
+        let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
+        
+        if evaluation == 1 {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        }
+        else if evaluation == 2 {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        }
+        else if evaluation == 3 {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+        }
+        else {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        }
     }
     
     deinit {
@@ -58,13 +82,16 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    
     // 평가
-    
-    
     @IBAction func badBtn(_ sender: Any) {
         badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
         goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        
+        print("눌림")
+        CoreDataManager.shared.saveEvaluation(1, AD?.selectedDate)
         
     }
     
@@ -72,12 +99,16 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
         bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        
+        CoreDataManager.shared.saveEvaluation(2, AD?.selectedDate)
     }
     
     @IBAction func bestBtn(_ sender: Any) {
         badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+        
+        CoreDataManager.shared.saveEvaluation(3, AD?.selectedDate)
     }
     
     @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -111,8 +142,9 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             present(alert, animated: true, completion: nil)
         }
     }
-    
+
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.tableView.dataSource = self
@@ -121,6 +153,31 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
         longPressGesture.delegate = self
         self.tableView.addGestureRecognizer(longPressGesture)
+        
+        print(CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!))
+        
+//        let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
+//
+//        if evaluation == 1 {
+//            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+//            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//        }
+//        else if evaluation == 2 {
+//            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+//            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//        }
+//        else if evaluation == 3 {
+//            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+//        }
+//        else {
+//            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//        }
         
         token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in
             print("new diary")
