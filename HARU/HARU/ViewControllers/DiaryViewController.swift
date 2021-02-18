@@ -16,6 +16,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var diary: Diary?
     var token: NSObjectProtocol?
+    var Etoken: NSObjectProtocol?
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     
@@ -43,15 +44,16 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
         }
         else {
-            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            buttonInit()
         }
     }
     
     deinit {
         if let token = token {
             NotificationCenter.default.removeObserver(token)
+        }
+        if let Etoken = Etoken {
+            NotificationCenter.default.removeObserver(Etoken)
         }
     }
     
@@ -80,9 +82,15 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             CoreDataManager.shared.deleteDiary(target)
             CoreDataManager.diaryList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            buttonInit()
         }
     }
     
+    func buttonInit() {
+        badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+    }
     
     // 평가
     @IBAction func badBtn(_ sender: Any) {
@@ -128,13 +136,14 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let alert = UIAlertController(title:
                                             "삭제 확인", message: "일기를 삭제할까요?", preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] (action) in
+            let okAction = UIAlertAction(title: "삭제", style: .destructive) { (action) in
                 print("삭제")
-                let indexPath = self?.tableView.indexPathForRow(at: touchPoint)
+                let indexPath = self.tableView.indexPathForRow(at: touchPoint)
                 let target = CoreDataManager.diaryList[indexPath!.row]
                 CoreDataManager.shared.deleteDiary(target)
                 CoreDataManager.diaryList.remove(at: indexPath!.row)
-                self?.tableView.reloadData()
+                self.tableView.reloadData()
+                self.buttonInit()
             
             }
             alert.addAction(okAction)
@@ -187,7 +196,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.tableView.reloadData()
         }
         
-        token = NotificationCenter.default.addObserver(forName: DiaryViewController.newEvaluation, object: nil, queue: OperationQueue.main) {_ in
+        Etoken = NotificationCenter.default.addObserver(forName: DiaryViewController.newEvaluation, object: nil, queue: OperationQueue.main) {_ in
             print("new Evaluation")
             self.tableView.reloadData()
         }
