@@ -90,8 +90,9 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         
-        print("눌림")
+        //print("눌림")
         CoreDataManager.shared.saveEvaluation(1, AD?.selectedDate)
+        NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
         
     }
     
@@ -101,6 +102,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         
         CoreDataManager.shared.saveEvaluation(2, AD?.selectedDate)
+        NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
     }
     
     @IBAction func bestBtn(_ sender: Any) {
@@ -109,6 +111,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
         
         CoreDataManager.shared.saveEvaluation(3, AD?.selectedDate)
+        NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
     }
     
     @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -183,5 +186,14 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("new diary")
             self.tableView.reloadData()
         }
+        
+        token = NotificationCenter.default.addObserver(forName: DiaryViewController.newEvaluation, object: nil, queue: OperationQueue.main) {_ in
+            print("new Evaluation")
+            self.tableView.reloadData()
+        }
     }
+}
+
+extension DiaryViewController {
+    static let newEvaluation = Notification.Name(rawValue: "newEvaluation")
 }
