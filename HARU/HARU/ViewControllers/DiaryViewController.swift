@@ -167,30 +167,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.addGestureRecognizer(longPressGesture)
         
         print(CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!))
-        
-//        let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
-//
-//        if evaluation == 1 {
-//            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-//            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//        }
-//        else if evaluation == 2 {
-//            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-//            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//        }
-//        else if evaluation == 3 {
-//            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-//        }
-//        else {
-//            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//        }
-        
+
         token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in
             print("new diary")
             self.tableView.reloadData()

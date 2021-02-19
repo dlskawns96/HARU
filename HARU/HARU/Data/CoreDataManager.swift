@@ -66,7 +66,6 @@ class CoreDataManager {
                 list = item.content!
             }
         }
-        //print(diaryList)
         return list
     }
     
