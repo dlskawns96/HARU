@@ -59,15 +59,8 @@ class AddDiaryController : UIViewController {
             NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
         }
         else {
-            
-            if CoreDataManager.returnDiary(date: (AD?.selectedDate)!, type: "확인") {
-                alert(message: "수정 버튼을 이용하세요!")
-                return
-            }
-            else {
-                CoreDataManager.shared.saveDiary(diary, AD?.selectedDate)
-                NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
-            }
+            CoreDataManager.shared.saveDiary(diary, AD?.selectedDate)
+            NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
         }
 
         dismiss(animated: true, completion: nil)

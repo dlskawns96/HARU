@@ -41,12 +41,9 @@ class CoreDataManager {
     
     func updateDiary(_ content: String?, _ date: String?) {
         
-        for item in CoreDataManager.diaryList
-        {
-            if item.date == date
-            {
+        for item in CoreDataManager.diaryList {
+            if item.date == date {
                 item.content = content
-                
             }
         }
         
@@ -64,15 +61,11 @@ class CoreDataManager {
         
         var list:String = ""
         
-        for item in CoreDataManager.diaryList
-        {
-            if item.date == date
-            {
+        for item in CoreDataManager.diaryList {
+            if item.date == date {
                 list = item.content!
-                
             }
         }
-        //print(diaryList)
         return list
     }
     
@@ -80,10 +73,8 @@ class CoreDataManager {
         
         var result:Bool = false
         
-        for item in CoreDataManager.diaryList
-        {
-            if item.date == date
-            {
+        for item in CoreDataManager.diaryList {
+            if item.date == date {
                 result = true
             }
         }
@@ -96,10 +87,8 @@ class CoreDataManager {
         
         var count: Int = 0
         
-        for item in CoreDataManager.diaryList
-        {
-            if item.date == date
-            {
+        for item in CoreDataManager.diaryList {
+            if item.date == date {
                 count += 1
             }
         }
@@ -108,11 +97,11 @@ class CoreDataManager {
     
     func saveEvaluation(_ evaluation: Int16?, _ date: String?) {
 
+        print(CoreDataManager.diaryList)
+        
         var yes: Bool = true
-        for item in CoreDataManager.diaryList
-        {
-            if item.date == date
-            {
+        for item in CoreDataManager.diaryList {
+            if item.date == date {
                 item.evaluation = evaluation!
                 yes = false
                 break
@@ -120,7 +109,6 @@ class CoreDataManager {
         }
 
         if yes {
-            
             let newDiary = Diary(context: mainContext)
             newDiary.evaluation = evaluation!
             newDiary.date = date
@@ -136,10 +124,8 @@ class CoreDataManager {
         
         var evaluation: Int = 0
         
-        for item in CoreDataManager.diaryList
-        {
-            if item.date == date
-            {
+        for item in CoreDataManager.diaryList {
+            if item.date == date {
                 evaluation = Int(item.evaluation)
             }
         }

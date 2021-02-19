@@ -23,16 +23,7 @@ class SelectDateController : UIViewController {
     var dateEvents: [EKEvent] = []
     
     var scheduleVC: ScheduleViewController? = ScheduleViewController()
-
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //
-    //        if segment.selectedSegmentIndex == 1 {
-    //            if let vc = segue.destination.children.first as? AddDiaryController {
-    //                vc.editTarget = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-    //            }
-    //        }
-    //    }
-    
+ 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // ScheduleViewController 에 이벤트 정보 넘기기
         dateEvents = AD?.selectedDateEvents ?? []
