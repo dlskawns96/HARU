@@ -397,7 +397,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="titleLabel" destination="l92-DE-3ph" id="FQy-7o-G35"/>
-                                    <outlet property="titleTF" destination="Ony-ud-o8X" id="2iJ-su-B29"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetDateTableViewCell" id="D80-iR-dkK" customClass="SetDateTableViewCell" customModule="HARU" customModuleProvider="target">
@@ -419,6 +418,17 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="JkJ-21-3Ma" secondAttribute="height" multiplier="1:1" id="igv-2M-5XQ"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="titleTodayColor">
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="todayColor">
+                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fakedSelectedDay">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eLE-cm-OtV">
                                             <rect key="frame" x="133" y="6.5" width="131" height="32"/>
@@ -471,37 +481,48 @@
                                     <outlet property="titleLabel" destination="ftj-fS-Pvd" id="CiP-5O-4hJ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="HPk-A8-Qka" customClass="TitleSetTableViewCell" customModule="HARU" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetCalendarTableViewCell" id="HPk-A8-Qka" customClass="SetCalendarTableViewCell" customModule="HARU" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="589" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HPk-A8-Qka" id="zom-lb-4cy">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이벤트 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaS-1y-zgb">
-                                            <rect key="frame" x="20" y="11.5" width="78" height="21.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="캘린더" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaS-1y-zgb">
+                                            <rect key="frame" x="20" y="11.5" width="44.5" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Y5-zV-8ac">
-                                            <rect key="frame" x="108" y="11.5" width="286" height="22"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8N-Ge-9CV">
+                                            <rect key="frame" x="358" y="7" width="46" height="30"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleColor" systemColor="labelColor"/>
+                                            </state>
+                                        </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l4O-zW-94o">
+                                            <rect key="frame" x="325" y="10.5" width="23" height="23"/>
+                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="l4O-zW-94o" secondAttribute="height" multiplier="1:1" id="7uR-Jm-Sw7"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="4Y5-zV-8ac" firstAttribute="centerY" secondItem="vaS-1y-zgb" secondAttribute="centerY" id="1zC-Ew-L6Q"/>
                                         <constraint firstItem="vaS-1y-zgb" firstAttribute="top" secondItem="zom-lb-4cy" secondAttribute="top" constant="11.5" id="2W7-VP-DLP"/>
                                         <constraint firstItem="vaS-1y-zgb" firstAttribute="leading" secondItem="zom-lb-4cy" secondAttribute="leading" constant="20" symbolic="YES" id="AHT-MZ-4Cc"/>
-                                        <constraint firstItem="4Y5-zV-8ac" firstAttribute="leading" secondItem="vaS-1y-zgb" secondAttribute="trailing" constant="10" id="KXx-eZ-ERG"/>
+                                        <constraint firstItem="l4O-zW-94o" firstAttribute="height" secondItem="zom-lb-4cy" secondAttribute="height" multiplier="0.5" constant="1" id="Aya-uM-vyJ"/>
+                                        <constraint firstItem="D8N-Ge-9CV" firstAttribute="centerY" secondItem="zom-lb-4cy" secondAttribute="centerY" id="IWL-CD-RAM"/>
+                                        <constraint firstItem="l4O-zW-94o" firstAttribute="centerY" secondItem="zom-lb-4cy" secondAttribute="centerY" id="SE8-36-09H"/>
                                         <constraint firstAttribute="bottom" secondItem="vaS-1y-zgb" secondAttribute="bottom" constant="11" id="WPb-ma-fzc"/>
-                                        <constraint firstAttribute="trailing" secondItem="4Y5-zV-8ac" secondAttribute="trailing" constant="20" symbolic="YES" id="ept-CV-dql"/>
+                                        <constraint firstItem="D8N-Ge-9CV" firstAttribute="leading" secondItem="l4O-zW-94o" secondAttribute="trailing" constant="10" id="XLg-s8-BwL"/>
+                                        <constraint firstAttribute="trailing" secondItem="D8N-Ge-9CV" secondAttribute="trailing" constant="10" id="pCO-dm-rmY"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="titleLabel" destination="vaS-1y-zgb" id="uh9-JQ-xuG"/>
-                                    <outlet property="titleTF" destination="4Y5-zV-8ac" id="vbG-cM-jZP"/>
+                                    <outlet property="calendarColorView" destination="l4O-zW-94o" id="YW1-QE-298"/>
+                                    <outlet property="calendarTitleBtn" destination="D8N-Ge-9CV" id="OYG-vb-kr0"/>
+                                    <outlet property="titleLabel" destination="vaS-1y-zgb" id="CBh-Hc-tkV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -608,6 +629,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
