@@ -156,11 +156,3 @@ extension Date {
         return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
     }
 }
-
-//이걸 노티받아서 하는걸로
-//func SelectDateControllerDidFinish(_ selectDateController: SelectDateController) {
-//    print("Attempt to reload...")
-//    calendarLoader.loadEvents()
-//    self.loadedEvents = calendarLoader.loadedEvents
-//    fsCalendar.reloadData()
-//}
