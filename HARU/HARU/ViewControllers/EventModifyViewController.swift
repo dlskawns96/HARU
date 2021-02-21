@@ -54,7 +54,9 @@ class EventModifyViewController: UITableViewController {
         initTableView()
         hideKeyboard()
         newEvent = EKEvent(eventStore: eventStore)
-        newEvent.calendar = eventStore.calendar(withIdentifier: originalCalendar!.calendarIdentifier)
+        newEvent.calendar = calendars.filter({(cal: EKCalendar) -> Bool in
+            return cal.calendarIdentifier == originalCalendar!.calendarIdentifier
+        }).first
         newEvent.startDate = event?.startDate
         newEvent.endDate = event?.endDate
     }
