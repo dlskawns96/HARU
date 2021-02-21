@@ -28,11 +28,6 @@ class EventHandler {
             return false
         }
     }
-    
-    func modifyEvent(event: EKEvent) {
-        self.event = event
-        
-    }
 }
 
 extension EventHandler: PassSelectDate {

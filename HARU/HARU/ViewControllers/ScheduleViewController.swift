@@ -51,10 +51,12 @@ class ScheduleViewController: UIViewController {
     }
     
     func swipeModify(event: EKEvent) {
-        eventHandler.modifyEvent(event: event)
         guard let controller = self.storyboard!.instantiateViewController(identifier: "EventModifyViewControllerEntry") as UINavigationController? else { return }
         let vc = controller.viewControllers.first as? EventModifyViewController
-        if vc != nil { vc?.event = event }
+        if vc != nil {
+            vc?.event = event.copy() as! EKEvent
+            vc?.originalCalendar = event.calendar
+        } else { return }
         controller.modalPresentationStyle = .pageSheet
         self.present(controller, animated: true, completion: nil)
     }

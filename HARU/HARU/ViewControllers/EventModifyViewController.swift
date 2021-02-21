@@ -11,10 +11,14 @@ import FSCalendar
 import DropDown
 
 class EventModifyViewController: UITableViewController {
+    var eventHandler = EventHandler()
     
     var dateFormatter = DateFormatter()
     
     var event: EKEvent? = nil
+    var originalCalendar: EKCalendar? = nil
+    var eventHour = ""
+    var eventMinute = ""
     var newEvent: EKEvent!
     
     var titles = [
@@ -42,18 +46,17 @@ class EventModifyViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        newEvent = EKEvent(eventStore: eventStore)
-        newEvent.startDate = event?.startDate
-        newEvent.endDate = event?.endDate
-        
+        print("event modify")
         tableView.separatorInset.left = 0
-//        tableView.rowHeight = UITableView.automaticDimension;
-//        tableView.estimatedRowHeight = 130;
         
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         initTableView()
         hideKeyboard()
+        newEvent = EKEvent(eventStore: eventStore)
+        newEvent.calendar = eventStore.calendar(withIdentifier: originalCalendar!.calendarIdentifier)
+        newEvent.startDate = event?.startDate
+        newEvent.endDate = event?.endDate
     }
     
     func initTableView() {
@@ -67,15 +70,19 @@ class EventModifyViewController: UITableViewController {
     
     @IBAction func saveBtnClicked(_ sender: Any) {
         print("saveBtnClicked")
-        // TODO: 저장 구현
-    }
-    
-    @IBAction func startDateBtnClicked(_ sender: Any) {
-        print("startDateBtnClicked")
-    }
-    
-    @IBAction func endDateBtnClicked(_ sender: Any) {
-        print("endDateBtnClicked")
+        newEvent.title = eventTitleTF.text
+        newEvent.startDate = dateFormatter.date(from: startDateBtn.title(for: .normal)!)
+        newEvent.endDate = dateFormatter.date(from: endDateBtn.title(for: .normal)!)
+        
+        do {
+            let ev = eventStore.event(withIdentifier: event!.eventIdentifier)
+            try eventStore.remove(ev!, span: .thisEvent)
+            try eventStore.save(newEvent, span: .thisEvent)
+            NotificationCenter.default.post(name: AddEventViewController.eventChangedNoti, object: nil)
+            self.dismiss(animated: true, completion: nil)
+        } catch {
+            print("Event Modify Error")
+        }
     }
     
     func hideKeyboard() {
@@ -257,6 +264,7 @@ extension EventModifyViewController {
         calendarDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.setCalendarCell.calendarTitleBtn.setTitle(item, for: .normal)
             self.setCalendarCell.calendarColorView.backgroundColor = UIColor(cgColor: calendars[index].cgColor)
+            newEvent.calendar = calendars[index]
         }
         btn.addTarget(self, action: #selector(onCalendarSelectBtnClicked), for: .touchUpInside)
     }
@@ -298,6 +306,10 @@ extension EventModifyViewController: UITextFieldDelegate {
                 default:
                     return
             }
+        }
+        
+        if textField == eventTitleTF {
+            newEvent.title = textField.text
         }
     }
     
@@ -469,20 +481,26 @@ extension EventModifyViewController: FSCalendarDataSource, FSCalendarDelegate, F
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         if isStartDateBtnOn {
+            let hour = Calendar.current.component(.hour, from: newEvent.startDate)
+            let minute = Calendar.current.component(.minute, from: newEvent.startDate)
+            
             if date.compare(newEvent.endDate) == .orderedDescending {
-                newEvent.endDate = date
-                endDateBtn.setTitle(dateFormatter.string(from: date), for: .normal)
+                newEvent.endDate = date.adjust(hour: hour, minute: minute, second: 0)
+                endDateBtn.setTitle(dateFormatter.string(from: newEvent.endDate), for: .normal)
             }
-            newEvent.startDate = date
-            startDateBtn.setTitle(dateFormatter.string(from: date), for: .normal)
+            newEvent.startDate = date.adjust(hour: hour, minute: minute, second: 0)
+            startDateBtn.setTitle(dateFormatter.string(from: newEvent.startDate), for: .normal)
         }
         if isEndDateBtnOn {
+            let hour = Calendar.current.component(.hour, from: newEvent.endDate)
+            let minute = Calendar.current.component(.minute, from: newEvent.endDate)
+            
             if date.compare(newEvent.startDate) == .orderedAscending {
-                newEvent.startDate = date
-                startDateBtn.setTitle(dateFormatter.string(from: date), for: .normal)
+                newEvent.startDate = date.adjust(hour: hour, minute: minute, second: 0)
+                startDateBtn.setTitle(dateFormatter.string(from: newEvent.startDate), for: .normal)
             }
-            newEvent.endDate = date
-            endDateBtn.setTitle(dateFormatter.string(from: date), for: .normal)
+            newEvent.endDate = date.adjust(hour: hour, minute: minute, second: 0)
+            endDateBtn.setTitle(dateFormatter.string(from: newEvent.endDate), for: .normal)
         }
         calendar.reloadData()
     }
