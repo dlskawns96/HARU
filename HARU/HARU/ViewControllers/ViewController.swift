@@ -85,6 +85,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
             for eve in eves {
                 let lab = UILabel(frame: CGRect(x: 0, y: posY, width: Int(cell.bounds.width), height: 15))
                 lab.font = .systemFont(ofSize: 12, weight: .regular)
+                lab.lineBreakMode = .byCharWrapping
                 lab.text = eve.title
                 lab.textColor = UIColor.init(named: "#32C77F")
                 cell.addSubview(lab)
