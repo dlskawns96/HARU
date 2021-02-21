@@ -11,7 +11,7 @@ import FSCalendar
 import AFDateHelper
 import EventKit
 
-class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
+class ViewController: UIViewController {
     
     @IBOutlet weak var fsCalendar: FSCalendar!
     var eventStartDates: [NSDate] = []
@@ -62,12 +62,39 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
                 NotificationCenter.default.removeObserver(token)
             }
         }
+    @IBAction func onAddEventBtnClicked(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
+        guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
+        controller.modalPresentationStyle = .pageSheet
+        self.present(controller, animated: true, completion: nil)
+    }
     
-    // MARK: - Implement protocols
+    // MARK: - Functions
+    func getWeekDay(for date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
+    }
+    
+    /// 해당 날짜의 이벤트를 리턴 해주는 함수
+    func loadEventsOfDay(for date: Date) -> [EKEvent] {
+        var events: [EKEvent] = []
+        
+        for event in loadedEvents {
+            if event.startDate.compare(.isSameDay(as: date)) {
+                events.append(event)
+            }
+        }
+        return events
+    }
+}
+
+// MARK: - Extensions
+extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
+    // Implement protocols
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
         controller.modalPresentationStyle = .pageSheet
-        
+        controller.selectedDate = date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let AD = UIApplication.shared.delegate as? AppDelegate
@@ -119,27 +146,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         calendar.reloadData()
     }
-    
-    // MARK: - Functions
-    func getWeekDay(for date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
-    }
-    
-    /// 해당 날짜의 이벤트를 리턴 해주는 함수
-    func loadEventsOfDay(for date: Date) -> [EKEvent] {
-        var events: [EKEvent] = []
-        
-        for event in loadedEvents {
-            if event.startDate.compare(.isSameDay(as: date)) {
-                events.append(event)
-            }
-        }
-        return events
-    }
 }
 
-// MARK: - Extensions
 extension Date {
     
     func isSameAs(as compo: Calendar.Component, from date: Date) -> Bool {

@@ -55,6 +55,8 @@ class AddEventViewController: UIViewController {
     
     static let eventChangedNoti = Notification.Name(rawValue: "eventChangedNoti")
     
+    var eventDate = Date()
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,7 +160,7 @@ class AddEventViewController: UIViewController {
     func initDateSelectViews() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 M월 d일"
-        let dateString = dateFormatter.string(from: Date())
+        let dateString = dateFormatter.string(from: eventDate)
         eventStartDateLabel.text = dateString
         eventEndDateLabel.text = dateString
         selectedCalendarTitle.text = calendars[0].title

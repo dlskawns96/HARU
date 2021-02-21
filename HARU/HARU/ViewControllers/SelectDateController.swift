@@ -15,12 +15,16 @@ class SelectDateController : UIViewController {
     @IBOutlet weak var scheduleView: UIView!
     @IBOutlet weak var diaryView: UIView!
     @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var selectedDateLabel: UILabel!
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     
     var dateEvents: [EKEvent] = []
     
     var scheduleVC: ScheduleViewController? = ScheduleViewController()
+    
+    var selectedDate = Date()
+    let dateFormatter = DateFormatter()
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // ScheduleViewController 에 이벤트 정보 넘기기
@@ -29,7 +33,6 @@ class SelectDateController : UIViewController {
         
         if (scheduleVC != nil), segue.identifier == "ScheduleViewSegue" {
             scheduleVC?.dateEvents = dateEvents
-            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             scheduleVC?.selectedDate = dateFormatter.date(from: (AD?.selectedDate)!)!
         }
@@ -42,6 +45,9 @@ class SelectDateController : UIViewController {
         //composeBtn.isEnabled = false
         isModalInPresentation = true
         self.presentationController?.delegate = self
+        
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        selectedDateLabel.text = dateFormatter.string(from: selectedDate)
     }
     
     @IBAction func indexChanged(_ sender: Any) {
@@ -69,6 +75,10 @@ class SelectDateController : UIViewController {
         case 0:
             let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
             guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
+            
+            guard let vc = controller.viewControllers.first as? AddEventViewController else { return }
+            vc.eventDate = selectedDate.adjust(hour: 9, minute: 0, second: 0)
+            
             controller.modalPresentationStyle = .pageSheet
             self.present(controller, animated: true, completion: nil)
         case 1:
