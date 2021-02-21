@@ -44,7 +44,7 @@ class CalendarLoader {
         }
     }
     
-    func loadEvents() {
+    func loadEvents() -> [EKEvent] {
         loadedEvents = []
         for calendar in calendars {
             // 이벤트를 가져올 기간
@@ -59,6 +59,22 @@ class CalendarLoader {
                 loadedEvents.append(event)
             }
         }
+        
+        return loadedEvents
+    }
+    
+    func loadEvents(ofDay day: Date) -> [EKEvent] {
+        var eventsOfDay: [EKEvent] = []
+        for calendar in calendars {
+            let predicate = eventStore.predicateForEvents(withStart: day.adjust(hour: 0, minute: 0, second: 0), end: day.adjust(hour: 23, minute: 59, second: 59), calendars: [calendar])
+            let events = eventStore.events(matching: predicate)
+            
+            for event in events {
+                eventsOfDay.append(event)
+            }
+        }
+        
+        return eventsOfDay
     }
     
     func loadCalendars() -> [EKCalendar] {

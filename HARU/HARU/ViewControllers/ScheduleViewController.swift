@@ -12,8 +12,12 @@ class ScheduleViewController: UIViewController {
 
     @IBOutlet weak var ScheduleTableView: UITableView!
     var dateEvents: [EKEvent] = []
+    var selectedDate = Date()
+    
     let eventHandler = EventHandler()
-    var scheduleVCDelegate: ScheduleViewControllerDelegate?
+    
+    var token: NSObjectProtocol?
+    let calendarLoader = CalendarLoader()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,20 +25,40 @@ class ScheduleViewController: UIViewController {
         ScheduleTableView.dataSource = self
         ScheduleTableView.removeExtraLine()
         guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
-        controller.delegate = self
+        
+        token = NotificationCenter.default.addObserver(forName: AddEventViewController.eventChangedNoti, object: nil,
+                queue: OperationQueue.main) {_ in
+            self.dateEvents = self.calendarLoader.loadEvents(ofDay: self.selectedDate)
+            self.ScheduleTableView.reloadData()
+            print(self.dateEvents)
+                    print("reload")
+                }
     }
+    
+    deinit {
+            if let token = token {
+                NotificationCenter.default.removeObserver(token)
+            }
+        }
     
     func swipeDelete(indexPath: IndexPath) {
         print("ScheduleViewController - swipeDelete() called")
         if eventHandler.removeEvent(event: dateEvents[indexPath.row]) {
-            self.scheduleVCDelegate?.eventModified()
             self.dateEvents.remove(at: indexPath.row)
             self.ScheduleTableView.deleteRows(at: [indexPath], with: .automatic)
+            NotificationCenter.default.post(name: AddEventViewController.eventChangedNoti, object: nil)
         }
     }
     
-    func swipeModify() {
-        print("ScheduleViewController - swipeModify() called")
+    func swipeModify(event: EKEvent) {
+        guard let controller = self.storyboard!.instantiateViewController(identifier: "EventModifyViewControllerEntry") as UINavigationController? else { return }
+        let vc = controller.viewControllers.first as? EventModifyViewController
+        if vc != nil {
+            vc?.event = event.copy() as! EKEvent
+            vc?.originalCalendar = event.calendar
+        } else { return }
+        controller.modalPresentationStyle = .pageSheet
+        self.present(controller, animated: true, completion: nil)
     }
 }
 
@@ -77,7 +101,7 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     // trailing swipe
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "수정", handler: {(action, view, completionHandler) in
-            self.swipeModify()
+            self.swipeModify(event: self.dateEvents[indexPath.row])
             completionHandler(true)
         })
         action.backgroundColor = .systemBlue
@@ -86,28 +110,8 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ScheduleViewController: SelectDateControllerDelegate {
-    func SelectDateControllerDidCancel(_ selectDateController: SelectDateController) {
-        
-    }
-    
-    func SelectDateControllerDidFinish(_ selectDateController: SelectDateController) {
-        
-    }
-    
-    func insertNewEventToTable(events: [EKEvent]) {
-        print(events)
-        dateEvents = events
-        ScheduleTableView.reloadData()
-    }
-}
-
 extension UITableView {
     func removeExtraLine() {
         tableFooterView = UIView(frame: .zero)
     }
-}
-
-protocol ScheduleViewControllerDelegate {
-    func eventModified()
 }

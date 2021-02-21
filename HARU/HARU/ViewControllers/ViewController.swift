@@ -21,6 +21,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     var labels: [UILabel] = []
     let calendarLoader = CalendarLoader()
     
+    var token: NSObjectProtocol?
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +49,24 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
                 weekday.textColor = .black
             }
         }
+        
+        token = NotificationCenter.default.addObserver(forName: AddEventViewController.eventChangedNoti, object: nil,
+                queue: OperationQueue.main) {_ in
+            self.loadedEvents = self.calendarLoader.loadEvents()
+            self.fsCalendar.reloadData()
+                }
     }
+    
+    deinit {
+            if let token = token {
+                NotificationCenter.default.removeObserver(token)
+            }
+        }
     
     // MARK: - Implement protocols
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
         controller.modalPresentationStyle = .pageSheet
-        controller.delegate = self
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -143,20 +156,10 @@ extension Date {
     }
 }
 
-// AddEventViewController 로 부터 새로운 이벤트, 이벤트 삭제 통지 받기
-extension ViewController: SelectDateControllerDelegate {
-    func insertNewEventToTable(events: [EKEvent]) {
-        
-    }
-    
-    func SelectDateControllerDidCancel(_ selectDateController: SelectDateController) {
-        return
-    }
-    
-    func SelectDateControllerDidFinish(_ selectDateController: SelectDateController) {
-        print("Attempt to reload...")
-        calendarLoader.loadEvents()
-        self.loadedEvents = calendarLoader.loadedEvents
-        fsCalendar.reloadData()
-    }
-}
+//이걸 노티받아서 하는걸로
+//func SelectDateControllerDidFinish(_ selectDateController: SelectDateController) {
+//    print("Attempt to reload...")
+//    calendarLoader.loadEvents()
+//    self.loadedEvents = calendarLoader.loadedEvents
+//    fsCalendar.reloadData()
+//}

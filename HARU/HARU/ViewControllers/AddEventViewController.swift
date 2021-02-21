@@ -50,11 +50,10 @@ class AddEventViewController: UIViewController {
     var repeatPeriod: Int = 0
     var repeatCycle: String = "days"
     
-    // ViewController에 이벤트 변화사항 보내주기 위한 delegate
-    var addEventViewControllerDelegate: AddEventViewControllerDelegate?
-    
     var newEvents: [EKEvent] = []
     var isEventAdded: Bool = false
+    
+    static let eventChangedNoti = Notification.Name(rawValue: "eventChangedNoti")
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -101,10 +100,9 @@ class AddEventViewController: UIViewController {
     
     @IBAction func saveBtnClicked(_ sender: Any) {
         saveNewEvent()
-        addEventViewControllerDelegate?.newEventAdded(newEvents: newEvents)
         self.dismiss(animated: true, completion: nil)
         if isEventAdded {
-            addEventViewControllerDelegate?.newEventAdded(newEvents: newEvents)
+            NotificationCenter.default.post(name: AddEventViewController.eventChangedNoti, object: nil)
         }
     }
     
@@ -412,7 +410,7 @@ extension AddEventViewController: UIAdaptivePresentationControllerDelegate {
         print("AddEventViewController Did Attempt to Dismiss")
         self.dismiss(animated: true, completion: nil)
         if isEventAdded {
-            addEventViewControllerDelegate?.newEventAdded(newEvents: newEvents)
+            NotificationCenter.default.post(name: AddEventViewController.eventChangedNoti, object: nil)
         }
     }
 }
@@ -443,9 +441,4 @@ extension Date {
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         return dateFormatter.string(from: self)
     }
-}
-
-protocol AddEventViewControllerDelegate {
-    func newEventAdded(newEvents: [EKEvent])
-    func eventDeleted()
 }

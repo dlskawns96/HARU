@@ -10,6 +10,11 @@ import EventKit
 
 class EventHandler {
     let ekEventStore = EKEventStore()
+    var event: EKEvent? = nil
+    
+    init() {
+        event = EKEvent(eventStore: ekEventStore)
+    }
     
     func removeEvent(event: EKEvent) -> Bool {
         do {
@@ -23,8 +28,10 @@ class EventHandler {
             return false
         }
     }
-    
-    func modifyEvent(event: EKEvent) {
+}
+
+extension EventHandler: PassSelectDate {
+    func passSelectDate(selectedDate: Date, isStart: Bool) {
         
     }
 }

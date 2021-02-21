@@ -18,8 +18,6 @@ class SelectDateController : UIViewController {
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     
-    var delegate: SelectDateControllerDelegate?
-    var needCalendarReload: Bool = false
     var dateEvents: [EKEvent] = []
     
     var scheduleVC: ScheduleViewController? = ScheduleViewController()
@@ -31,7 +29,9 @@ class SelectDateController : UIViewController {
         
         if (scheduleVC != nil), segue.identifier == "ScheduleViewSegue" {
             scheduleVC?.dateEvents = dateEvents
-            scheduleVC?.scheduleVCDelegate = self
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            scheduleVC?.selectedDate = dateFormatter.date(from: (AD?.selectedDate)!)!
         }
     }
     
@@ -60,11 +60,6 @@ class SelectDateController : UIViewController {
     
     @IBAction func closeBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        print("SelectDateController - needCalendarReload", needCalendarReload)
-        if needCalendarReload {
-            print("SelectDateController - needCalendarReload")
-            self.delegate?.SelectDateControllerDidFinish(self)
-        }
     }
     
     @IBAction func addBtn(_ sender: Any) {
@@ -75,8 +70,6 @@ class SelectDateController : UIViewController {
             let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
             guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
             controller.modalPresentationStyle = .pageSheet
-            guard let childView = controller.viewControllers.first as? AddEventViewController else {return}
-            childView.addEventViewControllerDelegate = self
             self.present(controller, animated: true, completion: nil)
         case 1:
 //            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
@@ -92,42 +85,8 @@ class SelectDateController : UIViewController {
     }
 }
 
-// AddEventController 로 부터 일정 수정 사항이 있는지 받아오기 위한 delegate
-extension SelectDateController: AddEventViewControllerDelegate {
-    func newEventAdded(newEvents: [EKEvent]) {
-        print("SelecDateController - newEventAdded()")
-        needCalendarReload = true
-        dateEvents.append(contentsOf: newEvents)
-        delegate?.insertNewEventToTable(events: dateEvents)
-    }
-    
-    func eventDeleted() {
-        needCalendarReload = true
-    }
-    
-    /// 구현: 이벤트 수정 사항이 없이 그냥 종료 됐을 때 처리
-}
-
-protocol SelectDateControllerDelegate: class {
-    func SelectDateControllerDidCancel(_ selectDateController: SelectDateController)
-    func SelectDateControllerDidFinish(_ selectDateController: SelectDateController)
-    
-    func insertNewEventToTable(events: [EKEvent])
-}
-
 extension SelectDateController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
         dismiss(animated: true)
-        print("SelectDateController - needCalendarReload", needCalendarReload)
-        if needCalendarReload {
-            print("SelectDateController - needCalendarReload")
-            self.delegate?.SelectDateControllerDidFinish(self)
-        }
-    }
-}
-
-extension SelectDateController: ScheduleViewControllerDelegate {
-    func eventModified() {
-        needCalendarReload = true
     }
 }
