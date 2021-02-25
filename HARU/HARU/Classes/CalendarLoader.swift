@@ -77,6 +77,48 @@ class CalendarLoader {
         return eventsOfDay
     }
     
+    func loadEvents(ofMonth month: Date) -> [EKEvent] {
+        var eventsOfMonth: [EKEvent] = []
+        for calendar in calendars {
+            let predicate = eventStore.predicateForEvents(withStart: month.startOfMonth, end: month.endOfMonth, calendars: [calendar])
+            let events = eventStore.events(matching: predicate)
+            
+            for event in events {
+                eventsOfMonth.append(event)
+            }
+        }
+        eventsOfMonth.sort { (event1: EKEvent, event2: EKEvent) -> Bool in
+            if event1.compareStartDate(with: event2) == .orderedAscending { return true }
+            return false
+        }
+        return eventsOfMonth
+    }
+    
+    func loadEvents(ofYear year: Date) -> [[EKEvent]] {
+        var eventsOfYear = [[EKEvent]]()
+        let startYear = year.startOfYear
+        for i in 0...11 {
+            let date = startYear.adjust(.month, offset: i)
+            var eventsOfMonth: [EKEvent] = []
+            for calendar in calendars {
+                let predicate = eventStore.predicateForEvents(withStart: date.startOfMonth, end: date.endOfMonth, calendars: [calendar])
+                let events = eventStore.events(matching: predicate)
+                
+                for event in events {
+                    eventsOfMonth.append(event)
+                }
+            }
+            
+            eventsOfMonth.sort { (event1: EKEvent, event2: EKEvent) -> Bool in
+                if event1.compareStartDate(with: event2) == .orderedAscending { return true }
+                return false
+            }
+            eventsOfYear.append(eventsOfMonth)
+        }
+        
+        return eventsOfYear
+    }
+    
     func loadCalendars() -> [EKCalendar] {
         return calendars
     }
