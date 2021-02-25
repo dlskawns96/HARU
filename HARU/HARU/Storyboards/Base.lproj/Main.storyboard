@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -64,6 +65,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79b-Cj-d5s" userLabel="일정모음버튼">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="50"/>
                                         <state key="normal" title="일정"/>
+                                        <connections>
+                                            <action selector="onEventCollectionBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8LZ-C0-XtU"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-Mp-TZa" userLabel="일기모음버튼">
                                         <rect key="frame" x="207" y="0.0" width="207" height="50"/>
@@ -108,6 +112,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-8.6956521739130448" y="28.125"/>
+        </scene>
+        <!--2018년 2월-->
+        <scene sceneID="lzP-bc-Tu7">
+            <objects>
+                <viewController id="q4d-uH-6zG" customClass="EventCollectionTableViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L9H-qe-xaA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YSD-hN-xlQ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nIX-NF-NIp">
+                                    <size key="itemSize" width="418" height="774"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventCollectionCell" id="R2x-Tp-uFp" customClass="EventCollectionCell" customModule="HARU" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="418" height="774"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TUD-V4-CtK">
+                                            <rect key="frame" x="0.0" y="0.0" width="418" height="774"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="q4d-uH-6zG" id="u2V-cV-OHs"/>
+                                    <outlet property="delegate" destination="q4d-uH-6zG" id="Zla-Nl-xe7"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ciU-mc-ndX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YSD-hN-xlQ" firstAttribute="leading" secondItem="ciU-mc-ndX" secondAttribute="leading" id="PhV-3q-p6o"/>
+                            <constraint firstItem="ciU-mc-ndX" firstAttribute="trailing" secondItem="YSD-hN-xlQ" secondAttribute="trailing" id="SPz-ku-p1s"/>
+                            <constraint firstItem="YSD-hN-xlQ" firstAttribute="top" secondItem="ciU-mc-ndX" secondAttribute="top" id="l0g-bA-Ux3"/>
+                            <constraint firstItem="ciU-mc-ndX" firstAttribute="bottom" secondItem="YSD-hN-xlQ" secondAttribute="bottom" id="mgv-ct-yoM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="2018년 2월" id="PIp-9J-wbU">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="YIW-SJ-hxu" userLabel="작년">
+                            <connections>
+                                <action selector="lastYearBtnClicked:" destination="q4d-uH-6zG" id="tVM-Xv-rb5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="2nt-Ok-jwF" userLabel="내년">
+                            <connections>
+                                <action selector="nextYearBtnClicked:" destination="q4d-uH-6zG" id="kO4-Hg-HsZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="YSD-hN-xlQ" id="k2l-DY-whU"/>
+                        <outlet property="lastYearBtn" destination="YIW-SJ-hxu" id="7r8-1a-WDE"/>
+                        <outlet property="nextYearBtn" destination="2nt-Ok-jwF" id="G6N-e5-HHv"/>
+                        <outlet property="titleLabel" destination="PIp-9J-wbU" id="Pgk-xC-2AZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cfd-wG-8FP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10.144927536231885" y="1380.8035714285713"/>
         </scene>
         <!--Select Date Controller-->
         <scene sceneID="r2l-qg-0ka">
@@ -200,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gca-Xa-dfn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756.52173913043487" y="318.75"/>
+            <point key="canvasLocation" x="757" y="315"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Wo-8S-sIc">
@@ -216,7 +286,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiA-32-vrn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2435" y="1069"/>
+            <point key="canvasLocation" x="4255.072463768116" y="1068.75"/>
         </scene>
         <!--새 일기-->
         <scene sceneID="eNJ-Ri-LEQ">
@@ -262,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Quh-sq-6pg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3225" y="1069"/>
+            <point key="canvasLocation" x="5044.927536231884" y="1068.75"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="3RP-To-fyY">
@@ -670,7 +740,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5qc-32-4tn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528.985507246377" y="662.94642857142856"/>
+            <point key="canvasLocation" x="1529" y="606"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BgP-n3-Eb5">
@@ -689,6 +759,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ud7-9C-KVG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2321.739130434783" y="51.5625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="axp-Ut-t5V">
+            <objects>
+                <navigationController storyboardIdentifier="EventCollectionTableViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="22Y-6T-CJw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Hi-ZT-QTh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="q4d-uH-6zG" kind="relationship" relationship="rootViewController" id="cv8-HL-tWy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MsT-9B-4Z8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-920" y="1381"/>
         </scene>
     </scenes>
     <resources>

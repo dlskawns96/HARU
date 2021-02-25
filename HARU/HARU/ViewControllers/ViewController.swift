@@ -62,10 +62,17 @@ class ViewController: UIViewController {
                 NotificationCenter.default.removeObserver(token)
             }
         }
+    
+    // MARK: - Button Actions
     @IBAction func onAddEventBtnClicked(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
         guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
         controller.modalPresentationStyle = .pageSheet
+        self.present(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func onEventCollectionBtnClicked(_ sender: Any) {
+        guard let controller = storyboard?.instantiateViewController(identifier: "EventCollectionTableViewController") as UINavigationController? else { return }
         self.present(controller, animated: true, completion: nil)
     }
     

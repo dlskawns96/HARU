@@ -263,12 +263,11 @@ class AddEventViewController: UIViewController {
     func initNewEvent() {
         var cal = Calendar.current
         cal.locale = Locale(identifier: "ko_KR")
-//        let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!.adjust(.hour, offset: 9)
-        let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!
+//        let now = cal.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!
         newEvent.title = "새로운 이벤트"
         newEvent.calendar = calendars[0]
-        newEvent.startDate = now
-        newEvent.endDate = now
+        newEvent.startDate = eventDate
+        newEvent.endDate = eventDate
     }
     
     func keyboard() {
