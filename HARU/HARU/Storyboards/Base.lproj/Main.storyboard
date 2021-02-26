@@ -305,6 +305,11 @@
                                 <action selector="backBtnClicked:" destination="twd-uS-6Fd" id="Xep-N1-Nk1"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="편집" id="me8-KS-ENt">
+                            <connections>
+                                <action selector="editBtnClicked:" destination="twd-uS-6Fd" id="iA5-Xd-uv1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
