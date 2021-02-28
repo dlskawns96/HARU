@@ -59,6 +59,23 @@ class SelectDateController : UIViewController {
         case 1:
             scheduleView.isHidden = true
             diaryView.isHidden = false
+            
+            // 다이어리 추가 비활성화
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = dateFormatter.string(from: selectedDate)
+            
+            let today = NSDate() //현재 시각 구하기
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            let todayString = dateFormatter.string(from: today as Date)
+
+            if dateString >= todayString {
+                addBtn.isEnabled = true
+            }
+            else {
+                addBtn.isEnabled = false
+            }
+            
         default:
             break
         }
@@ -82,11 +99,9 @@ class SelectDateController : UIViewController {
             controller.modalPresentationStyle = .pageSheet
             self.present(controller, animated: true, completion: nil)
         case 1:
-//            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
-//
-//            self.present(controller, animated: true, completion: nil)
             guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
             self.present(controller, animated: true, completion: nil)
+            
             AddDiaryController.editTarget = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
         default:
             break
