@@ -97,7 +97,7 @@ class CoreDataManager {
     
     func saveEvaluation(_ evaluation: Int16?, _ date: String?) {
 
-        print(CoreDataManager.diaryList)
+        //print(CoreDataManager.diaryList)
         
         var yes: Bool = true
         for item in CoreDataManager.diaryList {
