@@ -177,6 +177,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("new Evaluation")
             self.tableView.reloadData()
         }
+        
     }
 }
 
