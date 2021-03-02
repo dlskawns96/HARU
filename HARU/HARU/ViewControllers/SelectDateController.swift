@@ -56,6 +56,7 @@ class SelectDateController : UIViewController {
         case 0:
             scheduleView.isHidden = false
             diaryView.isHidden = true
+            addBtn.isEnabled = true
         case 1:
             scheduleView.isHidden = true
             diaryView.isHidden = false
