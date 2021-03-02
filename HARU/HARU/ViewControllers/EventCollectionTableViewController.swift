@@ -20,6 +20,7 @@ class EventCollectionTableViewController: UIViewController {
     var events: [EKEvent] = []
     var calendarLoader = CalendarLoader()
     var currentYear = Date()
+    var currentMonth = 1
     
     var dateFormatter = DateFormatter()
     override func viewDidLoad() {
@@ -37,14 +38,16 @@ class EventCollectionTableViewController: UIViewController {
         collectionView.isPagingEnabled = true
         
         collectionView.layoutIfNeeded()
-        collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .right, animated: false)
+//        collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .right, animated: false)
     }
     
     @IBAction func lastYearBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.year, offset: -1)
         eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
+        currentMonth = 1
         titleLabel.title = dateFormatter.string(from: currentYear) + " 1월"
         lastYearBtn.title = "< " + dateFormatter.string(from: currentYear.adjust(.year, offset: -1))
+        nextYearBtn.title = dateFormatter.string(from: currentYear.adjust(.year, offset: 1)) + " >"
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
         collectionView.reloadData()
     }
@@ -52,7 +55,9 @@ class EventCollectionTableViewController: UIViewController {
     @IBAction func nextYearBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.year, offset: 1)
         eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
+        currentMonth = 1
         titleLabel.title = dateFormatter.string(from: currentYear) + " 1월"
+        lastYearBtn.title = "< " + dateFormatter.string(from: currentYear.adjust(.year, offset: -1))
         nextYearBtn.title = dateFormatter.string(from: currentYear.adjust(.year, offset: 1)) + " >"
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
         collectionView.reloadData()
@@ -110,6 +115,7 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
             let indexPath = collectionView.indexPath(for: cell)
             dateFormatter.dateFormat = "yyyy년"
             titleLabel.title = dateFormatter.string(from: currentYear) + String(indexPath!.item + 1) + "월"
+            currentMonth = indexPath!.item + 1
         }
     }
 }
@@ -137,6 +143,18 @@ extension EventCollectionTableViewController: UITableViewDelegate, UITableViewDa
         cell.calendarColorView.backgroundColor = UIColor(cgColor: event.calendar.cgColor).withAlphaComponent(0.5)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let controller = storyboard?.instantiateViewController(identifier: "EventDetailViewController") as? UINavigationController else {
+            return
+        }
+        controller.modalPresentationStyle = .fullScreen
+        guard let vc = controller.viewControllers.first as? EventDetailViewController else {
+            return
+        }
+        vc.event = eventsOfYear[currentMonth - 1][indexPath.row]
+        present(controller, animated: true, completion: nil)
     }
 }
 

@@ -46,7 +46,6 @@ class EventModifyViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("event modify")
         tableView.separatorInset.left = 0
         
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -71,7 +70,6 @@ class EventModifyViewController: UITableViewController {
     }
     
     @IBAction func saveBtnClicked(_ sender: Any) {
-        print("saveBtnClicked")
         newEvent.title = eventTitleTF.text
         newEvent.startDate = dateFormatter.date(from: startDateBtn.title(for: .normal)!)
         newEvent.endDate = dateFormatter.date(from: endDateBtn.title(for: .normal)!)
@@ -81,6 +79,9 @@ class EventModifyViewController: UITableViewController {
             try eventStore.remove(ev!, span: .thisEvent)
             try eventStore.save(newEvent, span: .thisEvent)
             NotificationCenter.default.post(name: AddEventViewController.eventChangedNoti, object: nil)
+            
+            let userInfo = [ "EKEvent" : newEvent ]
+            NotificationCenter.default.post(name: EventDetailViewController.eventChangedNoti, object: nil, userInfo: userInfo)
             self.dismiss(animated: true, completion: nil)
         } catch {
             print("Event Modify Error")
