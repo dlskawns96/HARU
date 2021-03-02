@@ -95,9 +95,37 @@ class CoreDataManager {
         return count
     }
     
+    static func returnDiary(date:String, type:Int) -> [Diary] {
+        
+        var list = [Diary]()
+        
+        for item in CoreDataManager.diaryList {
+            let endIdx:String.Index = (item.date?.index(item.date!.startIndex, offsetBy: 6))!
+            if item.date![item.date!.startIndex...endIdx] == date {
+                list.append(item)
+            }
+        }
+        
+        return list
+        
+    }
+    
+    static func returnDiaryCount(date:String, type:String) -> Int {
+        
+        var count: Int = 0
+        
+        for item in CoreDataManager.diaryList {
+            let endIdx:String.Index = (item.date?.index(item.date!.startIndex, offsetBy: 6))!
+            if item.date![item.date!.startIndex...endIdx] == date {
+                count += 1
+            }
+        }
+        return count
+    }
+    
     func saveEvaluation(_ evaluation: Int16?, _ date: String?) {
 
-        print(CoreDataManager.diaryList)
+        //print(CoreDataManager.diaryList)
         
         var yes: Bool = true
         for item in CoreDataManager.diaryList {

@@ -72,6 +72,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-Mp-TZa" userLabel="일기모음버튼">
                                         <rect key="frame" x="207" y="0.0" width="207" height="50"/>
                                         <state key="normal" title="일기"/>
+                                        <connections>
+                                            <action selector="DiaryCollectionBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zA2-ep-w51"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -347,6 +350,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A1y-Xx-IlE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3262" y="1203"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="8zA-Tg-1Aj">
+            <objects>
+                <tableViewController id="JOS-YV-hcP" customClass="DiaryCollectionTableViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="dzy-Gk-eUW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="diaryCell" textLabel="6qd-vO-AR4" detailTextLabel="PxI-Rb-E5E" style="IBUITableViewCellStyleSubtitle" id="4TW-9v-BQt">
+                                <rect key="frame" x="20" y="55.5" width="374" height="55.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4TW-9v-BQt" id="JRd-Jy-w8w">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6qd-vO-AR4">
+                                            <rect key="frame" x="20" y="10" width="33" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PxI-Rb-E5E">
+                                            <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JOS-YV-hcP" id="9Se-TR-64l"/>
+                            <outlet property="delegate" destination="JOS-YV-hcP" id="Uda-bp-kcj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="fQG-GM-Z4t">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="RRl-vR-oIN">
+                            <connections>
+                                <action selector="lastMonthBtnClicked:" destination="JOS-YV-hcP" id="Vp5-9x-HRR"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="adz-l1-nPm">
+                            <connections>
+                                <action selector="nextMonthBtnClicked:" destination="JOS-YV-hcP" id="k7f-8A-UUH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="lastMonthBtn" destination="RRl-vR-oIN" id="EWQ-5H-1ll"/>
+                        <outlet property="nextMonthBtn" destination="adz-l1-nPm" id="6SE-rw-wDH"/>
+                        <outlet property="titleLabel" destination="fQG-GM-Z4t" id="RkI-2o-QfH"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kre-ya-lvN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-9" y="2074"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IHZ-vI-6ht">
+            <objects>
+                <navigationController storyboardIdentifier="DiaryCollectionTableViewController" id="MZq-r6-0mI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cy8-lj-9He">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="JOS-YV-hcP" kind="relationship" relationship="rootViewController" id="jKi-Tj-y0H"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vX6-Yu-BP3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-939" y="2074"/>
         </scene>
         <!--Select Date Controller-->
         <scene sceneID="r2l-qg-0ka">

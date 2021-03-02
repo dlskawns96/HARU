@@ -76,6 +76,11 @@ class ViewController: UIViewController {
         self.present(controller, animated: true, completion: nil)
     }
     
+    @IBAction func DiaryCollectionBtnClicked(_ sender: Any) {
+        guard let controller = storyboard?.instantiateViewController(identifier: "DiaryCollectionTableViewController") as UINavigationController? else { return }
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     // MARK: - Functions
     func getWeekDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()

@@ -18,7 +18,12 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var token: NSObjectProtocol?
     var Etoken: NSObjectProtocol?
     
+    var addCheck = true
+    
     let AD = UIApplication.shared.delegate as? AppDelegate
+    
+    //var selectedDate = Date()
+    let dateFormatter = DateFormatter()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -94,32 +99,37 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // 평가
     @IBAction func badBtn(_ sender: Any) {
-        badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-        goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        
-        //print("눌림")
-        CoreDataManager.shared.saveEvaluation(1, AD?.selectedDate)
-        NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
-        
+        if addCheck {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            
+            CoreDataManager.shared.saveEvaluation(1, AD?.selectedDate)
+            NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
+        }
     }
     
     @IBAction func goodBtn(_ sender: Any) {
-        badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-        bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        
-        CoreDataManager.shared.saveEvaluation(2, AD?.selectedDate)
-        NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
+        if addCheck {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            
+            CoreDataManager.shared.saveEvaluation(2, AD?.selectedDate)
+            NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
+        }
+    
     }
     
     @IBAction func bestBtn(_ sender: Any) {
-        badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-        
-        CoreDataManager.shared.saveEvaluation(3, AD?.selectedDate)
-        NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
+        if addCheck {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+            
+            CoreDataManager.shared.saveEvaluation(3, AD?.selectedDate)
+            NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
+        }
     }
     
     @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -166,17 +176,33 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         longPressGesture.delegate = self
         self.tableView.addGestureRecognizer(longPressGesture)
         
-        print(CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!))
+        //print(CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!))
 
         token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in
-            print("new diary")
+            //print("new diary")
             self.tableView.reloadData()
         }
         
         Etoken = NotificationCenter.default.addObserver(forName: DiaryViewController.newEvaluation, object: nil, queue: OperationQueue.main) {_ in
-            print("new Evaluation")
+            //print("new Evaluation")
             self.tableView.reloadData()
         }
+
+        
+        let dateString = AD?.selectedDate
+        
+        let today = NSDate() //현재 시각 구하기
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let todayString = dateFormatter.string(from: today as Date)
+        
+        if dateString! >= todayString {
+            addCheck = true
+        }
+        else {
+            addCheck = false
+        }
+        
     }
 }
 
