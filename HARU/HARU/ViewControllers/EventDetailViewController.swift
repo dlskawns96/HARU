@@ -26,6 +26,7 @@ class EventDetailViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE a HH시 mm분"
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.removeExtraLine()
         // Do any additional setup after loading the view.
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.getNewEventInfo(_:)), name: EventDetailViewController.eventChangedNoti, object: nil)
