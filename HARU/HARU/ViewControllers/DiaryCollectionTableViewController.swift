@@ -84,13 +84,12 @@ class DiaryCollectionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        
         dateFormatter.dateFormat = "yyyy년 MM월"
         titleLabel.title = dateFormatter.string(from: Date())
         dateFormatter.dateFormat = "MM월"
         lastMonthBtn.title = "< " + dateFormatter.string(from: Date().adjust(.month, offset: -1))
         nextMonthBtn.title = dateFormatter.string(from: Date().adjust(.month, offset: 1)) + " >"
+        
         
     }
 }
