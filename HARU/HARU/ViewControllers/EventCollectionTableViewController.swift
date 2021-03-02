@@ -38,7 +38,8 @@ class EventCollectionTableViewController: UIViewController {
         collectionView.isPagingEnabled = true
         
         collectionView.layoutIfNeeded()
-//        collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .right, animated: false)
+        let cal = Calendar.current
+        collectionView.scrollToItem(at: IndexPath(item: cal.component(.month, from: Date()), section: 0), at: .right, animated: false)
     }
     
     @IBAction func lastYearBtnClicked(_ sender: Any) {
@@ -90,8 +91,6 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
         tableView.leadingAnchor.constraint(equalTo: cell.leadingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: cell.trailingAnchor).isActive = true
-        tableView.backgroundColor = .orange
-        cell.backgroundColor = .brown
         
         return cell
     }
@@ -141,7 +140,7 @@ extension EventCollectionTableViewController: UITableViewDelegate, UITableViewDa
         cell.eventTitleLabel.text = event.title
         cell.calendarColorView.layer.borderColor = event.calendar.cgColor
         cell.calendarColorView.backgroundColor = UIColor(cgColor: event.calendar.cgColor).withAlphaComponent(0.5)
-        
+
         return cell
     }
     
