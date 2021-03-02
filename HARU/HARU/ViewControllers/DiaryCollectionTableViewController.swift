@@ -19,15 +19,35 @@ class DiaryCollectionTableViewController: UITableViewController {
     let AD = UIApplication.shared.delegate as? AppDelegate
     
     @IBAction func lastMonthBtnClicked(_ sender: Any) {
+        currentYear = currentYear.adjust(.month, offset: -1)
+        
+        dateFormatter.dateFormat = "MM월"
+        lastMonthBtn.title = "< " + dateFormatter.string(from: currentYear.adjust(.month, offset: -1))
+        nextMonthBtn.title = dateFormatter.string(from: currentYear.adjust(.month, offset: 1)) + " >"
+        
+        dateFormatter.dateFormat = "yyyy년 MM월"
+        titleLabel.title = dateFormatter.string(from: currentYear)
+        
+        tableView.reloadData()
         
     }
     @IBAction func nextMonthBtnClicked(_ sender: Any) {
+        currentYear = currentYear.adjust(.month, offset: 1)
+        
+        dateFormatter.dateFormat = "MM월"
+        lastMonthBtn.title = "< " + dateFormatter.string(from: currentYear.adjust(.month, offset: -1))
+        nextMonthBtn.title = dateFormatter.string(from: currentYear.adjust(.month, offset: 1)) + " >"
+        
+        dateFormatter.dateFormat = "yyyy년 MM월"
+        titleLabel.title = dateFormatter.string(from: currentYear)
+        
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dateFormatter.dateFormat = "yyyy-MM"
-        let count = CoreDataManager.returnDiaryCount(date: dateFormatter.string(from: currentYear), type: "Month")
-        return count
+//        dateFormatter.dateFormat = "yyyy-MM"
+//        let count = CoreDataManager.returnDiaryCount(date: dateFormatter.string(from: currentYear), type: "Month")
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,14 +57,23 @@ class DiaryCollectionTableViewController: UITableViewController {
         var list =  CoreDataManager.returnDiary(date: dateFormatter.string(from: currentYear), type: 1)
         list = list.sorted(by: {$0.date! < $1.date!})
         
-        let target = list[indexPath.row]
+        //let target = list[indexPath.row]
+        
+        let target = list[indexPath.section]
         
         cell.textLabel?.text = target.content
         cell.detailTextLabel?.text = target.date
         
         return cell
     }
-
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        dateFormatter.dateFormat = "yyyy-MM"
+        let count = CoreDataManager.returnDiaryCount(date: dateFormatter.string(from: currentYear), type: "Month")
+        
+        return count
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -55,10 +84,13 @@ class DiaryCollectionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
         dateFormatter.dateFormat = "yyyy년 MM월"
         titleLabel.title = dateFormatter.string(from: Date())
         dateFormatter.dateFormat = "MM월"
         lastMonthBtn.title = "< " + dateFormatter.string(from: Date().adjust(.month, offset: -1))
         nextMonthBtn.title = dateFormatter.string(from: Date().adjust(.month, offset: 1)) + " >"
+        
     }
 }
