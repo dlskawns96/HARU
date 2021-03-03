@@ -63,6 +63,8 @@ class AddDiaryController : UIViewController {
             NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
         }
 
+        NotificationCenter.default.post(name: AddDiaryController.updateComment, object: nil)
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -103,4 +105,5 @@ extension AddDiaryController: UIAdaptivePresentationControllerDelegate {
 }
 extension AddDiaryController {
     static let newDiary = Notification.Name(rawValue: "newDiary")
+    static let updateComment = Notification.Name(rawValue: "updateComment")
 }
