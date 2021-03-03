@@ -62,6 +62,7 @@ class ScheduleViewController: UIViewController {
     }
 }
 
+// MARK: - TableView
 extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dateEvents.count

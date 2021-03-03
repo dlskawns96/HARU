@@ -102,8 +102,8 @@ extension EventDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return cell
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        return
-    }
+//    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if tableView.cellForRow(at: indexPath)?.reuseIdentifier == "
+//    }
 }
