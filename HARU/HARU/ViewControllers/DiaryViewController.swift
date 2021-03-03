@@ -13,17 +13,18 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var badBtn: UIButton!
     @IBOutlet weak var goodBtn: UIButton!
     @IBOutlet weak var bestBtn: UIButton!
+    @IBOutlet weak var centerLabel: UILabel!
     
     var diary: Diary?
     var token: NSObjectProtocol?
     var Etoken: NSObjectProtocol?
+    var Ctoken: NSObjectProtocol?
     
     var addCheck = true
     
     let AD = UIApplication.shared.delegate as? AppDelegate
-    
-    //var selectedDate = Date()
     let dateFormatter = DateFormatter()
+    let today = NSDate() //현재 시각 구하기
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,6 +52,8 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         else {
             buttonInit()
         }
+        
+        setComment()
     }
     
     deinit {
@@ -59,6 +62,10 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         if let Etoken = Etoken {
             NotificationCenter.default.removeObserver(Etoken)
+        }
+        
+        if let Ctoken = Ctoken {
+            NotificationCenter.default.removeObserver(Ctoken)
         }
     }
     
@@ -88,6 +95,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             CoreDataManager.diaryList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             buttonInit()
+            setComment()
         }
     }
     
@@ -95,6 +103,36 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+    }
+    
+    func setComment() {
+        
+        let comments = ["지나간 하루는 돌아오지 않아요!", "지난날에 대한 후회는 하지 마세요!", "이미 지나버렸어요"]
+        let dateString = AD?.selectedDate
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let todayString = dateFormatter.string(from: today as Date)
+        
+        if dateString! >= todayString {
+            let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+            if content.count > 0 {
+                centerLabel.isHidden = true
+            }
+            else {
+                centerLabel.isHidden = false
+                centerLabel.text = "오늘 하루를 기록하세요!"
+            }
+        }
+        else {
+            let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+            if content.count > 0 {
+                centerLabel.isHidden = true
+            }
+            else {
+                centerLabel.isHidden = false
+                centerLabel.text = comments.randomElement()
+            }
+        }
     }
     
     // 평가
@@ -154,6 +192,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 CoreDataManager.diaryList.remove(at: indexPath!.row)
                 self.tableView.reloadData()
                 self.buttonInit()
+                self.setComment()
             
             }
             alert.addAction(okAction)
@@ -187,11 +226,14 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             //print("new Evaluation")
             self.tableView.reloadData()
         }
+        
+        Ctoken = NotificationCenter.default.addObserver(forName: AddDiaryController.updateComment, object: nil, queue: OperationQueue.main) {_ in
+            
+            self.setComment()
+        }
 
         
         let dateString = AD?.selectedDate
-        
-        let today = NSDate() //현재 시각 구하기
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let todayString = dateFormatter.string(from: today as Date)
