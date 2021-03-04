@@ -81,7 +81,15 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        
+        let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+        if content != " " {
+            return true
+        }
+        else {
+            return false
+        }
+        //return true
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -115,7 +123,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if dateString! >= todayString {
             let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-            if content.count > 0 {
+            if content.count > 1 {
                 centerLabel.isHidden = true
             }
             else {
@@ -125,7 +133,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         else {
             let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-            if content.count > 0 {
+            if content.count > 1 {
                 centerLabel.isHidden = true
             }
             else {
@@ -173,8 +181,9 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
         
         let count = CoreDataManager.returnDiaryCount(date: (AD?.selectedDate)!)
+        let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
         
-        if count != 0 {
+        if count != 0 && content != " " {
             
             var touchPoint = CGPoint()
             

@@ -102,7 +102,9 @@ class CoreDataManager {
         for item in CoreDataManager.diaryList {
             let endIdx:String.Index = (item.date?.index(item.date!.startIndex, offsetBy: 6))!
             if item.date![item.date!.startIndex...endIdx] == date {
-                list.append(item)
+                if item.content != " " {
+                    list.append(item)
+                }
             }
         }
         
@@ -117,7 +119,9 @@ class CoreDataManager {
         for item in CoreDataManager.diaryList {
             let endIdx:String.Index = (item.date?.index(item.date!.startIndex, offsetBy: 6))!
             if item.date![item.date!.startIndex...endIdx] == date {
-                count += 1
+                if item.content != " " {
+                    count += 1
+                }
             }
         }
         return count
@@ -140,7 +144,7 @@ class CoreDataManager {
             let newDiary = Diary(context: mainContext)
             newDiary.evaluation = evaluation!
             newDiary.date = date
-            newDiary.content = "nothing"
+            newDiary.content = " "
 
             CoreDataManager.diaryList.insert(newDiary, at: 0)
         }

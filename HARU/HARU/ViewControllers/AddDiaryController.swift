@@ -18,7 +18,7 @@ class AddDiaryController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let editDiary = AddDiaryController.editTarget, editDiary.count > 0 && editDiary != "nothing" {
+        if let editDiary = AddDiaryController.editTarget, editDiary.count > 1 && editDiary != " " {
             navigationItem.title = "일기 수정"
             diaryTextView.text = editDiary
             originalDiary = editDiary
