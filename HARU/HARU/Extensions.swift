@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Date {
     var startOfDay: Date {
@@ -51,5 +52,11 @@ extension Date {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.weekday], from: self)
         return components.weekday == 2
+    }
+}
+
+extension UITableView {
+    func removeExtraLine() {
+        tableFooterView = UIView(frame: .zero)
     }
 }

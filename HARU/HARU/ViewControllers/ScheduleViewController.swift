@@ -15,39 +15,31 @@ class ScheduleViewController: UIViewController {
     var selectedDate = Date()
     
     let eventHandler = EventHandler()
-    
-    var token: NSObjectProtocol?
     let calendarLoader = CalendarLoader()
+    
+    let dataSource = ScheduleTableViewModel()
+    fileprivate var dataArray = [ScheduleTableViewItem]() {
+        didSet {
+            UIView.transition(with: ScheduleTableView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.ScheduleTableView.reloadData()}, completion: nil)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        dataSource.requestData(of: self.selectedDate)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ScheduleTableView.delegate = self
         ScheduleTableView.dataSource = self
         ScheduleTableView.removeExtraLine()
-        guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
-        
-        token = NotificationCenter.default.addObserver(forName: AddEventViewController.eventChangedNoti, object: nil,
-                queue: OperationQueue.main) {_ in
-            self.dateEvents = self.calendarLoader.loadEvents(ofDay: self.selectedDate)
-            self.ScheduleTableView.reloadData()
-            print(self.dateEvents)
-                    print("reload")
-                }
+        dataSource.delegate = self
     }
-    
-    deinit {
-            if let token = token {
-                NotificationCenter.default.removeObserver(token)
-            }
-        }
     
     func swipeDelete(indexPath: IndexPath) {
         print("ScheduleViewController - swipeDelete() called")
-        if eventHandler.removeEvent(event: dateEvents[indexPath.row]) {
-            self.dateEvents.remove(at: indexPath.row)
-            self.ScheduleTableView.deleteRows(at: [indexPath], with: .automatic)
-            NotificationCenter.default.post(name: AddEventViewController.eventChangedNoti, object: nil)
-        }
+        dataSource.removeData(event: dataArray[indexPath.row].event, date: self.selectedDate)
     }
     
     func swipeModify(event: EKEvent) {
@@ -65,18 +57,13 @@ class ScheduleViewController: UIViewController {
 // MARK: - TableView
 extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dateEvents.count
+        return dataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ScheduleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ScheduleTableViewCell", for: indexPath) as! ScheduleTableViewCell
         
-        let idx = indexPath.row
-        cell.eventTitleLabel.text = dateEvents[idx].title
-        cell.layer.borderWidth = 2
-        let eventColor = UIColor(cgColor: dateEvents[idx].calendar.cgColor)
-        cell.layer.borderColor = eventColor.cgColor
-        cell.backgroundColor = eventColor.withAlphaComponent(0.25)
+        cell.configureCell(with: dataArray[indexPath.row])
         return cell
     }
     
@@ -111,8 +98,8 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension UITableView {
-    func removeExtraLine() {
-        tableFooterView = UIView(frame: .zero)
+extension ScheduleViewController: ScheduleTableViewModelDelegate {
+    func didLoadData(data: [ScheduleTableViewItem]) {
+        dataArray = data
     }
 }
