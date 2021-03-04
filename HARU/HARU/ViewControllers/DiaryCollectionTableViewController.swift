@@ -73,6 +73,8 @@ class DiaryCollectionTableViewController: UITableViewController {
         cell.textLabel?.text = target.content
         cell.detailTextLabel?.text = target.date
         
+        cell.selectionStyle = .none
+        
         return cell
     }
     
