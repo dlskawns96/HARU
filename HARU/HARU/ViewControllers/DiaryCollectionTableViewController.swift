@@ -13,10 +13,19 @@ class DiaryCollectionTableViewController: UITableViewController {
     @IBOutlet weak var nextMonthBtn: UIBarButtonItem!
     @IBOutlet weak var titleLabel: UINavigationItem!
     
+    var list = [Diary]()
+    
     var currentYear = Date()
     var dateFormatter = DateFormatter()
+    var Rtoken: NSObjectProtocol?
     
     let AD = UIApplication.shared.delegate as? AppDelegate
+    
+    deinit {
+        if let token = Rtoken {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
     
     @IBAction func lastMonthBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.month, offset: -1)
@@ -54,7 +63,7 @@ class DiaryCollectionTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "diaryCell", for: indexPath)
         dateFormatter.dateFormat = "yyyy-MM"
         
-        var list =  CoreDataManager.returnDiary(date: dateFormatter.string(from: currentYear), type: 1)
+        list =  CoreDataManager.returnDiary(date: dateFormatter.string(from: currentYear), type: 1)
         list = list.sorted(by: {$0.date! < $1.date!})
         
         //let target = list[indexPath.row]
@@ -65,6 +74,15 @@ class DiaryCollectionTableViewController: UITableViewController {
         cell.detailTextLabel?.text = target.date
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
+        self.present(controller, animated: true, completion: nil)
+        
+        AddDiaryController.editTarget = list[indexPath.section].content
+        AddDiaryController.selectedDate = list[indexPath.section].date
+        AddDiaryController.check = true
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,6 +107,10 @@ class DiaryCollectionTableViewController: UITableViewController {
         dateFormatter.dateFormat = "MM월"
         lastMonthBtn.title = "< " + dateFormatter.string(from: Date().adjust(.month, offset: -1))
         nextMonthBtn.title = dateFormatter.string(from: Date().adjust(.month, offset: 1)) + " >"
+        
+        Rtoken = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in
+            self.tableView.reloadData()
+        }
         
         
     }

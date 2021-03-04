@@ -10,8 +10,10 @@ import UIKit
 class AddDiaryController : UIViewController {
     
     var record:Diary?
-    static var editTarget: String?
     var originalDiary: String?
+    static var check = false
+    static var editTarget: String?
+    static var selectedDate : String?
     
     @IBOutlet weak var diaryTextView: UITextView!
     
@@ -54,9 +56,16 @@ class AddDiaryController : UIViewController {
         
         let AD = UIApplication.shared.delegate as? AppDelegate
         
-        if let editDiary = AddDiaryController.editTarget, editDiary.count > 0 {
-            CoreDataManager.shared.updateDiary(diary, AD?.selectedDate)
-            NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
+        if let editDiary = AddDiaryController.editTarget, editDiary.count > 1 {
+            if AddDiaryController.check {
+                CoreDataManager.shared.updateDiary(diary, AddDiaryController.selectedDate)
+                NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
+                NotificationCenter.default.post(name: AddDiaryController.refreshDiaryCollection, object: nil)
+            }
+            else {
+                CoreDataManager.shared.updateDiary(diary, AD?.selectedDate)
+                NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
+            }
         }
         else {
             CoreDataManager.shared.saveDiary(diary, AD?.selectedDate)
@@ -106,4 +115,5 @@ extension AddDiaryController: UIAdaptivePresentationControllerDelegate {
 extension AddDiaryController {
     static let newDiary = Notification.Name(rawValue: "newDiary")
     static let updateComment = Notification.Name(rawValue: "updateComment")
+    static let refreshDiaryCollection = Notification.Name(rawValue: "refreshDiaryCollection")
 }
