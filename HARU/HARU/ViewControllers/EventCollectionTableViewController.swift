@@ -135,12 +135,8 @@ extension EventCollectionTableViewController: UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCollectionTableViewCell", for: indexPath) as! EventCollectionTableViewCell
         
         let event = events[indexPath.row]
-        cell.eventDayLabel.text = String(Calendar.current.component(.day, from: event.startDate))
-        cell.eventMonthLabel.text = String(Calendar.current.component(.month, from: event.startDate)) + "월"
-        cell.eventTitleLabel.text = event.title
-        cell.calendarColorView.layer.borderColor = event.calendar.cgColor
-        cell.calendarColorView.backgroundColor = UIColor(cgColor: event.calendar.cgColor).withAlphaComponent(0.5)
-
+        let model = EventCollectionTableViewModel(event: event)
+        cell.configureCell(with: model)
         return cell
     }
     

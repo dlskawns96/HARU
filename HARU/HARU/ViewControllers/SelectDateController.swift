@@ -96,7 +96,7 @@ class SelectDateController : UIViewController {
             guard let vc = controller.viewControllers.first as? AddEventViewController else { return }
             vc.eventDate = selectedDate.adjust(hour: 9, minute: 0, second: 0)
             
-            controller.modalPresentationStyle = .pageSheet
+            controller.modalPresentationStyle = .fullScreen
             self.present(controller, animated: true, completion: nil)
         case 1:
             guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }

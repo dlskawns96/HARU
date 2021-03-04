@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import EventKit
 
 class EventCollectionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var eventDayLabel: UILabel!
-    @IBOutlet weak var eventMonthLabel: UILabel!
-    @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var calendarColorView: UIView!
+    @IBOutlet weak var eventDayLabel: UILabel?
+    @IBOutlet weak var eventMonthLabel: UILabel?
+    @IBOutlet weak var eventTitleLabel: UILabel?
+    @IBOutlet weak var calendarColorView: UIView?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,4 +26,36 @@ class EventCollectionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configureCell(with model: EventCollectionTableViewModel) {
+        eventDayLabel?.text = model.eventDayString
+        eventMonthLabel?.text = model.eventMonthString
+        eventTitleLabel?.text = model.eventTitleString
+        calendarColorView?.backgroundColor = model.eventColor
+    }
+    
+}
+
+class EventCollectionTableViewModel {
+    var calendar = Calendar.current
+    var event: EKEvent?
+    
+    init(event: EKEvent) {
+        self.event = event
+    }
+    
+    var eventDayString: String? {
+        return String(calendar.component(.day, from: (event?.startDate)!))
+    }
+    
+    var eventMonthString: String? {
+        return String(calendar.component(.month, from: (event?.startDate)!)) + "월"
+    }
+    
+    var eventTitleString: String? {
+        return event?.title
+    }
+    
+    var eventColor: UIColor? {
+        return UIColor(cgColor: (event?.calendar.cgColor)!).withAlphaComponent(0.5)
+    }
 }
