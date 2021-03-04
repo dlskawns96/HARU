@@ -24,37 +24,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     let dateFormatter = DateFormatter()
-    let today = NSDate() //현재 시각 구하기
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        CoreDataManager.shared.fetchDiary()
-        tableView.reloadData()
-        
-        let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
-        
-        if evaluation == 1 {
-            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        }
-        else if evaluation == 2 {
-            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        }
-        else if evaluation == 3 {
-            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-        }
-        else {
-            buttonInit()
-        }
-        
-        setComment()
-    }
+    let today = NSDate()
     
     deinit {
         if let token = token {
@@ -83,13 +53,14 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+        
         if content != " " {
             return true
         }
         else {
             return false
         }
-        //return true
+       
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -212,6 +183,36 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             present(alert, animated: true, completion: nil)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        CoreDataManager.shared.fetchDiary()
+        tableView.reloadData()
+        
+        let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
+        
+        if evaluation == 1 {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        }
+        else if evaluation == 2 {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        }
+        else if evaluation == 3 {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+        }
+        else {
+            buttonInit()
+        }
+        
+        setComment()
+    }
 
     override func viewDidLoad() {
         
@@ -224,20 +225,15 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         longPressGesture.delegate = self
         self.tableView.addGestureRecognizer(longPressGesture)
         
-        //print(CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!))
-
         token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in
-            //print("new diary")
             self.tableView.reloadData()
         }
         
         Etoken = NotificationCenter.default.addObserver(forName: DiaryViewController.newEvaluation, object: nil, queue: OperationQueue.main) {_ in
-            //print("new Evaluation")
             self.tableView.reloadData()
         }
         
         Ctoken = NotificationCenter.default.addObserver(forName: AddDiaryController.updateComment, object: nil, queue: OperationQueue.main) {_ in
-            
             self.setComment()
         }
 
