@@ -47,6 +47,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+        cell.selectionStyle = .none
         return cell
     }
     
