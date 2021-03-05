@@ -26,6 +26,13 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let dateFormatter = DateFormatter()
     let today = NSDate()
     
+    let dataSource = DiaryHandler()
+    fileprivate var dataArray = [Diary]() {
+        didSet {
+            UIView.transition(with: tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+        }
+    }
+    
     deinit {
         if let token = token {
             NotificationCenter.default.removeObserver(token)
@@ -256,4 +263,10 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 extension DiaryViewController {
     static let newEvaluation = Notification.Name(rawValue: "newEvaluation")
+}
+
+extension DiaryViewController: DiaryHandlerDelegate {
+    func didLoadData(data: [Diary]) {
+        dataArray = data
+    }
 }
