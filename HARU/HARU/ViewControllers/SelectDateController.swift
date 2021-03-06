@@ -42,7 +42,6 @@ class SelectDateController : UIViewController {
         super.viewDidLoad()
         scheduleView.isHidden = false
         diaryView.isHidden = true
-        //composeBtn.isEnabled = false
         isModalInPresentation = true
         self.presentationController?.delegate = self
         
@@ -56,6 +55,7 @@ class SelectDateController : UIViewController {
         case 0:
             scheduleView.isHidden = false
             diaryView.isHidden = true
+            addBtn.isEnabled = true
         case 1:
             scheduleView.isHidden = true
             diaryView.isHidden = false
@@ -64,7 +64,7 @@ class SelectDateController : UIViewController {
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let dateString = dateFormatter.string(from: selectedDate)
             
-            let today = NSDate() //현재 시각 구하기
+            let today = NSDate()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             
             let todayString = dateFormatter.string(from: today as Date)

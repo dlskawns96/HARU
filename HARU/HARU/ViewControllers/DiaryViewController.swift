@@ -13,45 +13,18 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var badBtn: UIButton!
     @IBOutlet weak var goodBtn: UIButton!
     @IBOutlet weak var bestBtn: UIButton!
+    @IBOutlet weak var centerLabel: UILabel!
     
     var diary: Diary?
     var token: NSObjectProtocol?
     var Etoken: NSObjectProtocol?
+    var Ctoken: NSObjectProtocol?
     
     var addCheck = true
     
     let AD = UIApplication.shared.delegate as? AppDelegate
-    
-    //var selectedDate = Date()
     let dateFormatter = DateFormatter()
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        CoreDataManager.shared.fetchDiary()
-        tableView.reloadData()
-        
-        let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
-        
-        if evaluation == 1 {
-            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        }
-        else if evaluation == 2 {
-            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        }
-        else if evaluation == 3 {
-            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
-        }
-        else {
-            buttonInit()
-        }
-    }
+    let today = NSDate()
     
     deinit {
         if let token = token {
@@ -59,6 +32,10 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         if let Etoken = Etoken {
             NotificationCenter.default.removeObserver(Etoken)
+        }
+        
+        if let Ctoken = Ctoken {
+            NotificationCenter.default.removeObserver(Ctoken)
         }
     }
     
@@ -70,11 +47,21 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+        cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        
+        let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+        
+        if content != " " {
+            return true
+        }
+        else {
+            return false
+        }
+       
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -88,6 +75,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             CoreDataManager.diaryList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             buttonInit()
+            setComment()
         }
     }
     
@@ -95,6 +83,36 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+    }
+    
+    func setComment() {
+        
+        let comments = ["지나간 하루는 돌아오지 않아요!", "지난날에 대한 후회는 하지 마세요!", "이미 지나버렸어요"]
+        let dateString = AD?.selectedDate
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let todayString = dateFormatter.string(from: today as Date)
+        
+        if dateString! >= todayString {
+            let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+            if content.count > 1 {
+                centerLabel.isHidden = true
+            }
+            else {
+                centerLabel.isHidden = false
+                centerLabel.text = "오늘 하루를 기록하세요!"
+            }
+        }
+        else {
+            let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+            if content.count > 1 {
+                centerLabel.isHidden = true
+            }
+            else {
+                centerLabel.isHidden = false
+                centerLabel.text = comments.randomElement()
+            }
+        }
     }
     
     // 평가
@@ -135,8 +153,9 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
         
         let count = CoreDataManager.returnDiaryCount(date: (AD?.selectedDate)!)
+        let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
         
-        if count != 0 {
+        if count != 0 && content != " " {
             
             var touchPoint = CGPoint()
             
@@ -154,6 +173,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 CoreDataManager.diaryList.remove(at: indexPath!.row)
                 self.tableView.reloadData()
                 self.buttonInit()
+                self.setComment()
             
             }
             alert.addAction(okAction)
@@ -163,6 +183,36 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             present(alert, animated: true, completion: nil)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        CoreDataManager.shared.fetchDiary()
+        tableView.reloadData()
+        
+        let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
+        
+        if evaluation == 1 {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        }
+        else if evaluation == 2 {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        }
+        else if evaluation == 3 {
+            badBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
+        }
+        else {
+            buttonInit()
+        }
+        
+        setComment()
     }
 
     override func viewDidLoad() {
@@ -176,22 +226,20 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         longPressGesture.delegate = self
         self.tableView.addGestureRecognizer(longPressGesture)
         
-        //print(CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!))
-
         token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in
-            //print("new diary")
             self.tableView.reloadData()
         }
         
         Etoken = NotificationCenter.default.addObserver(forName: DiaryViewController.newEvaluation, object: nil, queue: OperationQueue.main) {_ in
-            //print("new Evaluation")
             self.tableView.reloadData()
+        }
+        
+        Ctoken = NotificationCenter.default.addObserver(forName: AddDiaryController.updateComment, object: nil, queue: OperationQueue.main) {_ in
+            self.setComment()
         }
 
         
         let dateString = AD?.selectedDate
-        
-        let today = NSDate() //현재 시각 구하기
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let todayString = dateFormatter.string(from: today as Date)
