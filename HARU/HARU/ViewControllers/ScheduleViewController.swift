@@ -18,9 +18,9 @@ class ScheduleViewController: UIViewController {
     let calendarLoader = CalendarLoader()
     
     let dataSource = ScheduleTableViewModel()
-    fileprivate var dataArray = [ScheduleTableViewItem]() {
+    var dataArray = [ScheduleTableViewItem]() {
         didSet {
-            UIView.transition(with: ScheduleTableView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.ScheduleTableView.reloadData()}, completion: nil)
+            ScheduleTableView.reloadData()
         }
     }
     
