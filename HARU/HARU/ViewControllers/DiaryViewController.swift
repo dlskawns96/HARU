@@ -26,10 +26,15 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let dateFormatter = DateFormatter()
     let today = NSDate()
     
-    let dataSource = DiaryHandler()
-    fileprivate var dataArray = [Diary]() {
+    let dataSource = DiaryTableViewModel()
+    var dataCount : Int = 0 {
         didSet {
-            UIView.transition(with: tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+            self.tableView.reloadData()
+        }
+    }
+    var dataArray = String() {
+        didSet {
+            self.tableView.reloadData()
         }
     }
     
@@ -47,13 +52,15 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = CoreDataManager.returnDiaryCount(date: (AD?.selectedDate)!)
-        return count
+//        let count = CoreDataManager.returnDiaryCount(date: (AD?.selectedDate)!)
+//        return count
+        return dataCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+//        cell.textLabel?.text = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+        cell.textLabel?.text = dataArray
         cell.selectionStyle = .none
         return cell
     }
@@ -198,6 +205,8 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         CoreDataManager.shared.fetchDiary()
         tableView.reloadData()
         
+        dataSource.requestDiary(date: (AD?.selectedDate)!)
+        
         let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
         
         if evaluation == 1 {
@@ -229,6 +238,8 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        dataSource.delegate = self
+    
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
         longPressGesture.delegate = self
         self.tableView.addGestureRecognizer(longPressGesture)
@@ -265,8 +276,12 @@ extension DiaryViewController {
     static let newEvaluation = Notification.Name(rawValue: "newEvaluation")
 }
 
-extension DiaryViewController: DiaryHandlerDelegate {
-    func didLoadData(data: [Diary]) {
+extension DiaryViewController: DiaryTableViewModelDelegate {
+   
+    func didLoadData(data: String) {
         dataArray = data
+    }
+    func didLoadDataCount(data: Int) {
+        dataCount = data
     }
 }

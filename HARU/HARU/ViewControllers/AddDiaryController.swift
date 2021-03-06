@@ -16,7 +16,7 @@ class AddDiaryController : UIViewController {
     static var selectedDate : String?
     
     @IBOutlet weak var diaryTextView: UITextView!
-    
+    let dataSource = DiaryTableViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,7 +68,8 @@ class AddDiaryController : UIViewController {
             }
         }
         else {
-            CoreDataManager.shared.saveDiary(diary, AD?.selectedDate)
+            dataSource.saveDiary(content: diary, date: (AD?.selectedDate)!)
+            //CoreDataManager.shared.saveDiary(diary, AD?.selectedDate)
             NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
         }
 
