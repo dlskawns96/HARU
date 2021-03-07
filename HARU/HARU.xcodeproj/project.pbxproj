@@ -44,6 +44,7 @@
 		EAE46E3B25DEA3EF001EF03C /* SetCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE46E3A25DEA3EF001EF03C /* SetCalendarTableViewCell.swift */; };
 		EAE87E7A25AD85BC00AF18A5 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */; };
 		EAE9527C25D791EE00F4FA10 /* EventModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE9527B25D791EE00F4FA10 /* EventModifyViewController.swift */; };
+		EAF7F1BD25F4A6100029E787 /* EventCollectionTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */; };
 		EAFE1BA125CD183F0084B31C /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE1BA025CD183F0084B31C /* EventHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		EAE46E3A25DEA3EF001EF03C /* SetCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCalendarTableViewCell.swift; sourceTree = "<group>"; };
 		EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		EAE9527B25D791EE00F4FA10 /* EventModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModifyViewController.swift; sourceTree = "<group>"; };
+		EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewModel.swift; sourceTree = "<group>"; };
 		EAFE1BA025CD183F0084B31C /* EventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 			children = (
 				EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */,
 				EA9816C025F3BB8C00E9D4EB /* EventDetailTableViewModel.swift */,
+				EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF7F1BD25F4A6100029E787 /* EventCollectionTableViewModel.swift in Sources */,
 				EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */,
 				EAA1A26625E2ABBF003B0D8A /* EventCollectionTableViewCell.swift in Sources */,
 				EA50F77925F06B510003095D /* ScheduleTableViewModel.swift in Sources */,
