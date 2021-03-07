@@ -14,7 +14,7 @@ class CalendarLoader {
     // To save calendars properties
     var loadedEvents: [EKEvent] = []
     
-    let eventStore = EKEventStore()
+    let eventStore = EventHandler.ekEventStore
     let calendars : [EKCalendar]
     
     init() {
@@ -25,7 +25,7 @@ class CalendarLoader {
         case .denied:
                 print("Access denied")
         case .notDetermined:
-            eventStore.requestAccess(to: .event, completion: { (granted: Bool, NSError) -> Void in
+            eventStore!.requestAccess(to: .event, completion: { (granted: Bool, NSError) -> Void in
                     if granted {
                         auth = true
 
@@ -37,7 +37,7 @@ class CalendarLoader {
                 print("Case Default")
             }
         
-        calendars = eventStore.calendars(for: .event)
+        calendars = eventStore!.calendars(for: .event)
         
         if auth {
             loadEvents()
@@ -52,8 +52,8 @@ class CalendarLoader {
             let oneMonthAfter = Date(timeIntervalSinceNow: +30*24*3600)
 
             // 위에서 정한 기간의 이벤트 가져오기
-            let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo, end: oneMonthAfter, calendars: [calendar])
-            let events = eventStore.events(matching: predicate)
+            let predicate = eventStore!.predicateForEvents(withStart: oneMonthAgo, end: oneMonthAfter, calendars: [calendar])
+            let events = eventStore!.events(matching: predicate)
             
             for event in events {
                 loadedEvents.append(event)
@@ -66,8 +66,8 @@ class CalendarLoader {
     func loadEvents(ofDay day: Date) -> [EKEvent] {
         var eventsOfDay: [EKEvent] = []
         for calendar in calendars {
-            let predicate = eventStore.predicateForEvents(withStart: day.adjust(hour: 0, minute: 0, second: 0), end: day.adjust(hour: 23, minute: 59, second: 59), calendars: [calendar])
-            let events = eventStore.events(matching: predicate)
+            let predicate = eventStore!.predicateForEvents(withStart: day.adjust(hour: 0, minute: 0, second: 0), end: day.adjust(hour: 23, minute: 59, second: 59), calendars: [calendar])
+            let events = eventStore!.events(matching: predicate)
             
             for event in events {
                 eventsOfDay.append(event)
@@ -80,8 +80,8 @@ class CalendarLoader {
     func loadEvents(ofMonth month: Date) -> [EKEvent] {
         var eventsOfMonth: [EKEvent] = []
         for calendar in calendars {
-            let predicate = eventStore.predicateForEvents(withStart: month.startOfMonth, end: month.endOfMonth, calendars: [calendar])
-            let events = eventStore.events(matching: predicate)
+            let predicate = eventStore!.predicateForEvents(withStart: month.startOfMonth, end: month.endOfMonth, calendars: [calendar])
+            let events = eventStore!.events(matching: predicate)
             
             for event in events {
                 eventsOfMonth.append(event)
@@ -101,8 +101,8 @@ class CalendarLoader {
             let date = startYear.adjust(.month, offset: i)
             var eventsOfMonth: [EKEvent] = []
             for calendar in calendars {
-                let predicate = eventStore.predicateForEvents(withStart: date.startOfMonth, end: date.endOfMonth, calendars: [calendar])
-                let events = eventStore.events(matching: predicate)
+                let predicate = eventStore!.predicateForEvents(withStart: date.startOfMonth, end: date.endOfMonth, calendars: [calendar])
+                let events = eventStore!.events(matching: predicate)
                 
                 for event in events {
                     eventsOfMonth.append(event)

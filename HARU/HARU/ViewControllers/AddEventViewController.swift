@@ -33,7 +33,7 @@ class AddEventViewController: UIViewController {
     var calendarTitles = [String: CGColor]()
     
     // 이벤트를 캘린더에 저장하기 위한 오브젝트
-    let eventStore: EKEventStore = EKEventStore()
+    let eventStore: EKEventStore = EventHandler.ekEventStore!
     
     // 새로 생성할 이벤트를 저장할 오브젝트
     var newEvent: EKEvent! = nil

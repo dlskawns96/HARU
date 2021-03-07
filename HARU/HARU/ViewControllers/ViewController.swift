@@ -19,14 +19,15 @@ class ViewController: UIViewController {
     var eventTitles: [String] = []
     var loadedEvents: [EKEvent] = []
     var labels: [UILabel] = []
-    let calendarLoader = CalendarLoader()
+    var calendarLoader: CalendarLoader!
     
     var token: NSObjectProtocol?
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        EventHandler.ekEventStore = EKEventStore()
+        calendarLoader = CalendarLoader()
         self.loadedEvents = calendarLoader.loadedEvents
         
         fsCalendar.delegate = self
