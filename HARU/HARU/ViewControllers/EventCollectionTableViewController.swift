@@ -15,6 +15,11 @@ class EventCollectionTableViewController: UIViewController {
     @IBOutlet weak var lastYearBtn: UIBarButtonItem!
     @IBOutlet weak var nextYearBtn: UIBarButtonItem!
     
+    static func storyboardInstance() -> UINavigationController? {
+        let storyboard = UIStoryboard(name: "EventCollectionTableViewController",
+                                           bundle: nil)
+        return storyboard.instantiateInitialViewController() as? UINavigationController
+    }
     
 //    var eventsOfYear = [[EKEvent]]()
     var events: [EventCollectionTableViewItem] = []

@@ -73,8 +73,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onEventCollectionBtnClicked(_ sender: Any) {
-        guard let controller = storyboard?.instantiateViewController(identifier: "EventCollectionTableViewController") as UINavigationController? else { return }
-        self.present(controller, animated: true, completion: nil)
+//        let storyboard = UIStoryboard(name: "EventCollectionTableViewController", bundle: nil)
+//        guard let controller = storyboard.instantiateViewController(identifier: "EventCollectionTableViewController") as UINavigationController? else { return }
+        let controller = EventCollectionTableViewController.storyboardInstance()
+        self.present(controller!, animated: true, completion: nil)
     }
     
     @IBAction func DiaryCollectionBtnClicked(_ sender: Any) {

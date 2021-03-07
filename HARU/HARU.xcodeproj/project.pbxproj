@@ -45,6 +45,7 @@
 		EAE87E7A25AD85BC00AF18A5 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */; };
 		EAE9527C25D791EE00F4FA10 /* EventModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE9527B25D791EE00F4FA10 /* EventModifyViewController.swift */; };
 		EAF7F1BD25F4A6100029E787 /* EventCollectionTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */; };
+		EAF7F1C425F4B79E0029E787 /* EventCollectionTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAF7F1BF25F4B28A0029E787 /* EventCollectionTableViewController.storyboard */; };
 		EAFE1BA125CD183F0084B31C /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE1BA025CD183F0084B31C /* EventHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		EAE87E7925AD85BC00AF18A5 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		EAE9527B25D791EE00F4FA10 /* EventModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModifyViewController.swift; sourceTree = "<group>"; };
 		EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewModel.swift; sourceTree = "<group>"; };
+		EAF7F1BF25F4B28A0029E787 /* EventCollectionTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = EventCollectionTableViewController.storyboard; path = /Users/leenamjun/HARU/HARU/HARU/Storyboards/EventCollectionTableViewController.storyboard; sourceTree = "<absolute>"; };
 		EAFE1BA025CD183F0084B31C /* EventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,8 +138,9 @@
 		EA3A414225B66C2E0074282C /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				EA3A414825B66CA40074282C /* AddEvent.storyboard */,
 				EA7F836F2594749C008B8ED5 /* Main.storyboard */,
+				EA3A414825B66CA40074282C /* AddEvent.storyboard */,
+				EAF7F1BF25F4B28A0029E787 /* EventCollectionTableViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF7F1C425F4B79E0029E787 /* EventCollectionTableViewController.storyboard in Resources */,
 				EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */,
 				EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */,
 				EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */,
