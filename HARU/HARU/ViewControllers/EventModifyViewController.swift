@@ -41,7 +41,7 @@ class EventModifyViewController: UITableViewController {
     var activeField: UITextField!
     
     let calendarDropDown = DropDown()
-    let eventStore = EKEventStore()
+    let eventStore = EventHandler.ekEventStore
     var calendars: [EKCalendar] = []
     
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ class EventModifyViewController: UITableViewController {
         
         initTableView()
         hideKeyboard()
-        newEvent = EKEvent(eventStore: eventStore)
+        newEvent = EKEvent(eventStore: eventStore!)
         newEvent.calendar = calendars.filter({(cal: EKCalendar) -> Bool in
             return cal.calendarIdentifier == originalCalendar!.calendarIdentifier
         }).first
@@ -62,7 +62,7 @@ class EventModifyViewController: UITableViewController {
     
     func initTableView() {
         tableView.sectionIndexColor = .lightGray
-        calendars = eventStore.calendars(for: .event)
+        calendars = eventStore!.calendars(for: .event)
     }
     
     @IBAction func cancelBtnClicked(_ sender: Any) {
@@ -75,13 +75,8 @@ class EventModifyViewController: UITableViewController {
         newEvent.endDate = dateFormatter.date(from: endDateBtn.title(for: .normal)!)
         
         do {
-            let ev = eventStore.event(withIdentifier: event!.eventIdentifier)
-            try eventStore.remove(ev!, span: .thisEvent)
-            try eventStore.save(newEvent, span: .thisEvent)
-            NotificationCenter.default.post(name: AddEventViewController.eventChangedNoti, object: nil)
-            
-            let userInfo = [ "EKEvent" : newEvent ]
-            NotificationCenter.default.post(name: EventDetailViewController.eventChangedNoti, object: nil, userInfo: userInfo)
+            event?.title = eventTitleTF.text
+            try eventStore!.save(event!, span: .thisEvent)
             self.dismiss(animated: true, completion: nil)
         } catch {
             print("Event Modify Error")
