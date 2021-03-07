@@ -10,7 +10,7 @@ import EventKit
 
 class EventDetailViewController: UIViewController {
     
-    var eventStore = EKEventStore()
+    var eventStore = EventHandler.ekEventStore
     var event: EKEvent!
     var dateFormatter = DateFormatter()
     
@@ -54,7 +54,8 @@ class EventDetailViewController: UIViewController {
         guard let controller = storyboard?.instantiateViewController(withIdentifier: "EventModifyViewControllerEntry") as? UINavigationController else { return }
         
         guard let vc = controller.viewControllers.first as? EventModifyViewController else { return }
-        vc.event = (event.copy() as! EKEvent)
+//        vc.event = (event.copy() as! EKEvent)
+        vc.event = event
         vc.originalCalendar = event.calendar
         
         controller.modalPresentationStyle = .fullScreen
