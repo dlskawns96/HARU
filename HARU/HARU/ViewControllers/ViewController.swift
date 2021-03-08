@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     let calendar = Calendar.current
     
     var dataSource: MainCalendarModel?
-    var dataArray = [MainCalendarCellItem]() {
+    var dataArray = [[MainCalendarCellItem]]() {
         didSet {
 //            fsCalendar.reloadData()
         }
@@ -178,7 +178,7 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
 }
 
 extension ViewController: MainCalendarModelDelegate {
-    func didLoadData(data: [MainCalendarCellItem]) {
+    func didLoadData(data: [[MainCalendarCellItem]]) {
         dataArray = data
     }
 }
