@@ -11,29 +11,44 @@ class DiaryTableViewModel {
     weak var delegate: DiaryTableViewModelDelegate?
     
     func requestDiary(date: String) {
-        var data = String()
-        var count = Int()
-        data = CoreDataManager.returnDiary(date: date)
+        var data = [Diary]()
+        var diaries = [Diary]()
+        diaries = CoreDataManager.returnDiaries(date: date)
         
-        if data != " " {
-            count = 1
+        for diary in diaries {
+            if diary.date == date {
+                data.append(diary)
+            }
         }
-        else {
-            count = 0
-        }
-            
+        
         delegate?.didLoadData(data: data)
-        delegate?.didLoadDataCount(data: count)
+
     }
+    
+    func requestDiaryCollection(date: String) {
+        var diaries = [Diary]()
+        diaries = CoreDataManager.returnDiaryCollection(date: date)
+        diaries = diaries.sorted(by: {$0.date! < $1.date!})
+        delegate?.didLoadData(data: diaries)
+    }
+    
     func saveDiary(content: String, date: String) {
         CoreDataManager.shared.saveDiary(content, date)
-        //CoreDataManager.shared.fetchDiary()
         self.requestDiary(date: date)
     }
+    
+    func updateDiary(content: String, date: String) {
+        CoreDataManager.shared.updateDiary(content, date)
+        self.requestDiary(date: date)
+    }
+    
+    func deleteDiary(diary: Diary, date: String) {
+        CoreDataManager.shared.deleteDiary(diary)
+        self.requestDiary(date: date)
+    }
+
 }
 
 protocol DiaryTableViewModelDelegate: class {
-    func didLoadData(data: String)
-    func didLoadDataCount(data: Int)
+    func didLoadData(data: [Diary])
 }
-
