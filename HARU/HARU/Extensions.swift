@@ -47,11 +47,47 @@ extension Date {
         components.second = -1
         return Calendar(identifier: .gregorian).date(byAdding: components, to: startOfYear)!
     }
+    
+    var datesOfMonth: [Date] {
+        var curDate = startOfMonth
+        var dates = [Date]()
+        while true {
+            if curDate.compare(.isSameDay(as: endOfMonth.adjust(.day, offset: 1))) {
+                break
+            }
+            dates.append(curDate)
+            curDate = curDate.adjust(.day, offset: 1)
+        }
+        return dates
+    }
 
     func isMonday() -> Bool {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.weekday], from: self)
         return components.weekday == 2
+    }
+    
+    func numOfDays(In month: Date) -> Int {
+        let range = Calendar(identifier: .gregorian).range(of: .day, in: .month, for: month)!
+        let numDays = range.count
+        return numDays
+    }
+}
+
+extension Date {
+    
+    func isSameAs(as compo: Calendar.Component, from date: Date) -> Bool {
+        var cal = Calendar.current
+        cal.locale = Locale(identifier: "ko_KR")
+        return cal.component(compo, from: date) == cal.component(compo, from: self)
+    }
+    
+    func dayBefore() -> Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+    }
+    
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
     }
 }
 
