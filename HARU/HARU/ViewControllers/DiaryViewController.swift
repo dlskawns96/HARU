@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDelegate {
+class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPickerViewDelegate {
         
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var badBtn: UIButton!
@@ -26,6 +26,14 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let dateFormatter = DateFormatter()
     let today = NSDate()
     
+    let dataSource = DiaryTableViewModel()
+    var dataArray = [Diary]() {
+        didSet {
+            self.tableView.reloadData()
+            print("Reload")
+        }
+    }
+    
     deinit {
         if let token = token {
             NotificationCenter.default.removeObserver(token)
@@ -36,46 +44,6 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if let Ctoken = Ctoken {
             NotificationCenter.default.removeObserver(Ctoken)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = CoreDataManager.returnDiaryCount(date: (AD?.selectedDate)!)
-        return count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-        cell.selectionStyle = .none
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        
-        let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-        
-        if content != " " {
-            return true
-        }
-        else {
-            return false
-        }
-       
-    }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let target = CoreDataManager.diaryList[indexPath.row]
-            CoreDataManager.shared.deleteDiary(target)
-            CoreDataManager.diaryList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            buttonInit()
-            setComment()
         }
     }
     
@@ -94,8 +62,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let todayString = dateFormatter.string(from: today as Date)
         
         if dateString! >= todayString {
-            let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-            if content.count > 1 {
+            if dataArray.count >= 1 && dataArray[0].content != " " {
                 centerLabel.isHidden = true
             }
             else {
@@ -104,8 +71,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         else {
-            let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-            if content.count > 1 {
+            if dataArray.count >= 1 && dataArray[0].content != " " {
                 centerLabel.isHidden = true
             }
             else {
@@ -124,6 +90,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             CoreDataManager.shared.saveEvaluation(1, AD?.selectedDate)
             NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
+            
         }
     }
     
@@ -152,10 +119,9 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
         
-        let count = CoreDataManager.returnDiaryCount(date: (AD?.selectedDate)!)
         let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
         
-        if count != 0 && content != " " {
+        if dataArray.count != 0 && content != " " {
             
             var touchPoint = CGPoint()
             
@@ -165,12 +131,10 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let alert = UIAlertController(title:
                                             "삭제 확인", message: "일기를 삭제할까요?", preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "삭제", style: .destructive) { (action) in
-                print("삭제")
+            let okAction = UIAlertAction(title: "삭제", style: .destructive) { [self] (action) in
                 let indexPath = self.tableView.indexPathForRow(at: touchPoint)
                 let target = CoreDataManager.diaryList[indexPath!.row]
-                CoreDataManager.shared.deleteDiary(target)
-                CoreDataManager.diaryList.remove(at: indexPath!.row)
+                dataSource.deleteDiary(diary: target, date: (AD?.selectedDate)!)
                 self.tableView.reloadData()
                 self.buttonInit()
                 self.setComment()
@@ -190,6 +154,8 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         CoreDataManager.shared.fetchDiary()
         tableView.reloadData()
+        
+        dataSource.requestDiary(date: (AD?.selectedDate)!)
         
         let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
         
@@ -222,12 +188,15 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        dataSource.delegate = self
+    
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
         longPressGesture.delegate = self
         self.tableView.addGestureRecognizer(longPressGesture)
         
-        token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in
-            self.tableView.reloadData()
+        token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) { [self]_ in
+            dataSource.requestDiary(date: (AD?.selectedDate)!)
+            //self.tableView.reloadData()
         }
         
         Etoken = NotificationCenter.default.addObserver(forName: DiaryViewController.newEvaluation, object: nil, queue: OperationQueue.main) {_ in
@@ -256,4 +225,49 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 extension DiaryViewController {
     static let newEvaluation = Notification.Name(rawValue: "newEvaluation")
+}
+
+extension DiaryViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = dataArray[indexPath.row].content
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        let content = dataArray[indexPath.row].content
+        
+        if content != " " {
+            return true
+        }
+        else {
+            return false
+        }
+       
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let target = CoreDataManager.diaryList[indexPath.row]
+            dataSource.deleteDiary(diary: target, date: (AD?.selectedDate)!)
+            buttonInit()
+            setComment()
+        }
+    }
+}
+extension DiaryViewController: DiaryTableViewModelDelegate {
+    func didLoadData(data: [Diary]) {
+        dataArray = data
+    }
 }

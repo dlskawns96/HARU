@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185B925B4579100C4743F /* Data.xcdatamodeld */; };
 		1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */; };
+		1F6E74B225F3673100650C8C /* DiaryTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */; };
 		1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15325A5F1CB00969F09 /* Alert.swift */; };
 		1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15625A8AF0900969F09 /* HCalendar.swift */; };
 		1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B80259E807700AC8142 /* AddDiaryController.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		1F3185BA25B4579100C4743F /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewModel.swift; sourceTree = "<group>"; };
 		1F84D15325A5F1CB00969F09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		1F84D15625A8AF0900969F09 /* HCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCalendar.swift; sourceTree = "<group>"; };
 		1FC02B80259E807700AC8142 /* AddDiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */,
+				1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */,
 				EA9816C025F3BB8C00E9D4EB /* EventDetailTableViewModel.swift */,
 				EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */,
 				EAF5DD7F25F5E41000763AF5 /* MainCalendarModel.swift */,
@@ -364,6 +367,7 @@
 			files = (
 				EAF7F1BD25F4A6100029E787 /* EventCollectionTableViewModel.swift in Sources */,
 				EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */,
+				1F6E74B225F3673100650C8C /* DiaryTableViewModel.swift in Sources */,
 				EAA1A26625E2ABBF003B0D8A /* EventCollectionTableViewCell.swift in Sources */,
 				EA50F77925F06B510003095D /* ScheduleTableViewModel.swift in Sources */,
 				EAE9527C25D791EE00F4FA10 /* EventModifyViewController.swift in Sources */,

@@ -57,10 +57,14 @@ class CoreDataManager {
         }
     }
     
+    static func returnDiaries(date:String) -> [Diary] {
+        return diaryList
+    }
+    
     static func returnDiary(date:String) -> String {
-        
+
         var list:String = ""
-        
+
         for item in CoreDataManager.diaryList {
             if item.date == date {
                 list = item.content!
@@ -69,33 +73,33 @@ class CoreDataManager {
         return list
     }
     
-    static func returnDiary(date:String, type:String) -> Bool {
-        
-        var result:Bool = false
-        
-        for item in CoreDataManager.diaryList {
-            if item.date == date {
-                result = true
-            }
-        }
-        
-        return result
-        
-    }
+//    static func returnDiary(date:String, type:String) -> Bool {
+//
+//        var result:Bool = false
+//
+//        for item in CoreDataManager.diaryList {
+//            if item.date == date {
+//                result = true
+//            }
+//        }
+//
+//        return result
+//
+//    }
     
-    static func returnDiaryCount(date:String) -> Int {
-        
-        var count: Int = 0
-        
-        for item in CoreDataManager.diaryList {
-            if item.date == date {
-                count += 1
-            }
-        }
-        return count
-    }
+//    static func returnDiaryCount(date:String) -> Int {
+//        
+//        var count: Int = 0
+//        
+//        for item in CoreDataManager.diaryList {
+//            if item.date == date {
+//                count += 1
+//            }
+//        }
+//        return count
+//    }
     
-    static func returnDiary(date:String, type:Int) -> [Diary] {
+    static func returnDiaryCollection(date:String) -> [Diary] {
         
         var list = [Diary]()
         
@@ -112,20 +116,20 @@ class CoreDataManager {
         
     }
     
-    static func returnDiaryCount(date:String, type:String) -> Int {
-        
-        var count: Int = 0
-        
-        for item in CoreDataManager.diaryList {
-            let endIdx:String.Index = (item.date?.index(item.date!.startIndex, offsetBy: 6))!
-            if item.date![item.date!.startIndex...endIdx] == date {
-                if item.content != " " {
-                    count += 1
-                }
-            }
-        }
-        return count
-    }
+//    static func returnDiaryCount(date:String, type:String) -> Int {
+//        
+//        var count: Int = 0
+//        
+//        for item in CoreDataManager.diaryList {
+//            let endIdx:String.Index = (item.date?.index(item.date!.startIndex, offsetBy: 6))!
+//            if item.date![item.date!.startIndex...endIdx] == date {
+//                if item.content != " " {
+//                    count += 1
+//                }
+//            }
+//        }
+//        return count
+//    }
     
     func saveEvaluation(_ evaluation: Int16?, _ date: String?) {
 

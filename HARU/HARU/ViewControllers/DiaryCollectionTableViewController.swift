@@ -20,6 +20,12 @@ class DiaryCollectionTableViewController: UITableViewController {
     var Rtoken: NSObjectProtocol?
     
     let AD = UIApplication.shared.delegate as? AppDelegate
+    let dataSource = DiaryTableViewModel()
+    var dataArray = [Diary]() {
+        didSet {
+            
+        }
+    }
     
     deinit {
         if let token = Rtoken {
@@ -54,21 +60,14 @@ class DiaryCollectionTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        dateFormatter.dateFormat = "yyyy-MM"
-//        let count = CoreDataManager.returnDiaryCount(date: dateFormatter.string(from: currentYear), type: "Month")
         return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "diaryCell", for: indexPath)
         dateFormatter.dateFormat = "yyyy-MM"
-        
-        list =  CoreDataManager.returnDiary(date: dateFormatter.string(from: currentYear), type: 1)
-        list = list.sorted(by: {$0.date! < $1.date!})
-        
-        //let target = list[indexPath.row]
-        
-        let target = list[indexPath.section]
+    
+        let target = dataArray[indexPath.section]
         
         cell.textLabel?.text = target.content
         cell.detailTextLabel?.text = target.date
@@ -82,27 +81,28 @@ class DiaryCollectionTableViewController: UITableViewController {
         guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
         self.present(controller, animated: true, completion: nil)
         
-        AddDiaryController.editTarget = list[indexPath.section].content
-        AddDiaryController.selectedDate = list[indexPath.section].date
+        AddDiaryController.editTarget = dataArray[indexPath.section].content
+        AddDiaryController.selectedDate = dataArray[indexPath.section].date
         AddDiaryController.check = true
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        dateFormatter.dateFormat = "yyyy-MM"
-        let count = CoreDataManager.returnDiaryCount(date: dateFormatter.string(from: currentYear), type: "Month")
-        
-        return count
+        return dataArray.count
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         CoreDataManager.shared.fetchDiary()
-        tableView.reloadData()
+        
+        dateFormatter.dateFormat = "yyyy-MM"
+        dataSource.requestDiaryCollection(date: dateFormatter.string(from: currentYear))
     
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataSource.delegate = self
         
         dateFormatter.dateFormat = "yyyy년 MM월"
         titleLabel.title = dateFormatter.string(from: Date())
@@ -115,5 +115,10 @@ class DiaryCollectionTableViewController: UITableViewController {
         }
         
         
+    }
+}
+extension DiaryCollectionTableViewController: DiaryTableViewModelDelegate {
+    func didLoadData(data: [Diary]) {
+        dataArray = data
     }
 }
