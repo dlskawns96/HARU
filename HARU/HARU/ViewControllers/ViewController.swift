@@ -19,14 +19,29 @@ class ViewController: UIViewController {
     var eventTitles: [String] = []
     var loadedEvents: [EKEvent] = []
     var labels: [UILabel] = []
-    let calendarLoader = CalendarLoader()
+    var calendarLoader: CalendarLoader!
     
     var token: NSObjectProtocol?
+    
+    let calendar = Calendar.current
+    
+    var dataSource: MainCalendarModel?
+    var dataArray = [[MainCalendarCellItem]]() {
+        didSet {
+//            fsCalendar.reloadData()
+        }
+    }
+    
+    var current = Date()
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        EventHandler.ekEventStore = EKEventStore()
+        calendarLoader = CalendarLoader()
+        dataSource = MainCalendarModel()
+        dataSource!.delegate = self
+        dataSource?.initData(of: Date())
         self.loadedEvents = calendarLoader.loadedEvents
         
         fsCalendar.delegate = self
@@ -40,6 +55,7 @@ class ViewController: UIViewController {
         fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
         fsCalendar.appearance.borderRadius = 0
         
+        fsCalendar.register(MainCalendarCell.self, forCellReuseIdentifier: "MainCalednarCell")
         for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
             if weekday.text == "일" {
                 weekday.textColor = .red
@@ -72,8 +88,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onEventCollectionBtnClicked(_ sender: Any) {
-        guard let controller = storyboard?.instantiateViewController(identifier: "EventCollectionTableViewController") as UINavigationController? else { return }
-        self.present(controller, animated: true, completion: nil)
+//        let storyboard = UIStoryboard(name: "EventCollectionTableViewController", bundle: nil)
+//        guard let controller = storyboard.instantiateViewController(identifier: "EventCollectionTableViewController") as UINavigationController? else { return }
+        let controller = EventCollectionTableViewController.storyboardInstance()
+        self.present(controller!, animated: true, completion: nil)
     }
     
     @IBAction func DiaryCollectionBtnClicked(_ sender: Any) {
@@ -116,29 +134,18 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
     }
     
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
-        let eves = loadedEvents.filter({$0.startDate.compare(.isSameDay(as: date))})
-        
-        if eves.count != 0 {
-            var posY = 50
-            for eve in eves {
-                let lab = UILabel(frame: CGRect(x: 0, y: posY, width: Int(cell.bounds.width), height: 15))
-                lab.font = .systemFont(ofSize: 12, weight: .regular)
-                lab.lineBreakMode = .byCharWrapping
-                lab.text = eve.title
-                lab.textColor = UIColor.init(named: "#32C77F")
-                cell.addSubview(lab)
-                lab.backgroundColor = UIColor(cgColor: eve.calendar.cgColor)
-                posY = posY + 15
-            }
-            
-        } else {
-            for view in cell.subviews {
-                if view is UILabel {
-                    view.removeFromSuperview()
-                }
-            }
+        guard let customCell = cell as? MainCalendarCell else {
+            return
         }
+        customCell.configureCell(with: (dataSource?.getItem(data: dataArray, at: date, currentPage: calendar.currentPage))!)
+    }
+    
+    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+        guard let cell = calendar.dequeueReusableCell(withIdentifier: "MainCalednarCell", for: date, at: position) as? MainCalendarCell else {
+            return calendar.dequeueReusableCell(withIdentifier: "MainCalednarCell", for: date, at: position)
+        }
+
+        return cell
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
@@ -156,23 +163,22 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        calendar.reloadData()
+        if current.compare(calendar.currentPage) == ComparisonResult.orderedAscending {
+            dataSource?.requestData(isNextMonth: true)
+            
+        } else {
+            dataSource?.requestData(isNextMonth: false)
+        }
+        current = calendar.currentPage
+    }
+    
+    func configureCell(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
+        
     }
 }
 
-extension Date {
-    
-    func isSameAs(as compo: Calendar.Component, from date: Date) -> Bool {
-        var cal = Calendar.current
-        cal.locale = Locale(identifier: "ko_KR")
-        return cal.component(compo, from: date) == cal.component(compo, from: self)
-    }
-    
-    func dayBefore() -> Date {
-        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
-    }
-    
-    var noon: Date {
-        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+extension ViewController: MainCalendarModelDelegate {
+    func didLoadData(data: [[MainCalendarCellItem]]) {
+        dataArray = data
     }
 }

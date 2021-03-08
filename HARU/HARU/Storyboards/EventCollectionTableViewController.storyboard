@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="22Y-6T-CJw">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--2018년 2월-->
+        <scene sceneID="lzP-bc-Tu7">
+            <objects>
+                <viewController storyboardIdentifier="EventCollectionTableView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q4d-uH-6zG" customClass="EventCollectionTableViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L9H-qe-xaA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YSD-hN-xlQ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nIX-NF-NIp">
+                                    <size key="itemSize" width="418" height="774"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventCollectionCell" id="R2x-Tp-uFp" customClass="EventCollectionCell" customModule="HARU" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="418" height="774"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TUD-V4-CtK">
+                                            <rect key="frame" x="0.0" y="0.0" width="418" height="774"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="q4d-uH-6zG" id="u2V-cV-OHs"/>
+                                    <outlet property="delegate" destination="q4d-uH-6zG" id="Zla-Nl-xe7"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ciU-mc-ndX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YSD-hN-xlQ" firstAttribute="leading" secondItem="ciU-mc-ndX" secondAttribute="leading" id="PhV-3q-p6o"/>
+                            <constraint firstItem="ciU-mc-ndX" firstAttribute="trailing" secondItem="YSD-hN-xlQ" secondAttribute="trailing" id="SPz-ku-p1s"/>
+                            <constraint firstItem="YSD-hN-xlQ" firstAttribute="top" secondItem="ciU-mc-ndX" secondAttribute="top" id="l0g-bA-Ux3"/>
+                            <constraint firstItem="ciU-mc-ndX" firstAttribute="bottom" secondItem="YSD-hN-xlQ" secondAttribute="bottom" id="mgv-ct-yoM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="2018년 2월" id="PIp-9J-wbU">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="YIW-SJ-hxu" userLabel="작년">
+                            <connections>
+                                <action selector="lastYearBtnClicked:" destination="q4d-uH-6zG" id="tVM-Xv-rb5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="2nt-Ok-jwF" userLabel="내년">
+                            <connections>
+                                <action selector="nextYearBtnClicked:" destination="q4d-uH-6zG" id="kO4-Hg-HsZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="YSD-hN-xlQ" id="k2l-DY-whU"/>
+                        <outlet property="lastYearBtn" destination="YIW-SJ-hxu" id="7r8-1a-WDE"/>
+                        <outlet property="nextYearBtn" destination="2nt-Ok-jwF" id="G6N-e5-HHv"/>
+                        <outlet property="titleLabel" destination="PIp-9J-wbU" id="Pgk-xC-2AZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cfd-wG-8FP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41" y="1033"/>
+        </scene>
+        <!--Event 모음-->
+        <scene sceneID="axp-Ut-t5V">
+            <objects>
+                <navigationController storyboardIdentifier="EventCollectionTableViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="22Y-6T-CJw" userLabel="Event 모음" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Hi-ZT-QTh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="q4d-uH-6zG" kind="relationship" relationship="rootViewController" id="cv8-HL-tWy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MsT-9B-4Z8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-870" y="1033"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

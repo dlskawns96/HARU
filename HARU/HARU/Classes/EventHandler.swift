@@ -9,18 +9,18 @@ import Foundation
 import EventKit
 
 class EventHandler {
-    let ekEventStore = EKEventStore()
+    static var ekEventStore: EKEventStore?
     var event: EKEvent? = nil
     
     init() {
-        event = EKEvent(eventStore: ekEventStore)
+        event = EKEvent(eventStore: EventHandler.ekEventStore!)
     }
     
     func removeEvent(event: EKEvent) -> Bool {
         do {
             print("Event to remove", event)
-            let ev = ekEventStore.event(withIdentifier: event.eventIdentifier)
-            try self.ekEventStore.remove(ev!, span: .thisEvent, commit: true)
+            let ev = EventHandler.ekEventStore?.event(withIdentifier: event.eventIdentifier)
+            try EventHandler.ekEventStore!.remove(ev!, span: .thisEvent, commit: true)
             print("event removed")
             return true
         } catch {
