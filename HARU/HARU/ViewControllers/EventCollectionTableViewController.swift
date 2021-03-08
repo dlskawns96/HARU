@@ -15,36 +15,54 @@ class EventCollectionTableViewController: UIViewController {
     @IBOutlet weak var lastYearBtn: UIBarButtonItem!
     @IBOutlet weak var nextYearBtn: UIBarButtonItem!
     
+    static func storyboardInstance() -> UINavigationController? {
+        let storyboard = UIStoryboard(name: "EventCollectionTableViewController",
+                                           bundle: nil)
+        return storyboard.instantiateInitialViewController() as? UINavigationController
+    }
     
-    var eventsOfYear = [[EKEvent]]()
-    var events: [EKEvent] = []
+//    var eventsOfYear = [[EKEvent]]()
+    var events: [EventCollectionTableViewItem] = []
     var calendarLoader = CalendarLoader()
     var currentYear = Date()
     var currentMonth = 1
     
     var dateFormatter = DateFormatter()
+    
+    var dataSource = EventCollectionTableViewModel()
+    var dataArray = [[EventCollectionTableViewItem]]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateFormatter.dateFormat = "yyyy년 MM월"
+        dateFormatter.dateFormat = "yyyy년 1월"
         titleLabel.title = dateFormatter.string(from: Date())
         dateFormatter.dateFormat = "yyyy년"
         lastYearBtn.title = "< " + dateFormatter.string(from: Date().adjust(.year, offset: -1))
         nextYearBtn.title = dateFormatter.string(from: Date().adjust(.year, offset: 1)) + " >"
         
-        eventsOfYear = calendarLoader.loadEvents(ofYear: Date())
-        
         collectionView.decelerationRate = .normal
         collectionView.isPagingEnabled = true
         
         collectionView.layoutIfNeeded()
-        let cal = Calendar.current
-        collectionView.scrollToItem(at: IndexPath(item: cal.component(.month, from: Date()), section: 0), at: .right, animated: false)
+//        let cal = Calendar.current
+//        collectionView.scrollToItem(at: IndexPath(item: cal.component(.month, from: Date()), section: 0), at: .right, animated: false)
+        
+        dataSource.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        dataSource.requestData(ofYear: currentYear)
     }
     
     @IBAction func lastYearBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.year, offset: -1)
-        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
+//        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
+        dataSource.requestData(ofYear: currentYear)
         currentMonth = 1
         titleLabel.title = dateFormatter.string(from: currentYear) + " 1월"
         lastYearBtn.title = "< " + dateFormatter.string(from: currentYear.adjust(.year, offset: -1))
@@ -55,7 +73,8 @@ class EventCollectionTableViewController: UIViewController {
     
     @IBAction func nextYearBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.year, offset: 1)
-        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
+//        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
+        dataSource.requestData(ofYear: currentYear)
         currentMonth = 1
         titleLabel.title = dateFormatter.string(from: currentYear) + " 1월"
         lastYearBtn.title = "< " + dateFormatter.string(from: currentYear.adjust(.year, offset: -1))
@@ -68,7 +87,7 @@ class EventCollectionTableViewController: UIViewController {
 // MARK: - Collection view extension
 extension EventCollectionTableViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return eventsOfYear.count
+        return dataArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -76,7 +95,7 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
             return UICollectionViewCell()
         }
             
-        events = eventsOfYear[indexPath.item]
+        events = dataArray[indexPath.item]
         let tableView = UITableView()
         
         let nibName = UINib(nibName: "EventCollectionTableViewCell", bundle: nil)
@@ -113,7 +132,7 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
         for cell in collectionView.visibleCells {
             let indexPath = collectionView.indexPath(for: cell)
             dateFormatter.dateFormat = "yyyy년"
-            titleLabel.title = dateFormatter.string(from: currentYear) + String(indexPath!.item + 1) + "월"
+            titleLabel.title = dateFormatter.string(from: currentYear) + " " + String(indexPath!.item + 1) + "월"
             currentMonth = indexPath!.item + 1
         }
     }
@@ -134,9 +153,9 @@ extension EventCollectionTableViewController: UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCollectionTableViewCell", for: indexPath) as! EventCollectionTableViewCell
         
-        let event = events[indexPath.row]
-        let model = EventCollectionTableViewModel(event: event)
-        cell.configureCell(with: model)
+//        let event =
+//        let model = EventCollectionTableViewItem(event: event)
+        cell.configureCell(with: events[indexPath.row])
         return cell
     }
     
@@ -148,8 +167,14 @@ extension EventCollectionTableViewController: UITableViewDelegate, UITableViewDa
         guard let vc = controller.viewControllers.first as? EventDetailViewController else {
             return
         }
-        vc.event = eventsOfYear[currentMonth - 1][indexPath.row]
+        vc.event = dataArray[currentMonth - 1][indexPath.row].event
         present(controller, animated: true, completion: nil)
+    }
+}
+
+extension EventCollectionTableViewController: EventCollectionTableViewModelDelegate {
+    func didLoadData(data: [[EventCollectionTableViewItem]]) {
+        dataArray = data
     }
 }
 

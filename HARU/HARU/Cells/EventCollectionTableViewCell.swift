@@ -26,7 +26,7 @@ class EventCollectionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(with model: EventCollectionTableViewModel) {
+    func configureCell(with model: EventCollectionTableViewItem) {
         eventDayLabel?.text = model.eventDayString
         eventMonthLabel?.text = model.eventMonthString
         eventTitleLabel?.text = model.eventTitleString
@@ -35,7 +35,7 @@ class EventCollectionTableViewCell: UITableViewCell {
     
 }
 
-class EventCollectionTableViewModel {
+class EventCollectionTableViewItem {
     var calendar = Calendar.current
     var event: EKEvent?
     
