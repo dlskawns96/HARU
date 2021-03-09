@@ -23,7 +23,7 @@ class DiaryCollectionTableViewController: UITableViewController {
     let dataSource = DiaryTableViewModel()
     var dataArray = [Diary]() {
         didSet {
-            
+            tableView.reloadData()
         }
     }
     
@@ -43,7 +43,8 @@ class DiaryCollectionTableViewController: UITableViewController {
         dateFormatter.dateFormat = "yyyy년 MM월"
         titleLabel.title = dateFormatter.string(from: currentYear)
         
-        tableView.reloadData()
+        dateFormatter.dateFormat = "yyyy-MM"
+        dataSource.requestDiaryCollection(date: dateFormatter.string(from: currentYear))
         
     }
     @IBAction func nextMonthBtnClicked(_ sender: Any) {
@@ -56,7 +57,8 @@ class DiaryCollectionTableViewController: UITableViewController {
         dateFormatter.dateFormat = "yyyy년 MM월"
         titleLabel.title = dateFormatter.string(from: currentYear)
         
-        tableView.reloadData()
+        dateFormatter.dateFormat = "yyyy-MM"
+        dataSource.requestDiaryCollection(date: dateFormatter.string(from: currentYear))
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

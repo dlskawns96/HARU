@@ -15,6 +15,7 @@
 		1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B80259E807700AC8142 /* AddDiaryController.swift */; };
 		1FC02B84259E83D600AC8142 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B83259E83D600AC8142 /* Diary.swift */; };
 		1FC15E1725ED0DE80021B16B /* DiaryCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC15E1625ED0DE80021B16B /* DiaryCollectionTableViewController.swift */; };
+		1FCC4C7525F799CE0064D687 /* EventCollectionTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */; };
 		1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6078D2597514100A0882D /* SelectDateController.swift */; };
 		1FF13FC925BB129D008624D8 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF13FC825BB129D008624D8 /* DiaryViewController.swift */; };
 		1FF13FCC25BB12B6008624D8 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF13FCB25BB12B6008624D8 /* ScheduleViewController.swift */; };
@@ -48,7 +49,6 @@
 		EAF5DD7D25F5E27300763AF5 /* MainCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF5DD7C25F5E27300763AF5 /* MainCalendarCell.swift */; };
 		EAF5DD8025F5E41000763AF5 /* MainCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF5DD7F25F5E41000763AF5 /* MainCalendarModel.swift */; };
 		EAF7F1BD25F4A6100029E787 /* EventCollectionTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */; };
-		EAF7F1C425F4B79E0029E787 /* EventCollectionTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAF7F1BF25F4B28A0029E787 /* EventCollectionTableViewController.storyboard */; };
 		EAFE1BA125CD183F0084B31C /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE1BA025CD183F0084B31C /* EventHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +61,7 @@
 		1FC02B80259E807700AC8142 /* AddDiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryController.swift; sourceTree = "<group>"; };
 		1FC02B83259E83D600AC8142 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		1FC15E1625ED0DE80021B16B /* DiaryCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewController.swift; sourceTree = "<group>"; };
+		1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventCollectionTableViewController.storyboard; sourceTree = "<group>"; };
 		1FE6078D2597514100A0882D /* SelectDateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateController.swift; sourceTree = "<group>"; };
 		1FF13FC825BB129D008624D8 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1FF13FCB25BB12B6008624D8 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		EAF5DD7C25F5E27300763AF5 /* MainCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarCell.swift; sourceTree = "<group>"; };
 		EAF5DD7F25F5E41000763AF5 /* MainCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarModel.swift; sourceTree = "<group>"; };
 		EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewModel.swift; sourceTree = "<group>"; };
-		EAF7F1BF25F4B28A0029E787 /* EventCollectionTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = EventCollectionTableViewController.storyboard; path = /Users/leenamjun/HARU/HARU/HARU/Storyboards/EventCollectionTableViewController.storyboard; sourceTree = "<absolute>"; };
 		EAFE1BA025CD183F0084B31C /* EventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +137,7 @@
 			children = (
 				EA1219B42594C255007EDE8E /* CalendarLoader.swift */,
 				EAFE1BA025CD183F0084B31C /* EventHandler.swift */,
+				1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -146,7 +147,6 @@
 			children = (
 				EA7F836F2594749C008B8ED5 /* Main.storyboard */,
 				EA3A414825B66CA40074282C /* AddEvent.storyboard */,
-				EAF7F1BF25F4B28A0029E787 /* EventCollectionTableViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAF7F1C425F4B79E0029E787 /* EventCollectionTableViewController.storyboard in Resources */,
+				1FCC4C7525F799CE0064D687 /* EventCollectionTableViewController.storyboard in Resources */,
 				EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */,
 				EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */,
 				EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */,
