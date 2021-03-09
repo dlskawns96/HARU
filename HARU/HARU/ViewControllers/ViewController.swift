@@ -32,7 +32,11 @@ class ViewController: UIViewController {
         }
     }
     
-    var current = Date()
+    var current = Date() {
+        didSet {
+            MainCalendarCell.currentMonth = current
+        }
+    }
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -56,15 +60,6 @@ class ViewController: UIViewController {
         fsCalendar.appearance.borderRadius = 0
         
         fsCalendar.register(MainCalendarCell.self, forCellReuseIdentifier: "MainCalednarCell")
-        for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
-            if weekday.text == "일" {
-                weekday.textColor = .red
-            } else if weekday.text == "토" {
-                weekday.textColor = .blue
-            } else {
-                weekday.textColor = .black
-            }
-        }
         
         token = NotificationCenter.default.addObserver(forName: AddEventViewController.eventChangedNoti, object: nil,
                 queue: OperationQueue.main) {_ in
@@ -137,7 +132,8 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         guard let customCell = cell as? MainCalendarCell else {
             return
         }
-        customCell.configureCell(with: (dataSource?.getItem(data: dataArray, at: date, currentPage: calendar.currentPage))!)
+        
+        customCell.configureCell(with: (dataSource?.getItem(data: dataArray, at: date, currentPage: calendar.currentPage))!, isNextMonth: current.compare(calendar.currentPage) == ComparisonResult.orderedAscending)
     }
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
