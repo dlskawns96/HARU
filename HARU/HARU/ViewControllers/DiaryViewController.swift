@@ -29,21 +29,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     let dataSource = DiaryTableViewModel()
     var dataArray = [Diary]() {
         didSet {
-            self.tableView.reloadData()
-            print("Reload")
-        }
-    }
-    
-    deinit {
-        if let token = token {
-            NotificationCenter.default.removeObserver(token)
-        }
-        if let Etoken = Etoken {
-            NotificationCenter.default.removeObserver(Etoken)
-        }
-        
-        if let Ctoken = Ctoken {
-            NotificationCenter.default.removeObserver(Ctoken)
+            tableView.reloadData()
         }
     }
     
@@ -221,6 +207,21 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         }
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+        if let Etoken = Etoken {
+            NotificationCenter.default.removeObserver(Etoken)
+        }
+        
+        if let Ctoken = Ctoken {
+            NotificationCenter.default.removeObserver(Ctoken)
+        }
+    }
 }
 
 extension DiaryViewController {
@@ -266,6 +267,7 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
 extension DiaryViewController: DiaryTableViewModelDelegate {
     func didLoadData(data: [Diary]) {
         dataArray = data

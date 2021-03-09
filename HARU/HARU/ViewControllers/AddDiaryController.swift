@@ -81,12 +81,19 @@ class AddDiaryController : UIViewController {
 
 extension AddDiaryController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
+        // 다이어리 수정할 떄
         if let original = originalDiary, let edited = textView.text {
             if #available(iOS 13.0, *) {
                 isModalInPresentation = original != edited
             }
             else {
                 
+            }
+        }
+        // 새로운 다이어리 추가할 때
+        if let diary = textView.text {
+            if #available(iOS 13.0, *) {
+                isModalInPresentation = diary.count > 0 && diary != " "
             }
         }
     }
