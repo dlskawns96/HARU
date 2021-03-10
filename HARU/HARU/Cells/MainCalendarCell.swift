@@ -10,8 +10,9 @@ import FSCalendar
 import EventKit
 
 class MainCalendarCell: FSCalendarCell {
+    static var currentMonth = Date()
     
-    func configureCell(with item: MainCalendarCellItem) {
+    func configureCell(with item: MainCalendarCellItem, isNextMonth: Bool) {
         if item.numOfEvents != 0 {
             var posY = 50
             for event in item.events! {
@@ -32,14 +33,39 @@ class MainCalendarCell: FSCalendarCell {
             }
             
         }
+        
+//        if item.dayString == "Sun" && (item.date!.isSameAs(as: .month, from: MainCalendarCell.currentMonth) || item.date!.isSameAs(as: .month, from: MainCalendarCell.currentMonth.adjust(.month, offset: 1))) {
+//            self.titleLabel.textColor = .red
+//        }
+//        if item.dayString == "Sat" && (item.date!.isSameAs(as: .month, from: MainCalendarCell.currentMonth) || item.date!.isSameAs(as: .month, from: MainCalendarCell.currentMonth.adjust(.month, offset: -1))) {
+//            self.titleLabel.textColor = .blue
+//        }
+        
+        if item.dayString == "Sun" {
+            self.titleLabel.textColor = .red
+        }
+        if item.dayString == "Sat" {
+            self.titleLabel.textColor = .blue
+        }
     }
 }
 
 struct MainCalendarCellItem {
     var events: [EKEvent]?
     var date: Date?
+    var dateFormatter = DateFormatter()
+    
+    init(events: [EKEvent], date: Date) {
+        self.events = events
+        self.date = date
+        dateFormatter.dateFormat = "ccc"
+    }
     
     var numOfEvents: Int? {
         return events?.count
+    }
+    
+    var dayString: String? {
+        return dateFormatter.string(from: date!)
     }
 }
