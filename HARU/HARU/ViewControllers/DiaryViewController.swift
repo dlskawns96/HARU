@@ -254,17 +254,42 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource {
        
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        return .delete
+//    }
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let target = CoreDataManager.diaryList[indexPath.row]
+//            dataSource.deleteDiary(diary: target, date: (AD?.selectedDate)!)
+//            buttonInit()
+//            setComment()
+//        }
+//    }
+
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "삭제", handler: { [self](action, view, completionHandler) in
             let target = CoreDataManager.diaryList[indexPath.row]
             dataSource.deleteDiary(diary: target, date: (AD?.selectedDate)!)
             buttonInit()
             setComment()
-        }
+        })
+        action.backgroundColor = .systemRed
+
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+
+    // trailing swipe
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "수정", handler: { [self](action, view, completionHandler) in
+            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
+            self.present(controller, animated: true, completion: nil)
+            
+            AddDiaryController.editTarget = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+        })
+        action.backgroundColor = .systemBlue
+
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }
 

@@ -137,7 +137,6 @@
 			children = (
 				EA1219B42594C255007EDE8E /* CalendarLoader.swift */,
 				EAFE1BA025CD183F0084B31C /* EventHandler.swift */,
-				1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -147,6 +146,7 @@
 			children = (
 				EA7F836F2594749C008B8ED5 /* Main.storyboard */,
 				EA3A414825B66CA40074282C /* AddEvent.storyboard */,
+				1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
