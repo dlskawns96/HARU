@@ -160,9 +160,8 @@ extension EventCollectionTableViewController: UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let controller = storyboard?.instantiateViewController(identifier: "EventDetailViewController") as? UINavigationController else {
-            return
-        }
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let controller = storyboard.instantiateViewController(identifier: "EventDetailViewController") as UINavigationController? else { return }
         controller.modalPresentationStyle = .fullScreen
         guard let vc = controller.viewControllers.first as? EventDetailViewController else {
             return
