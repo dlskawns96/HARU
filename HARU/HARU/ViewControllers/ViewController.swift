@@ -7,7 +7,6 @@
 
 import UIKit
 import Foundation
-import FSCalendar
 import AFDateHelper
 import EventKit
 
@@ -144,19 +143,19 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         return cell
     }
     
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        let isSameMon: Bool = date.isSameAs(as: .month, from: calendar.currentPage)
-        if !isSameMon {
-            return nil
-        }
-        if getWeekDay(for: date) == "Sunday" {
-            return .red
-        }
-        if getWeekDay(for: date) == "Saturday" {
-            return .blue
-        }
-        return nil
-    }
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+//        let isSameMon: Bool = date.isSameAs(as: .month, from: calendar.currentPage)
+//        if !isSameMon {
+//            return nil
+//        }
+//        if getWeekDay(for: date) == "Sunday" {
+//            return .red
+//        }
+//        if getWeekDay(for: date) == "Saturday" {
+//            return .blue
+//        }
+//        return nil
+//    }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         if current.compare(calendar.currentPage) == ComparisonResult.orderedAscending {
@@ -167,6 +166,7 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         }
         current = calendar.currentPage
     }
+
     
     func configureCell(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
         

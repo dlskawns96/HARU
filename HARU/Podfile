@@ -6,7 +6,7 @@ target 'HARU' do
   use_frameworks!
 
   # Pods for HARU
-  pod 'FSCalendar'
   pod 'AFDateHelper'
   pod 'DropDown'
+  pod 'FSCalendar'
 end
