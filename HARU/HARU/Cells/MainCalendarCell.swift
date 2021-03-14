@@ -11,7 +11,7 @@ import EventKit
 class MainCalendarCell: FSCalendarCell {
     static var currentMonth = Date()
     
-    func configureCell(with item: MainCalendarCellItem, isNextMonth: Bool) {
+    func configureCell(with item: MainCalendarCellItem) {
         if item.numOfEvents != 0 {
             var posY = 50
             for event in item.events! {
