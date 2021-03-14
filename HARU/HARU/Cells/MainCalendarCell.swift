@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import FSCalendar
 import EventKit
 
 class MainCalendarCell: FSCalendarCell {
@@ -33,13 +32,6 @@ class MainCalendarCell: FSCalendarCell {
             }
             
         }
-        
-//        if item.dayString == "Sun" && (item.date!.isSameAs(as: .month, from: MainCalendarCell.currentMonth) || item.date!.isSameAs(as: .month, from: MainCalendarCell.currentMonth.adjust(.month, offset: 1))) {
-//            self.titleLabel.textColor = .red
-//        }
-//        if item.dayString == "Sat" && (item.date!.isSameAs(as: .month, from: MainCalendarCell.currentMonth) || item.date!.isSameAs(as: .month, from: MainCalendarCell.currentMonth.adjust(.month, offset: -1))) {
-//            self.titleLabel.textColor = .blue
-//        }
         
         if item.dayString == "Sun" {
             self.titleLabel.textColor = .red

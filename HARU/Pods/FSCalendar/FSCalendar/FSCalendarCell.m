@@ -374,25 +374,26 @@ OFFSET_PROPERTY(preferredEventOffset, PreferredEventOffset, _appearance.eventOff
 @property (strong, nonatomic) NSPointerArray *eventLayers;
 
 @end
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation FSCalendarEventIndicator
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
         UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
         [self addSubview:view];
-        
         self.contentView = view;
         
         self.eventLayers = [NSPointerArray weakObjectsPointerArray];
         for (int i = 0; i < FSCalendarMaximumNumberOfEvents; i++) {
-            CATextLayer *layer = [CATextLayer layer];
+            CALayer *layer = [CALayer layer];
             layer.backgroundColor = [UIColor clearColor].CGColor;
             [self.contentView.layer addSublayer:layer];
             [self.eventLayers addPointer:(__bridge void * _Nullable)(layer)];
         }
+        
     }
     return self;
 }
@@ -401,29 +402,25 @@ OFFSET_PROPERTY(preferredEventOffset, PreferredEventOffset, _appearance.eventOff
 {
     [super layoutSubviews];
     CGFloat diameter = MIN(MIN(self.fs_width, self.fs_height),FSCalendarMaximumEventDotDiameter);
-    // 라벨의 위치 지정
-    //self.contentView.fs_width = (self.numberOfEvents*2-1)*diameter;
-    self.contentView.fs_width = self.fs_width;
     self.contentView.fs_height = self.fs_height;
-//    self.contentView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    self.contentView.fs_width = (self.numberOfEvents*2-1)*diameter;
+    self.contentView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
 }
 
-- (void)layoutSublayersOfLayer:(CATextLayer *)layer
+- (void)layoutSublayersOfLayer:(CALayer *)layer
 {
     [super layoutSublayersOfLayer:layer];
     if (layer == self.layer) {
         
         CGFloat diameter = MIN(MIN(self.fs_width, self.fs_height),FSCalendarMaximumEventDotDiameter);
         for (int i = 0; i < self.eventLayers.count; i++) {
-            CATextLayer *eventLayer = [self.eventLayers pointerAtIndex:i];
+            CALayer *eventLayer = [self.eventLayers pointerAtIndex:i];
             eventLayer.hidden = i >= self.numberOfEvents;
             if (!eventLayer.hidden) {
-//                eventLayer.frame = CGRectMake(2*i*diameter, (self.fs_height-diameter)*0.5, diameter, diameter);
-                //라벨의 크기 지정
-                eventLayer.frame = CGRectMake(0, 2*i*diameter, self.fs_width, 10);
-//                if (eventLayer.cornerRadius != diameter/2) {
-//                    eventLayer.cornerRadius = diameter/2;
-//                }
+                eventLayer.frame = CGRectMake(2*i*diameter, (self.fs_height-diameter)*0.5, diameter, diameter);
+                if (eventLayer.cornerRadius != diameter/2) {
+                    eventLayer.cornerRadius = diameter/2;
+                }
             }
         }
     }
@@ -433,18 +430,17 @@ OFFSET_PROPERTY(preferredEventOffset, PreferredEventOffset, _appearance.eventOff
 {
     if (![_color isEqual:color]) {
         _color = color;
+        
         if ([_color isKindOfClass:[UIColor class]]) {
             for (NSInteger i = 0; i < self.eventLayers.count; i++) {
-                CATextLayer *layer = [self.eventLayers pointerAtIndex:i];
+                CALayer *layer = [self.eventLayers pointerAtIndex:i];
                 layer.backgroundColor = [_color CGColor];
             }
         } else if ([_color isKindOfClass:[NSArray class]]) {
             NSArray<UIColor *> *colors = (NSArray *)_color;
             for (int i = 0; i < self.eventLayers.count; i++) {
-                CATextLayer *eventLayer = [self.eventLayers pointerAtIndex:i];
+                CALayer *eventLayer = [self.eventLayers pointerAtIndex:i];
                 eventLayer.backgroundColor = colors[MIN(i,colors.count-1)].CGColor;
-                eventLayer.string = @"Hello";
-                eventLayer.fontSize = 10;
             }
         }
         
@@ -460,7 +456,6 @@ OFFSET_PROPERTY(preferredEventOffset, PreferredEventOffset, _appearance.eventOff
 }
 
 @end
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 @implementation FSCalendarBlankCell
