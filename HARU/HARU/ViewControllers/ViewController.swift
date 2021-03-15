@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     let calendar = Calendar.current
     
     var dataSource: MainCalendarModel?
-    var dataArray = [[MainCalendarCellItem]]() {
+    var dataArray = [[[MainCalendarCellItem]]]() {
         didSet {
 //            fsCalendar.reloadData()
         }
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         calendarLoader = CalendarLoader()
         dataSource = MainCalendarModel()
         dataSource!.delegate = self
-        dataSource?.initData(of: Date())
+        dataSource?.initData(date: Date())
         self.loadedEvents = calendarLoader.loadedEvents
         
         fsCalendar.delegate = self
@@ -123,7 +123,7 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let AD = UIApplication.shared.delegate as? AppDelegate
         AD?.selectedDate = dateFormatter.string(from: date)
-        AD?.selectedDateEvents = loadEventsOfDay(for: date)
+        AD?.selectedDateEvents =  dataArray[self.calendar.component(.year, from: date) - MainCalendarModel.startYear][self.calendar.component(.month, from: date)-1][self.calendar.component(.day, from: date)-1].events
         self.present(controller, animated: true, completion: nil)
     }
     
@@ -132,7 +132,7 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
             return
         }
         
-        customCell.configureCell(with: (dataSource?.getItem(data: dataArray, at: date, currentPage: calendar.currentPage))!, isNextMonth: current.compare(calendar.currentPage) == ComparisonResult.orderedAscending)
+        customCell.configureCell(with: dataArray[self.calendar.component(.year, from: date) - MainCalendarModel.startYear][self.calendar.component(.month, from: date)-1][self.calendar.component(.day, from: date)-1])
     }
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
@@ -158,13 +158,7 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
 //    }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        if current.compare(calendar.currentPage) == ComparisonResult.orderedAscending {
-            dataSource?.requestData(isNextMonth: true)
-            
-        } else {
-            dataSource?.requestData(isNextMonth: false)
-        }
-        current = calendar.currentPage
+        // 특정 연도가 되면 리로드
     }
 
     
@@ -174,7 +168,7 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
 }
 
 extension ViewController: MainCalendarModelDelegate {
-    func didLoadData(data: [[MainCalendarCellItem]]) {
+    func didLoadData(data: [[[MainCalendarCellItem]]]) {
         dataArray = data
     }
 }

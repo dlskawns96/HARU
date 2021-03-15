@@ -16,6 +16,7 @@ class CalendarLoader {
     
     let eventStore = EventHandler.ekEventStore
     let calendars : [EKCalendar]
+    let calendar = Calendar.current
     
     init() {
         var auth: Bool = false
@@ -77,19 +78,16 @@ class CalendarLoader {
         return eventsOfDay
     }
     
-    func loadEvents(ofMonth month: Date) -> [EKEvent] {
-        var eventsOfMonth: [EKEvent] = []
+    func loadEvents(ofMonth month: Date) -> [[EKEvent]] {
+        var eventsOfMonth = [[EKEvent]](repeating: [], count: month.datesOfMonth.count)
+        
+        var events = [EKEvent]()
         for calendar in calendars {
-            let predicate = eventStore!.predicateForEvents(withStart: month.startOfMonth, end: month.endOfMonth, calendars: [calendar])
-            let events = eventStore!.events(matching: predicate)
-            
+            let predicate = eventStore!.predicateForEvents(withStart: month.startOfMonth.adjust(hour: 0, minute: 0, second: 0), end: month.endOfMonth.adjust(hour: 23, minute: 59, second: 59), calendars: [calendar])
+            events = eventStore!.events(matching: predicate)
             for event in events {
-                eventsOfMonth.append(event)
+                eventsOfMonth[self.calendar.component(.day, from: event.startDate) - 1].append(event)
             }
-        }
-        eventsOfMonth.sort { (event1: EKEvent, event2: EKEvent) -> Bool in
-            if event1.compareStartDate(with: event2) == .orderedAscending { return true }
-            return false
         }
         return eventsOfMonth
     }
