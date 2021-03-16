@@ -241,6 +241,82 @@
             </objects>
             <point key="canvasLocation" x="2427.536231884058" y="318.75"/>
         </scene>
+        <!--새 일정-->
+        <scene sceneID="hsS-wa-GdL">
+            <objects>
+                <viewController id="T9q-15-ulN" customClass="AddNewEventViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="35N-QS-1mk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DVZ-Ft-jf1">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddEventTableViewCell" id="PFS-fr-G07" customClass="AddEventTableViewCell" customModule="HARU" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PFS-fr-G07" id="jIA-nm-Qwg">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Th-WP-TPo" userLabel="Title">
+                                                    <rect key="frame" x="20" y="11.5" width="41.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4y-V1-ySp" userLabel="Content">
+                                                    <rect key="frame" x="355.5" y="11.5" width="41.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1Th-WP-TPo" firstAttribute="centerY" secondItem="jIA-nm-Qwg" secondAttribute="centerY" id="MNw-Ww-ucP"/>
+                                                <constraint firstItem="1Th-WP-TPo" firstAttribute="leading" secondItem="jIA-nm-Qwg" secondAttribute="leading" constant="20" symbolic="YES" id="Mgo-YL-Hou"/>
+                                                <constraint firstItem="b4y-V1-ySp" firstAttribute="centerY" secondItem="jIA-nm-Qwg" secondAttribute="centerY" id="OZ2-Lq-gqf"/>
+                                                <constraint firstAttribute="trailing" secondItem="b4y-V1-ySp" secondAttribute="trailing" constant="17" id="sAW-L7-bvU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellContentLabel" destination="b4y-V1-ySp" id="na2-Cv-6Ft"/>
+                                            <outlet property="cellTitleLabel" destination="1Th-WP-TPo" id="YmW-5K-ttg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LNH-Pc-eIW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LNH-Pc-eIW" firstAttribute="trailing" secondItem="DVZ-Ft-jf1" secondAttribute="trailing" id="QXu-Dj-7pn"/>
+                            <constraint firstItem="DVZ-Ft-jf1" firstAttribute="top" secondItem="LNH-Pc-eIW" secondAttribute="top" id="Y2X-UD-BuV"/>
+                            <constraint firstItem="DVZ-Ft-jf1" firstAttribute="leading" secondItem="LNH-Pc-eIW" secondAttribute="leading" id="jU9-Kj-VQC"/>
+                            <constraint firstItem="LNH-Pc-eIW" firstAttribute="bottom" secondItem="DVZ-Ft-jf1" secondAttribute="bottom" id="lIq-EI-49h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="새 일정" largeTitleDisplayMode="always" id="Dj2-xp-hE1">
+                        <barButtonItem key="leftBarButtonItem" title="취소" id="5DN-3d-Hdc">
+                            <connections>
+                                <action selector="cancleBtnClicked:" destination="T9q-15-ulN" id="Vcn-C0-s8h"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="저장" id="OG4-dx-DD7">
+                            <connections>
+                                <action selector="saveBtnClicked:" destination="T9q-15-ulN" id="RGb-j1-JNf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="DVZ-Ft-jf1" id="bOR-2g-EcQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H2w-T7-VDk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2419" y="977"/>
+        </scene>
         <!--Event Date Select View Controller-->
         <scene sceneID="Zn2-bl-kQ9">
             <objects>
@@ -388,7 +464,7 @@
         <!--Navigation Controller-->
         <scene sceneID="J8u-M6-G1a">
             <objects>
-                <navigationController storyboardIdentifier="AddEventNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FxG-BW-6tX" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FxG-BW-6tX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9l7-6X-7eb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -403,6 +479,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kWh-Vw-Hdz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1639" y="319"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b1O-a9-Qac">
+            <objects>
+                <navigationController storyboardIdentifier="AddEventNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ElC-Mj-pi3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E9l-QH-rC6">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="T9q-15-ulN" kind="relationship" relationship="rootViewController" id="9LH-mK-RBh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Otn-9q-ALI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1649" y="977"/>
         </scene>
     </scenes>
     <resources>
