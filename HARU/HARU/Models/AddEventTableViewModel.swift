@@ -39,8 +39,10 @@ class AddEventTableViewModel {
                     try EventHandler.ekEventStore!.save(AddEventTableViewModel.newEvent, span: .thisEvent)
                 } catch {
                     print("Error saving event in calendar")
+                    return
                 }
                 print("Event saved!")
+                NotificationCenter.default.post(name: MainCalendarModel.mainCalendarAddEventNoti, object: nil, userInfo: ["event": AddEventTableViewModel.newEvent])
                 return
             }
         }
