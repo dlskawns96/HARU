@@ -369,6 +369,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="muX-Fo-7Hn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="161"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
                                 <rect key="frame" x="50" y="109" width="314" height="32"/>
                                 <segments>
@@ -414,8 +419,8 @@
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FV-2e-JvB">
-                                <rect key="frame" x="186" y="25" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="186" y="25" width="42.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -444,15 +449,18 @@
                     </view>
                     <connections>
                         <outlet property="addBtn" destination="OWg-Zv-5p1" id="m7e-1Q-xFY"/>
+                        <outlet property="backgroundView" destination="muX-Fo-7Hn" id="xCa-9R-7S1"/>
+                        <outlet property="cancleBtn" destination="7bv-nV-OXI" id="Q5O-If-7M6"/>
                         <outlet property="diaryView" destination="p5e-RQ-CTY" id="hgv-Wu-Ogo"/>
                         <outlet property="scheduleView" destination="Mbs-x2-jbM" id="bXm-eq-AiI"/>
                         <outlet property="segment" destination="PEA-2V-ho5" id="uZj-fk-nEK"/>
                         <outlet property="selectedDateLabel" destination="8FV-2e-JvB" id="oNb-j0-hRm"/>
+                        <outlet property="titleLabel" destination="8FV-2e-JvB" id="waP-eT-y3h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gca-Xa-dfn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757" y="315"/>
+            <point key="canvasLocation" x="756.52173913043487" y="314.73214285714283"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Wo-8S-sIc">
@@ -830,7 +838,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7d4-Wg-aVE">
-                                <rect key="frame" x="0.0" y="108" width="414" height="594"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="602"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="bf7-EE-UGb" style="IBUITableViewCellStyleDefault" id="oaL-ed-Tjl">
@@ -912,10 +920,9 @@
                             <constraint firstItem="Znp-mJ-R1N" firstAttribute="trailing" secondItem="ndB-4i-F7L" secondAttribute="trailing" id="AzC-1i-c9Q"/>
                             <constraint firstItem="dHD-8p-pxG" firstAttribute="centerY" secondItem="ykE-pX-lDu" secondAttribute="centerY" id="G0M-K6-uP9"/>
                             <constraint firstItem="7d4-Wg-aVE" firstAttribute="leading" secondItem="ndB-4i-F7L" secondAttribute="leading" id="IjA-Lr-5ss"/>
-                            <constraint firstItem="7d4-Wg-aVE" firstAttribute="top" secondItem="Znp-mJ-R1N" secondAttribute="bottom" constant="8" symbolic="YES" id="JC9-Nn-8dZ"/>
                             <constraint firstItem="Znp-mJ-R1N" firstAttribute="leading" secondItem="ndB-4i-F7L" secondAttribute="leading" id="NTt-nm-dOw"/>
+                            <constraint firstItem="7d4-Wg-aVE" firstAttribute="top" secondItem="Znp-mJ-R1N" secondAttribute="bottom" id="gP5-uf-35y"/>
                             <constraint firstItem="Znp-mJ-R1N" firstAttribute="top" secondItem="ykE-pX-lDu" secondAttribute="top" id="jEL-kl-iVl"/>
-                            <constraint firstItem="7d4-Wg-aVE" firstAttribute="top" secondItem="Znp-mJ-R1N" secondAttribute="bottom" constant="8" symbolic="YES" id="ohP-Ke-iTn"/>
                             <constraint firstAttribute="bottom" secondItem="7d4-Wg-aVE" secondAttribute="bottom" id="vcE-qa-q6E"/>
                         </constraints>
                     </view>
@@ -925,7 +932,9 @@
                         <outlet property="badBtn" destination="uKg-SM-TbV" id="KOs-UJ-0ce"/>
                         <outlet property="bestBtn" destination="Nr0-wZ-Mp5" id="g6j-gS-Dzd"/>
                         <outlet property="centerLabel" destination="dHD-8p-pxG" id="vg3-AA-qR0"/>
+                        <outlet property="evaluationView" destination="Znp-mJ-R1N" id="gU7-8r-jL9"/>
                         <outlet property="goodBtn" destination="CnJ-bB-Mu3" id="29Z-xw-wzU"/>
+                        <outlet property="myView" destination="ykE-pX-lDu" id="CyG-qA-xfr"/>
                         <outlet property="tableView" destination="7d4-Wg-aVE" id="uzG-aZ-ics"/>
                     </connections>
                 </viewController>

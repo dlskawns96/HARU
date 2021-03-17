@@ -14,6 +14,13 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     @IBOutlet weak var goodBtn: UIButton!
     @IBOutlet weak var bestBtn: UIButton!
     @IBOutlet weak var centerLabel: UILabel!
+    @IBOutlet var myView: UIView!
+    @IBOutlet weak var evaluationView: UIView!
+    
+    var layerMaxXMaxYCorner: CACornerMask = []
+    var layerMaxXMinYCorner: CACornerMask = []
+    var layerMinXMaxYCorner: CACornerMask = []
+    var layerMinXMinYCorner: CACornerMask = []
     
     var diary: Diary?
     var token: NSObjectProtocol?
@@ -176,6 +183,11 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         dataSource.delegate = self
     
+        myView.backgroundColor = ThemeVariables.mainUIColor
+        evaluationView.layer.cornerRadius = 30
+        evaluationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+        
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
         longPressGesture.delegate = self
         self.tableView.addGestureRecognizer(longPressGesture)

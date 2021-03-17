@@ -12,6 +12,7 @@
 		1F6E74B225F3673100650C8C /* DiaryTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */; };
 		1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15325A5F1CB00969F09 /* Alert.swift */; };
 		1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15625A8AF0900969F09 /* HCalendar.swift */; };
+		1F985A2A25FF9634008E59A2 /* RoundUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F985A2925FF9634008E59A2 /* RoundUIView.swift */; };
 		1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B80259E807700AC8142 /* AddDiaryController.swift */; };
 		1FC02B84259E83D600AC8142 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B83259E83D600AC8142 /* Diary.swift */; };
 		1FC15E1725ED0DE80021B16B /* DiaryCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC15E1625ED0DE80021B16B /* DiaryCollectionTableViewController.swift */; };
@@ -62,6 +63,7 @@
 		1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewModel.swift; sourceTree = "<group>"; };
 		1F84D15325A5F1CB00969F09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		1F84D15625A8AF0900969F09 /* HCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCalendar.swift; sourceTree = "<group>"; };
+		1F985A2925FF9634008E59A2 /* RoundUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundUIView.swift; sourceTree = "<group>"; };
 		1FC02B80259E807700AC8142 /* AddDiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryController.swift; sourceTree = "<group>"; };
 		1FC02B83259E83D600AC8142 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		1FC15E1625ED0DE80021B16B /* DiaryCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				EA7393F925E7967E00FEA2C7 /* EventDetailViewController.swift */,
 				1FC15E1625ED0DE80021B16B /* DiaryCollectionTableViewController.swift */,
 				EADDEF6025FEEE6D00703E5F /* AddNewEventViewController.swift */,
+				1F985A2925FF9634008E59A2 /* RoundUIView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				EA66C24025E282820043A992 /* EventCollectionTableViewController.swift in Sources */,
 				EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */,
 				EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */,
+				1F985A2A25FF9634008E59A2 /* RoundUIView.swift in Sources */,
 				EAA1A26225E2997F003B0D8A /* Extensions.swift in Sources */,
 				EA7393FD25E796C700FEA2C7 /* EventDetailTableViewCell.swift in Sources */,
 				EA024A0C25B7BB6200830C4A /* CalendarDropDownCell.swift in Sources */,
@@ -566,13 +570,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				DEVELOPMENT_TEAM = 8C7RC2WQ7N;
 				INFOPLIST_FILE = HARU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.HARUD;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARUD2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HARU-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -587,13 +591,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				DEVELOPMENT_TEAM = 8C7RC2WQ7N;
 				INFOPLIST_FILE = HARU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.HARUD;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARUD2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HARU-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
