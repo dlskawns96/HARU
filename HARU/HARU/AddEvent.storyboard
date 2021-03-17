@@ -310,6 +310,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="navigationBar" destination="Dj2-xp-hE1" id="Ohh-z1-QsR"/>
                         <outlet property="tableView" destination="DVZ-Ft-jf1" id="bOR-2g-EcQ"/>
                     </connections>
                 </viewController>

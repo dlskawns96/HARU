@@ -96,6 +96,10 @@ class AddEventTableViewCell: UITableViewCell {
     }
 }
 
+extension AddEventTableViewCell: UITextFieldDelegate {
+  //ADDViewController 하나씩 구현
+}
+
 struct AddEventTableViewItem {
     var titleLabelString: String?
     

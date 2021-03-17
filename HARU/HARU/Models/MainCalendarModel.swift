@@ -53,12 +53,9 @@ class MainCalendarModel {
     }
     
     func eventAdded(event: EKEvent) {
-        var events = calendarLoader.loadEvents(ofDay: event.startDate)
+        let events = calendarLoader.loadEvents(ofDay: event.startDate)
         let newItem = MainCalendarCellItem(events: events, date: event.startDate)
         delegate?.eventAdded(data: newItem)
-        
-        
-        // dataArray[self.calendar.component(.year, from: event.startDate) - MainCalendarModel.startYear][self.calendar.component(.month, from: event.startDate)-1][self.calendar.component(.day, from: event.startDate)-1].events?.append(event)
     }
     
     
