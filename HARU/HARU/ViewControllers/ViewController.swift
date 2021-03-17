@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     var dataSource: MainCalendarModel?
     var dataArray = [[[MainCalendarCellItem]]]() {
         didSet {
-//            fsCalendar.reloadData()
+            fsCalendar.reloadData()
         }
     }
     
@@ -61,17 +61,17 @@ class ViewController: UIViewController {
         fsCalendar.register(MainCalendarCell.self, forCellReuseIdentifier: "MainCalednarCell")
         
         token = NotificationCenter.default.addObserver(forName: AddEventViewController.eventChangedNoti, object: nil,
-                queue: OperationQueue.main) {_ in
+                                                       queue: OperationQueue.main) {_ in
             self.loadedEvents = self.calendarLoader.loadEvents()
             self.fsCalendar.reloadData()
-                }
+        }
     }
     
     deinit {
-            if let token = token {
-                NotificationCenter.default.removeObserver(token)
-            }
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
         }
+    }
     
     // MARK: - Button Actions
     @IBAction func onAddEventBtnClicked(_ sender: Any) {
@@ -82,8 +82,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onEventCollectionBtnClicked(_ sender: Any) {
-//        let storyboard = UIStoryboard(name: "EventCollectionTableViewController", bundle: nil)
-//        guard let controller = storyboard.instantiateViewController(identifier: "EventCollectionTableViewController") as UINavigationController? else { return }
+        //        let storyboard = UIStoryboard(name: "EventCollectionTableViewController", bundle: nil)
+        //        guard let controller = storyboard.instantiateViewController(identifier: "EventCollectionTableViewController") as UINavigationController? else { return }
         let controller = EventCollectionTableViewController.storyboardInstance()
         self.present(controller!, animated: true, completion: nil)
     }
@@ -139,28 +139,28 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         guard let cell = calendar.dequeueReusableCell(withIdentifier: "MainCalednarCell", for: date, at: position) as? MainCalendarCell else {
             return calendar.dequeueReusableCell(withIdentifier: "MainCalednarCell", for: date, at: position)
         }
-
+        
         return cell
     }
     
-//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-//        let isSameMon: Bool = date.isSameAs(as: .month, from: calendar.currentPage)
-//        if !isSameMon {
-//            return nil
-//        }
-//        if getWeekDay(for: date) == "Sunday" {
-//            return .red
-//        }
-//        if getWeekDay(for: date) == "Saturday" {
-//            return .blue
-//        }
-//        return nil
-//    }
+    //    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+    //        let isSameMon: Bool = date.isSameAs(as: .month, from: calendar.currentPage)
+    //        if !isSameMon {
+    //            return nil
+    //        }
+    //        if getWeekDay(for: date) == "Sunday" {
+    //            return .red
+    //        }
+    //        if getWeekDay(for: date) == "Saturday" {
+    //            return .blue
+    //        }
+    //        return nil
+    //    }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         // 특정 연도가 되면 리로드
     }
-
+    
     
     func configureCell(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
         
@@ -170,5 +170,13 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
 extension ViewController: MainCalendarModelDelegate {
     func didLoadData(data: [[[MainCalendarCellItem]]]) {
         dataArray = data
+    }
+    
+    func eventAdded(data: MainCalendarCellItem) {
+        if data.date!.compare((dataArray.first?.first?.first?.date)!) == ComparisonResult.orderedDescending {
+            if data.date!.compare((dataArray.last?.last?.last?.date)!) == ComparisonResult.orderedAscending {
+                dataArray[self.calendar.component(.year, from: data.date!) - MainCalendarModel.startYear][self.calendar.component(.month, from: data.date!)-1][self.calendar.component(.day, from: data.date!)-1] = data
+            }
+        }
     }
 }
