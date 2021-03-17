@@ -48,7 +48,9 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     
     func setComment() {
         
-        let comments = ["지나간 하루는 돌아오지 않아요!", "지난날에 대한 후회는 하지 마세요!", "이미 지나버렸어요"]
+        let comments = ["지나간 하루는 돌아오지 않아요!", "지난날에 대한 후회는 하지 마세요!", "이미 지나버렸어요", "앞으로는 바로바로 기록해요!"]
+        let able_comments = ["오늘 하루는 어땠나요?", "오늘 하루를 기록하세요!", "오늘의 기록을 추가하세요!"]
+        
         let dateString = AD?.selectedDate
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
@@ -60,7 +62,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             }
             else {
                 centerLabel.isHidden = false
-                centerLabel.text = "오늘 하루를 기록하세요!"
+                centerLabel.text = able_comments.randomElement()
             }
         }
         else {
@@ -185,7 +187,10 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     
         myView.backgroundColor = ThemeVariables.mainUIColor
         evaluationView.layer.cornerRadius = 30
-        evaluationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        evaluationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        evaluationView.borderWidth = 5
+        evaluationView.borderColor = ThemeVariables.mainUIColor
 
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
