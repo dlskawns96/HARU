@@ -187,7 +187,10 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     
         myView.backgroundColor = ThemeVariables.mainUIColor
         evaluationView.layer.cornerRadius = 30
-        evaluationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        evaluationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        evaluationView.borderWidth = 5
+        evaluationView.borderColor = ThemeVariables.mainUIColor
 
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
