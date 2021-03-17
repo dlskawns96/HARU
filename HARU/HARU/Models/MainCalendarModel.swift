@@ -13,10 +13,11 @@ class MainCalendarModel {
     weak var delegate: MainCalendarModelDelegate?
     let calendarLoader = CalendarLoader()
     let calendar = Calendar.current
-    var fiveMonth = [Date]()
-    var dataArray = [[MainCalendarCellItem]]()
+    
+    static let mainCalendarAddEventNoti = Notification.Name("mainCalendarAddEventNoti")
     
     func initData(date: Date) {
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
         var dataArray = [[[MainCalendarCellItem]]]()
         
         // nil 없이 Date까지 다 저장하기
@@ -47,35 +48,47 @@ class MainCalendarModel {
         delegate?.didLoadData(data: dataArray)
     }
     
-//    func requestData(isNextMonth: Bool) {
-//        if isNextMonth {
-//            dataArray.remove(at: 0)
-//            fiveMonth.remove(at: 0)
-//
-//            let nextMonth = fiveMonth.last?.adjust(.month, offset: 1)
-//            fiveMonth.append(nextMonth!)
-//            dataArray.append([])
-//            for date in nextMonth!.datesOfMonth {
-//                let item = MainCalendarCellItem(events: calendarLoader.loadEvents(ofDay: date), date: date)
-//                dataArray[4].append(item)
-//            }
-//        } else {
-//            dataArray.popLast()
-//            fiveMonth.popLast()
-//
-//            let lastMonth = fiveMonth.first?.adjust(.month, offset: -1)
-//            fiveMonth.insert(lastMonth!, at: 0)
-//            dataArray.insert([], at: 0)
-//            for date in lastMonth!.datesOfMonth {
-//                let item = MainCalendarCellItem(events: calendarLoader.loadEvents(ofDay: date), date: date)
-//                dataArray[0].append(item)
-//            }
-//        }
-//
-//        delegate?.didLoadData(data: dataArray)
-//    }
+    @objc func onNotification(notification:Notification) {
+        eventAdded(event: notification.userInfo!["event"] as! EKEvent)
+    }
+    
+    func eventAdded(event: EKEvent) {
+        let events = calendarLoader.loadEvents(ofDay: event.startDate)
+        let newItem = MainCalendarCellItem(events: events, date: event.startDate)
+        delegate?.eventAdded(data: newItem)
+    }
+    
+    
+    //    func requestData(isNextMonth: Bool) {
+    //        if isNextMonth {
+    //            dataArray.remove(at: 0)
+    //            fiveMonth.remove(at: 0)
+    //
+    //            let nextMonth = fiveMonth.last?.adjust(.month, offset: 1)
+    //            fiveMonth.append(nextMonth!)
+    //            dataArray.append([])
+    //            for date in nextMonth!.datesOfMonth {
+    //                let item = MainCalendarCellItem(events: calendarLoader.loadEvents(ofDay: date), date: date)
+    //                dataArray[4].append(item)
+    //            }
+    //        } else {
+    //            dataArray.popLast()
+    //            fiveMonth.popLast()
+    //
+    //            let lastMonth = fiveMonth.first?.adjust(.month, offset: -1)
+    //            fiveMonth.insert(lastMonth!, at: 0)
+    //            dataArray.insert([], at: 0)
+    //            for date in lastMonth!.datesOfMonth {
+    //                let item = MainCalendarCellItem(events: calendarLoader.loadEvents(ofDay: date), date: date)
+    //                dataArray[0].append(item)
+    //            }
+    //        }
+    //
+    //        delegate?.didLoadData(data: dataArray)
+    //    }
 }
 
 protocol MainCalendarModelDelegate: class {
     func didLoadData(data: [[[MainCalendarCellItem]]])
+    func eventAdded(data: MainCalendarCellItem)
 }

@@ -415,31 +415,3 @@ extension AddEventViewController: UIAdaptivePresentationControllerDelegate {
         }
     }
 }
-
-extension UIView {
-    var globalFrame: CGRect? {
-        let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
-        return self.superview?.convert(self.frame, to: rootView)
-    }
-}
-
-extension Date {
-    func toString( dateFormat format: String ) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-        dateFormatter.locale = Locale.current
-        return dateFormatter.string(from: self)
-    }
-    
-    func toStringKST( dateFormat format: String ) -> String {
-        return self.toString(dateFormat: format)
-    }
-    
-    func toStringUTC( dateFormat format: String ) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        return dateFormatter.string(from: self)
-    }
-}
