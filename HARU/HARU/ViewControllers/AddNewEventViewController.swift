@@ -10,11 +10,14 @@ import EventKit
 import DropDown
 
 class AddNewEventViewController: UIViewController {
+    fileprivate var cellControllers = [[AddEventCellController]]()
+    fileprivate let cellControllerFactory = AddEventCellControllerFactory()
+    fileprivate var items = [[AddEventCellItem]]()
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationItem!
     
     let eventStore = EventHandler.ekEventStore
-    var newEvent = EKEvent(eventStore: EventHandler.ekEventStore!)
     let calendarLoader = CalendarLoader()
     var calendars = [EKCalendar]()
     var selectedDate = Date()
@@ -24,7 +27,7 @@ class AddNewEventViewController: UIViewController {
     
     let calendarDropDown = DropDown()
     
-    var cells = [AddEventTableViewCell]()
+    var cells = [UITableViewCell]()
     
     var isCellLoaded = false
     
@@ -36,18 +39,17 @@ class AddNewEventViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
 
         isCellLoaded = false
-        
+                
         tableView.dataSource = self
         tableView.delegate = self
         
+        cellControllerFactory.registerCells(on: tableView)
         calendars = calendarLoader.loadCalendars()
-        newEvent.title = "새로운 이벤트"
-        newEvent.startDate = selectedDate
-        newEvent.endDate = selectedDate
-        newEvent.calendar = calendars[0]
-        AddEventTableViewModel.newEvent = newEvent
+        
         dataSource.delegate = self
-        dataSource.initData(newEvent: newEvent)
+        dataSource.initData(selectedDate: selectedDate, calendar: calendars[0])
+        
+        cellControllers = cellControllerFactory.cellControllers(with: items)
         
         tableView.rowHeight = 44
         tableView.removeExtraLine()
@@ -95,8 +97,8 @@ extension AddNewEventViewController {
 
 // MARK: - Model Delegate
 extension AddNewEventViewController: AddEventTableViewModelDelegate {
-    func didLoadData(data: [AddEventTableViewItem]) {
-        dataArray = data
+    func didLoadData(items: [[AddEventCellItem]]) {
+        self.items = items
     }
     
     func didElementChanged() {
@@ -112,29 +114,15 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 3
-        case 2:
-            return 1
-        default:
-            return 0
-        }
+        return items[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddEventTableViewCell.identifier) as? AddEventTableViewCell else { return UITableViewCell() }
-        if !isCellLoaded {
-            cell.configureCell(with: dataArray[cells.count])
-        } else {
-            cell.reConfigureCell(with: dataArray[cells.count])
-        }
+        let cell = cellControllers[indexPath.section][indexPath.row].cellFromTableView(tableView, forIndexPath: indexPath)
         cells.append(cell)
         return cell
     }

@@ -13,15 +13,21 @@ class AddEventTableViewModel {
     weak var delegate: AddEventTableViewModelDelegate?
     let cellTitleStrings = ["타이틀", "캘린더", "시작", "종료", "반복"]
     
-    func initData(newEvent: EKEvent) {
-        var dataArray = [AddEventTableViewItem]()
+    func initData(selectedDate: Date, calendar: EKCalendar) {
+        let newEvent = EKEvent(eventStore: EventHandler.ekEventStore!)
         
-        for title in cellTitleStrings {
-            let item = AddEventTableViewItem(titleLabelString: title)
-            dataArray.append(item)
-        }
+        newEvent.title = "새로운 이벤트"
+        newEvent.startDate = selectedDate
+        newEvent.endDate = selectedDate
+        newEvent.calendar = calendar
+        AddEventTableViewModel.newEvent = newEvent
         
-        delegate?.didLoadData(data: dataArray)
+        let section1: [AddEventCellItem] = [TextFieldItem(title: "타이틀")]
+        let section2: [AddEventCellItem] = [CalendarItem(title: "캘린더"), TextItem(isStartDate: true, title: "시작"), TextItem(isStartDate: false, title: "종료")]
+        let section3: [AddEventCellItem] = [SwitchItem(title: "반복")]
+        let items: [[AddEventCellItem]] = [section1, section2, section3]
+        
+        delegate?.didLoadData(items: items)
     }
     
     func selectCalendar(newCalendar: EKCalendar) {
@@ -50,6 +56,6 @@ class AddEventTableViewModel {
 }
 
 protocol AddEventTableViewModelDelegate: class {
-    func didLoadData(data: [AddEventTableViewItem])
+    func didLoadData(items: [[AddEventCellItem]])
     func didElementChanged()
 }
