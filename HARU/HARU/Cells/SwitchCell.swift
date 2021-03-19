@@ -22,6 +22,9 @@ class SwitchCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func switchChanged(_ sender: Any) {
+        
+    }
 }
 
 class SwitchCellController: AddEventCellController {

@@ -22,11 +22,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vB0-Hc-2zI">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vB0-Hc-2zI">
                         <rect key="frame" x="255" y="7" width="49" height="31"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="vB0-Hc-2zI" secondAttribute="height" multiplier="47:31" id="J6L-9w-pTg"/>
                         </constraints>
+                        <connections>
+                            <action selector="switchChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="n47-0i-6EZ"/>
+                        </connections>
                     </switch>
                 </subviews>
                 <constraints>
