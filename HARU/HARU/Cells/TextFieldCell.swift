@@ -34,7 +34,6 @@ extension TextFieldCell: UITextFieldDelegate {
         }
     }
     
-    // Return 버튼 누르면 키보드 숨기기
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

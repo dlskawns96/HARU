@@ -134,3 +134,11 @@ extension UIView {
         return self.superview?.convert(self.frame, to: rootView)
     }
 }
+
+extension String {
+    func toDate() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일 a hh:mm"
+        return dateFormatter.date(from: self)!
+    }
+}
