@@ -44,3 +44,12 @@ class SwitchItem: AddEventCellItem {
         self.titleString = title
     }
 }
+
+class CalendarEditItem: AddEventCellItem {
+    var itemType: ItemType = .calendarEditItem
+    var titleString: String
+    
+    init(title: String) {
+        self.titleString = title
+    }
+}

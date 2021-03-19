@@ -30,8 +30,17 @@ class AddEventTableViewModel {
         delegate?.didLoadData(items: items)
     }
     
+    func addCalendarEditItem(title: String) {
+        let item: AddEventCellItem = CalendarEditItem(title: title)
+        delegate?.calenadrEditItemAdded(item: item)
+    }
+    
     func selectCalendar(newCalendar: EKCalendar) {
         AddEventTableViewModel.newEvent.calendar = newCalendar
+        delegate?.didElementChanged()
+    }
+    
+    func didNewEventChanged() {
         delegate?.didElementChanged()
     }
     
@@ -57,5 +66,6 @@ class AddEventTableViewModel {
 
 protocol AddEventTableViewModelDelegate: class {
     func didLoadData(items: [[AddEventCellItem]])
+    func calenadrEditItemAdded(item: AddEventCellItem)
     func didElementChanged()
 }

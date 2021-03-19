@@ -51,6 +51,8 @@
 		EAA1A26225E2997F003B0D8A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26125E2997F003B0D8A /* Extensions.swift */; };
 		EAA1A26625E2ABBF003B0D8A /* EventCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */; };
 		EAA1A26725E2ABBF003B0D8A /* EventCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */; };
+		EAB21956260472230075B72A /* CalendarEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB21954260472230075B72A /* CalendarEditCell.swift */; };
+		EAB21957260472230075B72A /* CalendarEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB21955260472230075B72A /* CalendarEditCell.xib */; };
 		EAB83E9E25FA073B00EC1B8D /* ThemeVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB83E9D25FA073B00EC1B8D /* ThemeVariables.swift */; };
 		EACCB58D25DA4C8F00733906 /* SetDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACCB58C25DA4C8F00733906 /* SetDateTableViewCell.swift */; };
 		EAD77DF625D814F30020C182 /* TitleSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD77DF525D814F30020C182 /* TitleSetTableViewCell.swift */; };
@@ -116,6 +118,8 @@
 		EAA1A26125E2997F003B0D8A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		EAB21954260472230075B72A /* CalendarEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEditCell.swift; sourceTree = "<group>"; };
+		EAB21955260472230075B72A /* CalendarEditCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEditCell.xib; sourceTree = "<group>"; };
 		EAB83E9D25FA073B00EC1B8D /* ThemeVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVariables.swift; sourceTree = "<group>"; };
 		EACCB58C25DA4C8F00733906 /* SetDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDateTableViewCell.swift; sourceTree = "<group>"; };
 		EAD77DF525D814F30020C182 /* TitleSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSetTableViewCell.swift; sourceTree = "<group>"; };
@@ -262,6 +266,8 @@
 				EA0E06CC26032CF000B1B431 /* SwitchCell.swift */,
 				EA0E06CD26032CF000B1B431 /* SwitchCell.xib */,
 				EA0E06D12603398D00B1B431 /* AddEventTableItems.swift */,
+				EAB21954260472230075B72A /* CalendarEditCell.swift */,
+				EAB21955260472230075B72A /* CalendarEditCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -358,6 +364,7 @@
 				EA0E06CA26032C7600B1B431 /* TextCell.xib in Resources */,
 				EA0E06C526032B1100B1B431 /* CalendarCell.xib in Resources */,
 				EA0E06CF26032CF000B1B431 /* SwitchCell.xib in Resources */,
+				EAB21957260472230075B72A /* CalendarEditCell.xib in Resources */,
 				EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */,
 				EA0E06BC26032A6700B1B431 /* TextFieldCell.xib in Resources */,
 				EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */,
@@ -461,6 +468,7 @@
 				1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */,
 				EA9816C125F3BB8C00E9D4EB /* EventDetailTableViewModel.swift in Sources */,
 				EAD77DF625D814F30020C182 /* TitleSetTableViewCell.swift in Sources */,
+				EAB21956260472230075B72A /* CalendarEditCell.swift in Sources */,
 				EAB83E9E25FA073B00EC1B8D /* ThemeVariables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

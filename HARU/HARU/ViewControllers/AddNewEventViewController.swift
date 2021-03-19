@@ -12,7 +12,12 @@ import DropDown
 class AddNewEventViewController: UIViewController {
     fileprivate var cellControllers = [[AddEventCellController]]()
     fileprivate let cellControllerFactory = AddEventCellControllerFactory()
-    fileprivate var items = [[AddEventCellItem]]()
+    fileprivate var items = [[AddEventCellItem]]() {
+        didSet {
+            cellControllers = cellControllerFactory.cellControllers(with: items)
+            tableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationItem!
@@ -30,6 +35,9 @@ class AddNewEventViewController: UIViewController {
     var cells = [UITableViewCell]()
     
     var isCellLoaded = false
+    var isStartDateCalendarInserted = false
+    var isEndDateCalendarInserted = false
+    var cellOffset = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +47,7 @@ class AddNewEventViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
 
         isCellLoaded = false
-                
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -51,8 +59,11 @@ class AddNewEventViewController: UIViewController {
         
         cellControllers = cellControllerFactory.cellControllers(with: items)
         
-        tableView.rowHeight = 44
+        tableView.rowHeight = UITableView.automaticDimension;
+        tableView.estimatedRowHeight = 130;
         tableView.removeExtraLine()
+        
+        tableView.keyboardDismissMode = .onDrag
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +108,15 @@ extension AddNewEventViewController {
 
 // MARK: - Model Delegate
 extension AddNewEventViewController: AddEventTableViewModelDelegate {
+    func calenadrEditItemAdded(item: AddEventCellItem) {
+        let cellItem = item as! CalendarEditItem
+        if cellItem.titleString == "시작 날짜" {
+            items[1].insert(cellItem, at: 2)
+        } else if cellItem.titleString == "종료 날짜" {
+            items[1].insert(cellItem, at: 3)
+        }
+    }
+    
     func didLoadData(items: [[AddEventCellItem]]) {
         self.items = items
     }
@@ -111,6 +131,10 @@ extension AddNewEventViewController: AddEventTableViewModelDelegate {
 extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 44.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -131,6 +155,33 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
         if indexPath.section == 1 {
             if indexPath.row == 0 {
                 calendarDropDown.show()
+            } else if indexPath.row == 1 {
+                if !isStartDateCalendarInserted {
+                    if isEndDateCalendarInserted {
+                        items[1].remove(at: 3)
+                        isEndDateCalendarInserted = false
+                    }
+                    dataSource.addCalendarEditItem(title: "시작 날짜")
+                    isStartDateCalendarInserted = true
+                    cellOffset += 1
+                } else {
+                    items[1].remove(at: 2)
+                    isStartDateCalendarInserted = false
+                    cellOffset -= 1
+                }
+            } else if indexPath.row == 2 + cellOffset {
+                if !isEndDateCalendarInserted {
+                    if isStartDateCalendarInserted {
+                        items[1].remove(at: 2)
+                        isStartDateCalendarInserted = false
+                    }
+                    dataSource.addCalendarEditItem(title: "종료 날짜")
+                    isEndDateCalendarInserted = true
+                } else {
+                    items[1].remove(at: 3)
+                    isEndDateCalendarInserted = false
+                }
+                cellOffset = 0
             }
         }
     }

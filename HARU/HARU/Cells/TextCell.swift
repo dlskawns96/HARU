@@ -55,6 +55,6 @@ class TextCellController: AddEventCellController {
     }
     
     func didSelectCell() {
-        //did select action
+        
     }
 }
