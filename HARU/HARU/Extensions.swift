@@ -94,7 +94,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-        dateFormatter.locale = Locale.current
+        dateFormatter.locale = Locale(identifier: "ko_KR")
         return dateFormatter.string(from: self)
     }
     
@@ -114,11 +114,31 @@ extension UITableView {
     func removeExtraLine() {
         tableFooterView = UIView(frame: .zero)
     }
+    
+    func insertRow(indexPath: IndexPath, with animation: UITableView.RowAnimation) {
+        self.beginUpdates()
+        self.insertRows(at: [indexPath], with: animation)
+        self.endUpdates()
+    }
+    
+    func deleteRow(indexPath: IndexPath, with animation: UITableView.RowAnimation) {
+        self.beginUpdates()
+        self.deleteRows(at: [indexPath], with: animation)
+        self.endUpdates()
+    }
 }
 
 extension UIView {
     var globalFrame: CGRect? {
         let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
         return self.superview?.convert(self.frame, to: rootView)
+    }
+}
+
+extension String {
+    func toDate() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일 a hh:mm"
+        return dateFormatter.date(from: self)!
     }
 }
