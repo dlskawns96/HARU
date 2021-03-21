@@ -115,12 +115,22 @@ extension DiaryCollectionTableViewController: UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
-        self.present(controller, animated: true, completion: nil)
         
-        AddDiaryController.editTarget = dataArray[indexPath.section].content
-        AddDiaryController.selectedDate = dataArray[indexPath.section].date
-        AddDiaryController.check = true
+        let today = NSDate()
+        let selectedDate = dataArray[indexPath.section].date
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let todayString = dateFormatter.string(from: today as Date)
+        
+        if selectedDate! >= todayString {
+            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
+            self.present(controller, animated: true, completion: nil)
+            
+            AddDiaryController.editTarget = dataArray[indexPath.section].content
+            AddDiaryController.selectedDate = dataArray[indexPath.section].date
+            AddDiaryController.check = true
+        }
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
