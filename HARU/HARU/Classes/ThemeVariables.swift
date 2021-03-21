@@ -33,5 +33,6 @@ class ThemeVariables {
     
     static let mainUIColor = hexStringToUIColor(hex: "4144C1")
     static let mainColorString = "4144C1"
+    static let buttonCornerRadius = CGFloat(12.0)
 }
 

@@ -94,7 +94,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-        dateFormatter.locale = Locale.current
+        dateFormatter.locale = Locale(identifier: "ko_KR")
         return dateFormatter.string(from: self)
     }
     
@@ -114,6 +114,18 @@ extension UITableView {
     func removeExtraLine() {
         tableFooterView = UIView(frame: .zero)
     }
+    
+    func insertRow(indexPath: IndexPath, with animation: UITableView.RowAnimation) {
+        self.beginUpdates()
+        self.insertRows(at: [indexPath], with: animation)
+        self.endUpdates()
+    }
+    
+    func deleteRow(indexPath: IndexPath, with animation: UITableView.RowAnimation) {
+        self.beginUpdates()
+        self.deleteRows(at: [indexPath], with: animation)
+        self.endUpdates()
+    }
 }
 
 extension UIView {
@@ -121,4 +133,36 @@ extension UIView {
         let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
         return self.superview?.convert(self.frame, to: rootView)
     }
+}
+
+extension String {
+    func toDate() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일 a hh:mm"
+        return dateFormatter.date(from: self)!
+    }
+}
+
+extension CALayer {
+  func applySketchShadow(
+    color: UIColor = .black,
+    alpha: Float = 0.5,
+    x: CGFloat = 0,
+    y: CGFloat = 2,
+    blur: CGFloat = 4,
+    spread: CGFloat = 0)
+  {
+    masksToBounds = false
+    shadowColor = color.cgColor
+    shadowOpacity = alpha
+    shadowOffset = CGSize(width: x, height: y)
+    shadowRadius = blur / 2.0
+    if spread == 0 {
+      shadowPath = nil
+    } else {
+      let dx = -spread
+      let rect = bounds.insetBy(dx: dx, dy: dx)
+      shadowPath = UIBezierPath(rect: rect).cgPath
+    }
+  }
 }

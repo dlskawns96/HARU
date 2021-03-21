@@ -10,11 +10,19 @@ import EventKit
 import DropDown
 
 class AddNewEventViewController: UIViewController {
+    fileprivate var cellControllers = [[AddEventCellController]]()
+    fileprivate let cellControllerFactory = AddEventCellControllerFactory()
+    fileprivate var items = [[AddEventCellItem]]() {
+        didSet {
+            cellControllers = cellControllerFactory.cellControllers(with: items)
+            tableView.reloadData()
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationItem!
     
     let eventStore = EventHandler.ekEventStore
-    var newEvent = EKEvent(eventStore: EventHandler.ekEventStore!)
     let calendarLoader = CalendarLoader()
     var calendars = [EKCalendar]()
     var selectedDate = Date()
@@ -24,9 +32,12 @@ class AddNewEventViewController: UIViewController {
     
     let calendarDropDown = DropDown()
     
-    var cells = [AddEventTableViewCell]()
+    var cells = [UITableViewCell]()
     
     var isCellLoaded = false
+    var isStartDateCalendarInserted = false
+    var isEndDateCalendarInserted = false
+    var cellOffset = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,17 +51,19 @@ class AddNewEventViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        cellControllerFactory.registerCells(on: tableView)
         calendars = calendarLoader.loadCalendars()
-        newEvent.title = "새로운 이벤트"
-        newEvent.startDate = selectedDate
-        newEvent.endDate = selectedDate
-        newEvent.calendar = calendars[0]
-        AddEventTableViewModel.newEvent = newEvent
-        dataSource.delegate = self
-        dataSource.initData(newEvent: newEvent)
         
-        tableView.rowHeight = 44
+        dataSource.delegate = self
+        dataSource.initData(selectedDate: selectedDate, calendar: calendars[0])
+        
+        cellControllers = cellControllerFactory.cellControllers(with: items)
+        
+        tableView.rowHeight = UITableView.automaticDimension;
+        tableView.estimatedRowHeight = 130;
         tableView.removeExtraLine()
+        
+        tableView.keyboardDismissMode = .onDrag
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,8 +108,17 @@ extension AddNewEventViewController {
 
 // MARK: - Model Delegate
 extension AddNewEventViewController: AddEventTableViewModelDelegate {
-    func didLoadData(data: [AddEventTableViewItem]) {
-        dataArray = data
+    func calenadrEditItemAdded(item: AddEventCellItem) {
+        let cellItem = item as! CalendarEditItem
+        if cellItem.titleString == "시작 날짜" {
+            items[1].insert(cellItem, at: 2)
+        } else if cellItem.titleString == "종료 날짜" {
+            items[1].insert(cellItem, at: 3)
+        }
+    }
+    
+    func didLoadData(items: [[AddEventCellItem]]) {
+        self.items = items
     }
     
     func didElementChanged() {
@@ -111,30 +133,20 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
         return 44.0
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 3
-        case 2:
-            return 1
-        default:
-            return 0
-        }
+        return items[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddEventTableViewCell.identifier) as? AddEventTableViewCell else { return UITableViewCell() }
-        if !isCellLoaded {
-            cell.configureCell(with: dataArray[cells.count])
-        } else {
-            cell.reConfigureCell(with: dataArray[cells.count])
-        }
+        let cell = cellControllers[indexPath.section][indexPath.row].cellFromTableView(tableView, forIndexPath: indexPath)
         cells.append(cell)
         return cell
     }
@@ -143,6 +155,33 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
         if indexPath.section == 1 {
             if indexPath.row == 0 {
                 calendarDropDown.show()
+            } else if indexPath.row == 1 {
+                if !isStartDateCalendarInserted {
+                    if isEndDateCalendarInserted {
+                        items[1].remove(at: 3)
+                        isEndDateCalendarInserted = false
+                    }
+                    dataSource.addCalendarEditItem(title: "시작 날짜")
+                    isStartDateCalendarInserted = true
+                    cellOffset += 1
+                } else {
+                    items[1].remove(at: 2)
+                    isStartDateCalendarInserted = false
+                    cellOffset -= 1
+                }
+            } else if indexPath.row == 2 + cellOffset {
+                if !isEndDateCalendarInserted {
+                    if isStartDateCalendarInserted {
+                        items[1].remove(at: 2)
+                        isStartDateCalendarInserted = false
+                    }
+                    dataSource.addCalendarEditItem(title: "종료 날짜")
+                    isEndDateCalendarInserted = true
+                } else {
+                    items[1].remove(at: 3)
+                    isEndDateCalendarInserted = false
+                }
+                cellOffset = 0
             }
         }
     }

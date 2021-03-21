@@ -13,6 +13,9 @@ import EventKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var fsCalendar: FSCalendar!
+    @IBOutlet weak var eventsCollectionBtn: UIButton!
+    @IBOutlet weak var diaryCollectionBtn: UIButton!
+    
     var eventStartDates: [NSDate] = []
     var eventEndDates: [NSDate] = []
     var eventTitles: [String] = []
@@ -37,9 +40,23 @@ class ViewController: UIViewController {
         }
     }
     
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = ThemeVariables.mainUIColor
+//        eventsCollectionBtn.borderWidth = 1.0
+//        diaryCollectionBtn.borderWidth = 1.0
+//        eventsCollectionBtn.borderColor = .white
+//        diaryCollectionBtn.borderColor = .white
+//        eventsCollectionBtn.cornerRadius = ThemeVariables.buttonCornerRadius
+//        diaryCollectionBtn.cornerRadius = ThemeVariables.buttonCornerRadius
+    
+        
+//        fsCalendar.layer.shadowPath = UIBezierPath(roundedRect: fsCalendar.bounds, cornerRadius: 10).cgPath
+//        fsCalendar.layer.shouldRasterize = true
+//        fsCalendar.layer.rasterizationScale = UIScreen.main.scale
+        
         EventHandler.ekEventStore = EKEventStore()
         calendarLoader = CalendarLoader()
         dataSource = MainCalendarModel()

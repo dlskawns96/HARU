@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarCell" id="KGk-i7-Jjw" customClass="CalendarCell" customModule="HARU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsA-Za-1X5">
+                        <rect key="frame" x="16" y="11.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKd-vM-0Aw">
+                        <rect key="frame" x="262" y="11.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrE-A5-VCr">
+                        <rect key="frame" x="232" y="11" width="22" height="22"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="KrE-A5-VCr" secondAttribute="height" multiplier="1:1" id="eyQ-in-gO3"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bsA-Za-1X5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8ju-Pv-1R5"/>
+                    <constraint firstItem="XKd-vM-0Aw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9yg-E4-GBc"/>
+                    <constraint firstItem="KrE-A5-VCr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JlD-Y1-A2z"/>
+                    <constraint firstAttribute="trailing" secondItem="XKd-vM-0Aw" secondAttribute="trailing" constant="16" id="aXz-m3-n6M"/>
+                    <constraint firstItem="bsA-Za-1X5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="jpT-bC-sse"/>
+                    <constraint firstItem="KrE-A5-VCr" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="1:2" id="nfB-Hi-EWe"/>
+                    <constraint firstItem="XKd-vM-0Aw" firstAttribute="leading" secondItem="KrE-A5-VCr" secondAttribute="trailing" constant="8" id="q0j-GG-2DT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="calendarColorView" destination="KrE-A5-VCr" id="Sii-HC-06k"/>
+                <outlet property="calendarTitleLabel" destination="XKd-vM-0Aw" id="U9I-ee-D32"/>
+                <outlet property="titleLabel" destination="bsA-Za-1X5" id="j7C-nR-DpO"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="101.78571428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
