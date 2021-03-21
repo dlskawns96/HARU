@@ -42,15 +42,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Yd-HE-QMI" userLabel="MainContentView">
                         <rect key="frame" x="10" y="10" width="330" height="61"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1X-hF-ge7">
-                                <rect key="frame" x="20" y="10" width="17.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="MainUIColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Do-Ka-anI">
-                                <rect key="frame" x="20" y="38.5" width="20.5" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1X-hF-ge7">
+                                <rect key="frame" x="40" y="18.5" width="20.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" name="MainUIColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -69,17 +63,20 @@
                                     <constraint firstItem="aXf-Hn-hPB" firstAttribute="centerY" secondItem="Alv-7B-2zH" secondAttribute="centerY" id="Iyr-TN-THk"/>
                                     <constraint firstItem="aXf-Hn-hPB" firstAttribute="leading" secondItem="Alv-7B-2zH" secondAttribute="leading" constant="14" id="PRJ-oX-wbb"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Alv-7B-2zH" firstAttribute="leading" secondItem="9Do-Ka-anI" secondAttribute="trailing" constant="67.5" id="FSu-SH-tdi"/>
                             <constraint firstItem="Alv-7B-2zH" firstAttribute="top" secondItem="8Yd-HE-QMI" secondAttribute="top" constant="15" id="NkY-3M-QGA"/>
                             <constraint firstAttribute="bottom" secondItem="Alv-7B-2zH" secondAttribute="bottom" constant="15" id="V4f-01-8gf"/>
-                            <constraint firstItem="9Do-Ka-anI" firstAttribute="top" secondItem="B1X-hF-ge7" secondAttribute="bottom" constant="8" id="dod-D2-RWA"/>
+                            <constraint firstItem="Alv-7B-2zH" firstAttribute="leading" secondItem="8Yd-HE-QMI" secondAttribute="leading" constant="108" id="b5I-bG-GPx"/>
                             <constraint firstAttribute="trailing" secondItem="Alv-7B-2zH" secondAttribute="trailing" constant="20" id="gLV-mU-ddi"/>
-                            <constraint firstItem="B1X-hF-ge7" firstAttribute="leading" secondItem="8Yd-HE-QMI" secondAttribute="leading" constant="20" id="mcl-Jj-sgY"/>
-                            <constraint firstItem="B1X-hF-ge7" firstAttribute="top" secondItem="8Yd-HE-QMI" secondAttribute="top" constant="10" id="rgp-Kq-pNe"/>
-                            <constraint firstItem="9Do-Ka-anI" firstAttribute="leading" secondItem="8Yd-HE-QMI" secondAttribute="leading" constant="20" id="wbl-5w-bIx"/>
+                            <constraint firstItem="B1X-hF-ge7" firstAttribute="centerY" secondItem="8Yd-HE-QMI" secondAttribute="centerY" id="kky-M7-4bz"/>
+                            <constraint firstItem="B1X-hF-ge7" firstAttribute="leading" secondItem="8Yd-HE-QMI" secondAttribute="leading" constant="40" id="mcl-Jj-sgY"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -108,7 +105,6 @@
             <connections>
                 <outlet property="calendarColorView" destination="Alv-7B-2zH" id="sDj-G4-jDE"/>
                 <outlet property="eventDayLabel" destination="B1X-hF-ge7" id="AfI-8Z-Lji"/>
-                <outlet property="eventMonthLabel" destination="9Do-Ka-anI" id="lCd-q1-wf6"/>
                 <outlet property="eventTitleLabel" destination="aXf-Hn-hPB" id="qcY-Um-ATM"/>
                 <outlet property="shadowView" destination="6fb-qD-unX" id="mTH-Xz-1kF"/>
             </connections>

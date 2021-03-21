@@ -15,14 +15,14 @@ class EventCollectionTableViewModel {
         var dataArray = [[EventCollectionTableViewItem]]()
         let calendarLoader = CalendarLoader()
         let events = calendarLoader.loadEvents(ofYear: date)
-        
         for month in 0...11 {
+            dataArray.append([])
             for event in events[month] {
                 let item = EventCollectionTableViewItem(event: event)
-                dataArray.append([])
                 dataArray[month].append(item)
             }
         }
+        print(dataArray.count)
         delegate?.didLoadData(data: dataArray)
     }
 }
