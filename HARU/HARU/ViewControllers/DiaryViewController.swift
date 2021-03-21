@@ -185,11 +185,12 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         dataSource.delegate = self
     
-        myView.backgroundColor = ThemeVariables.mainUIColor
-        evaluationView.layer.cornerRadius = 30
+        myView.backgroundColor = .white
+        evaluationView.layer.cornerRadius = 10
         evaluationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
         evaluationView.borderWidth = 5
+        evaluationView.backgroundColor = ThemeVariables.mainUIColor
         evaluationView.borderColor = ThemeVariables.mainUIColor
 
         
