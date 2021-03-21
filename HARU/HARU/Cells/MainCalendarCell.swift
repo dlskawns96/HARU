@@ -16,12 +16,14 @@ class MainCalendarCell: FSCalendarCell {
             var posY = 50
             for event in item.events! {
                 let lab = UILabel(frame: CGRect(x: 0, y: posY, width: Int(self.bounds.width), height: 15))
+                lab.clipsToBounds = true
+                lab.layer.cornerRadius = 2.5
                 lab.font = .systemFont(ofSize: 12, weight: .regular)
                 lab.lineBreakMode = .byCharWrapping
                 lab.text = event.title
                 lab.textColor = UIColor.init(named: "#32C77F")
                 self.addSubview(lab)
-                lab.backgroundColor = UIColor(cgColor: event.calendar.cgColor)
+                lab.backgroundColor = UIColor(cgColor: event.calendar.cgColor).withAlphaComponent(0.75)
                 posY = posY + 15
             }
         } else {
@@ -31,13 +33,6 @@ class MainCalendarCell: FSCalendarCell {
                 }
             }
             
-        }
-        
-        if item.dayString == "Sun" {
-            self.titleLabel.textColor = .red
-        }
-        if item.dayString == "Sat" {
-            self.titleLabel.textColor = .blue
         }
     }
 }
