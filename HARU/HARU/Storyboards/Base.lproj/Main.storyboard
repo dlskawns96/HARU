@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,6 +17,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dFF-Ai-Yu2">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="XWt-8B-EkA"/>
@@ -33,8 +37,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-HY-9MJ" userLabel="캘린더 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                <rect key="frame" x="20" y="140" width="374" height="652"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                        <point key="value" x="0.0" y="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27V-Gr-hcq" customClass="FSCalendar">
-                                <rect key="frame" x="20" y="140" width="374" height="672"/>
+                                <rect key="frame" x="20" y="140" width="374" height="652"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
@@ -52,55 +74,109 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="fakedSelectedDay">
                                         <integer key="value" value="-20"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="avf-m8-9Qz"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="4Az-UG-HxX"/>
                                 </connections>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UmC-43-Djd">
-                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7j4-GB-lXf" userLabel="버튼 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                <rect key="frame" x="20" y="812" width="374" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79b-Cj-d5s" userLabel="일정모음버튼">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="50"/>
-                                        <state key="normal" title="일정"/>
+                                        <rect key="frame" x="20" y="0.0" width="124.5" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="일정">
+                                            <color key="titleColor" name="MainUIColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="onEventCollectionBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8LZ-C0-XtU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-Mp-TZa" userLabel="일기모음버튼">
-                                        <rect key="frame" x="207" y="0.0" width="207" height="50"/>
-                                        <state key="normal" title="일기"/>
+                                        <rect key="frame" x="229.5" y="0.0" width="124.5" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="일기">
+                                            <color key="titleColor" name="MainUIColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="DiaryCollectionBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zA2-ep-w51"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="uEc-Mp-TZa" secondAttribute="bottom" id="2vX-JM-z5R"/>
+                                    <constraint firstAttribute="trailing" secondItem="uEc-Mp-TZa" secondAttribute="trailing" constant="20" id="J8T-D9-QOC"/>
+                                    <constraint firstItem="79b-Cj-d5s" firstAttribute="top" secondItem="7j4-GB-lXf" secondAttribute="top" id="TPP-hE-hCd"/>
+                                    <constraint firstAttribute="width" secondItem="79b-Cj-d5s" secondAttribute="width" multiplier="3:1" id="Xza-cF-Z8k"/>
+                                    <constraint firstItem="79b-Cj-d5s" firstAttribute="leading" secondItem="7j4-GB-lXf" secondAttribute="leading" constant="20" symbolic="YES" id="djx-OY-hYC"/>
+                                    <constraint firstAttribute="bottom" secondItem="79b-Cj-d5s" secondAttribute="bottom" id="eRr-6T-E1H"/>
+                                    <constraint firstItem="uEc-Mp-TZa" firstAttribute="top" secondItem="7j4-GB-lXf" secondAttribute="top" id="fXH-BS-yc9"/>
+                                    <constraint firstItem="uEc-Mp-TZa" firstAttribute="width" secondItem="7j4-GB-lXf" secondAttribute="width" multiplier="1:3" id="lBu-3W-TVz"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                        <point key="value" x="0.0" y="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="MainUIColor"/>
                         <constraints>
+                            <constraint firstItem="1Je-HY-9MJ" firstAttribute="height" secondItem="27V-Gr-hcq" secondAttribute="height" id="011-x8-rMY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7j4-GB-lXf" secondAttribute="trailing" constant="20" id="0Ic-Oe-Da8"/>
+                            <constraint firstItem="1Je-HY-9MJ" firstAttribute="width" secondItem="27V-Gr-hcq" secondAttribute="width" id="1VS-8q-2pq"/>
+                            <constraint firstItem="7j4-GB-lXf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2AE-Me-eRz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="27V-Gr-hcq" secondAttribute="trailing" constant="20" id="69k-Xd-3XO"/>
                             <constraint firstItem="27V-Gr-hcq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AUL-NV-huN"/>
-                            <constraint firstItem="UmC-43-Djd" firstAttribute="top" secondItem="27V-Gr-hcq" secondAttribute="bottom" id="BHJ-Tm-5cw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UmC-43-Djd" secondAttribute="bottom" id="X6k-b4-mzZ"/>
+                            <constraint firstItem="1Je-HY-9MJ" firstAttribute="centerX" secondItem="27V-Gr-hcq" secondAttribute="centerX" id="K47-35-2ZA"/>
                             <constraint firstItem="27V-Gr-hcq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aBW-eC-F1F"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="27V-Gr-hcq" secondAttribute="bottom" constant="50" id="oVd-iM-mGO"/>
-                            <constraint firstItem="UmC-43-Djd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="x5w-Sx-do5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UmC-43-Djd" secondAttribute="trailing" id="zM9-Vh-qXd"/>
+                            <constraint firstItem="7j4-GB-lXf" firstAttribute="top" secondItem="27V-Gr-hcq" secondAttribute="bottom" constant="20" id="b3d-q0-65A"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7j4-GB-lXf" secondAttribute="bottom" id="f7x-QF-K7a"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="27V-Gr-hcq" secondAttribute="bottom" constant="70" id="oVd-iM-mGO"/>
+                            <constraint firstItem="1Je-HY-9MJ" firstAttribute="centerY" secondItem="27V-Gr-hcq" secondAttribute="centerY" id="zvF-JP-fjV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="HARU" id="ohc-xO-gFm">
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="gearshape" catalog="system" id="jwz-0M-SVQ">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="aSc-sL-jeR" kind="show" id="VcM-cs-mX7"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="plus" catalog="system" id="aAM-El-QhD">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="onAddEventBtnClicked:" destination="BYZ-38-t0r" id="9a9-sa-imJ"/>
                                 </connections>
@@ -108,6 +184,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="diaryCollectionBtn" destination="uEc-Mp-TZa" id="630-uJ-zse"/>
+                        <outlet property="eventsCollectionBtn" destination="79b-Cj-d5s" id="ZUd-Q4-gNq"/>
                         <outlet property="fsCalendar" destination="27V-Gr-hcq" id="xKt-ee-Ozf"/>
                     </connections>
                 </viewController>
@@ -176,27 +254,27 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ButtonTableViewCell" id="DH9-iU-yts" customClass="ButtonTableViewCell" customModule="HARU" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="170.5" width="414" height="44.5"/>
+                                        <rect key="frame" x="0.0" y="170.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DH9-iU-yts" id="Udb-E5-M8k">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="캘린더" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEj-Lg-xuh">
-                                                    <rect key="frame" x="20" y="11" width="45" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="45" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="O5S-pY-gZM">
-                                                    <rect key="frame" x="388" y="15" width="26" height="15"/>
+                                                    <rect key="frame" x="388" y="14.5" width="26" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="Kod-Ys-r0Q"/>
                                                         <constraint firstAttribute="height" constant="15" id="LTy-e8-1u5"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eof-H1-KwO">
-                                                    <rect key="frame" x="356" y="12" width="30" height="21.5"/>
+                                                    <rect key="frame" x="356" y="12" width="30" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -624,14 +702,14 @@
                         <color key="sectionIndexBackgroundColor" red="0.50827812900000002" green="0.50827812900000002" blue="0.50827812900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SetTitle" id="hTe-34-kil" customClass="TitleSetTableViewCell" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hTe-34-kil" id="WqW-6C-leR">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이벤트 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyj-6U-QDo">
-                                            <rect key="frame" x="20" y="11.5" width="78" height="21.5"/>
+                                            <rect key="frame" x="20" y="11.5" width="78" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -648,20 +726,20 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="hwb-Z9-Gd2" customClass="TitleSetTableViewCell" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="99" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwb-Z9-Gd2" id="qjN-FL-e2O">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l92-DE-3ph">
-                                            <rect key="frame" x="20" y="11.5" width="29.5" height="21.5"/>
+                                            <rect key="frame" x="20" y="11.5" width="29.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ony-ud-o8X">
-                                            <rect key="frame" x="59.5" y="11.5" width="334.5" height="22"/>
+                                            <rect key="frame" x="59.5" y="11" width="334.5" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -680,20 +758,20 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SetDateTableViewCell" id="D80-iR-dkK" customClass="SetDateTableViewCell" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="143.5" width="414" height="445.5"/>
+                                <rect key="frame" x="0.0" y="142.5" width="414" height="446"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D80-iR-dkK" id="rK3-An-Wvm">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="445.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="446"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작 날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftj-fS-Pvd">
-                                            <rect key="frame" x="20" y="11.5" width="63.5" height="21"/>
+                                            <rect key="frame" x="20" y="11.5" width="63.5" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkJ-21-3Ma" customClass="FSCalendar">
-                                            <rect key="frame" x="8" y="42.5" width="398" height="398"/>
+                                            <rect key="frame" x="8" y="43" width="398" height="398"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="JkJ-21-3Ma" secondAttribute="height" multiplier="1:1" id="igv-2M-5XQ"/>
@@ -711,24 +789,24 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eLE-cm-OtV">
-                                            <rect key="frame" x="133" y="6.5" width="131" height="32"/>
+                                            <rect key="frame" x="133" y="7" width="131" height="32"/>
                                             <segments>
                                                 <segment title="First"/>
                                                 <segment title="Second"/>
                                             </segments>
                                         </segmentedControl>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dhh-Wg-Aov" userLabel="시">
-                                            <rect key="frame" x="311" y="5" width="45.5" height="34"/>
+                                            <rect key="frame" x="311" y="5.5" width="45.5" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="send"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nnt-3s-hyd" userLabel="분">
-                                            <rect key="frame" x="358.5" y="5" width="45.5" height="34"/>
+                                            <rect key="frame" x="358.5" y="5.5" width="45.5" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vr-nE-jGf" userLabel=":">
-                                            <rect key="frame" x="311" y="11.5" width="93" height="21"/>
+                                            <rect key="frame" x="311" y="12" width="93" height="21"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -762,14 +840,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SetCalendarTableViewCell" id="HPk-A8-Qka" customClass="SetCalendarTableViewCell" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="589" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="588.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HPk-A8-Qka" id="zom-lb-4cy">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="캘린더" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaS-1y-zgb">
-                                            <rect key="frame" x="20" y="11.5" width="44.5" height="21.5"/>
+                                            <rect key="frame" x="20" y="11.5" width="44.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -781,7 +859,7 @@
                                             </state>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l4O-zW-94o">
-                                            <rect key="frame" x="325" y="10.5" width="23" height="23"/>
+                                            <rect key="frame" x="325.5" y="10.5" width="22.5" height="22.5"/>
                                             <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="l4O-zW-94o" secondAttribute="height" multiplier="1:1" id="7uR-Jm-Sw7"/>
@@ -997,6 +1075,9 @@
         <image name="multiply" catalog="system" width="128" height="111"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="right_arrow" width="512" height="512"/>
+        <namedColor name="MainUIColor">
+            <color red="0.25490196078431371" green="0.26666666666666666" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
