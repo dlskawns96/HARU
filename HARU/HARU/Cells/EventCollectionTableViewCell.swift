@@ -14,6 +14,7 @@ class EventCollectionTableViewCell: UITableViewCell {
     @IBOutlet weak var eventMonthLabel: UILabel?
     @IBOutlet weak var eventTitleLabel: UILabel?
     @IBOutlet weak var calendarColorView: UIView?
+    @IBOutlet weak var shadowView: ShadowView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,11 +27,16 @@ class EventCollectionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
     func configureCell(with model: EventCollectionTableViewItem) {
         eventDayLabel?.text = model.eventDayString
         eventMonthLabel?.text = model.eventMonthString
         eventTitleLabel?.text = model.eventTitleString
         calendarColorView?.backgroundColor = model.eventColor
+        shadowView.shadowColor = model.eventColor
     }
     
 }

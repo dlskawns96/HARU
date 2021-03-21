@@ -44,7 +44,6 @@ class ViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ThemeVariables.mainUIColor
 //        eventsCollectionBtn.borderWidth = 1.0
 //        diaryCollectionBtn.borderWidth = 1.0
 //        eventsCollectionBtn.borderColor = .white
@@ -52,10 +51,10 @@ class ViewController: UIViewController {
 //        eventsCollectionBtn.cornerRadius = ThemeVariables.buttonCornerRadius
 //        diaryCollectionBtn.cornerRadius = ThemeVariables.buttonCornerRadius
     
-        
-//        fsCalendar.layer.shadowPath = UIBezierPath(roundedRect: fsCalendar.bounds, cornerRadius: 10).cgPath
-//        fsCalendar.layer.shouldRasterize = true
-//        fsCalendar.layer.rasterizationScale = UIScreen.main.scale
+        fsCalendar.layer.cornerRadius = ThemeVariables.buttonCornerRadius
+        fsCalendar.layer.shadowPath = UIBezierPath(roundedRect: fsCalendar.bounds, cornerRadius: 10).cgPath
+        fsCalendar.layer.shouldRasterize = true
+        fsCalendar.layer.rasterizationScale = UIScreen.main.scale
         
         EventHandler.ekEventStore = EKEventStore()
         calendarLoader = CalendarLoader()
@@ -74,6 +73,16 @@ class ViewController: UIViewController {
         fsCalendar.appearance.headerTitleColor = .black
         fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
         fsCalendar.appearance.borderRadius = 0
+        
+        for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
+            if weekday.text == "일" {
+                weekday.textColor = .red
+            } else if weekday.text == "토" {
+                weekday.textColor = .blue
+            } else {
+                weekday.textColor = .black
+            }
+        }
         
         fsCalendar.register(MainCalendarCell.self, forCellReuseIdentifier: "MainCalednarCell")
         
@@ -160,22 +169,22 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         return cell
     }
     
-    //    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-    //        let isSameMon: Bool = date.isSameAs(as: .month, from: calendar.currentPage)
-    //        if !isSameMon {
-    //            return nil
-    //        }
-    //        if getWeekDay(for: date) == "Sunday" {
-    //            return .red
-    //        }
-    //        if getWeekDay(for: date) == "Saturday" {
-    //            return .blue
-    //        }
-    //        return nil
-    //    }
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        let isSameMon: Bool = date.isSameAs(as: .month, from: calendar.currentPage)
+        if !isSameMon {
+            return nil
+        }
+        if getWeekDay(for: date) == "Sunday" {
+            return .red
+        }
+        if getWeekDay(for: date) == "Saturday" {
+            return .blue
+        }
+        return nil
+    }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        // 특정 연도가 되면 리로드
+        calendar.reloadData()
     }
     
     
