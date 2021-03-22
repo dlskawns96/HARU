@@ -17,12 +17,10 @@ class EventCollectionTableViewController: UIViewController {
     
     static func storyboardInstance() -> UINavigationController? {
         let storyboard = UIStoryboard(name: "EventCollectionTableViewController",
-                                           bundle: nil)
+                                      bundle: nil)
         return storyboard.instantiateInitialViewController() as? UINavigationController
     }
     
-//    var eventsOfYear = [[EKEvent]]()
-    var events: [EventCollectionTableViewItem] = []
     var calendarLoader = CalendarLoader()
     var currentYear = Date()
     var currentMonth = 1
@@ -35,12 +33,16 @@ class EventCollectionTableViewController: UIViewController {
             collectionView.reloadData()
         }
     }
+    
+    var tableViews = [UITableView]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
-        dateFormatter.dateFormat = "yyyy년 1월"
-        titleLabel.title = dateFormatter.string(from: Date())
+        
         dateFormatter.dateFormat = "yyyy년"
+        titleLabel.title = dateFormatter.string(from: Date())
         lastYearBtn.title = "< " + dateFormatter.string(from: Date().adjust(.year, offset: -1))
         nextYearBtn.title = dateFormatter.string(from: Date().adjust(.year, offset: 1)) + " >"
         
@@ -48,9 +50,6 @@ class EventCollectionTableViewController: UIViewController {
         collectionView.isPagingEnabled = true
         
         collectionView.layoutIfNeeded()
-//        let cal = Calendar.current
-//        collectionView.scrollToItem(at: IndexPath(item: cal.component(.month, from: Date()), section: 0), at: .right, animated: false)
-        
         dataSource.delegate = self
     }
     
@@ -61,7 +60,7 @@ class EventCollectionTableViewController: UIViewController {
     
     @IBAction func lastYearBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.year, offset: -1)
-//        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
+        //        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
         dataSource.requestData(ofYear: currentYear)
         currentMonth = 1
         titleLabel.title = dateFormatter.string(from: currentYear) + " 1월"
@@ -73,7 +72,7 @@ class EventCollectionTableViewController: UIViewController {
     
     @IBAction func nextYearBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.year, offset: 1)
-//        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
+        //        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
         dataSource.requestData(ofYear: currentYear)
         currentMonth = 1
         titleLabel.title = dateFormatter.string(from: currentYear) + " 1월"
@@ -91,25 +90,13 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionCell", for: indexPath) as? EventCollectionCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell else {
             return UICollectionViewCell()
         }
-            
-        events = dataArray[indexPath.item]
-        let tableView = UITableView()
         
-        let nibName = UINib(nibName: "EventCollectionTableViewCell", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "EventCollectionTableViewCell")
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        cell.addSubview(tableView)
-        tableView.removeExtraLine()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: cell.leadingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: cell.trailingAnchor).isActive = true
+        cell.cellTitle.text = String(indexPath.item + 1) + "월"
+        cell.tableViewData = dataArray[indexPath.item]
+        cell.tableView.reloadData()
         
         return cell
     }
@@ -117,8 +104,8 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt   section: Int) -> CGFloat {
         return 0
     }
-
-   
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt  section: Int) -> CGFloat {
         return 0
     }
@@ -127,56 +114,10 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        for cell in collectionView.visibleCells {
-            let indexPath = collectionView.indexPath(for: cell)
-            dateFormatter.dateFormat = "yyyy년"
-            titleLabel.title = dateFormatter.string(from: currentYear) + " " + String(indexPath!.item + 1) + "월"
-            currentMonth = indexPath!.item + 1
-        }
-    }
-}
-
-// MARK: - Table view extension
-extension EventCollectionTableViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return events.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCollectionTableViewCell", for: indexPath) as! EventCollectionTableViewCell
-        
-//        let event =
-//        let model = EventCollectionTableViewItem(event: event)
-        cell.configureCell(with: events[indexPath.row])
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(identifier: "EventDetailViewController") as UINavigationController? else { return }
-        controller.modalPresentationStyle = .fullScreen
-        guard let vc = controller.viewControllers.first as? EventDetailViewController else {
-            return
-        }
-        vc.event = dataArray[currentMonth - 1][indexPath.row].event
-        present(controller, animated: true, completion: nil)
-    }
 }
 
 extension EventCollectionTableViewController: EventCollectionTableViewModelDelegate {
     func didLoadData(data: [[EventCollectionTableViewItem]]) {
         dataArray = data
     }
-}
-
-class EventCollectionCell: UICollectionViewCell {
-    
 }
