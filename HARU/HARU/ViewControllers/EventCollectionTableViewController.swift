@@ -23,7 +23,6 @@ class EventCollectionTableViewController: UIViewController {
     
     var calendarLoader = CalendarLoader()
     var currentYear = Date()
-    var currentMonth = 1
     
     var dateFormatter = DateFormatter()
     
@@ -40,7 +39,6 @@ class EventCollectionTableViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        
         dateFormatter.dateFormat = "yyyy년"
         titleLabel.title = dateFormatter.string(from: Date())
         lastYearBtn.title = "< " + dateFormatter.string(from: Date().adjust(.year, offset: -1))
@@ -56,14 +54,18 @@ class EventCollectionTableViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         dataSource.requestData(ofYear: currentYear)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        collectionView.scrollToItem(at:IndexPath(item: 5, section: 0), at: .right, animated: true)
     }
     
     @IBAction func lastYearBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.year, offset: -1)
-        //        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
         dataSource.requestData(ofYear: currentYear)
-        currentMonth = 1
-        titleLabel.title = dateFormatter.string(from: currentYear) + " 1월"
+        titleLabel.title = dateFormatter.string(from: currentYear)
         lastYearBtn.title = "< " + dateFormatter.string(from: currentYear.adjust(.year, offset: -1))
         nextYearBtn.title = dateFormatter.string(from: currentYear.adjust(.year, offset: 1)) + " >"
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
@@ -72,10 +74,8 @@ class EventCollectionTableViewController: UIViewController {
     
     @IBAction func nextYearBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.year, offset: 1)
-        //        eventsOfYear = calendarLoader.loadEvents(ofYear: currentYear)
         dataSource.requestData(ofYear: currentYear)
-        currentMonth = 1
-        titleLabel.title = dateFormatter.string(from: currentYear) + " 1월"
+        titleLabel.title = dateFormatter.string(from: currentYear)
         lastYearBtn.title = "< " + dateFormatter.string(from: currentYear.adjust(.year, offset: -1))
         nextYearBtn.title = dateFormatter.string(from: currentYear.adjust(.year, offset: 1)) + " >"
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
