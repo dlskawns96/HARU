@@ -38,12 +38,36 @@
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="345-eE-fFr">
                                                     <rect key="frame" x="0.0" y="60" width="414" height="713"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmptyTableViewCell" rowHeight="693" id="dLk-XJ-2D3" customClass="EmptyTableViewCell" customModule="HARU" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="28" width="414" height="693"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dLk-XJ-2D3" id="ueb-wU-DMW">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="693"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image_X" translatesAutoresizingMaskIntoConstraints="NO" id="XxS-ye-0gO">
+                                                                        <rect key="frame" x="87" y="207" width="240" height="128"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="XxS-ye-0gO" secondAttribute="bottom" constant="358" id="8rR-0X-Xph"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="XxS-ye-0gO" secondAttribute="trailing" constant="87" id="Gie-Gx-5Zf"/>
+                                                                    <constraint firstItem="XxS-ye-0gO" firstAttribute="top" secondItem="ueb-wU-DMW" secondAttribute="top" constant="207" id="eNY-na-P2S"/>
+                                                                    <constraint firstItem="XxS-ye-0gO" firstAttribute="leading" secondItem="ueb-wU-DMW" secondAttribute="leading" constant="87" id="mmC-dF-scM"/>
+                                                                </constraints>
+                                                            </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="imgView" destination="XxS-ye-0gO" id="9mM-fP-rHu"/>
+                                                            </connections>
+                                                        </tableViewCell>
+                                                    </prototypes>
                                                 </tableView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2T3-O8-SVR" userLabel="Title Shadow View" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
                                                     <rect key="frame" x="167" y="10" width="80" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1월" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-pv-uUr">
-                                                            <rect key="frame" x="26.5" y="8" width="27" height="24"/>
+                                                            <rect key="frame" x="28" y="9.5" width="24" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                             <color key="textColor" name="MainUIColor"/>
                                                             <nil key="highlightedColor"/>
@@ -157,6 +181,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Image_X" width="225" height="225"/>
         <namedColor name="MainUIColor">
             <color red="0.25490196078431371" green="0.26666666666666666" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

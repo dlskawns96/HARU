@@ -22,7 +22,6 @@ class EventCollectionTableViewModel {
                 dataArray[month].append(item)
             }
         }
-        print(dataArray.count)
         delegate?.didLoadData(data: dataArray)
     }
 }
