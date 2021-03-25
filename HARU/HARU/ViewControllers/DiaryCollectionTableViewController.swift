@@ -8,11 +8,11 @@
 import UIKit
 
 class DiaryCollectionTableViewController: UIViewController {
-    
+
     @IBOutlet weak var lastMonthBtn: UIBarButtonItem!
     @IBOutlet weak var nextMonthBtn: UIBarButtonItem!
     @IBOutlet weak var titleLabel: UINavigationItem!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     var list = [Diary]()
     
@@ -63,12 +63,20 @@ class DiaryCollectionTableViewController: UIViewController {
         
         dateFormatter.dateFormat = "yyyy-MM"
         dataSource.requestDiaryCollection(date: dateFormatter.string(from: currentYear))
-    
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dataSource.delegate = self
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
+        let nibName = UINib(nibName: "DiaryCollectionTableViewCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "diaryCollectionViewCell")
         
         dateFormatter.dateFormat = "yyyy년 MM월"
         titleLabel.title = dateFormatter.string(from: Date())
@@ -100,39 +108,41 @@ extension DiaryCollectionTableViewController: UITableViewDelegate, UITableViewDa
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "diaryCell", for: indexPath)
-        dateFormatter.dateFormat = "yyyy-MM"
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "diaryCollectionViewCell", for: indexPath) as! DiaryCollectionTableViewCell
+        
         let target = dataArray[indexPath.section]
+        cell.myLabel.text = target.content
         
-        cell.textLabel?.text = target.content
-        cell.detailTextLabel?.text = target.date
-        
+        cell.dateLabel.text = "28"
         cell.selectionStyle = .none
-        
+        cell.myLabel.sizeToFit()
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
         let today = NSDate()
         let selectedDate = dataArray[indexPath.section].date
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
+
         let todayString = dateFormatter.string(from: today as Date)
-        
+
         if selectedDate! >= todayString {
             guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
             self.present(controller, animated: true, completion: nil)
-            
+
             AddDiaryController.editTarget = dataArray[indexPath.section].content
             AddDiaryController.selectedDate = dataArray[indexPath.section].date
             AddDiaryController.check = true
         }
 
     }
-    
+//
     func numberOfSections(in tableView: UITableView) -> Int {
         return dataArray.count
     }
