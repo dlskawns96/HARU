@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185B925B4579100C4743F /* Data.xcdatamodeld */; };
 		1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */; };
+		1F3A783E260B901B009CFF49 /* DiaryCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */; };
+		1F3A783F260B901B009CFF49 /* DiaryCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F3A783D260B901B009CFF49 /* DiaryCollectionTableViewCell.xib */; };
 		1F6E74B225F3673100650C8C /* DiaryTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */; };
 		1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15325A5F1CB00969F09 /* Alert.swift */; };
 		1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15625A8AF0900969F09 /* HCalendar.swift */; };
@@ -75,6 +77,8 @@
 /* Begin PBXFileReference section */
 		1F3185BA25B4579100C4743F /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		1F3A783D260B901B009CFF49 /* DiaryCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaryCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewModel.swift; sourceTree = "<group>"; };
 		1F84D15325A5F1CB00969F09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		1F84D15625A8AF0900969F09 /* HCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCalendar.swift; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 				EAB21954260472230075B72A /* CalendarEditCell.swift */,
 				EAB21955260472230075B72A /* CalendarEditCell.xib */,
 				EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */,
+				1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */,
+				1F3A783D260B901B009CFF49 /* DiaryCollectionTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -374,6 +380,7 @@
 				EA0E06C526032B1100B1B431 /* CalendarCell.xib in Resources */,
 				EA0E06CF26032CF000B1B431 /* SwitchCell.xib in Resources */,
 				EAB21957260472230075B72A /* CalendarEditCell.xib in Resources */,
+				1F3A783F260B901B009CFF49 /* DiaryCollectionTableViewCell.xib in Resources */,
 				EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */,
 				EA0E06BC26032A6700B1B431 /* TextFieldCell.xib in Resources */,
 				EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */,
@@ -452,6 +459,7 @@
 				EA0E06D22603398D00B1B431 /* AddEventTableItems.swift in Sources */,
 				EACCB58D25DA4C8F00733906 /* SetDateTableViewCell.swift in Sources */,
 				EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */,
+				1F3A783E260B901B009CFF49 /* DiaryCollectionTableViewCell.swift in Sources */,
 				1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */,
 				1FF13FCC25BB12B6008624D8 /* ScheduleViewController.swift in Sources */,
 				EADDEF6425FEF0A900703E5F /* AddEventTableViewModel.swift in Sources */,
