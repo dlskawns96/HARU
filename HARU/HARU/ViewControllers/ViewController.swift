@@ -85,12 +85,6 @@ class ViewController: UIViewController {
         }
         
         fsCalendar.register(MainCalendarCell.self, forCellReuseIdentifier: "MainCalednarCell")
-        
-        token = NotificationCenter.default.addObserver(forName: AddEventViewController.eventChangedNoti, object: nil,
-                                                       queue: OperationQueue.main) {_ in
-            self.loadedEvents = self.calendarLoader.loadEvents()
-            self.fsCalendar.reloadData()
-        }
     }
     
     deinit {

@@ -100,11 +100,9 @@ class SelectDateController : UIViewController {
         case 0:
             let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
             guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
-            
-            guard let vc = controller.viewControllers.first as? AddEventViewController else { return }
-            vc.eventDate = selectedDate.adjust(hour: 9, minute: 0, second: 0)
-            
-            controller.modalPresentationStyle = .fullScreen
+            controller.modalPresentationStyle = .pageSheet
+            guard let vc = controller.viewControllers.first as? AddNewEventViewController else { return }
+            vc.selectedDate = selectedDate
             self.present(controller, animated: true, completion: nil)
         case 1:
             guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
