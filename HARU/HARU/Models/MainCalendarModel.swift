@@ -30,7 +30,7 @@ class MainCalendarModel {
         MainCalendarModel.startYear = self.calendar.component(.year, from: currentYear)
         
         for year in 0...6 {
-            print("CurrentYear:", currentYear.toString(dateFormat: "yyyy-MM-dd"))
+            print("Load events... CurrentYear:", currentYear.toString(dateFormat: "yyyy-MM-dd"))
             currentMonth = currentYear.adjust(hour: 0, minute: 0, second: 0, day: 1, month: 1)
             dataArray.append([])
             for month in 0...11 {
@@ -53,42 +53,19 @@ class MainCalendarModel {
     }
     
     func eventAdded(event: EKEvent) {
-        let events = calendarLoader.loadEvents(ofDay: event.startDate)
-        let newItem = MainCalendarCellItem(events: events, date: event.startDate)
-        delegate?.eventAdded(data: newItem)
+        // 이벤트의 시작날짜부터 종료날짜 까지 모든 이벤트 불러오기
+        let days = abs(event.endDate.difference(between: event.startDate))
+        let events = calendarLoader.loadEvents(ofDay: event.startDate, for: days)
+        var newItems = [MainCalendarCellItem]()
+        for i in 0...days {
+            let newItem = MainCalendarCellItem(events: events[i], date: event.startDate.adjust(.day, offset: i))
+            newItems.append(newItem)
+        }
+        delegate?.eventAdded(datas: newItems)
     }
-    
-    
-    //    func requestData(isNextMonth: Bool) {
-    //        if isNextMonth {
-    //            dataArray.remove(at: 0)
-    //            fiveMonth.remove(at: 0)
-    //
-    //            let nextMonth = fiveMonth.last?.adjust(.month, offset: 1)
-    //            fiveMonth.append(nextMonth!)
-    //            dataArray.append([])
-    //            for date in nextMonth!.datesOfMonth {
-    //                let item = MainCalendarCellItem(events: calendarLoader.loadEvents(ofDay: date), date: date)
-    //                dataArray[4].append(item)
-    //            }
-    //        } else {
-    //            dataArray.popLast()
-    //            fiveMonth.popLast()
-    //
-    //            let lastMonth = fiveMonth.first?.adjust(.month, offset: -1)
-    //            fiveMonth.insert(lastMonth!, at: 0)
-    //            dataArray.insert([], at: 0)
-    //            for date in lastMonth!.datesOfMonth {
-    //                let item = MainCalendarCellItem(events: calendarLoader.loadEvents(ofDay: date), date: date)
-    //                dataArray[0].append(item)
-    //            }
-    //        }
-    //
-    //        delegate?.didLoadData(data: dataArray)
-    //    }
 }
 
 protocol MainCalendarModelDelegate: class {
     func didLoadData(data: [[[MainCalendarCellItem]]])
-    func eventAdded(data: MainCalendarCellItem)
+    func eventAdded(datas: [MainCalendarCellItem])
 }

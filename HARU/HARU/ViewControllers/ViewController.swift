@@ -85,12 +85,6 @@ class ViewController: UIViewController {
         }
         
         fsCalendar.register(MainCalendarCell.self, forCellReuseIdentifier: "MainCalednarCell")
-        
-        token = NotificationCenter.default.addObserver(forName: AddEventViewController.eventChangedNoti, object: nil,
-                                                       queue: OperationQueue.main) {_ in
-            self.loadedEvents = self.calendarLoader.loadEvents()
-            self.fsCalendar.reloadData()
-        }
     }
     
     deinit {
@@ -198,11 +192,13 @@ extension ViewController: MainCalendarModelDelegate {
         dataArray = data
     }
     
-    func eventAdded(data: MainCalendarCellItem) {
-        if data.date!.compare((dataArray.first?.first?.first?.date)!) == ComparisonResult.orderedDescending {
-            if data.date!.compare((dataArray.last?.last?.last?.date)!) == ComparisonResult.orderedAscending {
-                dataArray[self.calendar.component(.year, from: data.date!) - MainCalendarModel.startYear][self.calendar.component(.month, from: data.date!)-1][self.calendar.component(.day, from: data.date!)-1] = data
+    func eventAdded(datas: [MainCalendarCellItem]) {
+        for data in datas {
+            if data.date!.compare((dataArray.first?.first?.first?.date)!) == ComparisonResult.orderedDescending {
+                if data.date!.compare((dataArray.last?.last?.last?.date)!) == ComparisonResult.orderedAscending {
+                    dataArray[self.calendar.component(.year, from: data.date!) - MainCalendarModel.startYear][self.calendar.component(.month, from: data.date!)-1][self.calendar.component(.day, from: data.date!)-1] = data
+                }
             }
-        }
+        }        
     }
 }

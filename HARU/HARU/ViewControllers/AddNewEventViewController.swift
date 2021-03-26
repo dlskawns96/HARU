@@ -59,8 +59,9 @@ class AddNewEventViewController: UIViewController {
         
         cellControllers = cellControllerFactory.cellControllers(with: items)
         
+        
+        tableView.estimatedRowHeight = 80;
         tableView.rowHeight = UITableView.automaticDimension;
-        tableView.estimatedRowHeight = 130;
         tableView.removeExtraLine()
         
         tableView.keyboardDismissMode = .onDrag
@@ -133,8 +134,15 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
         return 44.0
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44.0))
+        returnedView.backgroundColor = .white
+        
+        return returnedView
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

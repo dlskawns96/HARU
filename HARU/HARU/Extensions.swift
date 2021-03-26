@@ -67,10 +67,23 @@ extension Date {
         return components.weekday == 2
     }
     
+    func isSunday() -> Bool {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents([.weekday], from: self)
+        return components.weekday == 1
+    }
+    
     func numOfDays(In month: Date) -> Int {
         let range = Calendar(identifier: .gregorian).range(of: .day, in: .month, for: month)!
         let numDays = range.count
         return numDays
+    }
+    
+    func difference(between day: Date) -> Int {
+        let interval = self.timeIntervalSince(day)
+        let days = Int(interval / 86400)
+        
+        return days
     }
 }
 

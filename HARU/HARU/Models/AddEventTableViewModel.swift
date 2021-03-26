@@ -24,8 +24,8 @@ class AddEventTableViewModel {
         
         let section1: [AddEventCellItem] = [TextFieldItem(title: "타이틀")]
         let section2: [AddEventCellItem] = [CalendarItem(title: "캘린더"), TextItem(isStartDate: true, title: "시작"), TextItem(isStartDate: false, title: "종료")]
-        let section3: [AddEventCellItem] = [SwitchItem(title: "반복")]
-        let items: [[AddEventCellItem]] = [section1, section2, section3]
+//        let section3: [AddEventCellItem] = [SwitchItem(title: "반복")]
+        let items: [[AddEventCellItem]] = [section1, section2]
         
         delegate?.didLoadData(items: items)
     }

@@ -59,7 +59,7 @@ class EventCollectionTableViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        collectionView.scrollToItem(at:IndexPath(item: 5, section: 0), at: .right, animated: true)
+        collectionView.scrollToItem(at:IndexPath(item: Calendar.current.component(.month, from: Date()) - 1, section: 0), at: .right, animated: true)
     }
     
     @IBAction func lastYearBtnClicked(_ sender: Any) {

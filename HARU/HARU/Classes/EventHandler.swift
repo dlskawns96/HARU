@@ -29,9 +29,3 @@ class EventHandler {
         }
     }
 }
-
-extension EventHandler: PassSelectDate {
-    func passSelectDate(selectedDate: Date, isStart: Bool) {
-        
-    }
-}
