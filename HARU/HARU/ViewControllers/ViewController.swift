@@ -198,11 +198,13 @@ extension ViewController: MainCalendarModelDelegate {
         dataArray = data
     }
     
-    func eventAdded(data: MainCalendarCellItem) {
-        if data.date!.compare((dataArray.first?.first?.first?.date)!) == ComparisonResult.orderedDescending {
-            if data.date!.compare((dataArray.last?.last?.last?.date)!) == ComparisonResult.orderedAscending {
-                dataArray[self.calendar.component(.year, from: data.date!) - MainCalendarModel.startYear][self.calendar.component(.month, from: data.date!)-1][self.calendar.component(.day, from: data.date!)-1] = data
+    func eventAdded(datas: [MainCalendarCellItem]) {
+        for data in datas {
+            if data.date!.compare((dataArray.first?.first?.first?.date)!) == ComparisonResult.orderedDescending {
+                if data.date!.compare((dataArray.last?.last?.last?.date)!) == ComparisonResult.orderedAscending {
+                    dataArray[self.calendar.component(.year, from: data.date!) - MainCalendarModel.startYear][self.calendar.component(.month, from: data.date!)-1][self.calendar.component(.day, from: data.date!)-1] = data
+                }
             }
-        }
+        }        
     }
 }

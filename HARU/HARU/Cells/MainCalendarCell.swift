@@ -15,15 +15,22 @@ class MainCalendarCell: FSCalendarCell {
         if item.numOfEvents != 0 {
             var posY = 50
             for event in item.events! {
-                let lab = UILabel(frame: CGRect(x: 0, y: posY, width: Int(self.bounds.width), height: 15))
-                lab.clipsToBounds = true
-                lab.layer.cornerRadius = 2.5
+                var lab = UILabel(frame: CGRect(x: 0, y: Int(posY), width: Int(self.bounds.width + 0.5), height: 15))
+                if item.date!.isSameAs(as: .day, from: event.startDate) && !item.date!.isSameAs(as: .day, from: event.endDate){
+                     lab = UILabel(frame: CGRect(x: 0, y: Int(posY), width: Int(self.bounds.width * 2), height: 15))
+                } else if item.date!.isSameAs(as: .day, from: event.startDate.adjust(.day, offset: 1)) && !item.date!.isSunday() {
+                    continue
+                }
+                
                 lab.font = .systemFont(ofSize: 12, weight: .regular)
                 lab.lineBreakMode = .byCharWrapping
-                lab.text = event.title
-                lab.textColor = UIColor.init(named: "#32C77F")
+                
+                if item.date!.isSameAs(as: .day, from: event.startDate) {
+                    lab.text = event.title
+                    lab.textColor = UIColor.init(named: "#32C77F")
+                }
                 self.addSubview(lab)
-                lab.backgroundColor = UIColor(cgColor: event.calendar.cgColor).withAlphaComponent(0.75)
+                lab.backgroundColor = UIColor(cgColor: event.calendar.cgColor)
                 posY = posY + 15
             }
         } else {
