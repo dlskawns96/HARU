@@ -17,7 +17,6 @@ class MainCalendarModel {
     static let mainCalendarAddEventNoti = Notification.Name("mainCalendarAddEventNoti")
     
     func initData(date: Date) {
-        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
         var dataArray = [[[MainCalendarCellItem]]]()
         
         // nil 없이 Date까지 다 저장하기
@@ -48,24 +47,32 @@ class MainCalendarModel {
         delegate?.didLoadData(data: dataArray)
     }
     
-    @objc func onNotification(notification:Notification) {
-        eventAdded(event: notification.userInfo!["event"] as! EKEvent)
-    }
-    
-    func eventAdded(event: EKEvent) {
-        // 이벤트의 시작날짜부터 종료날짜 까지 모든 이벤트 불러오기
-        let days = abs(event.endDate.difference(between: event.startDate))
-        let events = calendarLoader.loadEvents(ofDay: event.startDate, for: days)
-        var newItems = [MainCalendarCellItem]()
-        for i in 0...days {
-            let newItem = MainCalendarCellItem(events: events[i], date: event.startDate.adjust(.day, offset: i))
-            newItems.append(newItem)
+    func eventAdded(event: EKEvent, items: [MainCalendarCellItem]) {
+        // 이벤트의 시작날짜부터 종료날짜 까지 모든 아이템들을 불러오고, 수정해서 리턴
+        var newItems = items
+        var curIdx = 0
+        for item in newItems {
+            for j in 0...3 {
+                if item.eventsToIndicate[j] == nil {
+                    if j > curIdx {
+                        curIdx = j
+                    }
+                    break
+                }
+            }
         }
-        delegate?.eventAdded(datas: newItems)
+        event.calendarIndex = curIdx
+        for idx in 0..<newItems.count {
+            newItems[idx].events?.append(event)
+            if curIdx <= 3 {
+                newItems[idx].eventsToIndicate[curIdx] = event
+            }
+        }
+        delegate?.eventAdded(datas: newItems, startDate: event.startDate, endDate: event.endDate)
     }
 }
 
 protocol MainCalendarModelDelegate: class {
     func didLoadData(data: [[[MainCalendarCellItem]]])
-    func eventAdded(datas: [MainCalendarCellItem])
+    func eventAdded(datas: [MainCalendarCellItem], startDate: Date, endDate: Date)
 }
