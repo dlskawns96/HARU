@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,6 +21,15 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdA-w4-koK" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
                         <rect key="frame" x="7" y="10" width="306" height="40"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdC-Mr-bUw">
+                                <rect key="frame" x="92" y="5" width="204" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PII-5p-uVX">
                                 <rect key="frame" x="100" y="6" width="191" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -32,20 +42,24 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNZ-f8-bg5">
-                                <rect key="frame" x="20" y="9.5" width="42" height="21"/>
+                                <rect key="frame" x="25" y="9.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="MainUIColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="TNZ-f8-bg5" firstAttribute="leading" secondItem="EdA-w4-koK" secondAttribute="leading" constant="20" symbolic="YES" id="2ef-Kj-bN4"/>
+                            <constraint firstItem="TNZ-f8-bg5" firstAttribute="leading" secondItem="EdA-w4-koK" secondAttribute="leading" constant="25" id="2ef-Kj-bN4"/>
+                            <constraint firstItem="fdC-Mr-bUw" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="5" id="5Fx-Po-NRd"/>
+                            <constraint firstItem="fdC-Mr-bUw" firstAttribute="leading" secondItem="TNZ-f8-bg5" secondAttribute="trailing" constant="25" id="6A4-Gq-iLU"/>
                             <constraint firstItem="PII-5p-uVX" firstAttribute="leading" secondItem="EdA-w4-koK" secondAttribute="leading" constant="100" id="EVw-8c-K9b"/>
                             <constraint firstAttribute="bottom" secondItem="PII-5p-uVX" secondAttribute="bottom" constant="6" id="Edi-q6-9aY"/>
                             <constraint firstItem="PII-5p-uVX" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="6" id="TBB-fS-TJj"/>
                             <constraint firstItem="TNZ-f8-bg5" firstAttribute="centerY" secondItem="EdA-w4-koK" secondAttribute="centerY" id="Vz0-rZ-QaT"/>
+                            <constraint firstAttribute="trailing" secondItem="fdC-Mr-bUw" secondAttribute="trailing" constant="10" id="k4G-iM-fZT"/>
                             <constraint firstAttribute="trailing" secondItem="PII-5p-uVX" secondAttribute="trailing" constant="15" id="m1x-TQ-94e"/>
+                            <constraint firstAttribute="bottom" secondItem="fdC-Mr-bUw" secondAttribute="bottom" constant="5" id="v96-gq-TF4"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
@@ -83,8 +97,14 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="MainUIColor">
+            <color red="0.25490196078431371" green="0.26666666666666666" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
