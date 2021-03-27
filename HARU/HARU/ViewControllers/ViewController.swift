@@ -44,12 +44,7 @@ class ViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-//        eventsCollectionBtn.borderWidth = 1.0
-//        diaryCollectionBtn.borderWidth = 1.0
-//        eventsCollectionBtn.borderColor = .white
-//        diaryCollectionBtn.borderColor = .white
-//        eventsCollectionBtn.cornerRadius = ThemeVariables.buttonCornerRadius
-//        diaryCollectionBtn.cornerRadius = ThemeVariables.buttonCornerRadius
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
     
         fsCalendar.layer.cornerRadius = ThemeVariables.buttonCornerRadius
         fsCalendar.layer.shadowPath = UIBezierPath(roundedRect: fsCalendar.bounds, cornerRadius: 10).cgPath
@@ -130,6 +125,28 @@ class ViewController: UIViewController {
         }
         return events
     }
+    
+    @objc func onNotification(notification:Notification) {
+        let event = notification.userInfo!["event"] as! EKEvent
+        let items = getItemsOfDate(startDate: event.startDate, endDate: event.endDate)
+        dataSource?.eventAdded(event: event, items: items)
+    }
+    
+    func getItemsOfDate(startDate: Date, endDate: Date) -> [MainCalendarCellItem] {
+        var items = [MainCalendarCellItem]()
+        for i in 0...abs(startDate.difference(between: endDate)) {
+            let curDate = startDate.adjust(.day, offset: i)
+            items.append(dataArray[self.calendar.component(.year, from: curDate) - MainCalendarModel.startYear][self.calendar.component(.month, from: curDate)-1][self.calendar.component(.day, from: curDate)-1])
+        }
+        return items
+    }
+    
+    func setItemsOfDate(startDate: Date, endDate: Date, newItems: [MainCalendarCellItem]) {
+        for i in 0...abs(startDate.difference(between: endDate)) {
+            let curDate = startDate.adjust(.day, offset: i)
+            dataArray[self.calendar.component(.year, from: curDate) - MainCalendarModel.startYear][self.calendar.component(.month, from: curDate)-1][self.calendar.component(.day, from: curDate)-1] = newItems[i]
+        }
+    }
 }
 
 // MARK: - Extensions
@@ -192,13 +209,14 @@ extension ViewController: MainCalendarModelDelegate {
         dataArray = data
     }
     
-    func eventAdded(datas: [MainCalendarCellItem]) {
-        for data in datas {
-            if data.date!.compare((dataArray.first?.first?.first?.date)!) == ComparisonResult.orderedDescending {
-                if data.date!.compare((dataArray.last?.last?.last?.date)!) == ComparisonResult.orderedAscending {
-                    dataArray[self.calendar.component(.year, from: data.date!) - MainCalendarModel.startYear][self.calendar.component(.month, from: data.date!)-1][self.calendar.component(.day, from: data.date!)-1] = data
-                }
-            }
-        }        
+    func eventAdded(datas: [MainCalendarCellItem], startDate: Date, endDate: Date) {
+//        for data in datas {
+//            if data.date!.compare((dataArray.first?.first?.first?.date)!) == ComparisonResult.orderedDescending {
+//                if data.date!.compare((dataArray.last?.last?.last?.date)!) == ComparisonResult.orderedAscending {
+//                    dataArray[self.calendar.component(.year, from: data.date!) - MainCalendarModel.startYear][self.calendar.component(.month, from: data.date!)-1][self.calendar.component(.day, from: data.date!)-1] = data
+//                }
+//            }
+//        }
+        setItemsOfDate(startDate: startDate, endDate: endDate, newItems: datas)
     }
 }

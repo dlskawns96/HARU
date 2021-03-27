@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import EventKit
 
 extension Date {
     var startOfDay: Date {
@@ -178,4 +179,19 @@ extension CALayer {
       shadowPath = UIBezierPath(rect: rect).cgPath
     }
   }
+}
+
+extension EKEvent {
+    private static var calendarIndex = [String:Int]()
+        
+        var calendarIndex: Int {
+            get {
+                let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+                return EKEvent.calendarIndex[tmpAddress] ?? 0
+            }
+            set(newValue) {
+                let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+                EKEvent.calendarIndex[tmpAddress] = newValue
+            }
+        }
 }
