@@ -11,6 +11,7 @@ import EventKit
 class ScheduleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet var shadowView: ShadowView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,9 +23,9 @@ class ScheduleTableViewCell: UITableViewCell {
 
     func configureCell(with item: ScheduleTableViewItem) {
         eventTitleLabel.text = item.eventTitle
-        self.layer.borderColor = item.eventColor
-        self.layer.borderWidth = 2
-        self.backgroundColor = item.eventUIColor
+//        shadowView.layer.borderColor = item.eventColor
+//        shadowView.layer.borderWidth = 2
+        shadowView.backgroundColor = item.eventUIColor
     }
 }
 
@@ -39,6 +40,6 @@ struct ScheduleTableViewItem {
     }
     
     var eventUIColor: UIColor? {
-        return UIColor(cgColor: eventColor!).withAlphaComponent(0.25)
+        return UIColor(cgColor: eventColor!).withAlphaComponent(0.5)
     }
 }
