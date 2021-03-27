@@ -38,7 +38,9 @@ class CalendarLoader {
             print("Case Default")
         }
         
-        calendars = eventStore!.calendars(for: .event)
+        calendars = eventStore!.calendars(for: .event).filter({(cal: EKCalendar) -> Bool in
+            return cal.allowsContentModifications
+        })
         
         if auth {
             loadEvents()
@@ -47,7 +49,7 @@ class CalendarLoader {
     
     func loadEvents() -> [EKEvent] {
         loadedEvents = []
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                   
         // 이벤트를 가져올 기간
         let oneMonthAgo = Date(timeIntervalSinceNow: -30*24*3600)
         let oneMonthAfter = Date(timeIntervalSinceNow: +30*24*3600)

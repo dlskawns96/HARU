@@ -35,6 +35,11 @@ class ScheduleViewController: UIViewController {
         ScheduleTableView.dataSource = self
         ScheduleTableView.removeExtraLine()
         dataSource.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
+    }
+    
+    @objc func onNotification(notification:Notification) {
+        dataSource.requestData(of: self.selectedDate)
     }
     
     func swipeDelete(indexPath: IndexPath) {
@@ -68,7 +73,7 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 80
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
