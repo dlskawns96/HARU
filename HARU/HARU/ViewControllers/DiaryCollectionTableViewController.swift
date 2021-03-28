@@ -12,6 +12,7 @@ class DiaryCollectionTableViewController: UIViewController {
     @IBOutlet weak var lastMonthBtn: UIBarButtonItem!
     @IBOutlet weak var nextMonthBtn: UIBarButtonItem!
     @IBOutlet weak var titleLabel: UINavigationItem!
+    @IBOutlet weak var centerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var list = [Diary]()
@@ -25,6 +26,13 @@ class DiaryCollectionTableViewController: UIViewController {
     var dataArray = [Diary]() {
         didSet {
             tableView.reloadData()
+            
+            if dataArray.count > 0 {
+                centerLabel.isHidden = true
+            }
+            else{
+                centerLabel.isHidden = false
+            }
         }
     }
     
@@ -63,6 +71,13 @@ class DiaryCollectionTableViewController: UIViewController {
         
         dateFormatter.dateFormat = "yyyy-MM"
         dataSource.requestDiaryCollection(date: dateFormatter.string(from: currentYear))
+
+        if dataArray.count > 0 {
+            centerLabel.isHidden = true
+        }
+        else{
+            centerLabel.isHidden = false
+        }
         
     }
     override func viewDidLoad() {
