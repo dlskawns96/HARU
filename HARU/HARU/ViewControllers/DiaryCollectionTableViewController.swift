@@ -118,7 +118,10 @@ extension DiaryCollectionTableViewController: UITableViewDelegate, UITableViewDa
         let target = dataArray[indexPath.section]
         cell.myLabel.text = target.content
         
-        cell.dateLabel.text = "28"
+        let date = target.date
+        let startIdx: String.Index = date!.index(date!.startIndex, offsetBy: 8)
+        
+        cell.dateLabel.text = String(date![startIdx...])
         cell.selectionStyle = .none
         cell.myLabel.sizeToFit()
         return cell

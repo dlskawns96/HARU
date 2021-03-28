@@ -31,7 +31,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PII-5p-uVX">
-                                <rect key="frame" x="100" y="6" width="191" height="28"/>
+                                <rect key="frame" x="95" y="6" width="196" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                             <constraint firstItem="TNZ-f8-bg5" firstAttribute="leading" secondItem="EdA-w4-koK" secondAttribute="leading" constant="25" id="2ef-Kj-bN4"/>
                             <constraint firstItem="fdC-Mr-bUw" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="5" id="5Fx-Po-NRd"/>
                             <constraint firstItem="fdC-Mr-bUw" firstAttribute="leading" secondItem="TNZ-f8-bg5" secondAttribute="trailing" constant="25" id="6A4-Gq-iLU"/>
-                            <constraint firstItem="PII-5p-uVX" firstAttribute="leading" secondItem="EdA-w4-koK" secondAttribute="leading" constant="100" id="EVw-8c-K9b"/>
+                            <constraint firstItem="PII-5p-uVX" firstAttribute="leading" secondItem="EdA-w4-koK" secondAttribute="leading" constant="95" id="EVw-8c-K9b"/>
                             <constraint firstAttribute="bottom" secondItem="PII-5p-uVX" secondAttribute="bottom" constant="6" id="Edi-q6-9aY"/>
                             <constraint firstItem="PII-5p-uVX" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="6" id="TBB-fS-TJj"/>
                             <constraint firstItem="TNZ-f8-bg5" firstAttribute="centerY" secondItem="EdA-w4-koK" secondAttribute="centerY" id="Vz0-rZ-QaT"/>
