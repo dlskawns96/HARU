@@ -68,11 +68,24 @@ class MainCalendarModel {
                 newItems[idx].eventsToIndicate[curIdx] = event
             }
         }
-        delegate?.eventAdded(datas: newItems, startDate: event.startDate, endDate: event.endDate)
+        delegate?.itemChanged(datas: newItems, startDate: event.startDate, endDate: event.endDate)
+    }
+    
+    func eventRemoved(startDate: Date, endDate: Date) {
+        var dataArray = [MainCalendarCellItem]()
+        let difference = abs(startDate.difference(between: endDate))
+        let newEvents = calendarLoader.loadEvents(ofDay: startDate, for: difference)
+        
+        for i in 0...difference {
+            let item = MainCalendarCellItem(events: newEvents[i], date: startDate.adjust(.day, offset: i))
+            dataArray.append(item)
+        }
+        
+        delegate?.itemChanged(datas: dataArray, startDate: startDate, endDate: endDate)
     }
 }
 
 protocol MainCalendarModelDelegate: class {
     func didLoadData(data: [[[MainCalendarCellItem]]])
-    func eventAdded(datas: [MainCalendarCellItem], startDate: Date, endDate: Date)
+    func itemChanged(datas: [MainCalendarCellItem], startDate: Date, endDate: Date)
 }

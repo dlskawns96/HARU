@@ -44,7 +44,8 @@ class ViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onEventAddedNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onEventRemovedNotification(notification:)), name:EventHandler.eventRemovedNoti, object: nil)
     
         fsCalendar.layer.cornerRadius = ThemeVariables.buttonCornerRadius
         fsCalendar.layer.shadowPath = UIBezierPath(roundedRect: fsCalendar.bounds, cornerRadius: 10).cgPath
@@ -126,10 +127,16 @@ class ViewController: UIViewController {
         return events
     }
     
-    @objc func onNotification(notification:Notification) {
+    @objc func onEventAddedNotification(notification: Notification) {
         let event = notification.userInfo!["event"] as! EKEvent
         let items = getItemsOfDate(startDate: event.startDate, endDate: event.endDate)
         dataSource?.eventAdded(event: event, items: items)
+    }
+    
+    @objc func onEventRemovedNotification(notification: Notification) {
+        let startDate = notification.userInfo!["startDate"] as! Date
+        let endDate = notification.userInfo!["endDate"] as! Date
+        dataSource?.eventRemoved(startDate: startDate, endDate: endDate)
     }
     
     func getItemsOfDate(startDate: Date, endDate: Date) -> [MainCalendarCellItem] {
@@ -209,14 +216,7 @@ extension ViewController: MainCalendarModelDelegate {
         dataArray = data
     }
     
-    func eventAdded(datas: [MainCalendarCellItem], startDate: Date, endDate: Date) {
-//        for data in datas {
-//            if data.date!.compare((dataArray.first?.first?.first?.date)!) == ComparisonResult.orderedDescending {
-//                if data.date!.compare((dataArray.last?.last?.last?.date)!) == ComparisonResult.orderedAscending {
-//                    dataArray[self.calendar.component(.year, from: data.date!) - MainCalendarModel.startYear][self.calendar.component(.month, from: data.date!)-1][self.calendar.component(.day, from: data.date!)-1] = data
-//                }
-//            }
-//        }
+    func itemChanged(datas: [MainCalendarCellItem], startDate: Date, endDate: Date) {
         setItemsOfDate(startDate: startDate, endDate: endDate, newItems: datas)
     }
 }
