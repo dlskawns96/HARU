@@ -21,6 +21,7 @@ class DiaryCollectionTableViewController: UIViewController {
     var dateFormatter = DateFormatter()
     var Rtoken: NSObjectProtocol?
     
+    let comments = ["기록된 하루가 없어요!", "하루를 기록해보세요!", "기록이 없네요!"]
     let AD = UIApplication.shared.delegate as? AppDelegate
     let dataSource = DiaryTableViewModel()
     var dataArray = [Diary]() {
@@ -28,6 +29,7 @@ class DiaryCollectionTableViewController: UIViewController {
             tableView.reloadData()
             
             if dataArray.count > 0 {
+                centerLabel.text = comments.randomElement()
                 centerLabel.isHidden = true
             }
             else{
@@ -37,6 +39,7 @@ class DiaryCollectionTableViewController: UIViewController {
     }
     
     @IBAction func lastMonthBtnClicked(_ sender: Any) {
+        centerLabel.text = comments.randomElement()
         currentYear = currentYear.adjust(.month, offset: -1)
         
         dateFormatter.dateFormat = "MM월"
@@ -51,6 +54,7 @@ class DiaryCollectionTableViewController: UIViewController {
         
     }
     @IBAction func nextMonthBtnClicked(_ sender: Any) {
+        centerLabel.text = comments.randomElement()
         currentYear = currentYear.adjust(.month, offset: 1)
         
         dateFormatter.dateFormat = "MM월"
@@ -157,6 +161,13 @@ extension DiaryCollectionTableViewController: UITableViewDelegate, UITableViewDa
             AddDiaryController.editTarget = dataArray[indexPath.section].content
             AddDiaryController.selectedDate = dataArray[indexPath.section].date
             AddDiaryController.check = true
+            
+        }
+        else {
+            let alert = UIAlertController(title: "알림", message: "지난 하루는 수정이 불가능해요!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in }
+            alert.addAction(okAction)
+            present(alert, animated: false, completion: nil)
         }
 
     }
