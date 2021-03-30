@@ -11,5 +11,6 @@ import UIKit
 class SettingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = ThemeVariables.mainUIColor
     }
 }
