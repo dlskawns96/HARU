@@ -24,12 +24,11 @@ class EventDetailViewController: UITableViewController {
         dateFormatter.locale = Locale(identifier: "ko-KR")
         dateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE a HH시 mm분"
         tableView.removeExtraLine()
-//        tableView.rowHeight = UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("RELOAD")
         tableView.reloadData()
     }
     
