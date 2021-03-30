@@ -454,7 +454,7 @@
             </objects>
             <point key="canvasLocation" x="4951" y="897"/>
         </scene>
-        <!--Setting View Controller-->
+        <!--설정-->
         <scene sceneID="3RP-To-fyY">
             <objects>
                 <tableViewController id="aSc-sL-jeR" customClass="SettingViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
@@ -477,7 +477,7 @@
                             <outlet property="delegate" destination="aSc-sL-jeR" id="vIu-MZ-2uo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="3mW-mm-leC"/>
+                    <navigationItem key="navigationItem" title="설정" largeTitleDisplayMode="never" id="3mW-mm-leC"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JiV-oY-CCv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
