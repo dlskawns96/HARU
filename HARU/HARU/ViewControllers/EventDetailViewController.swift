@@ -8,100 +8,70 @@
 import UIKit
 import EventKit
 
-class EventDetailViewController: UIViewController {
-    
-    var eventStore = EventHandler.ekEventStore
-    var event: EKEvent!
+class EventDetailViewController: UITableViewController {
+    static var event = EKEvent(eventStore: EventHandler.ekEventStore!)
     var dateFormatter = DateFormatter()
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    static let eventChangedNoti = Notification.Name(rawValue: "eventChangedNoti")
-    var token: NSObjectProtocol?
-    
-    var dataArray = [Any]() {
-        didSet {
-            tableView.reloadData()
-        }
+    static func storyboardInstance() -> UINavigationController? {
+        let storyboard = UIStoryboard(name: "EventDetailViewController",
+                                      bundle: nil)
+        return storyboard.instantiateInitialViewController() as? UINavigationController
     }
-    let dataSource = EventDetailTableViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dateFormatter.locale = Locale(identifier: "ko-KR")
         dateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE a HH시 mm분"
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.removeExtraLine()
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.getNewEventInfo(_:)), name: EventDetailViewController.eventChangedNoti, object: nil)
-        
-        dataSource.delegate = self
+//        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        dataSource.requestData(of: event)
+        print("RELOAD")
+        tableView.reloadData()
     }
     
-    @IBAction func backBtnClicked(_ sender: Any) {
+    @IBAction func onCancelBtnClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func editBtnClicked(_ sender: Any) {
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: "EventModifyViewControllerEntry") as? UINavigationController else { return }
-        
-        guard let vc = controller.viewControllers.first as? EventModifyViewController else { return }
-//        vc.event = (event.copy() as! EKEvent)
-        vc.event = event
-        vc.originalCalendar = event.calendar
-        
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+    @IBAction func onEditBtnClicked(_ sender: Any) {
     }
-    
-    deinit {
-        if let token = token {
-            NotificationCenter.default.removeObserver(token)
-        }
-    }
-    
-//    @objc
-//    func getNewEventInfo(_ notification: NSNotification) {
-//        if let newEvent = notification.userInfo?["EKEvent"] as? EKEvent {
-//            event = newEvent
-//            tableView.reloadData()
-//        }
-//    }
 }
 
-extension EventDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension EventDetailViewController {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "EventDetailTableViewCell") as? EventDetailTableViewCell else { return UITableViewCell() }
-            
-            cell.configureCell(with: dataArray[indexPath.row] as! EventDetailTableViewItem)
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EventDetailTableViewCell", for: indexPath) as! EventDetailTableViewCell
             return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonTableViewCell") as? ButtonTableViewCell else {
-                return UITableViewCell() }
-            
-            cell.configureCell(with: dataArray[indexPath.row] as! ButtonTableViewItem)
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarButtonTableViewCell", for: indexPath) as! CalendarButtonTableViewCell
             return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AlertTableViewCell", for: indexPath) as! AlertTableViewCell
+            return cell
+        default:
+            return UITableViewCell()
         }
     }
-}
-
-extension EventDetailViewController: EventDetailTableViewModelDelegate {
-    func didLoadData(data: [Any]) {
-        dataArray = data
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            self.performSegue(withIdentifier: "EditCalendar", sender: self)
+        } else if indexPath.row == 2 {
+            self.performSegue(withIdentifier: "EditAlert", sender: self)
+        }
     }
 }

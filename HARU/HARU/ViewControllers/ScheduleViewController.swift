@@ -35,10 +35,10 @@ class ScheduleViewController: UIViewController {
         ScheduleTableView.dataSource = self
         ScheduleTableView.removeExtraLine()
         dataSource.delegate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onEventAddedNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
     }
     
-    @objc func onNotification(notification:Notification) {
+    @objc func onEventAddedNotification(notification:Notification) {
         dataSource.requestData(of: self.selectedDate)
     }
     
@@ -61,6 +61,12 @@ class ScheduleViewController: UIViewController {
 
 // MARK: - TableView
 extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let naviController = EventDetailViewController.storyboardInstance()
+        EventDetailViewController.event = dataArray[indexPath.row].event
+        self.present(naviController!, animated: true, completion: nil)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataArray.count
     }
