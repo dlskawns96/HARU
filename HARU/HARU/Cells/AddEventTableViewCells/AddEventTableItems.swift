@@ -53,3 +53,13 @@ class CalendarEditItem: AddEventCellItem {
         self.titleString = title
     }
 }
+
+class EventNoteItem: AddEventCellItem {
+    var itemType: ItemType = .eventNoteItem
+    var titleString: String
+    
+    init(title: String) {
+        self.titleString = title
+    }
+    
+}

@@ -43,14 +43,16 @@
 		EA66C24025E282820043A992 /* EventCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66C23F25E282820043A992 /* EventCollectionTableViewController.swift */; };
 		EA7393FA25E7967E00FEA2C7 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393F925E7967E00FEA2C7 /* EventDetailViewController.swift */; };
 		EA7393FD25E796C700FEA2C7 /* EventDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393FC25E796C700FEA2C7 /* EventDetailTableViewCell.swift */; };
-		EA73940025E7C94300FEA2C7 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393FF25E7C94300FEA2C7 /* ButtonTableViewCell.swift */; };
+		EA73940025E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393FF25E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift */; };
+		EA7CA1FA2612EB3C004F2004 /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7CA1F92612EB3C004F2004 /* AlertTableViewCell.swift */; };
 		EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F83692594749C008B8ED5 /* AppDelegate.swift */; };
 		EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F836B2594749C008B8ED5 /* SceneDelegate.swift */; };
 		EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F836D2594749C008B8ED5 /* ViewController.swift */; };
 		EA7F83712594749C008B8ED5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7F836F2594749C008B8ED5 /* Main.storyboard */; };
 		EA7F83732594749D008B8ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7F83722594749D008B8ED5 /* Assets.xcassets */; };
 		EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7F83742594749D008B8ED5 /* LaunchScreen.storyboard */; };
-		EA9816C125F3BB8C00E9D4EB /* EventDetailTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9816C025F3BB8C00E9D4EB /* EventDetailTableViewModel.swift */; };
+		EA8617D126134ACB005E4078 /* CalendarSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8617D026134ACB005E4078 /* CalendarSelectCell.swift */; };
+		EA8617D426134BAD005E4078 /* CalendarSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8617D326134BAD005E4078 /* CalendarSelectTableViewController.swift */; };
 		EAA1A26225E2997F003B0D8A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26125E2997F003B0D8A /* Extensions.swift */; };
 		EAA1A26625E2ABBF003B0D8A /* EventCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */; };
 		EAA1A26725E2ABBF003B0D8A /* EventCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */; };
@@ -60,6 +62,8 @@
 		EAB83E9E25FA073B00EC1B8D /* ThemeVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB83E9D25FA073B00EC1B8D /* ThemeVariables.swift */; };
 		EAC9678F260B87B700A12DA6 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9678E260B87B700A12DA6 /* EmptyTableViewCell.swift */; };
 		EACCB58D25DA4C8F00733906 /* SetDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACCB58C25DA4C8F00733906 /* SetDateTableViewCell.swift */; };
+		EACD3B362611E93F00AC840E /* EventNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACD3B342611E93F00AC840E /* EventNoteCell.swift */; };
+		EACD3B372611E93F00AC840E /* EventNoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACD3B352611E93F00AC840E /* EventNoteCell.xib */; };
 		EAD77DF625D814F30020C182 /* TitleSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD77DF525D814F30020C182 /* TitleSetTableViewCell.swift */; };
 		EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB148625CAD54300E1D067 /* ScheduleTableViewCell.swift */; };
 		EADDEF5E25FEED1700703E5F /* AddEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADDEF5D25FEED1700703E5F /* AddEventTableViewCell.swift */; };
@@ -70,6 +74,7 @@
 		EAF5DD7D25F5E27300763AF5 /* MainCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF5DD7C25F5E27300763AF5 /* MainCalendarCell.swift */; };
 		EAF5DD8025F5E41000763AF5 /* MainCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF5DD7F25F5E41000763AF5 /* MainCalendarModel.swift */; };
 		EAF7F1BD25F4A6100029E787 /* EventCollectionTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */; };
+		EAFBE0882612D6B300DE9C9A /* EventDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFBE0872612D6B300DE9C9A /* EventDetailViewController.storyboard */; };
 		EAFE1BA125CD183F0084B31C /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE1BA025CD183F0084B31C /* EventHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,7 +117,8 @@
 		EA66C23F25E282820043A992 /* EventCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewController.swift; sourceTree = "<group>"; };
 		EA7393F925E7967E00FEA2C7 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		EA7393FC25E796C700FEA2C7 /* EventDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewCell.swift; sourceTree = "<group>"; };
-		EA7393FF25E7C94300FEA2C7 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
+		EA7393FF25E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarButtonTableViewCell.swift; sourceTree = "<group>"; };
+		EA7CA1F92612EB3C004F2004 /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		EA7F83662594749C008B8ED5 /* HARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7F83692594749C008B8ED5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7F836B2594749C008B8ED5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +127,8 @@
 		EA7F83722594749D008B8ED5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA7F83752594749D008B8ED5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA7F83772594749D008B8ED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA9816C025F3BB8C00E9D4EB /* EventDetailTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewModel.swift; sourceTree = "<group>"; };
+		EA8617D026134ACB005E4078 /* CalendarSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSelectCell.swift; sourceTree = "<group>"; };
+		EA8617D326134BAD005E4078 /* CalendarSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSelectTableViewController.swift; sourceTree = "<group>"; };
 		EAA1A26125E2997F003B0D8A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -131,6 +138,8 @@
 		EAB83E9D25FA073B00EC1B8D /* ThemeVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVariables.swift; sourceTree = "<group>"; };
 		EAC9678E260B87B700A12DA6 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		EACCB58C25DA4C8F00733906 /* SetDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDateTableViewCell.swift; sourceTree = "<group>"; };
+		EACD3B342611E93F00AC840E /* EventNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNoteCell.swift; sourceTree = "<group>"; };
+		EACD3B352611E93F00AC840E /* EventNoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventNoteCell.xib; sourceTree = "<group>"; };
 		EAD77DF525D814F30020C182 /* TitleSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSetTableViewCell.swift; sourceTree = "<group>"; };
 		EADB148625CAD54300E1D067 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		EADDEF5425FCE88800703E5F /* HARU-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HARU-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -142,6 +151,7 @@
 		EAF5DD7C25F5E27300763AF5 /* MainCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarCell.swift; sourceTree = "<group>"; };
 		EAF5DD7F25F5E41000763AF5 /* MainCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarModel.swift; sourceTree = "<group>"; };
 		EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewModel.swift; sourceTree = "<group>"; };
+		EAFBE0872612D6B300DE9C9A /* EventDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventDetailViewController.storyboard; sourceTree = "<group>"; };
 		EAFE1BA025CD183F0084B31C /* EventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +202,7 @@
 				EA7F836F2594749C008B8ED5 /* Main.storyboard */,
 				EA3A414825B66CA40074282C /* AddEvent.storyboard */,
 				1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */,
+				EAFBE0872612D6B300DE9C9A /* EventDetailViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -201,7 +212,6 @@
 			children = (
 				EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */,
 				1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */,
-				EA9816C025F3BB8C00E9D4EB /* EventDetailTableViewModel.swift */,
 				EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */,
 				EAF5DD7F25F5E41000763AF5 /* MainCalendarModel.swift */,
 				EADDEF6325FEF0A900703E5F /* AddEventTableViewModel.swift */,
@@ -250,21 +260,20 @@
 			path = HARU;
 			sourceTree = "<group>";
 		};
-		EAD77DF425D814D90020C182 /* Cells */ = {
+		EAA62F3A2612E67000540130 /* EventDetailTableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				EAD77DF525D814F30020C182 /* TitleSetTableViewCell.swift */,
-				EACCB58C25DA4C8F00733906 /* SetDateTableViewCell.swift */,
-				EAE46E3A25DEA3EF001EF03C /* SetCalendarTableViewCell.swift */,
-				EADB148625CAD54300E1D067 /* ScheduleTableViewCell.swift */,
-				EA024A0A25B7BB6200830C4A /* CalendarDropDownCell.swift */,
-				EA024A0B25B7BB6200830C4A /* CalendarDropDownCell.xib */,
-				EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */,
-				EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */,
 				EA7393FC25E796C700FEA2C7 /* EventDetailTableViewCell.swift */,
-				EA7393FF25E7C94300FEA2C7 /* ButtonTableViewCell.swift */,
-				EAF5DD7C25F5E27300763AF5 /* MainCalendarCell.swift */,
-				EADDEF5D25FEED1700703E5F /* AddEventTableViewCell.swift */,
+				EA7393FF25E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift */,
+				EA7CA1F92612EB3C004F2004 /* AlertTableViewCell.swift */,
+				EA8617D026134ACB005E4078 /* CalendarSelectCell.swift */,
+			);
+			path = EventDetailTableViewCells;
+			sourceTree = "<group>";
+		};
+		EACD3B392611E94B00AC840E /* AddEventTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
 				EA0E06B926032A6700B1B431 /* TextFieldCell.swift */,
 				EA0E06BA26032A6700B1B431 /* TextFieldCell.xib */,
 				EA0E06C226032B1100B1B431 /* CalendarCell.swift */,
@@ -276,6 +285,27 @@
 				EA0E06D12603398D00B1B431 /* AddEventTableItems.swift */,
 				EAB21954260472230075B72A /* CalendarEditCell.swift */,
 				EAB21955260472230075B72A /* CalendarEditCell.xib */,
+				EACD3B342611E93F00AC840E /* EventNoteCell.swift */,
+				EACD3B352611E93F00AC840E /* EventNoteCell.xib */,
+			);
+			path = AddEventTableViewCells;
+			sourceTree = "<group>";
+		};
+		EAD77DF425D814D90020C182 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EAA62F3A2612E67000540130 /* EventDetailTableViewCells */,
+				EACD3B392611E94B00AC840E /* AddEventTableViewCells */,
+				EAD77DF525D814F30020C182 /* TitleSetTableViewCell.swift */,
+				EACCB58C25DA4C8F00733906 /* SetDateTableViewCell.swift */,
+				EAE46E3A25DEA3EF001EF03C /* SetCalendarTableViewCell.swift */,
+				EADB148625CAD54300E1D067 /* ScheduleTableViewCell.swift */,
+				EA024A0A25B7BB6200830C4A /* CalendarDropDownCell.swift */,
+				EA024A0B25B7BB6200830C4A /* CalendarDropDownCell.xib */,
+				EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */,
+				EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */,
+				EAF5DD7C25F5E27300763AF5 /* MainCalendarCell.swift */,
+				EADDEF5D25FEED1700703E5F /* AddEventTableViewCell.swift */,
 				EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */,
 				1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */,
 				1F3A783D260B901B009CFF49 /* DiaryCollectionTableViewCell.xib */,
@@ -300,6 +330,7 @@
 				1F985A2925FF9634008E59A2 /* RoundUIView.swift */,
 				1FE2522D2606440400E28D7C /* SettingViewController.swift */,
 				EAB2195D260649B10075B72A /* ShadowView.swift */,
+				EA8617D326134BAD005E4078 /* CalendarSelectTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -381,8 +412,10 @@
 				EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */,
 				EA0E06BC26032A6700B1B431 /* TextFieldCell.xib in Resources */,
 				EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */,
+				EACD3B372611E93F00AC840E /* EventNoteCell.xib in Resources */,
 				EA7F83732594749D008B8ED5 /* Assets.xcassets in Resources */,
 				EAA1A26725E2ABBF003B0D8A /* EventCollectionTableViewCell.xib in Resources */,
+				EAFBE0882612D6B300DE9C9A /* EventDetailViewController.storyboard in Resources */,
 				EA7F83712594749C008B8ED5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +494,8 @@
 				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
 				1FC15E1725ED0DE80021B16B /* DiaryCollectionTableViewController.swift in Sources */,
 				EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */,
+				EA8617D126134ACB005E4078 /* CalendarSelectCell.swift in Sources */,
+				EA8617D426134BAD005E4078 /* CalendarSelectTableViewController.swift in Sources */,
 				EA0E06B62603258800B1B431 /* AddEventCellControllerFactory.swift in Sources */,
 				1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */,
 				1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */,
@@ -469,7 +504,7 @@
 				EA0E06CE26032CF000B1B431 /* SwitchCell.swift in Sources */,
 				1FC02B84259E83D600AC8142 /* Diary.swift in Sources */,
 				1FF13FC925BB129D008624D8 /* DiaryViewController.swift in Sources */,
-				EA73940025E7C94300FEA2C7 /* ButtonTableViewCell.swift in Sources */,
+				EA73940025E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift in Sources */,
 				EA66C24025E282820043A992 /* EventCollectionTableViewController.swift in Sources */,
 				EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */,
 				EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */,
@@ -478,10 +513,11 @@
 				EAA1A26225E2997F003B0D8A /* Extensions.swift in Sources */,
 				EA5CBB9026076EF500B24542 /* EventCollectionViewCell.swift in Sources */,
 				EA7393FD25E796C700FEA2C7 /* EventDetailTableViewCell.swift in Sources */,
+				EA7CA1FA2612EB3C004F2004 /* AlertTableViewCell.swift in Sources */,
 				EA024A0C25B7BB6200830C4A /* CalendarDropDownCell.swift in Sources */,
 				EAC9678F260B87B700A12DA6 /* EmptyTableViewCell.swift in Sources */,
 				1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */,
-				EA9816C125F3BB8C00E9D4EB /* EventDetailTableViewModel.swift in Sources */,
+				EACD3B362611E93F00AC840E /* EventNoteCell.swift in Sources */,
 				1FE2522E2606440400E28D7C /* SettingViewController.swift in Sources */,
 				EAD77DF625D814F30020C182 /* TitleSetTableViewCell.swift in Sources */,
 				EAB21956260472230075B72A /* CalendarEditCell.swift in Sources */,

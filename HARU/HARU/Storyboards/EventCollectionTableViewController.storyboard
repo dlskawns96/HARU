@@ -154,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfd-wG-8FP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40.579710144927539" y="1032.5892857142858"/>
+            <point key="canvasLocation" x="-52" y="1033"/>
         </scene>
         <!--Event 모음-->
         <scene sceneID="axp-Ut-t5V">

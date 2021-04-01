@@ -17,6 +17,7 @@ enum ItemType {
     case textFieldItem
     case switchItem
     case calendarEditItem
+    case eventNoteItem
 }
 
 class AddEventCellControllerFactory {
@@ -26,6 +27,7 @@ class AddEventCellControllerFactory {
         TextCellController.registerCell(on: tableView)
         SwitchCellController.registerCell(on: tableView)
         CalendarEditCellController.registerCell(on: tableView)
+        EventNoteCellController.registerCell(on: tableView)
     }
     
     func cellControllers(with items: [[AddEventCellItem]]) -> [[AddEventCellController]] {
@@ -44,6 +46,8 @@ class AddEventCellControllerFactory {
                     controllers[section].append(TextCellController(item: items[section][row]))
                 case .calendarEditItem:
                     controllers[section].append(CalendarEditCellController(item: items[section][row]))
+                case .eventNoteItem:
+                    controllers[section].append(EventNoteCellController(item: items[section][row]))
                 }
             }
         }
