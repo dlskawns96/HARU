@@ -22,7 +22,7 @@ class SettingViewController: UITableViewController {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for:indexPath)
         let text: String = setting[indexPath.section][indexPath.row]
         cell.textLabel?.text = text
-        
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 
@@ -38,7 +38,6 @@ class SettingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = ThemeVariables.mainUIColor
-
     }
 }
 
