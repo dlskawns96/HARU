@@ -19,11 +19,45 @@ class SettingViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for:indexPath)
-        let text: String = setting[indexPath.section][indexPath.row]
-        cell.textLabel?.text = text
-        cell.accessoryType = .disclosureIndicator
-        return cell
+//        var cell = UITableViewCell()
+//        
+//        if indexPath.section == 0 {
+//            cell = tableView.dequeueReusableCell(withIdentifier: "notificationSettingCell", for: indexPath) as! NotificationSettingCell
+//            
+//        }
+//        else {
+//            cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for:indexPath)
+//            let text: String = setting[indexPath.section][indexPath.row]
+//            cell.textLabel?.text = text
+//            cell.accessoryType = .disclosureIndicator
+//        }
+        
+//        print(indexPath.section)
+       
+
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "notificationSettingCell", for: indexPath) as! NotificationSettingCell
+            cell.label.text = setting[indexPath.section][indexPath.row]
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for:indexPath)
+            let text: String = setting[indexPath.section][indexPath.row]
+            cell.textLabel?.text = text
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
+        
+//        let cell = (indexPath.section == 0) ? tableView.dequeueReusableCell(withIdentifier: "settingCell", for:indexPath) : tableView.dequeueReusableCell(withIdentifier: "notificationSettingCell", for: indexPath) as! NotificationSettingCell
+//        let text = setting[indexPath.section][indexPath.row]
+//
+//        if indexPath.section == 0 {
+//            cell.label.text = setting[indexPath.section][indexPath.row]
+//        }
+//        else {
+//            cell.textLabel?.text = text
+//            cell.accessoryType = .disclosureIndicator
+//        }
     }
 
     
@@ -38,6 +72,9 @@ class SettingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = ThemeVariables.mainUIColor
+        
+        let nibName = UINib(nibName: "NotificationSettingCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "notificationSettingCell")
     }
 }
 

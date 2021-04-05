@@ -18,6 +18,8 @@
 		1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B80259E807700AC8142 /* AddDiaryController.swift */; };
 		1FC02B84259E83D600AC8142 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B83259E83D600AC8142 /* Diary.swift */; };
 		1FC15E1725ED0DE80021B16B /* DiaryCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC15E1625ED0DE80021B16B /* DiaryCollectionTableViewController.swift */; };
+		1FCA59BF261B4363005DDE0E /* NotificationSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCA59BD261B4363005DDE0E /* NotificationSettingCell.swift */; };
+		1FCA59C0261B4363005DDE0E /* NotificationSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCA59BE261B4363005DDE0E /* NotificationSettingCell.xib */; };
 		1FCC4C7525F799CE0064D687 /* EventCollectionTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */; };
 		1FE2522E2606440400E28D7C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2522D2606440400E28D7C /* SettingViewController.swift */; };
 		1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6078D2597514100A0882D /* SelectDateController.swift */; };
@@ -90,6 +92,8 @@
 		1FC02B80259E807700AC8142 /* AddDiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryController.swift; sourceTree = "<group>"; };
 		1FC02B83259E83D600AC8142 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		1FC15E1625ED0DE80021B16B /* DiaryCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewController.swift; sourceTree = "<group>"; };
+		1FCA59BD261B4363005DDE0E /* NotificationSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingCell.swift; sourceTree = "<group>"; };
+		1FCA59BE261B4363005DDE0E /* NotificationSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSettingCell.xib; sourceTree = "<group>"; };
 		1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventCollectionTableViewController.storyboard; sourceTree = "<group>"; };
 		1FE2522D2606440400E28D7C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		1FE6078D2597514100A0882D /* SelectDateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateController.swift; sourceTree = "<group>"; };
@@ -310,6 +314,8 @@
 				1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */,
 				1F3A783D260B901B009CFF49 /* DiaryCollectionTableViewCell.xib */,
 				EAC9678E260B87B700A12DA6 /* EmptyTableViewCell.swift */,
+				1FCA59BD261B4363005DDE0E /* NotificationSettingCell.swift */,
+				1FCA59BE261B4363005DDE0E /* NotificationSettingCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FCC4C7525F799CE0064D687 /* EventCollectionTableViewController.storyboard in Resources */,
+				1FCA59C0261B4363005DDE0E /* NotificationSettingCell.xib in Resources */,
 				EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */,
 				EA0E06CA26032C7600B1B431 /* TextCell.xib in Resources */,
 				EA0E06C526032B1100B1B431 /* CalendarCell.xib in Resources */,
@@ -488,6 +495,7 @@
 				EACCB58D25DA4C8F00733906 /* SetDateTableViewCell.swift in Sources */,
 				EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */,
 				1F3A783E260B901B009CFF49 /* DiaryCollectionTableViewCell.swift in Sources */,
+				1FCA59BF261B4363005DDE0E /* NotificationSettingCell.swift in Sources */,
 				1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */,
 				1FF13FCC25BB12B6008624D8 /* ScheduleViewController.swift in Sources */,
 				EADDEF6425FEF0A900703E5F /* AddEventTableViewModel.swift in Sources */,
