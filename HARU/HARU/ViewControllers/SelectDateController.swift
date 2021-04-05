@@ -12,13 +12,9 @@ class SelectDateController : UIViewController {
     
     @IBOutlet weak var segment: UISegmentedControl!
     
+    @IBOutlet var addBtn: UIButton!
     @IBOutlet weak var scheduleView: UIView!
     @IBOutlet weak var diaryView: UIView!
-    @IBOutlet weak var addBtn: UIButton!
-    @IBOutlet weak var selectedDateLabel: UILabel!
-    @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var cancleBtn: UIButton!
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     
@@ -47,14 +43,10 @@ class SelectDateController : UIViewController {
         diaryView.isHidden = true
         isModalInPresentation = true
         self.presentationController?.delegate = self
-        
-        backgroundView.backgroundColor = ThemeVariables.mainUIColor
-        titleLabel.textColor = .white
-        cancleBtn.tintColor = .white
-        addBtn.tintColor = .white
-        
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        selectedDateLabel.text = dateFormatter.string(from: selectedDate)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor  = UIColor(named: "MainUIColor")
     }
     
     @IBAction func indexChanged(_ sender: Any) {
@@ -87,10 +79,6 @@ class SelectDateController : UIViewController {
         default:
             break
         }
-    }
-    
-    @IBAction func closeBtn(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addBtn(_ sender: Any) {

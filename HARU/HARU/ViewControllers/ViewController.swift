@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     var calendarLoader: CalendarLoader!
     
     var token: NSObjectProtocol?
+    var selectedDate: Date?
     
     let calendar = Calendar.current
     
@@ -81,6 +82,14 @@ class ViewController: UIViewController {
         }
         
         fsCalendar.register(MainCalendarCell.self, forCellReuseIdentifier: "MainCalednarCell")
+        
+        EventDetailViewController.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.isTranslucent = true
+        
     }
     
     deinit {
@@ -168,7 +177,7 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         let AD = UIApplication.shared.delegate as? AppDelegate
         AD?.selectedDate = dateFormatter.string(from: date)
         AD?.selectedDateEvents =  dataArray[self.calendar.component(.year, from: date) - MainCalendarModel.startYear][self.calendar.component(.month, from: date)-1][self.calendar.component(.day, from: date)-1].events
-        self.present(controller, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "ShowSelectDateView", sender: nil)
     }
     
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -218,5 +227,11 @@ extension ViewController: MainCalendarModelDelegate {
     
     func itemChanged(datas: [MainCalendarCellItem], startDate: Date, endDate: Date) {
         setItemsOfDate(startDate: startDate, endDate: endDate, newItems: datas)
+    }
+}
+
+extension ViewController: EventDetailViewDelegate {
+    func eventChanged(event: EKEvent) {
+        dataSource?.eventRemoved(startDate: event.startDate, endDate: event.endDate)
     }
 }

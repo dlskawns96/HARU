@@ -25,8 +25,9 @@ class ScheduleViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+        super.viewWillAppear(true)
         dataSource.requestData(of: self.selectedDate)
+        ScheduleTableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -62,9 +63,8 @@ class ScheduleViewController: UIViewController {
 // MARK: - TableView
 extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let naviController = EventDetailViewController.storyboardInstance()
         EventDetailViewController.event = dataArray[indexPath.row].event
-        self.present(naviController!, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "ShowDetailSegue", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
