@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     var calendarLoader: CalendarLoader!
     
     var token: NSObjectProtocol?
-    var selectedDate: Date?
+    var selectedDate = Date()
     
     let calendar = Calendar.current
     
@@ -100,10 +100,7 @@ class ViewController: UIViewController {
     
     // MARK: - Button Actions
     @IBAction func onAddEventBtnClicked(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
-        controller.modalPresentationStyle = .pageSheet
-        self.present(controller, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "AddNewEventViewController", sender: nil)
     }
     
     @IBAction func onEventCollectionBtnClicked(_ sender: Any) {
@@ -163,20 +160,30 @@ class ViewController: UIViewController {
             dataArray[self.calendar.component(.year, from: curDate) - MainCalendarModel.startYear][self.calendar.component(.month, from: curDate)-1][self.calendar.component(.day, from: curDate)-1] = newItems[i]
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowSelectDateView" {
+            guard let controller = segue.destination as? SelectDateController else { return }
+            controller.selectedDate = self.selectedDate
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let AD = UIApplication.shared.delegate as? AppDelegate
+            AD?.selectedDate = dateFormatter.string(from: self.selectedDate)
+            AD?.selectedDateEvents =  dataArray[self.calendar.component(.year, from: selectedDate) - MainCalendarModel.startYear][self.calendar.component(.month, from: selectedDate)-1][self.calendar.component(.day, from: selectedDate)-1].events
+        } else if segue.identifier == "AddNewEventViewController" {
+            guard let controller = segue.destination as? AddNewEventViewController else {
+                return
+            }
+            controller.selectedDate = Date()
+        }
+    }
 }
 
 // MARK: - Extensions
 extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     // Implement protocols
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        guard let controller = self.storyboard?.instantiateViewController(identifier: "SelectDateController") as? SelectDateController else { return }
-        controller.modalPresentationStyle = .pageSheet
-        controller.selectedDate = date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let AD = UIApplication.shared.delegate as? AppDelegate
-        AD?.selectedDate = dateFormatter.string(from: date)
-        AD?.selectedDateEvents =  dataArray[self.calendar.component(.year, from: date) - MainCalendarModel.startYear][self.calendar.component(.month, from: date)-1][self.calendar.component(.day, from: date)-1].events
+        selectedDate = date
         self.performSegue(withIdentifier: "ShowSelectDateView", sender: nil)
     }
     

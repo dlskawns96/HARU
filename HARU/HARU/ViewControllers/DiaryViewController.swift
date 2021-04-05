@@ -9,6 +9,8 @@ import UIKit
 
 class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPickerViewDelegate {
         
+    var selectedDate: Date?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var badBtn: UIButton!
     @IBOutlet weak var goodBtn: UIButton!
@@ -56,20 +58,17 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         let todayString = dateFormatter.string(from: today as Date)
         
-        if dateString! >= todayString {
+        if selectedDate!.compare(.isToday) {
             if dataArray.count >= 1 && dataArray[0].content != " " {
                 centerLabel.isHidden = true
-            }
-            else {
+            } else {
                 centerLabel.isHidden = false
                 centerLabel.text = able_comments.randomElement()
             }
-        }
-        else {
+        } else {
             if dataArray.count >= 1 && dataArray[0].content != " " {
                 centerLabel.isHidden = true
-            }
-            else {
+            } else {
                 centerLabel.isHidden = false
                 centerLabel.text = comments.randomElement()
             }
@@ -217,7 +216,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         let todayString = dateFormatter.string(from: today as Date)
         
-        if dateString! >= todayString {
+        if selectedDate!.compare(.isToday) {
             addCheck = true
         }
         else {

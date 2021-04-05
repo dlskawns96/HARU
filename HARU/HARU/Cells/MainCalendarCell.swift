@@ -12,6 +12,8 @@ class MainCalendarCell: FSCalendarCell {
     static var currentMonth = Date()
     
     func configureCell(with item: MainCalendarCellItem) {
+        self.selectedBackgroundView?.translatesAutoresizingMaskIntoConstraints = false
+        self.selectedBackgroundView?.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         if item.numOfEvents != 0 {
             var posY = 50
             for idx in 0..<item.eventsToIndicate.count {
