@@ -11,6 +11,7 @@ import EventKit
 class EventDetailViewController: UITableViewController {
     static var event = EKEvent(eventStore: EventHandler.ekEventStore!)
     var dateFormatter = DateFormatter()
+    static var delegate: EventDetailViewDelegate?
     
     static func storyboardInstance() -> UINavigationController? {
         let storyboard = UIStoryboard(name: "EventDetailViewController",
@@ -24,17 +25,13 @@ class EventDetailViewController: UITableViewController {
         dateFormatter.locale = Locale(identifier: "ko-KR")
         dateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE a HH시 mm분"
         tableView.removeExtraLine()
-//        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        print("RELOAD")
+    super.viewWillAppear(true)
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+
         tableView.reloadData()
-    }
-    
-    @IBAction func onCancelBtnClicked(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onEditBtnClicked(_ sender: Any) {
@@ -74,4 +71,8 @@ extension EventDetailViewController {
             self.performSegue(withIdentifier: "EditAlert", sender: self)
         }
     }
+}
+
+protocol EventDetailViewDelegate {
+    func eventChanged(event: EKEvent)
 }

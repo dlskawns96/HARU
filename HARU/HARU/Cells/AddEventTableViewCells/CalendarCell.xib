@@ -27,7 +27,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrE-A5-VCr">
-                                <rect key="frame" x="196" y="10.5" width="38" height="38"/>
+                                <rect key="frame" x="209" y="17" width="25" height="25"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="KrE-A5-VCr" secondAttribute="height" multiplier="1:1" id="eyQ-in-gO3"/>
@@ -42,12 +42,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="KrE-A5-VCr" firstAttribute="top" secondItem="X7j-cd-WKd" secondAttribute="top" constant="10.5" id="14m-7K-Py7"/>
+                            <constraint firstItem="KrE-A5-VCr" firstAttribute="top" secondItem="X7j-cd-WKd" secondAttribute="top" constant="17" id="14m-7K-Py7"/>
                             <constraint firstItem="XKd-vM-0Aw" firstAttribute="top" secondItem="X7j-cd-WKd" secondAttribute="top" constant="20" symbolic="YES" id="1XS-Db-TaJ"/>
                             <constraint firstItem="XKd-vM-0Aw" firstAttribute="leading" secondItem="KrE-A5-VCr" secondAttribute="trailing" constant="12" id="252-NL-Ufg"/>
                             <constraint firstItem="bsA-Za-1X5" firstAttribute="top" secondItem="X7j-cd-WKd" secondAttribute="top" constant="20" symbolic="YES" id="RZg-FT-cOa"/>
                             <constraint firstItem="bsA-Za-1X5" firstAttribute="leading" secondItem="X7j-cd-WKd" secondAttribute="leading" constant="12" id="Yy3-dU-3Y5"/>
-                            <constraint firstAttribute="bottom" secondItem="KrE-A5-VCr" secondAttribute="bottom" constant="11.5" id="iVY-5u-s8d"/>
+                            <constraint firstAttribute="bottom" secondItem="KrE-A5-VCr" secondAttribute="bottom" constant="18" id="iVY-5u-s8d"/>
                             <constraint firstAttribute="bottom" secondItem="XKd-vM-0Aw" secondAttribute="bottom" constant="19.5" id="lEp-cO-sNs"/>
                             <constraint firstAttribute="bottom" secondItem="bsA-Za-1X5" secondAttribute="bottom" constant="19.5" id="ujI-fD-SLN"/>
                             <constraint firstAttribute="trailing" secondItem="XKd-vM-0Aw" secondAttribute="trailing" constant="12" id="y9Y-4v-i2k"/>
