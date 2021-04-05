@@ -10,6 +10,12 @@ import UIKit
 class NotificationSettingCell: UITableViewCell {
 
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var notificationSwitch: UISwitch!
+    
+    @IBAction func notificationSwitchClicked(_ sender: Any) {
+        UserDefaults.standard.set(notificationSwitch.isOn, forKey: "switchState")
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +26,5 @@ class NotificationSettingCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }
