@@ -187,6 +187,7 @@
                         <outlet property="eventsCollectionBtn" destination="79b-Cj-d5s" id="ZUd-Q4-gNq"/>
                         <outlet property="fsCalendar" destination="27V-Gr-hcq" id="xKt-ee-Ozf"/>
                         <segue destination="Nzo-Wt-ceS" kind="push" identifier="ShowSelectDateView" id="mLi-mm-fZ3"/>
+                        <segue destination="jEk-3h-0pM" kind="show" identifier="AddNewEventViewController" id="2ck-ER-epP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -254,27 +255,27 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ButtonTableViewCell" id="DH9-iU-yts" customClass="ButtonTableViewCell" customModule="HARU" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="170.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="170.5" width="414" height="44.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DH9-iU-yts" id="Udb-E5-M8k">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="캘린더" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEj-Lg-xuh">
-                                                    <rect key="frame" x="20" y="11" width="45" height="21.5"/>
+                                                    <rect key="frame" x="20" y="11" width="45" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="O5S-pY-gZM">
-                                                    <rect key="frame" x="388" y="14.5" width="26" height="15"/>
+                                                    <rect key="frame" x="388" y="15" width="26" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="Kod-Ys-r0Q"/>
                                                         <constraint firstAttribute="height" constant="15" id="LTy-e8-1u5"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eof-H1-KwO">
-                                                    <rect key="frame" x="356" y="12" width="30" height="21"/>
+                                                    <rect key="frame" x="356" y="12" width="30" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -460,7 +461,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5e-RQ-CTY">
                                 <rect key="frame" x="0.0" y="149" width="414" height="713"/>
                                 <connections>
-                                    <segue destination="OmN-bU-GkM" kind="embed" id="umG-JP-t3P"/>
+                                    <segue destination="OmN-bU-GkM" kind="embed" identifier="DiaryViewSegue" id="umG-JP-t3P"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -486,18 +487,19 @@
                                 <rect key="frame" x="376" y="11" width="18" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="addBtn:" destination="Nzo-Wt-ceS" eventType="touchUpInside" id="DBX-bq-dm9"/>
+                                </connections>
                             </button>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="addBtn:" destination="Nzo-Wt-ceS" id="grs-WX-xTv"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addBtn" destination="OID-ub-iU9" id="Wgm-d2-bA6"/>
+                        <outlet property="addBtn" destination="OID-ub-iU9" id="SM9-UB-Khe"/>
                         <outlet property="diaryView" destination="p5e-RQ-CTY" id="hgv-Wu-Ogo"/>
                         <outlet property="scheduleView" destination="Mbs-x2-jbM" id="bXm-eq-AiI"/>
                         <outlet property="segment" destination="PEA-2V-ho5" id="uZj-fk-nEK"/>
+                        <segue destination="57F-9V-RyS" kind="push" identifier="AddNewEventViewController" id="82C-3L-1ag"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gca-Xa-dfn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -566,6 +568,16 @@
             </objects>
             <point key="canvasLocation" x="4951" y="897"/>
         </scene>
+        <!--AddNewEventViewController-->
+        <scene sceneID="Waw-kJ-taV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddEvent" referencedIdentifier="AddNewEventViewController" id="jEk-3h-0pM" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="YvT-5H-JWx"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zcv-Z1-555" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="605" y="-759"/>
+        </scene>
         <!--설정-->
         <scene sceneID="3RP-To-fyY">
             <objects>
@@ -598,6 +610,16 @@
             </objects>
             <point key="canvasLocation" x="757" y="-366"/>
         </scene>
+        <!--AddNewEventViewController-->
+        <scene sceneID="pt4-zY-lTx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddEvent" referencedIdentifier="AddNewEventViewController" id="57F-9V-RyS" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="80A-FF-XR4"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HXV-zY-3p2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1440" y="-15"/>
+        </scene>
         <!--Schedule View Controller-->
         <scene sceneID="ZCf-c1-sqD">
             <objects>
@@ -606,19 +628,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CoV-fe-KaO" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                <rect key="frame" x="12" y="44" width="390" height="657"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                        <point key="value" x="0.0" y="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mqt-Xo-iXr">
-                                <rect key="frame" x="0.0" y="44" width="414" height="669"/>
+                                <rect key="frame" x="12" y="44" width="390" height="657"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduleTableViewCell" rowHeight="80" id="SFs-5j-fcc" customClass="ScheduleTableViewCell" customModule="HARU" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="390" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SFs-5j-fcc" id="1Xn-d5-VwU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSF-qU-6PY" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="10" width="394" height="60"/>
+                                                    <rect key="frame" x="10" y="10" width="370" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDY-RA-RVm">
                                                             <rect key="frame" x="12" y="20" width="42" height="21"/>
@@ -670,24 +713,37 @@
                                     <outlet property="delegate" destination="qpH-h7-Zcs" id="Jp9-fA-p6g"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epf-Yu-c1o">
+                                <rect key="frame" x="186" y="368" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fdx-95-gfG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="fdx-95-gfG" firstAttribute="bottom" secondItem="mqt-Xo-iXr" secondAttribute="bottom" id="3l7-Nk-mhN"/>
-                            <constraint firstItem="fdx-95-gfG" firstAttribute="trailing" secondItem="mqt-Xo-iXr" secondAttribute="trailing" id="5eY-aj-nDG"/>
-                            <constraint firstItem="mqt-Xo-iXr" firstAttribute="leading" secondItem="fdx-95-gfG" secondAttribute="leading" id="KqW-aq-JXc"/>
+                            <constraint firstItem="CoV-fe-KaO" firstAttribute="top" secondItem="mqt-Xo-iXr" secondAttribute="top" id="139-5X-OR6"/>
+                            <constraint firstItem="fdx-95-gfG" firstAttribute="bottom" secondItem="mqt-Xo-iXr" secondAttribute="bottom" constant="12" id="3l7-Nk-mhN"/>
+                            <constraint firstItem="fdx-95-gfG" firstAttribute="trailing" secondItem="mqt-Xo-iXr" secondAttribute="trailing" constant="12" id="5eY-aj-nDG"/>
+                            <constraint firstItem="epf-Yu-c1o" firstAttribute="centerY" secondItem="fdx-95-gfG" secondAttribute="centerY" id="71w-su-82A"/>
+                            <constraint firstItem="CoV-fe-KaO" firstAttribute="trailing" secondItem="mqt-Xo-iXr" secondAttribute="trailing" id="9d7-of-5Ph"/>
+                            <constraint firstItem="CoV-fe-KaO" firstAttribute="bottom" secondItem="mqt-Xo-iXr" secondAttribute="bottom" id="Dh3-wv-3vj"/>
+                            <constraint firstItem="mqt-Xo-iXr" firstAttribute="leading" secondItem="fdx-95-gfG" secondAttribute="leading" constant="12" id="KqW-aq-JXc"/>
                             <constraint firstItem="mqt-Xo-iXr" firstAttribute="top" secondItem="fdx-95-gfG" secondAttribute="top" id="jTm-sn-pOo"/>
+                            <constraint firstItem="epf-Yu-c1o" firstAttribute="centerX" secondItem="fdx-95-gfG" secondAttribute="centerX" id="qXy-gX-2po"/>
+                            <constraint firstItem="CoV-fe-KaO" firstAttribute="leading" secondItem="mqt-Xo-iXr" secondAttribute="leading" id="rxV-cz-zLA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ScheduleTableView" destination="mqt-Xo-iXr" id="Z7t-BE-kmR"/>
+                        <outlet property="centerLabel" destination="epf-Yu-c1o" id="3hQ-DR-nbt"/>
                         <segue destination="cjc-uh-R1K" kind="push" identifier="ShowDetailSegue" id="vPW-Np-pzC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Szj-eh-UQ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1529" y="86"/>
+            <point key="canvasLocation" x="1590" y="345"/>
         </scene>
         <!--EventDetailViewController-->
         <scene sceneID="E57-Wz-h54">
@@ -697,7 +753,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tAR-ep-1Wg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2127" y="58"/>
+            <point key="canvasLocation" x="2254" y="344"/>
         </scene>
         <!--이벤트 편집-->
         <scene sceneID="gEF-DE-RI2">
@@ -711,14 +767,14 @@
                         <color key="sectionIndexBackgroundColor" red="0.50827812900000002" green="0.50827812900000002" blue="0.50827812900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SetTitle" id="hTe-34-kil" customClass="TitleSetTableViewCell" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hTe-34-kil" id="WqW-6C-leR">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이벤트 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyj-6U-QDo">
-                                            <rect key="frame" x="20" y="11.5" width="78" height="21"/>
+                                            <rect key="frame" x="20" y="11.5" width="78" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -735,20 +791,20 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="hwb-Z9-Gd2" customClass="TitleSetTableViewCell" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwb-Z9-Gd2" id="qjN-FL-e2O">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l92-DE-3ph">
-                                            <rect key="frame" x="20" y="11.5" width="29.5" height="21"/>
+                                            <rect key="frame" x="20" y="11.5" width="29.5" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ony-ud-o8X">
-                                            <rect key="frame" x="59.5" y="11" width="334.5" height="22"/>
+                                            <rect key="frame" x="59.5" y="11.5" width="334.5" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -767,20 +823,20 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SetDateTableViewCell" id="D80-iR-dkK" customClass="SetDateTableViewCell" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="142.5" width="414" height="446"/>
+                                <rect key="frame" x="0.0" y="143.5" width="414" height="445.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D80-iR-dkK" id="rK3-An-Wvm">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="446"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="445.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작 날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftj-fS-Pvd">
-                                            <rect key="frame" x="20" y="11.5" width="63.5" height="21.5"/>
+                                            <rect key="frame" x="20" y="11.5" width="63.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkJ-21-3Ma" customClass="FSCalendar">
-                                            <rect key="frame" x="8" y="43" width="398" height="398"/>
+                                            <rect key="frame" x="8" y="42.5" width="398" height="398"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="JkJ-21-3Ma" secondAttribute="height" multiplier="1:1" id="igv-2M-5XQ"/>
@@ -798,24 +854,24 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eLE-cm-OtV">
-                                            <rect key="frame" x="133" y="7" width="131" height="32"/>
+                                            <rect key="frame" x="133" y="6.5" width="131" height="32"/>
                                             <segments>
                                                 <segment title="First"/>
                                                 <segment title="Second"/>
                                             </segments>
                                         </segmentedControl>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dhh-Wg-Aov" userLabel="시">
-                                            <rect key="frame" x="311" y="5.5" width="45.5" height="34"/>
+                                            <rect key="frame" x="311" y="5" width="45.5" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="send"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nnt-3s-hyd" userLabel="분">
-                                            <rect key="frame" x="358.5" y="5.5" width="45.5" height="34"/>
+                                            <rect key="frame" x="358.5" y="5" width="45.5" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vr-nE-jGf" userLabel=":">
-                                            <rect key="frame" x="311" y="12" width="93" height="21"/>
+                                            <rect key="frame" x="311" y="11.5" width="93" height="21"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -849,14 +905,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SetCalendarTableViewCell" id="HPk-A8-Qka" customClass="SetCalendarTableViewCell" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="588.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="589" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HPk-A8-Qka" id="zom-lb-4cy">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="캘린더" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaS-1y-zgb">
-                                            <rect key="frame" x="20" y="11.5" width="44.5" height="21"/>
+                                            <rect key="frame" x="20" y="11.5" width="44.5" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -868,7 +924,7 @@
                                             </state>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l4O-zW-94o">
-                                            <rect key="frame" x="325.5" y="10.5" width="22.5" height="22.5"/>
+                                            <rect key="frame" x="325" y="10.5" width="23" height="23"/>
                                             <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="l4O-zW-94o" secondAttribute="height" multiplier="1:1" id="7uR-Jm-Sw7"/>
@@ -1077,7 +1133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5qc-32-4tn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1529" y="635"/>
+            <point key="canvasLocation" x="1591" y="876"/>
         </scene>
     </scenes>
     <resources>
