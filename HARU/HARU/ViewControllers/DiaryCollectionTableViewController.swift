@@ -21,6 +21,7 @@ class DiaryCollectionTableViewController: UIViewController {
     var dateFormatter = DateFormatter()
     var Rtoken: NSObjectProtocol?
     
+    let today = NSDate()
     let comments = ["기록된 하루가 없어요!", "하루를 기록해보세요!", "기록이 없네요!"]
     let AD = UIApplication.shared.delegate as? AppDelegate
     let dataSource = DiaryTableViewModel()

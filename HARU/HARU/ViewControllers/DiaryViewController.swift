@@ -10,6 +10,8 @@ import UIKit
 class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPickerViewDelegate {
         
     var selectedDate: Date?
+    var dSelectedDate: String?
+    var dToday: String?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var badBtn: UIButton!
@@ -52,13 +54,23 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         let comments = ["지나간 하루는 돌아오지 않아요!", "지난날에 대한 후회는 하지 마세요!", "이미 지나버렸어요", "앞으로는 바로바로 기록해요!"]
         let able_comments = ["오늘 하루는 어땠나요?", "오늘 하루를 기록하세요!", "오늘의 기록을 추가하세요!"]
-        
-        let dateString = AD?.selectedDate
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let todayString = dateFormatter.string(from: today as Date)
-        
-        if selectedDate!.compare(.isToday) {
+
+//        if selectedDate!.compare(.isToday) {
+//            if dataArray.count >= 1 && dataArray[0].content != " " {
+//                centerLabel.isHidden = true
+//            } else {
+//                centerLabel.isHidden = false
+//                centerLabel.text = able_comments.randomElement()
+//            }
+//        } else {
+//            if dataArray.count >= 1 && dataArray[0].content != " " {
+//                centerLabel.isHidden = true
+//            } else {
+//                centerLabel.isHidden = false
+//                centerLabel.text = comments.randomElement()
+//            }
+//        }
+        if dSelectedDate == dToday {
             if dataArray.count >= 1 && dataArray[0].content != " " {
                 centerLabel.isHidden = true
             } else {
@@ -150,6 +162,9 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         tableView.reloadData()
         
         dataSource.requestDiary(date: (AD?.selectedDate)!)
+        dSelectedDate = AD?.selectedDate
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dToday = dateFormatter.string(from: today as Date)
         
         let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
         
@@ -216,7 +231,14 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         let todayString = dateFormatter.string(from: today as Date)
         
-        if selectedDate!.compare(.isToday) {
+//        if selectedDate!.compare(.isToday) {
+//            addCheck = true
+//        }
+//        else {
+//            addCheck = false
+//        }
+        
+        if dateString == todayString {
             addCheck = true
         }
         else {
