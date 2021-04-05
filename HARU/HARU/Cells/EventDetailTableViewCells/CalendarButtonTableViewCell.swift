@@ -14,7 +14,6 @@ class CalendarButtonTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("@@@@")
         configureCell()
     }
 
@@ -23,7 +22,6 @@ class CalendarButtonTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        print("@@@@")
         configureCell()
     }
     
