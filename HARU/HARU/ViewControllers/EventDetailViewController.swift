@@ -30,7 +30,6 @@ class EventDetailViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-
         tableView.reloadData()
     }
     

@@ -65,10 +65,12 @@ class AddNewEventViewController: UIViewController {
         tableView.removeExtraLine()
         
         tableView.keyboardDismissMode = .onDrag
+        EventAlarmSelectTableViewController.selectedIndex = IndexPath(row: 0, section: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        tableView.reloadData()
     }
     
     @IBAction func saveBtnClicked(_ sender: Any) {
@@ -139,7 +141,7 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 2 {
+        if indexPath.section == 3 {
             return CGFloat(200.0)
         }
         return UITableView.automaticDimension
@@ -197,6 +199,10 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
                     isEndDateCalendarInserted = false
                 }
                 cellOffset = 0
+            }
+        } else if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                self.performSegue(withIdentifier: "AlarmSet", sender: nil)
             }
         }
     }

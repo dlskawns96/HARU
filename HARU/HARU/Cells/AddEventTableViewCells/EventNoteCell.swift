@@ -16,6 +16,7 @@ class EventNoteCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         textView.delegate = self
+        setPlaceHolder()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

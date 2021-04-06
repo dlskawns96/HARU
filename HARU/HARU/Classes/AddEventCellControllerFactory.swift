@@ -18,6 +18,7 @@ enum ItemType {
     case switchItem
     case calendarEditItem
     case eventNoteItem
+    case alarmItem
 }
 
 class AddEventCellControllerFactory {
@@ -48,6 +49,8 @@ class AddEventCellControllerFactory {
                     controllers[section].append(CalendarEditCellController(item: items[section][row]))
                 case .eventNoteItem:
                     controllers[section].append(EventNoteCellController(item: items[section][row]))
+                case .alarmItem:
+                    controllers[section].append(AlarmCellController(item: items[section][row]))
                 }
             }
         }
