@@ -24,17 +24,29 @@ class EventDetailViewController: UITableViewController {
         
         dateFormatter.locale = Locale(identifier: "ko-KR")
         dateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE a HH시 mm분"
+        self.navigationController?.navigationBar.tintColor = .white
         tableView.removeExtraLine()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(true)
+        super.viewWillAppear(true)
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EventModify" {
+            guard let vc = segue.destination as? AddNewEventViewController else {
+                return
+            }
+            vc.originalEvent = EventDetailViewController.event
+            vc.isModifying = true
+        }
+    }
+    
     @IBAction func onEditBtnClicked(_ sender: Any) {
     }
+    
 }
 
 extension EventDetailViewController {

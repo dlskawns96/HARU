@@ -39,6 +39,9 @@ class AddNewEventViewController: UIViewController {
     var isEndDateCalendarInserted = false
     var cellOffset = 0
     
+    var originalEvent: EKEvent?
+    var isModifying = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
@@ -55,8 +58,12 @@ class AddNewEventViewController: UIViewController {
         calendars = calendarLoader.loadCalendars()
         
         dataSource.delegate = self
-        dataSource.initData(selectedDate: selectedDate!, calendar: calendars[0])
-        
+        if originalEvent != nil {
+            navigationBar.title = "이벤트 수정"
+            dataSource.initData(event: originalEvent!)
+        } else {
+            dataSource.initData(selectedDate: selectedDate!, calendar: calendars[0])
+        }
         cellControllers = cellControllerFactory.cellControllers(with: items)
         
         
@@ -74,8 +81,11 @@ class AddNewEventViewController: UIViewController {
     }
     
     @IBAction func saveBtnClicked(_ sender: Any) {
-        dataSource.saveNewEvent()
-        self.dismiss(animated: true, completion: nil)
+        if isModifying {
+            dataSource.modifyEvent()
+        } else {
+            dataSource.saveNewEvent()
+        }
         self.navigationController?.popViewController(animated: true)
     }
     

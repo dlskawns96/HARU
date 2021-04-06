@@ -234,6 +234,7 @@
                         <barButtonItem key="rightBarButtonItem" title="편집" id="PeX-W8-XGp">
                             <connections>
                                 <action selector="onEditBtnClicked:" destination="YDC-AY-COA" id="Df1-bc-Uq0"/>
+                                <segue destination="3Sy-An-nzE" kind="push" identifier="EventModify" id="3Ou-an-fWr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -245,6 +246,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hN8-qH-RK6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1328.985507246377" y="-181.47321428571428"/>
+        </scene>
+        <!--AddNewEventViewController-->
+        <scene sceneID="aEM-lc-GRV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddEvent" referencedIdentifier="AddNewEventViewController" id="3Sy-An-nzE" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="J5d-V2-Mof"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jZc-6p-HJr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1938" y="-732"/>
         </scene>
         <!--EditCalendar-->
         <scene sceneID="ovr-hg-86E">

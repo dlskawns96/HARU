@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import EventKit
 
 class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cellTitle: UILabel!
     var tableViewData = [EventCollectionTableViewItem]()
+    var delegate: EventCollectionViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,10 +48,18 @@ extension EventCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.pushEventDetailView(event: tableViewData[indexPath.row].event!)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableViewData.count == 0 {
             return 660
         }
         return 100.0
     }
+}
+
+protocol EventCollectionViewCellDelegate: class {
+    func pushEventDetailView(event: EKEvent)
 }

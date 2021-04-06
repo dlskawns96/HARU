@@ -62,6 +62,10 @@ class EventCollectionTableViewController: UIViewController {
         collectionView.scrollToItem(at:IndexPath(item: Calendar.current.component(.month, from: Date()) - 1, section: 0), at: .right, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+    
     @IBAction func lastYearBtnClicked(_ sender: Any) {
         currentYear = currentYear.adjust(.year, offset: -1)
         dataSource.requestData(ofYear: currentYear)
@@ -93,7 +97,7 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
+        cell.delegate = self
         cell.cellTitle.text = String(indexPath.item + 1) + "월"
         cell.tableViewData = dataArray[indexPath.item]
         cell.tableView.reloadData()
@@ -119,5 +123,12 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
 extension EventCollectionTableViewController: EventCollectionTableViewModelDelegate {
     func didLoadData(data: [[EventCollectionTableViewItem]]) {
         dataArray = data
+    }
+}
+
+extension EventCollectionTableViewController: EventCollectionViewCellDelegate {
+    func pushEventDetailView(event: EKEvent) {
+        EventDetailViewController.event = event
+        self.performSegue(withIdentifier: "EventDetail", sender: nil)
     }
 }

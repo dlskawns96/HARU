@@ -61,6 +61,28 @@
                                                                 <outlet property="imgView" destination="XxS-ye-0gO" id="9mM-fP-rHu"/>
                                                             </connections>
                                                         </tableViewCell>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCollectionTableViewCell" rowHeight="693" id="ej1-05-WST" customClass="EventCollectionTableViewCell" customModule="HARU" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="721" width="414" height="693"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ej1-05-WST" id="Rst-lT-AjZ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="693"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image_X" translatesAutoresizingMaskIntoConstraints="NO" id="k8P-ro-plu">
+                                                                        <rect key="frame" x="87" y="207" width="240" height="128"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="k8P-ro-plu" secondAttribute="bottom" constant="358" id="2J3-uS-ePb"/>
+                                                                    <constraint firstItem="k8P-ro-plu" firstAttribute="leading" secondItem="Rst-lT-AjZ" secondAttribute="leading" constant="87" id="FQM-0v-Php"/>
+                                                                    <constraint firstItem="k8P-ro-plu" firstAttribute="top" secondItem="Rst-lT-AjZ" secondAttribute="top" constant="207" id="gUi-y9-JpX"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="k8P-ro-plu" secondAttribute="trailing" constant="87" id="lwO-7e-xCm"/>
+                                                                </constraints>
+                                                            </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="imgView" destination="k8P-ro-plu" id="6eP-Dg-UAj"/>
+                                                            </connections>
+                                                        </tableViewCell>
                                                     </prototypes>
                                                 </tableView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2T3-O8-SVR" userLabel="Title Shadow View" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -150,6 +172,7 @@
                         <outlet property="lastYearBtn" destination="YIW-SJ-hxu" id="7r8-1a-WDE"/>
                         <outlet property="nextYearBtn" destination="2nt-Ok-jwF" id="G6N-e5-HHv"/>
                         <outlet property="titleLabel" destination="PIp-9J-wbU" id="Pgk-xC-2AZ"/>
+                        <segue destination="StK-eJ-nAW" kind="push" identifier="EventDetail" id="wpK-bP-d4A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfd-wG-8FP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -178,6 +201,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MsT-9B-4Z8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-870" y="1033"/>
+        </scene>
+        <!--EventDetailViewController-->
+        <scene sceneID="DUH-jT-4oQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EventDetailViewController" referencedIdentifier="EventDetailViewController" id="StK-eJ-nAW" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lCM-pp-8lG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="auC-Fz-jJV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="591" y="1033"/>
         </scene>
     </scenes>
     <resources>

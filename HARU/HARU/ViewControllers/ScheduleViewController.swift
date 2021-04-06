@@ -29,6 +29,8 @@ class ScheduleViewController: UIViewController {
         }
     }
     
+    var selectedEvent: EKEvent?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         dataSource.requestData(of: self.selectedDate)
@@ -46,7 +48,18 @@ class ScheduleViewController: UIViewController {
         ScheduleTableView.delegate = self
         ScheduleTableView.dataSource = self
         ScheduleTableView.removeExtraLine()
+        selectedEvent = nil
         dataSource.delegate = self
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EventModify" {
+            guard let vc = segue.destination as? AddNewEventViewController else {
+                return
+            }
+            vc.isModifying = true
+            vc.originalEvent = selectedEvent
+        }
     }
     
     func swipeDelete(indexPath: IndexPath) {
@@ -55,14 +68,8 @@ class ScheduleViewController: UIViewController {
     }
     
     func swipeModify(event: EKEvent) {
-        guard let controller = self.storyboard!.instantiateViewController(identifier: "EventModifyViewControllerEntry") as UINavigationController? else { return }
-        let vc = controller.viewControllers.first as? EventModifyViewController
-        if vc != nil {
-            vc?.event = event.copy() as! EKEvent
-            vc?.originalCalendar = event.calendar
-        } else { return }
-        controller.modalPresentationStyle = .pageSheet
-        self.present(controller, animated: true, completion: nil)
+        selectedEvent = event
+        self.performSegue(withIdentifier: "EventModify", sender: nil)
     }
 }
 
@@ -106,7 +113,7 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     // trailing swipe
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "수정", handler: {(action, view, completionHandler) in
-            self.swipeModify(event: self.dateEvents[indexPath.row])
+            self.swipeModify(event: self.dataArray[indexPath.row].event)
             completionHandler(true)
         })
         action.backgroundColor = .systemBlue
