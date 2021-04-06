@@ -10,6 +10,9 @@ import EventKit
 
 class SelectDateController : UIViewController {
     
+    var dSelectedDate: String?
+    var dToday: String?
+    
     @IBOutlet weak var segment: UISegmentedControl!
     
     @IBOutlet var addBtn: UIButton!
@@ -23,6 +26,7 @@ class SelectDateController : UIViewController {
     var scheduleVC: ScheduleViewController? = ScheduleViewController()
     
     var selectedDate: Date?
+    let today = NSDate()
     let dateFormatter = DateFormatter()
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,6 +47,11 @@ class SelectDateController : UIViewController {
             }
             controller.selectedDate = self.selectedDate
         }
+        
+        // 날짜 설정
+        dSelectedDate = AD?.selectedDate
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dToday = dateFormatter.string(from: today as Date)
     }
     
     override func viewDidLoad() {
@@ -55,6 +64,7 @@ class SelectDateController : UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor  = UIColor(named: "MainUIColor")
+        
     }
     
     @IBAction func indexChanged(_ sender: Any) {
@@ -64,13 +74,22 @@ class SelectDateController : UIViewController {
             scheduleView.isHidden = false
             diaryView.isHidden = true
             addBtn.isEnabled = true
+
         case 1:
             scheduleView.isHidden = true
             diaryView.isHidden = false
-            
-            if selectedDate!.compare(.isToday) {
+
+//            if selectedDate!.compare(.isToday) {
+//                addBtn.isEnabled = true
+//            } else {
+//
+//                addBtn.isEnabled = false
+//            }
+        
+            if dSelectedDate == dToday {
                 addBtn.isEnabled = true
             } else {
+                
                 addBtn.isEnabled = false
             }
             

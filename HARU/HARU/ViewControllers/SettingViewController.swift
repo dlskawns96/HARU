@@ -19,25 +19,10 @@ class SettingViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
-//        var cell = UITableViewCell()
-//        
-//        if indexPath.section == 0 {
-//            cell = tableView.dequeueReusableCell(withIdentifier: "notificationSettingCell", for: indexPath) as! NotificationSettingCell
-//            
-//        }
-//        else {
-//            cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for:indexPath)
-//            let text: String = setting[indexPath.section][indexPath.row]
-//            cell.textLabel?.text = text
-//            cell.accessoryType = .disclosureIndicator
-//        }
-        
-//        print(indexPath.section)
-       
-
-        if indexPath.section == 0 {
+        if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "notificationSettingCell", for: indexPath) as! NotificationSettingCell
             cell.label.text = setting[indexPath.section][indexPath.row]
+            cell.notificationSwitch.isOn = UserDefaults.standard.bool(forKey: "switchState")
             return cell
         }
         else {
@@ -47,17 +32,7 @@ class SettingViewController: UITableViewController {
             cell.accessoryType = .disclosureIndicator
             return cell
         }
-        
-//        let cell = (indexPath.section == 0) ? tableView.dequeueReusableCell(withIdentifier: "settingCell", for:indexPath) : tableView.dequeueReusableCell(withIdentifier: "notificationSettingCell", for: indexPath) as! NotificationSettingCell
-//        let text = setting[indexPath.section][indexPath.row]
-//
-//        if indexPath.section == 0 {
-//            cell.label.text = setting[indexPath.section][indexPath.row]
-//        }
-//        else {
-//            cell.textLabel?.text = text
-//            cell.accessoryType = .disclosureIndicator
-//        }
+
     }
 
     
@@ -67,6 +42,10 @@ class SettingViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return header[section]
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         return 44
     }
     
     override func viewDidLoad() {

@@ -18,8 +18,11 @@
                 <subviews>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhQ-Zb-7FA">
                         <rect key="frame" x="255" y="6.5" width="51" height="31"/>
+                        <connections>
+                            <action selector="notificationSwitchClicked:" destination="KGk-i7-Jjw" eventType="valueChanged" id="cgm-y6-IRM"/>
+                        </connections>
                     </switch>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2p-QQ-Ybr">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2p-QQ-Ybr">
                         <rect key="frame" x="16" y="11" width="231" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -36,6 +39,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="label" destination="O2p-QQ-Ybr" id="VHG-1U-END"/>
+                <outlet property="notificationSwitch" destination="JhQ-Zb-7FA" id="d2g-oa-lnI"/>
             </connections>
             <point key="canvasLocation" x="-146.37681159420291" y="79.6875"/>
         </tableViewCell>
