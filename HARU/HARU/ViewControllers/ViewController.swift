@@ -47,6 +47,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(onEventAddedNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onEventRemovedNotification(notification:)), name:EventHandler.eventRemovedNoti, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onEventModifiedNotification(notification:)), name:MainCalendarModel.mainCalendarEventModifiedNoti, object: nil)
     
         fsCalendar.layer.cornerRadius = ThemeVariables.buttonCornerRadius
         fsCalendar.layer.shadowPath = UIBezierPath(roundedRect: fsCalendar.bounds, cornerRadius: 10).cgPath
@@ -133,6 +134,7 @@ class ViewController: UIViewController {
         return events
     }
     
+    // MARK: - Notification Handlers
     @objc func onEventAddedNotification(notification: Notification) {
         let event = notification.userInfo!["event"] as! EKEvent
         let items = getItemsOfDate(startDate: event.startDate, endDate: event.endDate)
@@ -143,6 +145,11 @@ class ViewController: UIViewController {
         let startDate = notification.userInfo!["startDate"] as! Date
         let endDate = notification.userInfo!["endDate"] as! Date
         dataSource?.eventRemoved(startDate: startDate, endDate: endDate)
+    }
+    
+    @objc func onEventModifiedNotification(notification: Notification) {
+        let event = notification.userInfo!["event"] as! EKEvent
+        dataSource?.eventModified(event: event)
     }
     
     func getItemsOfDate(startDate: Date, endDate: Date) -> [MainCalendarCellItem] {

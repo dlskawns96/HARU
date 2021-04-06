@@ -50,8 +50,13 @@ extension EventNoteCell: UITextViewDelegate {
     }
     
     func setPlaceHolder() {
-        textView.text = "메모"
-        textView.textColor = UIColor.lightGray
+        if AddEventTableViewModel.newEvent.hasNotes {
+            textView.text = AddEventTableViewModel.newEvent.notes
+            textView.textColor = UIColor.black
+        } else {
+            textView.text = "메모"
+            textView.textColor = UIColor.lightGray
+        }
     }
 }
 

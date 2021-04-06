@@ -15,6 +15,7 @@ class MainCalendarModel {
     let calendar = Calendar.current
     
     static let mainCalendarAddEventNoti = Notification.Name("mainCalendarAddEventNoti")
+    static let mainCalendarEventModifiedNoti = Notification.Name("mainCalendarEventModifiedNoti")
     
     func initData(date: Date) {
         var dataArray = [[[MainCalendarCellItem]]]()
@@ -82,6 +83,19 @@ class MainCalendarModel {
         }
         
         delegate?.itemChanged(datas: dataArray, startDate: startDate, endDate: endDate)
+    }
+    
+    func eventModified(event: EKEvent) {
+        var dataArray = [MainCalendarCellItem]()
+        let difference = abs(event.startDate.difference(between: event.endDate))
+        let newEvents = calendarLoader.loadEvents(ofDay: event.startDate, for: difference)
+        
+        for i in 0...difference {
+            let item = MainCalendarCellItem(events: newEvents[i], date: event.startDate.adjust(.day, offset: i))
+            dataArray.append(item)
+        }
+        
+        delegate?.itemChanged(datas: dataArray, startDate: event.startDate, endDate: event.endDate)
     }
 }
 

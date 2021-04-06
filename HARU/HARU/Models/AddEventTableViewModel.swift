@@ -31,6 +31,19 @@ class AddEventTableViewModel {
         delegate?.didLoadData(items: items)
     }
     
+    func initData(event: EKEvent) {
+        AddEventTableViewModel.newEvent = event
+        
+        let section1: [AddEventCellItem] = [TextFieldItem(title: "타이틀")]
+        let section2: [AddEventCellItem] = [CalendarItem(title: "캘린더"), TextItem(isStartDate: true, title: "시작"), TextItem(isStartDate: false, title: "종료")]
+        let section3: [AddEventCellItem] = [AlarmItem(title: "알림")]
+        let section4: [AddEventCellItem] = [EventNoteItem(title: "노트")]
+        
+        let items: [[AddEventCellItem]] = [section1, section2, section3, section4]
+        
+        delegate?.didLoadData(items: items)
+    }
+    
     func addCalendarEditItem(title: String) {
         let item: AddEventCellItem = CalendarEditItem(title: title)
         delegate?.calenadrEditItemAdded(item: item)
@@ -50,10 +63,7 @@ class AddEventTableViewModel {
         
         for calendar in calendars {
             if calendar.title == AddEventTableViewModel.newEvent.calendar.title {
-                
                 do {
-//                    let alarm = EKAlarm(absoluteDate: AddEventTableViewModel.newEvent.startDate.adjust(.minute, offset: 1))
-//                    AddEventTableViewModel.newEvent.addAlarm(alarm)
                     try EventHandler.ekEventStore!.save(AddEventTableViewModel.newEvent, span: .thisEvent)
                 } catch {
                     print("Error saving event in calendar")
@@ -64,6 +74,17 @@ class AddEventTableViewModel {
                 return
             }
         }
+    }
+    
+    func modifyEvent() {
+        do {
+            try EventHandler.ekEventStore!.save(AddEventTableViewModel.newEvent, span: .thisEvent)
+        } catch {
+            print("Error saving event in calendar")
+            return
+        }
+        print("Event modified!")
+        NotificationCenter.default.post(name: MainCalendarModel.mainCalendarEventModifiedNoti, object: nil, userInfo: ["event": AddEventTableViewModel.newEvent])
     }
 }
 
