@@ -25,7 +25,7 @@ class AddNewEventViewController: UIViewController {
     let eventStore = EventHandler.ekEventStore
     let calendarLoader = CalendarLoader()
     var calendars = [EKCalendar]()
-    var selectedDate = Date()
+    var selectedDate: Date?
     
     let dataSource = AddEventTableViewModel()
     var dataArray = [AddEventTableViewItem]()
@@ -55,7 +55,7 @@ class AddNewEventViewController: UIViewController {
         calendars = calendarLoader.loadCalendars()
         
         dataSource.delegate = self
-        dataSource.initData(selectedDate: selectedDate, calendar: calendars[0])
+        dataSource.initData(selectedDate: selectedDate!, calendar: calendars[0])
         
         cellControllers = cellControllerFactory.cellControllers(with: items)
         
@@ -74,9 +74,7 @@ class AddNewEventViewController: UIViewController {
     @IBAction func saveBtnClicked(_ sender: Any) {
         dataSource.saveNewEvent()
         self.dismiss(animated: true, completion: nil)
-    }
-    @IBAction func cancleBtnClicked(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setCalendarDropDown() {
@@ -99,6 +97,12 @@ class AddNewEventViewController: UIViewController {
         calendarDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             dataSource.selectCalendar(newCalendar: calendars[index])
         }
+    }
+    
+    static func storyboardInstance() -> AddNewEventViewController? {
+        let storyboard = UIStoryboard(name: "AddEvent",
+                                      bundle: nil)
+        return storyboard.instantiateInitialViewController() as? AddNewEventViewController
     }
 }
 

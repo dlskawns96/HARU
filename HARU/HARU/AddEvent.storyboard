@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T9q-15-ulN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -11,13 +11,13 @@
         <!--새 일정-->
         <scene sceneID="hsS-wa-GdL">
             <objects>
-                <viewController id="T9q-15-ulN" customClass="AddNewEventViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddNewEventViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T9q-15-ulN" customClass="AddNewEventViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="35N-QS-1mk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DVZ-Ft-jf1">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddEventTableViewCell" id="PFS-fr-G07" customClass="AddEventTableViewCell" customModule="HARU" customModuleProvider="target">
@@ -96,13 +96,8 @@
                             <constraint firstItem="LNH-Pc-eIW" firstAttribute="bottom" secondItem="DVZ-Ft-jf1" secondAttribute="bottom" id="lIq-EI-49h"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="새 일정" largeTitleDisplayMode="always" id="Dj2-xp-hE1">
-                        <barButtonItem key="leftBarButtonItem" title="취소" id="5DN-3d-Hdc">
-                            <connections>
-                                <action selector="cancleBtnClicked:" destination="T9q-15-ulN" id="Vcn-C0-s8h"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="저장" id="OG4-dx-DD7">
+                    <navigationItem key="navigationItem" title="새 일정" largeTitleDisplayMode="never" id="Dj2-xp-hE1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OG4-dx-DD7">
                             <connections>
                                 <action selector="saveBtnClicked:" destination="T9q-15-ulN" id="RGb-j1-JNf"/>
                             </connections>
@@ -115,25 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H2w-T7-VDk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2605.7971014492755" y="521.65178571428567"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="b1O-a9-Qac">
-            <objects>
-                <navigationController storyboardIdentifier="AddEventNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ElC-Mj-pi3" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E9l-QH-rC6">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="T9q-15-ulN" kind="relationship" relationship="rootViewController" id="9LH-mK-RBh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Otn-9q-ALI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1752" y="522"/>
+            <point key="canvasLocation" x="2562" y="479"/>
         </scene>
     </scenes>
     <resources>

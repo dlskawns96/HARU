@@ -9,6 +9,10 @@ import UIKit
 
 class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPickerViewDelegate {
         
+    var selectedDate: Date?
+    var dSelectedDate: String?
+    var dToday: String?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var badBtn: UIButton!
     @IBOutlet weak var goodBtn: UIButton!
@@ -50,28 +54,42 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         let comments = ["지나간 하루는 돌아오지 않아요!", "지난날에 대한 후회는 하지 마세요!", "이미 지나버렸어요", "앞으로는 바로바로 기록해요!"]
         let able_comments = ["오늘 하루는 어땠나요?", "오늘 하루를 기록하세요!", "오늘의 기록을 추가하세요!"]
-        
-        let dateString = AD?.selectedDate
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let todayString = dateFormatter.string(from: today as Date)
-        
-        if dateString! >= todayString {
+        let future_comments = ["아직 오지 않은 하루에요!", "어떤일이 일어날까요?"]
+
+//        if selectedDate!.compare(.isToday) {
+//            if dataArray.count >= 1 && dataArray[0].content != " " {
+//                centerLabel.isHidden = true
+//            } else {
+//                centerLabel.isHidden = false
+//                centerLabel.text = able_comments.randomElement()
+//            }
+//        } else {
+//            if dataArray.count >= 1 && dataArray[0].content != " " {
+//                centerLabel.isHidden = true
+//            } else {
+//                centerLabel.isHidden = false
+//                centerLabel.text = comments.randomElement()
+//            }
+//        }
+        if dSelectedDate == dToday {
             if dataArray.count >= 1 && dataArray[0].content != " " {
                 centerLabel.isHidden = true
-            }
-            else {
+            } else {
                 centerLabel.isHidden = false
                 centerLabel.text = able_comments.randomElement()
             }
-        }
-        else {
-            if dataArray.count >= 1 && dataArray[0].content != " " {
-                centerLabel.isHidden = true
+        } else {
+            if dSelectedDate! < dToday! {
+                if dataArray.count >= 1 && dataArray[0].content != " " {
+                    centerLabel.isHidden = true
+                } else {
+                    centerLabel.isHidden = false
+                    centerLabel.text = comments.randomElement()
+                }
             }
             else {
                 centerLabel.isHidden = false
-                centerLabel.text = comments.randomElement()
+                centerLabel.text = future_comments.randomElement()
             }
         }
     }
@@ -151,6 +169,9 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         tableView.reloadData()
         
         dataSource.requestDiary(date: (AD?.selectedDate)!)
+        dSelectedDate = AD?.selectedDate
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dToday = dateFormatter.string(from: today as Date)
         
         let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
         
@@ -217,7 +238,14 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         let todayString = dateFormatter.string(from: today as Date)
         
-        if dateString! >= todayString {
+//        if selectedDate!.compare(.isToday) {
+//            addCheck = true
+//        }
+//        else {
+//            addCheck = false
+//        }
+        
+        if dateString == todayString {
             addCheck = true
         }
         else {

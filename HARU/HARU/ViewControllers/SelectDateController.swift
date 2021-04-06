@@ -10,15 +10,14 @@ import EventKit
 
 class SelectDateController : UIViewController {
     
+    var dSelectedDate: String?
+    var dToday: String?
+    
     @IBOutlet weak var segment: UISegmentedControl!
     
+    @IBOutlet var addBtn: UIButton!
     @IBOutlet weak var scheduleView: UIView!
     @IBOutlet weak var diaryView: UIView!
-    @IBOutlet weak var addBtn: UIButton!
-    @IBOutlet weak var selectedDateLabel: UILabel!
-    @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var cancleBtn: UIButton!
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     
@@ -26,7 +25,8 @@ class SelectDateController : UIViewController {
     
     var scheduleVC: ScheduleViewController? = ScheduleViewController()
     
-    var selectedDate = Date()
+    var selectedDate: Date?
+    let today = NSDate()
     let dateFormatter = DateFormatter()
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -38,7 +38,20 @@ class SelectDateController : UIViewController {
             scheduleVC?.dateEvents = dateEvents
             dateFormatter.dateFormat = "yyyy-MM-dd"
             scheduleVC?.selectedDate = dateFormatter.date(from: (AD?.selectedDate)!)!
+        } else if segue.identifier == "AddNewEventViewController" {
+            guard let controller = segue.destination as? AddNewEventViewController else { return }
+            controller.selectedDate = selectedDate!
+        } else if segue.identifier == "DiaryViewSegue" {
+            guard let controller = segue.destination as? DiaryViewController else {
+                return
+            }
+            controller.selectedDate = self.selectedDate
         }
+        
+        // 날짜 설정
+        dSelectedDate = AD?.selectedDate
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dToday = dateFormatter.string(from: today as Date)
     }
     
     override func viewDidLoad() {
@@ -47,14 +60,11 @@ class SelectDateController : UIViewController {
         diaryView.isHidden = true
         isModalInPresentation = true
         self.presentationController?.delegate = self
-        
-        backgroundView.backgroundColor = ThemeVariables.mainUIColor
-        titleLabel.textColor = .white
-        cancleBtn.tintColor = .white
-        addBtn.tintColor = .white
-        
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        selectedDateLabel.text = dateFormatter.string(from: selectedDate)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor  = UIColor(named: "MainUIColor")
+        
     }
     
     @IBAction func indexChanged(_ sender: Any) {
@@ -64,23 +74,22 @@ class SelectDateController : UIViewController {
             scheduleView.isHidden = false
             diaryView.isHidden = true
             addBtn.isEnabled = true
+
         case 1:
             scheduleView.isHidden = true
             diaryView.isHidden = false
-            
-            // 다이어리 추가 비활성화
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            let dateString = dateFormatter.string(from: selectedDate)
-            
-            let today = NSDate()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            
-            let todayString = dateFormatter.string(from: today as Date)
 
-            if dateString >= todayString {
+//            if selectedDate!.compare(.isToday) {
+//                addBtn.isEnabled = true
+//            } else {
+//
+//                addBtn.isEnabled = false
+//            }
+        
+            if dSelectedDate == dToday {
                 addBtn.isEnabled = true
-            }
-            else {
+            } else {
+                
                 addBtn.isEnabled = false
             }
             
@@ -89,21 +98,10 @@ class SelectDateController : UIViewController {
         }
     }
     
-    @IBAction func closeBtn(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func addBtn(_ sender: Any) {
-        
-        switch segment.selectedSegmentIndex
-        {
+        switch segment.selectedSegmentIndex {
         case 0:
-            let storyboard: UIStoryboard = UIStoryboard(name: "AddEvent", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(identifier: "AddEventNavigationViewController") as UINavigationController? else { return }
-            controller.modalPresentationStyle = .pageSheet
-            guard let vc = controller.viewControllers.first as? AddNewEventViewController else { return }
-            vc.selectedDate = selectedDate
-            self.present(controller, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "AddNewEventViewController", sender: nil)
         case 1:
             guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
             self.present(controller, animated: true, completion: nil)

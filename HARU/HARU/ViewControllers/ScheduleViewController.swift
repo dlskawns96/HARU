@@ -11,6 +11,8 @@ import EventKit
 class ScheduleViewController: UIViewController {
 
     @IBOutlet weak var ScheduleTableView: UITableView!
+    @IBOutlet var centerLabel: UILabel!
+    
     var dateEvents: [EKEvent] = []
     var selectedDate = Date()
     
@@ -18,6 +20,9 @@ class ScheduleViewController: UIViewController {
     let calendarLoader = CalendarLoader()
     
     let dataSource = ScheduleTableViewModel()
+    
+    let emptyComments = ["일정이 없습니다!", "스케줄이 비어 있어요.", "계획이 없는 하루에요."]
+    
     var dataArray = [ScheduleTableViewItem]() {
         didSet {
             ScheduleTableView.reloadData()
@@ -25,21 +30,23 @@ class ScheduleViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+        super.viewWillAppear(true)
         dataSource.requestData(of: self.selectedDate)
+        if dataArray.isEmpty {
+            centerLabel.text = emptyComments.randomElement()
+        } else {
+            centerLabel.text = ""
+        }
+        ScheduleTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        centerLabel.text = ""
         ScheduleTableView.delegate = self
         ScheduleTableView.dataSource = self
         ScheduleTableView.removeExtraLine()
         dataSource.delegate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(onEventAddedNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
-    }
-    
-    @objc func onEventAddedNotification(notification:Notification) {
-        dataSource.requestData(of: self.selectedDate)
     }
     
     func swipeDelete(indexPath: IndexPath) {
@@ -62,9 +69,8 @@ class ScheduleViewController: UIViewController {
 // MARK: - TableView
 extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let naviController = EventDetailViewController.storyboardInstance()
         EventDetailViewController.event = dataArray[indexPath.row].event
-        self.present(naviController!, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "ShowDetailSegue", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
