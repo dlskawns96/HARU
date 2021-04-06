@@ -58,3 +58,32 @@ class TextCellController: AddEventCellController {
         
     }
 }
+
+class AlarmCellController: AddEventCellController {
+    fileprivate let item: AddEventCellItem
+    let cellItem: AlarmItem
+    
+    init(item: AddEventCellItem) {
+        self.item = item
+        cellItem = item as! AlarmItem
+    }
+    
+    fileprivate static var cellIdentifier: String {
+        return String(describing: TextCell.self)
+    }
+    
+    static func registerCell(on tableView: UITableView) {
+        tableView.register(UINib(nibName: cellIdentifier, bundle: Bundle(for: TextCell.self)), forCellReuseIdentifier: cellIdentifier)
+    }
+    
+    func cellFromTableView(_ tableView: UITableView, forIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).cellIdentifier, for: indexPath) as! TextCell
+        cell.titleLabel.text = cellItem.titleString
+        cell.contentLabel.text = EventAlarmSelectTableViewController.items[EventAlarmSelectTableViewController.selectedIndex.section][EventAlarmSelectTableViewController.selectedIndex.row]
+        return cell
+    }
+    
+    func didSelectCell() {
+    
+    }
+}

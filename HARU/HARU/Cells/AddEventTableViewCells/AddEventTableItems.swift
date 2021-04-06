@@ -63,3 +63,12 @@ class EventNoteItem: AddEventCellItem {
     }
     
 }
+
+class AlarmItem: AddEventCellItem {
+    var itemType: ItemType = .alarmItem
+    var titleString: String
+    
+    init(title: String) {
+        self.titleString = title
+    }
+}

@@ -76,7 +76,6 @@
                                     <outlet property="startDateLabel" destination="4bk-bh-YrT" id="tbU-Xz-24u"/>
                                 </connections>
                             </tableViewCell>
-
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CalendarButtonTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarButtonTableViewCell" rowHeight="80.5" id="Yzg-DZ-rcm" customClass="CalendarButtonTableViewCell" customModule="HARU" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="278" width="414" height="80.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -99,7 +98,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8v-UO-1qk">
                                                     <rect key="frame" x="305" y="22" width="15" height="17.5"/>
                                                     <color key="backgroundColor" systemColor="systemRedColor"/>
