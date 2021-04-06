@@ -23,7 +23,22 @@ class SettingViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        if indexPath.section == 2 {
+//        if indexPath.section == 2 {
+//            let alert = UIAlertController(title: "알림", message: "모든 다이어리를 정말 삭제하시겠습니까?", preferredStyle: .alert)
+//
+//            let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] (action) in
+//                self?.deleteAllDiary()
+//            }
+//            alert.addAction(okAction)
+//
+//            let cancleAction = UIAlertAction(title: "취소", style: .cancel) { (action) in }
+//            alert.addAction(cancleAction)
+//
+//            present(alert, animated: true, completion: nil)
+//        }
+        
+        switch indexPath.section {
+        case 2:
             let alert = UIAlertController(title: "알림", message: "모든 다이어리를 정말 삭제하시겠습니까?", preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] (action) in
@@ -35,6 +50,24 @@ class SettingViewController: UITableViewController {
             alert.addAction(cancleAction)
             
             present(alert, animated: true, completion: nil)
+        case 3:
+            switch indexPath.row {
+            case 0:
+                print("앱 평가")
+            case 1:
+                performSegue(withIdentifier: "opinionView", sender: nil)
+            case 2:
+                print("개발자 정보")
+                performSegue(withIdentifier: "DeveloperInfoView", sender: nil)
+            case 3:
+                print("앱 정보")
+                performSegue(withIdentifier: "AppInfoView", sender: nil)
+            default:
+                print("nothing")
+            }
+
+        default:
+            print("nothing")
         }
     }
     
@@ -97,6 +130,7 @@ class SettingViewController: UITableViewController {
         super.viewWillAppear(true)
         CoreDataManager.shared.fetchDiary()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = ThemeVariables.mainUIColor
