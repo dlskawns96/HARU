@@ -9,9 +9,16 @@ import UIKit
 
 class DeveloperInfoViewController: UIViewController {
 
+    @IBOutlet weak var closeBtn: UIButton!
+    
+    
+    @IBAction func closeBtnClicked(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        closeBtn.tintColor = ThemeVariables.mainUIColor
         // Do any additional setup after loading the view.
     }
     
