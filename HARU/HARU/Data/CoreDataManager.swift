@@ -60,6 +60,10 @@ class CoreDataManager {
         }
     }
     
+    static func returnAllDiaries() -> [Diary] {
+        return diaryList
+    }
+    
     // 모든 다이어리 리스트 리턴
     static func returnDiaries(date:String) -> [Diary] {
         return diaryList
