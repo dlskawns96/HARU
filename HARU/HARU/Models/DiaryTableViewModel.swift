@@ -13,6 +13,8 @@ class DiaryTableViewModel {
     func requestDiary(date: String) {
         var data = [Diary]()
         var diaries = [Diary]()
+        CoreDataManager.shared.fetchDiary()
+        
         diaries = CoreDataManager.returnDiaries(date: date)
         
         for diary in diaries {
@@ -45,6 +47,18 @@ class DiaryTableViewModel {
     func deleteDiary(diary: Diary, date: String) {
         CoreDataManager.shared.deleteDiary(diary)
         self.requestDiary(date: date)
+    }
+    
+    func deleteAllDiaries() {
+        var diaries = [Diary]()
+        diaries = CoreDataManager.returnAllDiaries()
+        
+        for diary in diaries {
+            CoreDataManager.shared.deleteDiary(diary)
+        }
+        CoreDataManager.shared.fetchDiary()
+        SettingViewController.deleteCheck = true
+        
     }
 
 }
