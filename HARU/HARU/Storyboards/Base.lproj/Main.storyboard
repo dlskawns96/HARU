@@ -614,7 +614,7 @@
             </objects>
             <point key="canvasLocation" x="757" y="-366"/>
         </scene>
-        <!--Opinion View Controller-->
+        <!--의견 보내기-->
         <scene sceneID="mWO-Y7-019">
             <objects>
                 <viewController id="6G5-9X-Bsb" customClass="OpinionViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
@@ -622,25 +622,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="의견 남기기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaX-fM-uQc">
-                                <rect key="frame" x="168" y="437.5" width="78" height="21"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4qx-IT-Ie7">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aaO-ag-MpO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xaX-fM-uQc" firstAttribute="centerY" secondItem="Dq8-oS-niH" secondAttribute="centerY" id="65I-aD-8d9"/>
-                            <constraint firstItem="xaX-fM-uQc" firstAttribute="centerX" secondItem="Dq8-oS-niH" secondAttribute="centerX" id="l5f-vO-kPg"/>
+                            <constraint firstItem="4qx-IT-Ie7" firstAttribute="leading" secondItem="aaO-ag-MpO" secondAttribute="leading" id="AYa-kv-O6J"/>
+                            <constraint firstItem="4qx-IT-Ie7" firstAttribute="trailing" secondItem="aaO-ag-MpO" secondAttribute="trailing" id="Dii-dz-2jq"/>
+                            <constraint firstItem="4qx-IT-Ie7" firstAttribute="top" secondItem="Dq8-oS-niH" secondAttribute="top" id="a3b-O6-5bN"/>
+                            <constraint firstAttribute="bottom" secondItem="4qx-IT-Ie7" secondAttribute="bottom" id="fyW-eQ-7GA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YnL-lZ-1rA"/>
+                    <navigationItem key="navigationItem" title="의견 보내기" id="YnL-lZ-1rA">
+                        <barButtonItem key="rightBarButtonItem" title="보내기" id="dj5-ct-rob">
+                            <connections>
+                                <action selector="sendBtnClicked:" destination="6G5-9X-Bsb" id="2U4-xM-R4U"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="opinionTextView" destination="4qx-IT-Ie7" id="VHB-ap-RWm"/>
+                        <outlet property="sendBtn" destination="dj5-ct-rob" id="Tzz-Yf-XG5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXT-Tm-uNR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1555" y="-366"/>
+            <point key="canvasLocation" x="1553.6231884057972" y="-366.29464285714283"/>
         </scene>
         <!--Developer Info View Controller-->
         <scene sceneID="xod-Ox-rPW">
