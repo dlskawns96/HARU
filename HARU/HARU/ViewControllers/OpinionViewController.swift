@@ -26,6 +26,11 @@ class OpinionViewController: UIViewController {
         
     }
     
+    func back(sender: UIBarButtonItem) {
+        print("yesy")
+      // your code
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -34,9 +39,10 @@ class OpinionViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        sendBtn.tintColor = ThemeVariables.mainUIColor
+        sendBtn.tintColor = .white
         
         opinionTextView.text = ""
+
         // Do any additional setup after loading the view.
     }
 }

@@ -78,20 +78,22 @@ class SelectDateController : UIViewController {
         case 1:
             scheduleView.isHidden = true
             diaryView.isHidden = false
+            
 
-//            if selectedDate!.compare(.isToday) {
+
+            if selectedDate!.compare(.isToday) {
+                addBtn.isEnabled = true
+            } else {
+
+                addBtn.isEnabled = false
+            }
+        
+//            if dSelectedDate == dToday {
 //                addBtn.isEnabled = true
 //            } else {
 //
 //                addBtn.isEnabled = false
 //            }
-        
-            if dSelectedDate == dToday {
-                addBtn.isEnabled = true
-            } else {
-                
-                addBtn.isEnabled = false
-            }
             
         default:
             break
