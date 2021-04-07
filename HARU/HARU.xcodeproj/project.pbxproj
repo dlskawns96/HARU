@@ -25,6 +25,9 @@
 		1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6078D2597514100A0882D /* SelectDateController.swift */; };
 		1FF13FC925BB129D008624D8 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF13FC825BB129D008624D8 /* DiaryViewController.swift */; };
 		1FF13FCC25BB12B6008624D8 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF13FCB25BB12B6008624D8 /* ScheduleViewController.swift */; };
+		1FF7AFAF261CAA5900C9B1FA /* OpinionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7AFAE261CAA5900C9B1FA /* OpinionViewController.swift */; };
+		1FF7AFB2261CADBA00C9B1FA /* DeveloperInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7AFB1261CADBA00C9B1FA /* DeveloperInfoViewController.swift */; };
+		1FF7AFB5261CADCA00C9B1FA /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7AFB4261CADCA00C9B1FA /* AppInfoViewController.swift */; };
 		DAC709FEAA6782D0D541943E /* Pods_HARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */; };
 		EA024A0C25B7BB6200830C4A /* CalendarDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA024A0A25B7BB6200830C4A /* CalendarDropDownCell.swift */; };
 		EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA024A0B25B7BB6200830C4A /* CalendarDropDownCell.xib */; };
@@ -100,6 +103,9 @@
 		1FE6078D2597514100A0882D /* SelectDateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateController.swift; sourceTree = "<group>"; };
 		1FF13FC825BB129D008624D8 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1FF13FCB25BB12B6008624D8 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		1FF7AFAE261CAA5900C9B1FA /* OpinionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpinionViewController.swift; sourceTree = "<group>"; };
+		1FF7AFB1261CADBA00C9B1FA /* DeveloperInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoViewController.swift; sourceTree = "<group>"; };
+		1FF7AFB4261CADCA00C9B1FA /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
 		39EBF39A9C1E3087EF09460E /* Pods-HARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARU.debug.xcconfig"; path = "Target Support Files/Pods-HARU/Pods-HARU.debug.xcconfig"; sourceTree = "<group>"; };
 		54D27E88A803569AC424E619 /* Pods-HARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARU.release.xcconfig"; path = "Target Support Files/Pods-HARU/Pods-HARU.release.xcconfig"; sourceTree = "<group>"; };
 		5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -340,6 +346,9 @@
 				EAB2195D260649B10075B72A /* ShadowView.swift */,
 				EA8617D326134BAD005E4078 /* CalendarSelectTableViewController.swift */,
 				EAF22838261BF27C000E062F /* EventAlarmSelectTableViewController.swift */,
+				1FF7AFAE261CAA5900C9B1FA /* OpinionViewController.swift */,
+				1FF7AFB1261CADBA00C9B1FA /* DeveloperInfoViewController.swift */,
+				1FF7AFB4261CADCA00C9B1FA /* AppInfoViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -480,12 +489,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAF7F1BD25F4A6100029E787 /* EventCollectionTableViewModel.swift in Sources */,
+				1FF7AFAF261CAA5900C9B1FA /* OpinionViewController.swift in Sources */,
 				EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */,
 				1F6E74B225F3673100650C8C /* DiaryTableViewModel.swift in Sources */,
 				EAA1A26625E2ABBF003B0D8A /* EventCollectionTableViewCell.swift in Sources */,
 				EA50F77925F06B510003095D /* ScheduleTableViewModel.swift in Sources */,
 				EA0E06BB26032A6700B1B431 /* TextFieldCell.swift in Sources */,
 				EAE9527C25D791EE00F4FA10 /* EventModifyViewController.swift in Sources */,
+				1FF7AFB5261CADCA00C9B1FA /* AppInfoViewController.swift in Sources */,
 				EAFE1BA125CD183F0084B31C /* EventHandler.swift in Sources */,
 				1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */,
 				EA0E06C926032C7600B1B431 /* TextCell.swift in Sources */,
@@ -531,6 +542,7 @@
 				1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */,
 				EACD3B362611E93F00AC840E /* EventNoteCell.swift in Sources */,
 				1FE2522E2606440400E28D7C /* SettingViewController.swift in Sources */,
+				1FF7AFB2261CADBA00C9B1FA /* DeveloperInfoViewController.swift in Sources */,
 				EAD77DF625D814F30020C182 /* TitleSetTableViewCell.swift in Sources */,
 				EAB21956260472230075B72A /* CalendarEditCell.swift in Sources */,
 				EAB83E9E25FA073B00EC1B8D /* ThemeVariables.swift in Sources */,
