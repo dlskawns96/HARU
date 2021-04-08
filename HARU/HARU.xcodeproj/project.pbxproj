@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F217FEE261F645E0047F872 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F217FED261F645E0047F872 /* Setting.storyboard */; };
 		1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185B925B4579100C4743F /* Data.xcdatamodeld */; };
 		1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */; };
 		1F3A783E260B901B009CFF49 /* DiaryCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */; };
@@ -21,6 +20,7 @@
 		1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15325A5F1CB00969F09 /* Alert.swift */; };
 		1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15625A8AF0900969F09 /* HCalendar.swift */; };
 		1F985A2A25FF9634008E59A2 /* RoundUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F985A2925FF9634008E59A2 /* RoundUIView.swift */; };
+		1FBAC8A1261F660200A3440B /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FBAC8A0261F660200A3440B /* SettingView.storyboard */; };
 		1FC02B81259E807700AC8142 /* AddDiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B80259E807700AC8142 /* AddDiaryController.swift */; };
 		1FC02B84259E83D600AC8142 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC02B83259E83D600AC8142 /* Diary.swift */; };
 		1FC15E1725ED0DE80021B16B /* DiaryCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC15E1625ED0DE80021B16B /* DiaryCollectionTableViewController.swift */; };
@@ -91,7 +91,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F217FED261F645E0047F872 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		1F3185BA25B4579100C4743F /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 		1F84D15325A5F1CB00969F09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		1F84D15625A8AF0900969F09 /* HCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCalendar.swift; sourceTree = "<group>"; };
 		1F985A2925FF9634008E59A2 /* RoundUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundUIView.swift; sourceTree = "<group>"; };
+		1FBAC8A0261F660200A3440B /* SettingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingView.storyboard; sourceTree = "<group>"; };
 		1FC02B80259E807700AC8142 /* AddDiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryController.swift; sourceTree = "<group>"; };
 		1FC02B83259E83D600AC8142 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		1FC15E1625ED0DE80021B16B /* DiaryCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewController.swift; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 				1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */,
 				EAFBE0872612D6B300DE9C9A /* EventDetailViewController.storyboard */,
 				1F7A7C4A261F5CB2000C6963 /* DiaryCollection.storyboard */,
-				1F217FED261F645E0047F872 /* Setting.storyboard */,
+				1FBAC8A0261F660200A3440B /* SettingView.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -448,11 +448,11 @@
 			files = (
 				1FCC4C7525F799CE0064D687 /* EventCollectionTableViewController.storyboard in Resources */,
 				1FCA59C0261B4363005DDE0E /* NotificationSettingCell.xib in Resources */,
-				1F217FEE261F645E0047F872 /* Setting.storyboard in Resources */,
 				1F7A7C1F261F48A4000C6963 /* chosiyeon.png in Resources */,
 				EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */,
 				EA0E06CA26032C7600B1B431 /* TextCell.xib in Resources */,
 				EA0E06C526032B1100B1B431 /* CalendarCell.xib in Resources */,
+				1FBAC8A1261F660200A3440B /* SettingView.storyboard in Resources */,
 				EA0E06CF26032CF000B1B431 /* SwitchCell.xib in Resources */,
 				EAB21957260472230075B72A /* CalendarEditCell.xib in Resources */,
 				1F3A783F260B901B009CFF49 /* DiaryCollectionTableViewCell.xib in Resources */,
