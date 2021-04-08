@@ -10,12 +10,36 @@ import EventKit
 
 class MainCalendarCell: FSCalendarCell {
     static var currentMonth = Date()
+    let gregorian = Calendar.current
+    weak var circleImageView: UIImageView!
+    
+    required init!(coder aDecoder: NSCoder!) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    func insertTodayCirlce() {
+        let circleImageView = UIImageView(image: UIImage(named: "circle")!)
+        self.addSubview(circleImageView)
+        self.circleImageView = circleImageView
+        self.circleImageView.isHidden = false
+        self.circleImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.circleImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        self.circleImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+//        self.circleImageView.heightAnchor.constraint(equalTo: self.circleImageView.widthAnchor).isActive = true
+        self.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.circleImageView.topAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: 10).isActive = true
+        self.circleImageView.bottomAnchor.constraint(equalTo: self.titleLabel.bottomAnchor).isActive = true
+    }
+    
     
     func configureCell(with item: MainCalendarCellItem) {
-        self.selectedBackgroundView?.translatesAutoresizingMaskIntoConstraints = false
-        self.selectedBackgroundView?.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        
         if item.numOfEvents != 0 {
-            var posY = 50
+            let posY = 50
             for idx in 0..<item.eventsToIndicate.count {
                 if item.eventsToIndicate[idx] == nil {
                     continue
@@ -37,8 +61,6 @@ class MainCalendarCell: FSCalendarCell {
                     self.addSubview(lab)
                     lab.backgroundColor = UIColor(cgColor: item.eventsToIndicate[idx]!.calendar.cgColor)
                 }
-                
-//                posY = posY + 15
             }
         } else {
             for view in self.subviews {
@@ -47,6 +69,18 @@ class MainCalendarCell: FSCalendarCell {
                 }
             }
             
+        }
+        
+        // 날짜가 오늘일 경우 표시
+        if self.gregorian.isDateInToday(item.date!) {
+            insertTodayCirlce()
+        } else {
+            for view in self.subviews {
+                if view is UIImageView {
+                    view.removeFromSuperview()
+                    break
+                }
+            }
         }
     }
 }
