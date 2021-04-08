@@ -71,7 +71,7 @@ class ViewController: UIViewController {
         fsCalendar.appearance.headerTitleColor = .black
         fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
         fsCalendar.appearance.borderRadius = 0
-        
+        fsCalendar.today = nil
         for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
             if weekday.text == "일" {
                 weekday.textColor = .red
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.isTranslucent = true
-        
+        fsCalendar.deselect(selectedDate)
     }
     
     deinit {
@@ -133,6 +133,16 @@ class ViewController: UIViewController {
         }
         return events
     }
+    
+//    private func configureVisibleCells() {
+//        fsCalendar.visibleCells().forEach { (cell) in
+//            let date = fsCalendar.date(for: cell)
+//            let position = fsCalendar.monthPosition(for: cell)
+//            cell.isSelected = false
+//
+//            self.configure(cell: cell, for: date!, at: position)
+//        }
+//    }
     
     // MARK: - Notification Handlers
     @objc func onEventAddedNotification(notification: Notification) {
@@ -191,6 +201,7 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
     // Implement protocols
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
+//        self.configureVisibleCells()
         self.performSegue(withIdentifier: "ShowSelectDateView", sender: nil)
     }
     
