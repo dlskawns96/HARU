@@ -112,8 +112,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func DiaryCollectionBtnClicked(_ sender: Any) {
-        guard let controller = storyboard?.instantiateViewController(identifier: "DiaryCollectionTableViewController") as UINavigationController? else { return }
-        self.present(controller, animated: true, completion: nil)
+//        guard let controller = storyboard?.instantiateViewController(identifier: "DiaryCollectionTableViewController") as UINavigationController? else { return }
+//        self.present(controller, animated: true, completion: nil)
+        let controller = DiaryCollectionTableViewController.storyboardInstance()
+        self.present(controller!, animated: true, completion: nil)
     }
     
     // MARK: - Functions
