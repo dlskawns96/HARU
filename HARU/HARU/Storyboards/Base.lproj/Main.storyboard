@@ -664,12 +664,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개발자 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddu-1Q-YCL">
-                                <rect key="frame" x="168" y="410.5" width="78" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGu-E2-sdH">
                                 <rect key="frame" x="20" y="20" width="28" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="1"/>
@@ -680,18 +674,32 @@
                                     <action selector="closeBtnClicked:" destination="KMB-fr-KLp" eventType="touchUpInside" id="GeY-Wa-2oe"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKX-69-zAG">
+                                <rect key="frame" x="0.0" y="103" width="414" height="739"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pK-rd-5WF">
+                                <rect key="frame" x="163" y="50" width="88.5" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8sM-yy-eTD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ddu-1Q-YCL" firstAttribute="centerX" secondItem="xFL-fo-vuK" secondAttribute="centerX" id="BK3-Ss-Tdd"/>
-                            <constraint firstItem="Ddu-1Q-YCL" firstAttribute="centerY" secondItem="xFL-fo-vuK" secondAttribute="centerY" id="cUa-SJ-CFy"/>
+                            <constraint firstAttribute="bottom" secondItem="LKX-69-zAG" secondAttribute="bottom" id="5lK-vg-YRd"/>
+                            <constraint firstItem="8pK-rd-5WF" firstAttribute="centerX" secondItem="xFL-fo-vuK" secondAttribute="centerX" id="654-Y6-RC6"/>
+                            <constraint firstItem="8pK-rd-5WF" firstAttribute="top" secondItem="8sM-yy-eTD" secondAttribute="top" constant="50" id="DHc-Wk-7FH"/>
+                            <constraint firstItem="LKX-69-zAG" firstAttribute="leading" secondItem="8sM-yy-eTD" secondAttribute="leading" id="PbY-xf-0wQ"/>
+                            <constraint firstItem="LKX-69-zAG" firstAttribute="top" secondItem="8pK-rd-5WF" secondAttribute="bottom" constant="30" id="ZXS-hD-9OH"/>
                             <constraint firstItem="BGu-E2-sdH" firstAttribute="leading" secondItem="8sM-yy-eTD" secondAttribute="leading" constant="20" id="dcF-h0-AGI"/>
                             <constraint firstItem="BGu-E2-sdH" firstAttribute="top" secondItem="8sM-yy-eTD" secondAttribute="top" constant="20" id="mil-fL-LKW"/>
+                            <constraint firstItem="LKX-69-zAG" firstAttribute="trailing" secondItem="8sM-yy-eTD" secondAttribute="trailing" id="t9d-qI-STR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="closeBtn" destination="BGu-E2-sdH" id="AhW-U3-O4N"/>
+                        <outlet property="tableView" destination="LKX-69-zAG" id="kxd-48-Pld"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wym-Ik-tgm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
