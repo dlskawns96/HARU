@@ -19,6 +19,8 @@ class MainCalendarCell: FSCalendarCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.borderWidth = 1
+        self.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
     }
     
     func insertTodayCirlce() {
