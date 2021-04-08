@@ -19,6 +19,8 @@ class MainCalendarCell: FSCalendarCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.borderWidth = 1
+        self.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
     }
     
     func insertTodayCirlce() {
@@ -29,10 +31,8 @@ class MainCalendarCell: FSCalendarCell {
         self.circleImageView.translatesAutoresizingMaskIntoConstraints = false
         self.circleImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.circleImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-//        self.circleImageView.heightAnchor.constraint(equalTo: self.circleImageView.widthAnchor).isActive = true
-        self.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.circleImageView.topAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: 10).isActive = true
-        self.circleImageView.bottomAnchor.constraint(equalTo: self.titleLabel.bottomAnchor).isActive = true
+        self.circleImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -5).isActive = true
+        self.circleImageView.widthAnchor.constraint(equalTo: self.circleImageView.heightAnchor, multiplier: 1.5).isActive = true
     }
     
     

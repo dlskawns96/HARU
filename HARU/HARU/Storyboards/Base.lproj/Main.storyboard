@@ -65,9 +65,6 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="headerTitleColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="firstWeekday">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
@@ -885,11 +882,28 @@
                         <outlet property="goodBtn" destination="CnJ-bB-Mu3" id="29Z-xw-wzU"/>
                         <outlet property="myView" destination="ykE-pX-lDu" id="CyG-qA-xfr"/>
                         <outlet property="tableView" destination="7d4-Wg-aVE" id="uzG-aZ-ics"/>
+                        <segue destination="Huf-rh-kYx" kind="show" id="GIR-rI-6rE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5qc-32-4tn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1591" y="876"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="G1i-fc-GCb">
+            <objects>
+                <viewController id="Huf-rh-kYx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="biW-gU-sin">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="9VS-op-3gX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Pvr-Do-VOq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yG6-fh-N8L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2326" y="878"/>
         </scene>
     </scenes>
     <resources>
