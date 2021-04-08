@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -172,7 +171,7 @@
                             <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="jwz-0M-SVQ">
                                 <color key="tintColor" name="MainUIColor"/>
                                 <connections>
-                                    <segue destination="aSc-sL-jeR" kind="show" id="VcM-cs-mX7"/>
+                                    <segue destination="8Jr-zQ-ted" kind="show" id="QK5-a4-zwo"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="plus.square.fill" catalog="system" id="aAM-El-QhD">
@@ -510,39 +509,48 @@
             <point key="canvasLocation" x="605" y="-759"/>
         </scene>
         <!--설정-->
-        <scene sceneID="3RP-To-fyY">
+        <scene sceneID="REa-Rp-ICC">
             <objects>
-                <tableViewController id="aSc-sL-jeR" customClass="SettingViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Jj5-vB-aV5">
+                <viewController id="8Jr-zQ-ted" customClass="SettingViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eOM-u9-vow">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5C7-nP-jgY">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" id="p9t-uf-cOZ">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p9t-uf-cOZ" id="bF0-nc-0CQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vxP-V1-8mj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="settingCell" id="Ku9-YB-bB4">
-                                <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ku9-YB-bB4" id="dy8-kf-uKl">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="aSc-sL-jeR" id="jZ7-7d-XD3"/>
-                            <outlet property="delegate" destination="aSc-sL-jeR" id="vIu-MZ-2uo"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="설정" largeTitleDisplayMode="never" id="3mW-mm-leC"/>
+                        <constraints>
+                            <constraint firstItem="5C7-nP-jgY" firstAttribute="trailing" secondItem="vxP-V1-8mj" secondAttribute="trailing" id="02z-vk-kNN"/>
+                            <constraint firstItem="5C7-nP-jgY" firstAttribute="top" secondItem="vxP-V1-8mj" secondAttribute="top" id="SPi-zE-Km0"/>
+                            <constraint firstItem="5C7-nP-jgY" firstAttribute="leading" secondItem="vxP-V1-8mj" secondAttribute="leading" id="UOb-94-wQm"/>
+                            <constraint firstAttribute="bottom" secondItem="5C7-nP-jgY" secondAttribute="bottom" id="baB-qi-lTQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="설정" largeTitleDisplayMode="never" id="jUh-ga-isC"/>
                     <connections>
-                        <outlet property="tableView" destination="Jj5-vB-aV5" id="nUT-Ct-qsq"/>
-                        <segue destination="6G5-9X-Bsb" kind="show" identifier="opinionView" id="hMx-Hn-UzD"/>
-                        <segue destination="KMB-fr-KLp" kind="presentation" identifier="DeveloperInfoView" id="vEk-57-UxS"/>
-                        <segue destination="ODh-cU-ydN" kind="presentation" identifier="AppInfoView" id="BhR-TR-SSj"/>
+                        <outlet property="tableView" destination="5C7-nP-jgY" id="I5r-wm-ghR"/>
+                        <segue destination="6G5-9X-Bsb" kind="push" identifier="opinionView" id="D5O-lg-bac"/>
+                        <segue destination="KMB-fr-KLp" kind="modal" identifier="DeveloperInfoView" id="JuR-MK-NEq"/>
+                        <segue destination="ODh-cU-ydN" kind="modal" identifier="AppInfoView" id="8L0-BL-GE1"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JiV-oY-CCv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zno-yl-G8a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757" y="-366"/>
+            <point key="canvasLocation" x="755" y="-366"/>
         </scene>
         <!--의견 보내기-->
         <scene sceneID="mWO-Y7-019">
@@ -595,11 +603,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGu-E2-sdH">
-                                <rect key="frame" x="20" y="20" width="28" height="22"/>
+                                <rect key="frame" x="20" y="20" width="24" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="1"/>
-                                <state key="normal" title="Button">
-                                    <imageReference key="image" image="x.square.fill" catalog="system" symbolScale="large"/>
-                                </state>
+                                <state key="normal" title="Button" image="x.square.fill" catalog="system"/>
                                 <connections>
                                     <action selector="closeBtnClicked:" destination="KMB-fr-KLp" eventType="touchUpInside" id="GeY-Wa-2oe"/>
                                 </connections>
@@ -651,10 +657,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4y3-dV-j3N">
-                                <rect key="frame" x="20" y="20" width="78" height="22"/>
-                                <state key="normal" title="Button">
-                                    <imageReference key="image" image="x.square.fill" catalog="system" symbolScale="large"/>
-                                </state>
+                                <rect key="frame" x="20" y="20" width="74" height="22"/>
+                                <state key="normal" title="Button" image="x.square.fill" catalog="system"/>
                                 <connections>
                                     <action selector="closeBtnClicked:" destination="ODh-cU-ydN" eventType="touchUpInside" id="qOh-nH-qsE"/>
                                 </connections>

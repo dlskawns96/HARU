@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F217FEE261F645E0047F872 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F217FED261F645E0047F872 /* Setting.storyboard */; };
 		1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185B925B4579100C4743F /* Data.xcdatamodeld */; };
 		1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */; };
 		1F3A783E260B901B009CFF49 /* DiaryCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */; };
@@ -90,6 +91,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F217FED261F645E0047F872 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		1F3185BA25B4579100C4743F /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */,
 				EAFBE0872612D6B300DE9C9A /* EventDetailViewController.storyboard */,
 				1F7A7C4A261F5CB2000C6963 /* DiaryCollection.storyboard */,
+				1F217FED261F645E0047F872 /* Setting.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 			files = (
 				1FCC4C7525F799CE0064D687 /* EventCollectionTableViewController.storyboard in Resources */,
 				1FCA59C0261B4363005DDE0E /* NotificationSettingCell.xib in Resources */,
+				1F217FEE261F645E0047F872 /* Setting.storyboard in Resources */,
 				1F7A7C1F261F48A4000C6963 /* chosiyeon.png in Resources */,
 				EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */,
 				EA0E06CA26032C7600B1B431 /* TextCell.xib in Resources */,
