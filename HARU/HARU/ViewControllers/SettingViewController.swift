@@ -15,7 +15,7 @@ class SettingViewController: UITableViewController {
     let dataSource = DiaryTableViewModel()
     
     let header: [String] = ["설정", "알림", "서비스", "지원"]
-    let setting: [[String]] = [["테마 설정"], ["알림 받기"], ["다이어리 전체 지우기"], ["앱 평가하기", "의견 보내기", "개발자 정보", "앱 정보"]]
+    let setting: [[String]] = [["테마 설정"], ["다이어리 알림 받기"], ["다이어리 전체 지우기"], ["앱 평가하기", "의견 보내기", "개발자 정보", "앱 정보"]]
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return setting[section].count
@@ -133,7 +133,11 @@ class SettingViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = ThemeVariables.mainUIColor
+      
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = ThemeVariables.mainUIColor
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         let nibName = UINib(nibName: "NotificationSettingCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "notificationSettingCell")
