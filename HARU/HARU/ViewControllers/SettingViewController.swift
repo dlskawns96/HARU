@@ -5,18 +5,40 @@
 //  Created by Cho Si Yeon on 2021/03/20.
 //
 
-import Foundation
 import UIKit
+import MessageUI
+import Foundation
 
 class SettingViewController: UIViewController {
-        
+    
     @IBOutlet weak var tableView: UITableView!
     
+    let composeView = MFMailComposeViewController()
+
     static var deleteCheck = false
     
     let dataSource = DiaryTableViewModel()
     let header: [String] = ["설정", "알림", "서비스", "지원"]
     let setting: [[String]] = [["테마 설정"], ["다이어리 알림 받기"], ["다이어리 전체 지우기"], ["앱 평가하기", "의견 보내기", "개발자 정보", "앱 정보"]]
+    
+    private func checkEmailAvailability() {
+        
+        if !MFMailComposeViewController.canSendMail() {
+            print("Mail services are not available")
+            return
+        }
+        else {
+            composeEmail()
+        }
+    }
+    
+    func composeEmail() {
+        composeView.setToRecipients(["chosiyeonn@gmail.com"])
+        composeView.setSubject("[HARU] 의견 보내기 :-)")
+        composeView.setMessageBody("Some Message", isHTML: false)
+        
+        self.present(composeView, animated: true, completion: nil)
+    }
     
     func deleteAllDiary() {
         
@@ -50,6 +72,8 @@ class SettingViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        composeView.mailComposeDelegate = self
+
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = ThemeVariables.mainUIColor
         self.navigationController?.navigationBar.tintColor = .white
@@ -86,7 +110,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             case 0:
                 print("앱 평가")
             case 1:
-                performSegue(withIdentifier: "opinionView", sender: nil)
+                //performSegue(withIdentifier: "opinionView", sender: nil)
+                checkEmailAvailability()
             case 2:
                 print("개발자 정보")
                 performSegue(withIdentifier: "DeveloperInfoView", sender: nil)
@@ -136,4 +161,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         return 44
     }
 }
+extension SettingViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+
 
