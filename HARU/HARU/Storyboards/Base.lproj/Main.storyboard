@@ -254,27 +254,27 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ButtonTableViewCell" id="DH9-iU-yts" customClass="ButtonTableViewCell" customModule="HARU" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="170.5" width="414" height="44.5"/>
+                                        <rect key="frame" x="0.0" y="170.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DH9-iU-yts" id="Udb-E5-M8k">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="캘린더" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEj-Lg-xuh">
-                                                    <rect key="frame" x="20" y="11" width="45" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="45" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="O5S-pY-gZM">
-                                                    <rect key="frame" x="388" y="15" width="26" height="15"/>
+                                                    <rect key="frame" x="388" y="14.5" width="26" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="Kod-Ys-r0Q"/>
                                                         <constraint firstAttribute="height" constant="15" id="LTy-e8-1u5"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eof-H1-KwO">
-                                                    <rect key="frame" x="356" y="12" width="30" height="21.5"/>
+                                                    <rect key="frame" x="356" y="12" width="30" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -929,7 +929,6 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
         <image name="right_arrow" width="512" height="512"/>
-        <image name="x.square.fill" catalog="system" width="128" height="114"/>
         <namedColor name="MainUIColor">
             <color red="0.25490196078431371" green="0.26666666666666666" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -938,6 +937,12 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
