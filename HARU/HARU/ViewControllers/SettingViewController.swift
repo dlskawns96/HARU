@@ -13,7 +13,7 @@ class SettingViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let composeVC = MFMailComposeViewController()
+    let composeView = MFMailComposeViewController()
 
     static var deleteCheck = false
     
@@ -33,11 +33,11 @@ class SettingViewController: UIViewController {
     }
     
     func composeEmail() {
-        composeVC.setToRecipients(["myEmail@gmail.com"])
-        composeVC.setSubject("Message Subject")
-        composeVC.setMessageBody("Some Message", isHTML: false)
+        composeView.setToRecipients(["chosiyeonn@gmail.com"])
+        composeView.setSubject("[HARU] 의견 보내기 :-)")
+        composeView.setMessageBody("Some Message", isHTML: false)
         
-        self.present(composeVC, animated: true, completion: nil)
+        self.present(composeView, animated: true, completion: nil)
     }
     
     func deleteAllDiary() {
@@ -72,7 +72,7 @@ class SettingViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        composeVC.mailComposeDelegate = self
+        composeView.mailComposeDelegate = self
 
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = ThemeVariables.mainUIColor
