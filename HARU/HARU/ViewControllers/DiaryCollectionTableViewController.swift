@@ -9,6 +9,12 @@ import UIKit
 
 class DiaryCollectionTableViewController: UIViewController {
 
+    static func storyboardInstance() -> UINavigationController? {
+        let storyboard = UIStoryboard(name: "DiaryCollection",
+                                      bundle: nil)
+        return storyboard.instantiateInitialViewController() as? UINavigationController
+    }
+    
     @IBOutlet weak var lastMonthBtn: UIBarButtonItem!
     @IBOutlet weak var nextMonthBtn: UIBarButtonItem!
     @IBOutlet weak var titleLabel: UINavigationItem!
