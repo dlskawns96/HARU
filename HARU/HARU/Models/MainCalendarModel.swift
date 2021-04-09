@@ -29,7 +29,7 @@ class MainCalendarModel {
         
         MainCalendarModel.startYear = self.calendar.component(.year, from: currentYear)
         
-        for year in 0...6 {
+        for year in 0...3 {
             print("Load events... CurrentYear:", currentYear.toString(dateFormat: "yyyy-MM-dd"))
             currentMonth = currentYear.adjust(hour: 0, minute: 0, second: 0, day: 1, month: 1)
             dataArray.append([])
