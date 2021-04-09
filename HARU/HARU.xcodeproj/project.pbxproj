@@ -14,8 +14,6 @@
 		1F6E74B225F3673100650C8C /* DiaryTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */; };
 		1F7A7C18261F44DE000C6963 /* DeveloperInfoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A7C16261F44DE000C6963 /* DeveloperInfoCellTableViewCell.swift */; };
 		1F7A7C19261F44DE000C6963 /* DeveloperInfoCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F7A7C17261F44DE000C6963 /* DeveloperInfoCellTableViewCell.xib */; };
-		1F7A7C1E261F48A4000C6963 /* leenamjun.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7A7C1C261F48A4000C6963 /* leenamjun.png */; };
-		1F7A7C1F261F48A4000C6963 /* chosiyeon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7A7C1D261F48A4000C6963 /* chosiyeon.png */; };
 		1F7A7C4B261F5CB2000C6963 /* DiaryCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F7A7C4A261F5CB2000C6963 /* DiaryCollection.storyboard */; };
 		1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15325A5F1CB00969F09 /* Alert.swift */; };
 		1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D15625A8AF0900969F09 /* HCalendar.swift */; };
@@ -103,8 +101,6 @@
 		1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewModel.swift; sourceTree = "<group>"; };
 		1F7A7C16261F44DE000C6963 /* DeveloperInfoCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoCellTableViewCell.swift; sourceTree = "<group>"; };
 		1F7A7C17261F44DE000C6963 /* DeveloperInfoCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeveloperInfoCellTableViewCell.xib; sourceTree = "<group>"; };
-		1F7A7C1C261F48A4000C6963 /* leenamjun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leenamjun.png; path = ../../../../Desktop/leenamjun.png; sourceTree = "<group>"; };
-		1F7A7C1D261F48A4000C6963 /* chosiyeon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chosiyeon.png; path = ../../../../Desktop/chosiyeon.png; sourceTree = "<group>"; };
 		1F7A7C4A261F5CB2000C6963 /* DiaryCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiaryCollection.storyboard; sourceTree = "<group>"; };
 		1F84D15325A5F1CB00969F09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		1F84D15625A8AF0900969F09 /* HCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCalendar.swift; sourceTree = "<group>"; };
@@ -210,15 +206,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		1F7A7C1B261F4835000C6963 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				1F7A7C1D261F48A4000C6963 /* chosiyeon.png */,
-				1F7A7C1C261F48A4000C6963 /* leenamjun.png */,
-			);
-			path = Image;
-			sourceTree = "<group>";
-		};
 		43A1F05D4F2035B392D1F5DC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,7 +293,6 @@
 		EA7F83682594749C008B8ED5 /* HARU */ = {
 			isa = PBXGroup;
 			children = (
-				1F7A7C1B261F4835000C6963 /* Image */,
 				EA50F77725F06B3D0003095D /* Models */,
 				EAD77DF425D814D90020C182 /* Cells */,
 				EA07FBF125B906BE003B2529 /* Classes */,
@@ -479,7 +465,6 @@
 			files = (
 				1FCC4C7525F799CE0064D687 /* EventCollectionTableViewController.storyboard in Resources */,
 				1FCA59C0261B4363005DDE0E /* NotificationSettingCell.xib in Resources */,
-				1F7A7C1F261F48A4000C6963 /* chosiyeon.png in Resources */,
 				EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */,
 				EA5FA859261F2DC2009A42EC /* Assets.xcassets in Resources */,
 				EA0E06CA26032C7600B1B431 /* TextCell.xib in Resources */,
@@ -494,7 +479,6 @@
 				EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */,
 				EA0E06BC26032A6700B1B431 /* TextFieldCell.xib in Resources */,
 				EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */,
-				1F7A7C1E261F48A4000C6963 /* leenamjun.png in Resources */,
 				EACD3B372611E93F00AC840E /* EventNoteCell.xib in Resources */,
 				EA7F83732594749D008B8ED5 /* Assets.xcassets in Resources */,
 				EAA1A26725E2ABBF003B0D8A /* EventCollectionTableViewCell.xib in Resources */,
@@ -762,13 +746,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				DEVELOPMENT_TEAM = 8C7RC2WQ7N;
 				INFOPLIST_FILE = HARU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.HARU3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARU4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HARU-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -783,13 +767,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				DEVELOPMENT_TEAM = 8C7RC2WQ7N;
 				INFOPLIST_FILE = HARU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.HARU3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARU4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HARU-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

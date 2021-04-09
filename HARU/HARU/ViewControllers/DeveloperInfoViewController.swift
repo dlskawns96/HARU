@@ -13,7 +13,7 @@ class DeveloperInfoViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let nameArray = ["Lee Nam Jun", "Cho Si Yeon"]
-    let photoArray = ["leenamjun.png", "chosiyeon.png"]
+    let photoArray = ["developer_leenamjun", "developer_chosiyeon"]
     let emailArray = ["dlskawns96@gmail.com", "chosiyeonn@gmail.com"]
     let githubArray = ["https://github.com/dlskawns96", "https://github.com/CHOSIYEON"]
     
