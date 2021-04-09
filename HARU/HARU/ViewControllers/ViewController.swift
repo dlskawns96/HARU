@@ -35,62 +35,24 @@ class ViewController: UIViewController {
         }
     }
     
-    var current = Date() {
-        didSet {
-            MainCalendarCell.currentMonth = current
-        }
-    }
-    
-    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(onEventAddedNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onEventRemovedNotification(notification:)), name:EventHandler.eventRemovedNoti, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onEventModifiedNotification(notification:)), name:MainCalendarModel.mainCalendarEventModifiedNoti, object: nil)
-    
-        fsCalendar.layer.cornerRadius = ThemeVariables.buttonCornerRadius
-        fsCalendar.layer.shadowPath = UIBezierPath(roundedRect: fsCalendar.bounds, cornerRadius: 10).cgPath
-        fsCalendar.layer.shouldRasterize = true
-        fsCalendar.layer.rasterizationScale = UIScreen.main.scale
-        
         EventHandler.ekEventStore = EKEventStore()
         calendarLoader = CalendarLoader()
         dataSource = MainCalendarModel()
-        dataSource!.delegate = self
+        dataSource?.delegate = self
         dataSource?.initData(date: Date())
-        self.loadedEvents = calendarLoader.loadedEvents
         
-        fsCalendar.delegate = self
-        fsCalendar.dataSource = self
-        
-        fsCalendar.locale = Locale(identifier: "ko_KR")
-        fsCalendar.headerHeight = 50
-        fsCalendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        fsCalendar.appearance.headerDateFormat = "YYYY년 M월"
-        fsCalendar.appearance.headerTitleColor = .black
-        fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
-        fsCalendar.appearance.borderRadius = 0
-        
-        for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
-            if weekday.text == "일" {
-                weekday.textColor = .red
-            } else if weekday.text == "토" {
-                weekday.textColor = .blue
-            } else {
-                weekday.textColor = .black
-            }
-        }
-        
-        fsCalendar.register(MainCalendarCell.self, forCellReuseIdentifier: "MainCalednarCell")
-        
+        self.initFSCalendar()
+        self.registerObservers()
         EventDetailViewController.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.isTranslucent = true
-        
+        fsCalendar.deselect(selectedDate)
     }
     
     deinit {
@@ -105,8 +67,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onEventCollectionBtnClicked(_ sender: Any) {
-        //        let storyboard = UIStoryboard(name: "EventCollectionTableViewController", bundle: nil)
-        //        guard let controller = storyboard.instantiateViewController(identifier: "EventCollectionTableViewController") as UINavigationController? else { return }
         let controller = EventCollectionTableViewController.storyboardInstance()
         self.present(controller!, animated: true, completion: nil)
     }
@@ -119,21 +79,45 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Functions
-    func getWeekDay(for date: Date) -> String {
+    private func getWeekDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()
         return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
     }
     
-    /// 해당 날짜의 이벤트를 리턴 해주는 함수
-    func loadEventsOfDay(for date: Date) -> [EKEvent] {
-        var events: [EKEvent] = []
+    private func initFSCalendar() {
+        fsCalendar.delegate = self
+        fsCalendar.dataSource = self
+        fsCalendar.layer.cornerRadius = ThemeVariables.buttonCornerRadius
+        fsCalendar.layer.shouldRasterize = true
+        fsCalendar.layer.rasterizationScale = UIScreen.main.scale
         
-        for event in loadedEvents {
-            if event.startDate.compare(.isSameDay(as: date)) {
-                events.append(event)
+        fsCalendar.locale = Locale(identifier: "ko_KR")
+        fsCalendar.headerHeight = 50
+        fsCalendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        fsCalendar.appearance.headerDateFormat = "YYYY년 M월"
+        fsCalendar.appearance.headerTitleColor = .black
+        fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
+        fsCalendar.appearance.borderRadius = 0
+        fsCalendar.today = nil
+        for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
+            weekday.borderWidth = 1.0
+            weekday.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+            if weekday.text == "일" {
+                weekday.textColor = .red
+            } else if weekday.text == "토" {
+                weekday.textColor = .blue
+            } else {
+                weekday.textColor = .black
             }
         }
-        return events
+        fsCalendar.scrollDirection = .vertical
+        fsCalendar.register(MainCalendarCell.self, forCellReuseIdentifier: "MainCalednarCell")
+    }
+    
+    private func registerObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onEventAddedNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onEventRemovedNotification(notification:)), name:EventHandler.eventRemovedNoti, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onEventModifiedNotification(notification:)), name:MainCalendarModel.mainCalendarEventModifiedNoti, object: nil)
     }
     
     // MARK: - Notification Handlers
