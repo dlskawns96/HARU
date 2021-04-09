@@ -51,6 +51,10 @@
 		EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3A414825B66CA40074282C /* AddEvent.storyboard */; };
 		EA50F77925F06B510003095D /* ScheduleTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */; };
 		EA5CBB9026076EF500B24542 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */; };
+		EA5FA857261F2DC2009A42EC /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5FA851261F2DC2009A42EC /* circle@2x.png */; };
+		EA5FA859261F2DC2009A42EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5FA854261F2DC2009A42EC /* Assets.xcassets */; };
+		EA5FA85A261F2DC2009A42EC /* appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5FA855261F2DC2009A42EC /* appstore.png */; };
+		EA5FA85B261F2DC2009A42EC /* playstore.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5FA856261F2DC2009A42EC /* playstore.png */; };
 		EA66C24025E282820043A992 /* EventCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66C23F25E282820043A992 /* EventCollectionTableViewController.swift */; };
 		EA7393FA25E7967E00FEA2C7 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393F925E7967E00FEA2C7 /* EventDetailViewController.swift */; };
 		EA7393FD25E796C700FEA2C7 /* EventDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393FC25E796C700FEA2C7 /* EventDetailTableViewCell.swift */; };
@@ -137,6 +141,10 @@
 		EA3A414825B66CA40074282C /* AddEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddEvent.storyboard; path = HARU/AddEvent.storyboard; sourceTree = SOURCE_ROOT; };
 		EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewModel.swift; sourceTree = "<group>"; };
 		EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
+		EA5FA851261F2DC2009A42EC /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
+		EA5FA854261F2DC2009A42EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA5FA855261F2DC2009A42EC /* appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore.png; sourceTree = "<group>"; };
+		EA5FA856261F2DC2009A42EC /* playstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playstore.png; sourceTree = "<group>"; };
 		EA66C23F25E282820043A992 /* EventCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewController.swift; sourceTree = "<group>"; };
 		EA7393F925E7967E00FEA2C7 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		EA7393FC25E796C700FEA2C7 /* EventDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -254,11 +262,31 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		EA5FA850261F2DC2009A42EC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA5FA851261F2DC2009A42EC /* circle@2x.png */,
+				EA5FA853261F2DC2009A42EC /* AppIcons */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EA5FA853261F2DC2009A42EC /* AppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				EA5FA854261F2DC2009A42EC /* Assets.xcassets */,
+				EA5FA855261F2DC2009A42EC /* appstore.png */,
+				EA5FA856261F2DC2009A42EC /* playstore.png */,
+			);
+			path = AppIcons;
+			sourceTree = "<group>";
+		};
 		EA7F835D2594749C008B8ED5 = {
 			isa = PBXGroup;
 			children = (
 				EADDEF5425FCE88800703E5F /* HARU-Bridging-Header.h */,
 				EA7F83682594749C008B8ED5 /* HARU */,
+				EA5FA850261F2DC2009A42EC /* Resources */,
 				EA7F83672594749C008B8ED5 /* Products */,
 				43A1F05D4F2035B392D1F5DC /* Pods */,
 				FBACACBB553BC2094FE0DC7F /* Frameworks */,
@@ -450,12 +478,16 @@
 				1FCA59C0261B4363005DDE0E /* NotificationSettingCell.xib in Resources */,
 				1F7A7C1F261F48A4000C6963 /* chosiyeon.png in Resources */,
 				EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */,
+				EA5FA859261F2DC2009A42EC /* Assets.xcassets in Resources */,
 				EA0E06CA26032C7600B1B431 /* TextCell.xib in Resources */,
+				EA5FA85B261F2DC2009A42EC /* playstore.png in Resources */,
+				EA5FA85A261F2DC2009A42EC /* appstore.png in Resources */,
 				EA0E06C526032B1100B1B431 /* CalendarCell.xib in Resources */,
 				1FBAC8A1261F660200A3440B /* SettingView.storyboard in Resources */,
 				EA0E06CF26032CF000B1B431 /* SwitchCell.xib in Resources */,
 				EAB21957260472230075B72A /* CalendarEditCell.xib in Resources */,
 				1F3A783F260B901B009CFF49 /* DiaryCollectionTableViewCell.xib in Resources */,
+				EA5FA857261F2DC2009A42EC /* circle@2x.png in Resources */,
 				EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */,
 				EA0E06BC26032A6700B1B431 /* TextFieldCell.xib in Resources */,
 				EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */,
