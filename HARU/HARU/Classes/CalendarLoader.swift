@@ -71,6 +71,10 @@ class CalendarLoader {
         let predicate = eventStore!.predicateForEvents(withStart: day.adjust(hour: 0, minute: 0, second: 0), end: day.adjust(hour: 23, minute: 59, second: 59), calendars: calendars)
         let events = eventStore!.events(matching: predicate)
         
+        if events.isEmpty {
+            return []
+        }
+        
         for event in events {
             eventsOfDay.append(event)
         }
@@ -94,15 +98,12 @@ class CalendarLoader {
     func loadEvents(ofMonth month: Date) -> [[EKEvent]] {
         var eventsOfMonth = [[EKEvent]](repeating: [], count: month.datesOfMonth.count)
         
-        var events = [EKEvent]()
-        let predicate = eventStore!.predicateForEvents(withStart: month.startOfMonth.adjust(hour: 0, minute: 0, second: 0), end: month.endOfMonth.adjust(hour: 23, minute: 59, second: 59), calendars: calendars)
-        events = eventStore!.events(matching: predicate)
-        for event in events {
-            var curDay = 0
-            for _ in self.calendar.component(.day, from: event.startDate)...self.calendar.component(.day, from: event.endDate) {
-                eventsOfMonth[self.calendar.component(.day, from: event.startDate) - 1 + curDay].append(event)
-                curDay += 1
-            }
+        let events = loadEvents(ofDay: month, for: month.numOfDays(In: month) - 1)
+        
+        var idx = 0
+        for dayEvents in events {
+            eventsOfMonth[idx] = dayEvents
+            idx += 1
         }
         return eventsOfMonth
     }
