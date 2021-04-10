@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -150,12 +151,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앱 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWv-tP-FLq">
-                                <rect key="frame" x="183" y="410.5" width="48.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrb-TB-YDu">
                                 <rect key="frame" x="20" y="20" width="74" height="22"/>
                                 <state key="normal" title="Button" image="x.square.fill" catalog="system"/>
@@ -163,27 +158,97 @@
                                     <action selector="closeBtnClicked:" destination="mtP-W6-G8b" eventType="touchUpInside" id="PT7-MR-kdK"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZFU-6z-uFW">
+                                <rect key="frame" x="87" y="132" width="240" height="239.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="239.5" id="u2a-as-e2y"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HARU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdi-wm-xHH">
+                                <rect key="frame" x="132" y="463" width="150" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVw-M3-wzt">
+                                <rect key="frame" x="89" y="521" width="236" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ke-1r-ZiI" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                <rect key="frame" x="20" y="647" width="374" height="114"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                        <point key="value" x="0.0" y="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" name="MainUIColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoy-Rc-HnD">
+                                <rect key="frame" x="20" y="647" width="374" height="114"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Update Version">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateBtnClicked:" destination="mtP-W6-G8b" eventType="touchUpInside" id="fbM-nr-3ts"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r6f-fz-PPw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="7Ke-1r-ZiI" firstAttribute="top" secondItem="qoy-Rc-HnD" secondAttribute="top" id="0at-f8-T0k"/>
+                            <constraint firstItem="r6f-fz-PPw" firstAttribute="trailing" secondItem="tVw-M3-wzt" secondAttribute="trailing" constant="89" id="23M-m9-ku3"/>
+                            <constraint firstItem="r6f-fz-PPw" firstAttribute="trailing" secondItem="7Ke-1r-ZiI" secondAttribute="trailing" constant="20" id="42O-RF-u6z"/>
+                            <constraint firstItem="tVw-M3-wzt" firstAttribute="leading" secondItem="r6f-fz-PPw" secondAttribute="leading" constant="89" id="5uA-JA-UjG"/>
+                            <constraint firstItem="tVw-M3-wzt" firstAttribute="top" secondItem="bdi-wm-xHH" secondAttribute="bottom" constant="29" id="73y-Gh-ZZf"/>
+                            <constraint firstItem="7Ke-1r-ZiI" firstAttribute="trailing" secondItem="qoy-Rc-HnD" secondAttribute="trailing" id="FGm-Pn-2tP"/>
                             <constraint firstItem="jrb-TB-YDu" firstAttribute="leading" secondItem="r6f-fz-PPw" secondAttribute="leading" constant="20" id="IRn-Ux-kuG"/>
-                            <constraint firstItem="GWv-tP-FLq" firstAttribute="centerY" secondItem="zi2-eH-nPT" secondAttribute="centerY" id="Lqb-fE-5XZ"/>
+                            <constraint firstItem="ZFU-6z-uFW" firstAttribute="top" secondItem="jrb-TB-YDu" secondAttribute="bottom" constant="90" id="NWO-td-0QI"/>
+                            <constraint firstItem="bdi-wm-xHH" firstAttribute="leading" secondItem="r6f-fz-PPw" secondAttribute="leading" constant="132" id="QDN-Ff-UjZ"/>
+                            <constraint firstItem="7Ke-1r-ZiI" firstAttribute="bottom" secondItem="qoy-Rc-HnD" secondAttribute="bottom" id="Sk9-rS-iCK"/>
+                            <constraint firstItem="ZFU-6z-uFW" firstAttribute="leading" secondItem="r6f-fz-PPw" secondAttribute="leading" constant="87" id="YFU-oJ-XSz"/>
+                            <constraint firstItem="7Ke-1r-ZiI" firstAttribute="leading" secondItem="r6f-fz-PPw" secondAttribute="leading" constant="20" id="fNn-Rt-ZAo"/>
+                            <constraint firstItem="r6f-fz-PPw" firstAttribute="trailing" secondItem="bdi-wm-xHH" secondAttribute="trailing" constant="132" id="gUz-P1-NKY"/>
                             <constraint firstItem="jrb-TB-YDu" firstAttribute="top" secondItem="r6f-fz-PPw" secondAttribute="top" constant="20" id="grf-FN-liA"/>
-                            <constraint firstItem="GWv-tP-FLq" firstAttribute="centerX" secondItem="zi2-eH-nPT" secondAttribute="centerX" id="hc2-ze-4ff"/>
+                            <constraint firstItem="7Ke-1r-ZiI" firstAttribute="leading" secondItem="qoy-Rc-HnD" secondAttribute="leading" id="i1r-lf-jhE"/>
+                            <constraint firstItem="r6f-fz-PPw" firstAttribute="bottom" secondItem="7Ke-1r-ZiI" secondAttribute="bottom" constant="47" id="pr9-82-k7X"/>
+                            <constraint firstItem="7Ke-1r-ZiI" firstAttribute="top" secondItem="tVw-M3-wzt" secondAttribute="bottom" constant="105" id="qwW-TY-uQU"/>
+                            <constraint firstItem="r6f-fz-PPw" firstAttribute="trailing" secondItem="ZFU-6z-uFW" secondAttribute="trailing" constant="87" id="uSG-nV-MqI"/>
+                            <constraint firstAttribute="bottom" secondItem="bdi-wm-xHH" secondAttribute="bottom" constant="350" id="vFR-fg-iyZ"/>
+                            <constraint firstItem="bdi-wm-xHH" firstAttribute="leading" secondItem="r6f-fz-PPw" secondAttribute="leading" constant="132" id="xYy-8a-6Ad"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="appImageView" destination="ZFU-6z-uFW" id="HKm-nH-9y8"/>
+                        <outlet property="appVersion" destination="tVw-M3-wzt" id="H6K-yo-siS"/>
                         <outlet property="closeBtn" destination="jrb-TB-YDu" id="XCg-zU-gkE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4I-RD-Zfn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1222" y="522"/>
+            <point key="canvasLocation" x="1221.7391304347827" y="521.65178571428567"/>
         </scene>
     </scenes>
     <resources>
         <image name="x.square.fill" catalog="system" width="128" height="114"/>
+        <namedColor name="MainUIColor">
+            <color red="0.25490196078431371" green="0.26666666666666666" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
