@@ -11,6 +11,8 @@
 		1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */; };
 		1F3A783E260B901B009CFF49 /* DiaryCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */; };
 		1F3A783F260B901B009CFF49 /* DiaryCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F3A783D260B901B009CFF49 /* DiaryCollectionTableViewCell.xib */; };
+		1F65E68D26218032001533C2 /* AppVersionCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F65E68B26218032001533C2 /* AppVersionCellTableViewCell.swift */; };
+		1F65E68E26218032001533C2 /* AppVersionCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F65E68C26218032001533C2 /* AppVersionCellTableViewCell.xib */; };
 		1F6E74B225F3673100650C8C /* DiaryTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */; };
 		1F7A7C18261F44DE000C6963 /* DeveloperInfoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A7C16261F44DE000C6963 /* DeveloperInfoCellTableViewCell.swift */; };
 		1F7A7C19261F44DE000C6963 /* DeveloperInfoCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F7A7C17261F44DE000C6963 /* DeveloperInfoCellTableViewCell.xib */; };
@@ -98,6 +100,8 @@
 		1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		1F3A783D260B901B009CFF49 /* DiaryCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaryCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		1F65E68B26218032001533C2 /* AppVersionCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionCellTableViewCell.swift; sourceTree = "<group>"; };
+		1F65E68C26218032001533C2 /* AppVersionCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppVersionCellTableViewCell.xib; sourceTree = "<group>"; };
 		1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewModel.swift; sourceTree = "<group>"; };
 		1F7A7C16261F44DE000C6963 /* DeveloperInfoCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoCellTableViewCell.swift; sourceTree = "<group>"; };
 		1F7A7C17261F44DE000C6963 /* DeveloperInfoCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeveloperInfoCellTableViewCell.xib; sourceTree = "<group>"; };
@@ -366,6 +370,8 @@
 				1FCA59BE261B4363005DDE0E /* NotificationSettingCell.xib */,
 				1F7A7C16261F44DE000C6963 /* DeveloperInfoCellTableViewCell.swift */,
 				1F7A7C17261F44DE000C6963 /* DeveloperInfoCellTableViewCell.xib */,
+				1F65E68B26218032001533C2 /* AppVersionCellTableViewCell.swift */,
+				1F65E68C26218032001533C2 /* AppVersionCellTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -473,6 +479,7 @@
 				EA0E06C526032B1100B1B431 /* CalendarCell.xib in Resources */,
 				1FBAC8A1261F660200A3440B /* SettingView.storyboard in Resources */,
 				EA0E06CF26032CF000B1B431 /* SwitchCell.xib in Resources */,
+				1F65E68E26218032001533C2 /* AppVersionCellTableViewCell.xib in Resources */,
 				EAB21957260472230075B72A /* CalendarEditCell.xib in Resources */,
 				1F3A783F260B901B009CFF49 /* DiaryCollectionTableViewCell.xib in Resources */,
 				EA5FA857261F2DC2009A42EC /* circle@2x.png in Resources */,
@@ -582,6 +589,7 @@
 				EA73940025E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift in Sources */,
 				EA66C24025E282820043A992 /* EventCollectionTableViewController.swift in Sources */,
 				EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */,
+				1F65E68D26218032001533C2 /* AppVersionCellTableViewCell.swift in Sources */,
 				EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */,
 				1F985A2A25FF9634008E59A2 /* RoundUIView.swift in Sources */,
 				EA0E06C426032B1100B1B431 /* CalendarCell.swift in Sources */,
