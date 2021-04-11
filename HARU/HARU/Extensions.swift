@@ -13,11 +13,11 @@ extension Date {
     var startOfDay: Date {
         return Calendar.current.startOfDay(for: self)
     }
-
+    
     var startOfMonth: Date {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.year, .month], from: self)
-
+        
         return  calendar.date(from: components)!
     }
     
@@ -27,7 +27,7 @@ extension Date {
         
         return calendar.date(from: components)!
     }
-
+    
     var endOfDay: Date {
         var components = DateComponents()
         components.day = 1
@@ -61,7 +61,7 @@ extension Date {
         }
         return dates
     }
-
+    
     func isMonday() -> Bool {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.weekday], from: self)
@@ -155,61 +155,85 @@ extension String {
         dateFormatter.dateFormat = "yyyy년 MM월 dd일 a hh:mm"
         return dateFormatter.date(from: self)!
     }
+    
+    var length: Int {
+        return count
+    }
+    
+    subscript (i: Int) -> String {
+        return self[i ..< i + 1]
+    }
+    
+    func substring(fromIndex: Int) -> String {
+        return self[min(fromIndex, length) ..< length]
+    }
+    
+    func substring(toIndex: Int) -> String {
+        return self[0 ..< max(0, toIndex)]
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+                                            upper: min(length, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return String(self[start ..< end])
+    }
 }
 
 extension CALayer {
-  func applySketchShadow(
-    color: UIColor = .black,
-    alpha: Float = 0.5,
-    x: CGFloat = 0,
-    y: CGFloat = 2,
-    blur: CGFloat = 4,
-    spread: CGFloat = 0)
-  {
-    masksToBounds = false
-    shadowColor = color.cgColor
-    shadowOpacity = alpha
-    shadowOffset = CGSize(width: x, height: y)
-    shadowRadius = blur / 2.0
-    if spread == 0 {
-      shadowPath = nil
-    } else {
-      let dx = -spread
-      let rect = bounds.insetBy(dx: dx, dy: dx)
-      shadowPath = UIBezierPath(rect: rect).cgPath
+    func applySketchShadow(
+        color: UIColor = .black,
+        alpha: Float = 0.5,
+        x: CGFloat = 0,
+        y: CGFloat = 2,
+        blur: CGFloat = 4,
+        spread: CGFloat = 0)
+    {
+        masksToBounds = false
+        shadowColor = color.cgColor
+        shadowOpacity = alpha
+        shadowOffset = CGSize(width: x, height: y)
+        shadowRadius = blur / 2.0
+        if spread == 0 {
+            shadowPath = nil
+        } else {
+            let dx = -spread
+            let rect = bounds.insetBy(dx: dx, dy: dx)
+            shadowPath = UIBezierPath(rect: rect).cgPath
+        }
     }
-  }
 }
 
 extension EKEvent {
     private static var calendarIndex = [String:Int]()
-        
-        var calendarIndex: Int {
-            get {
-                let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
-                return EKEvent.calendarIndex[tmpAddress] ?? 0
-            }
-            set(newValue) {
-                let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
-                EKEvent.calendarIndex[tmpAddress] = newValue
-            }
+    
+    var calendarIndex: Int {
+        get {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return EKEvent.calendarIndex[tmpAddress] ?? 0
         }
+        set(newValue) {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            EKEvent.calendarIndex[tmpAddress] = newValue
+        }
+    }
 }
 
 extension UITextField {
     func setupTextFields() {
-            let toolbar = UIToolbar()
-            let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                            target: nil, action: nil)
-            let doneButton = UIBarButtonItem(title: "Done", style: .done,
-                                             target: self, action: #selector(doneButtonTapped))
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                        target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done,
+                                         target: self, action: #selector(doneButtonTapped))
         
-            toolbar.setItems([flexSpace, doneButton], animated: true)
-            toolbar.sizeToFit()
-            
-            self.inputAccessoryView = toolbar
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        self.inputAccessoryView = toolbar
     }
-        
+    
     @objc func doneButtonTapped() {
         self.endEditing(true)
     }
@@ -217,19 +241,31 @@ extension UITextField {
 
 extension UITextView {
     func setupTextFields() {
-            let toolbar = UIToolbar()
-            let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                            target: nil, action: nil)
-            let doneButton = UIBarButtonItem(title: "Done", style: .done,
-                                             target: self, action: #selector(doneButtonTapped))
-            
-            toolbar.setItems([flexSpace, doneButton], animated: true)
-            toolbar.sizeToFit()
-            
-            self.inputAccessoryView = toolbar
-    }
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                        target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done,
+                                         target: self, action: #selector(doneButtonTapped))
         
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        self.inputAccessoryView = toolbar
+    }
+    
     @objc func doneButtonTapped() {
         self.endEditing(true)
+    }
+}
+
+extension NSAttributedString {
+    func concat(rhs: NSAttributedString) -> NSAttributedString {
+        
+        let a = self.mutableCopy() as! NSMutableAttributedString
+        let b = rhs.mutableCopy() as! NSMutableAttributedString
+        
+        a.append(b)
+        
+        return a.copy() as! NSAttributedString
     }
 }
