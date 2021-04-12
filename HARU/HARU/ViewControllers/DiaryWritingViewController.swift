@@ -9,7 +9,7 @@ import UIKit
 
 
 class DiaryWritingViewController: UIViewController {
-    @IBOutlet var textView: UITextView!
+    @IBOutlet var textView: LinedTextView!
     @IBOutlet var squaredPaper: UIImageView!
     
     var attributes: [NSAttributedString.Key: Any]!
@@ -17,19 +17,14 @@ class DiaryWritingViewController: UIViewController {
     var font: UIFont!
     
     var curPosition = 0.0
-    var squareSize = CGFloat()
+    var lineHeight = CGFloat()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTextViewPosition()
-        let fontSize = view.bounds.width / 24.0
-        squareSize = view.bounds.width / 12.0
-        font = UIFont.systemFont(ofSize: fontSize)
-    
-        attributes = [.font: font, .kern: fontSize]
+        let fontSize = squaredPaper.bounds.width / 30.0
+        lineHeight = squaredPaper.bounds.height / 30.0
         
         textView.delegate = self
-        textView.setupTextFields()
     }
     
     func setTextViewPosition() {
@@ -47,7 +42,7 @@ class DiaryWritingViewController: UIViewController {
 // MARK: - UITextView Delegate
 extension DiaryWritingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.typingAttributes = attributes
+//        textView.typingAttributes = attributes
     }
     
     func textViewDidChange(_ textView: UITextView) {

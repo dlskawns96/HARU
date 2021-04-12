@@ -422,13 +422,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qC-pl-lvZ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qC-pl-lvZ" customClass="LinedTextView" customModule="HARU" customModuleProvider="target">
                                 <rect key="frame" x="10" y="150" width="394" height="702"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="squared_paper" translatesAutoresizingMaskIntoConstraints="NO" id="TA6-78-5Qa">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lined_note" translatesAutoresizingMaskIntoConstraints="NO" id="TA6-78-5Qa" userLabel="Lined note">
                                 <rect key="frame" x="10" y="150" width="394" height="702"/>
                             </imageView>
                         </subviews>
@@ -436,15 +435,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="TA6-78-5Qa" firstAttribute="leading" secondItem="cUw-HG-0lg" secondAttribute="leading" constant="10" id="Mqo-l3-IRL"/>
+                            <constraint firstItem="8qC-pl-lvZ" firstAttribute="bottom" secondItem="TA6-78-5Qa" secondAttribute="bottom" id="Rcf-uS-uQg"/>
+                            <constraint firstItem="8qC-pl-lvZ" firstAttribute="leading" secondItem="TA6-78-5Qa" secondAttribute="leading" id="Wsv-Qc-wZ3"/>
                             <constraint firstItem="TA6-78-5Qa" firstAttribute="top" secondItem="10b-0B-hp7" secondAttribute="top" constant="10" id="XHf-7Y-Gda"/>
                             <constraint firstItem="10b-0B-hp7" firstAttribute="trailing" secondItem="TA6-78-5Qa" secondAttribute="trailing" constant="10" id="cZH-6E-ZM5"/>
+                            <constraint firstItem="8qC-pl-lvZ" firstAttribute="top" secondItem="TA6-78-5Qa" secondAttribute="top" id="epu-0v-JbX"/>
                             <constraint firstItem="10b-0B-hp7" firstAttribute="bottom" secondItem="TA6-78-5Qa" secondAttribute="bottom" constant="10" id="uv4-yQ-rlv"/>
+                            <constraint firstItem="8qC-pl-lvZ" firstAttribute="trailing" secondItem="TA6-78-5Qa" secondAttribute="trailing" id="vje-Ib-PkT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Rpg-JY-Pnl"/>
                     <connections>
                         <outlet property="squaredPaper" destination="TA6-78-5Qa" id="wfE-yX-z1H"/>
-                        <outlet property="textView" destination="8qC-pl-lvZ" id="ZcJ-Cs-eVu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSD-ax-hWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -901,9 +903,9 @@
     </scenes>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
+        <image name="lined_note" width="372" height="600"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
-        <image name="squared_paper" width="372" height="620"/>
         <image name="x.square.fill" catalog="system" width="128" height="114"/>
         <namedColor name="MainUIColor">
             <color red="0.25490196078431371" green="0.26666666666666666" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -46,6 +46,7 @@
 		EA0E06CF26032CF000B1B431 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0E06CD26032CF000B1B431 /* SwitchCell.xib */; };
 		EA0E06D22603398D00B1B431 /* AddEventTableItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E06D12603398D00B1B431 /* AddEventTableItems.swift */; };
 		EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1219B42594C255007EDE8E /* CalendarLoader.swift */; };
+		EA2D6F3626240BB700237000 /* LinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2D6F3526240BB700237000 /* LinedTextView.swift */; };
 		EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3A414825B66CA40074282C /* AddEvent.storyboard */; };
 		EA50F77925F06B510003095D /* ScheduleTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */; };
 		EA5CBB9026076EF500B24542 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */; };
@@ -135,6 +136,7 @@
 		EA0E06CD26032CF000B1B431 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		EA0E06D12603398D00B1B431 /* AddEventTableItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventTableItems.swift; sourceTree = "<group>"; };
 		EA1219B42594C255007EDE8E /* CalendarLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarLoader.swift; path = HARU/Classes/CalendarLoader.swift; sourceTree = SOURCE_ROOT; };
+		EA2D6F3526240BB700237000 /* LinedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinedTextView.swift; sourceTree = "<group>"; };
 		EA3A414825B66CA40074282C /* AddEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddEvent.storyboard; path = HARU/AddEvent.storyboard; sourceTree = SOURCE_ROOT; };
 		EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewModel.swift; sourceTree = "<group>"; };
 		EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				EAFE1BA025CD183F0084B31C /* EventHandler.swift */,
 				EAB83E9D25FA073B00EC1B8D /* ThemeVariables.swift */,
 				EA0E06B52603258800B1B431 /* AddEventCellControllerFactory.swift */,
+				EA2D6F3526240BB700237000 /* LinedTextView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2D6F3626240BB700237000 /* LinedTextView.swift in Sources */,
 				1F7A7C18261F44DE000C6963 /* DeveloperInfoCellTableViewCell.swift in Sources */,
 				EAF7F1BD25F4A6100029E787 /* EventCollectionTableViewModel.swift in Sources */,
 				1FF7AFAF261CAA5900C9B1FA /* OpinionViewController.swift in Sources */,
