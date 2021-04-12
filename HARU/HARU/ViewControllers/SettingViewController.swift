@@ -17,6 +17,7 @@ class SettingViewController: UIViewController {
 
     static var deleteCheck = false
     
+    var appVersion = "0.0.0"
     let dataSource = DiaryTableViewModel()
     let header: [String] = ["설정", "알림", "서비스", "지원"]
     let setting: [[String]] = [["테마 설정"], ["다이어리 알림 받기"], ["다이어리 전체 지우기"], ["앱 평가하기", "의견 보내기", "개발자 정보", "앱 정보"]]
@@ -79,8 +80,11 @@ class SettingViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
-        let nibName = UINib(nibName: "NotificationSettingCell", bundle: nil)
+        var nibName = UINib(nibName: "NotificationSettingCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "notificationSettingCell")
+        
+        nibName = UINib(nibName: "AppVersionCellTableViewCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "appVersionCell")
     }
 }
 
@@ -135,6 +139,14 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.notificationSwitch.isOn = UserDefaults.standard.bool(forKey: "switchState")
             return cell
         }
+        else if indexPath.section == 3 && indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "appVersionCell", for: indexPath) as! AppVersionCellTableViewCell
+            cell.label.text = setting[indexPath.section][indexPath.row]
+            cell.versionLabel.text = appVersion
+            cell.versionLabel.textColor = .systemGray2
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for:indexPath)
             let text: String = setting[indexPath.section][indexPath.row]
@@ -146,7 +158,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         }
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
