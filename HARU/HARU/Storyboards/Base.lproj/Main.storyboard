@@ -166,6 +166,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="HARU" largeTitleDisplayMode="always" id="ohc-xO-gFm">
+                        <barButtonItem key="leftBarButtonItem" title="그림일기" id="tI8-pV-39L">
+                            <connections>
+                                <segue destination="2bn-nU-ixO" kind="show" id="JFg-Ps-cJM"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="jwz-0M-SVQ">
                                 <color key="tintColor" name="MainUIColor"/>
@@ -451,6 +456,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSD-ax-hWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="-681"/>
+        </scene>
+        <!--Add Picture Diary View Controller-->
+        <scene sceneID="Eo5-MV-SYS">
+            <objects>
+                <viewController id="2bn-nU-ixO" customClass="AddPictureDiaryViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2SF-vn-RuW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SfU-Xd-Dsl">
+                                <rect key="frame" x="0.0" y="106" width="414" height="701"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCF-c6-nCM">
+                                <rect key="frame" x="190" y="815" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="clear"/>
+                                <connections>
+                                    <action selector="clearBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="tAp-pD-jnr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1U0-MJ-Pah"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xh7-a2-wBY"/>
+                    <connections>
+                        <outlet property="imageView" destination="SfU-Xd-Dsl" id="qcb-s5-lAT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vdx-3b-0Bo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1286.9565217391305" y="-617.41071428571422"/>
         </scene>
         <!--SettingViewController-->
         <scene sceneID="gcY-Hz-JKq">
@@ -787,9 +825,6 @@
         <image name="lined_note" width="372" height="600"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
-        <image name="x.square.fill" catalog="system" width="128" height="114"/>
-        <image name="right_arrow" width="512" height="512"/>
-        <image name="squared_paper" width="372" height="620"/>
         <namedColor name="MainUIColor">
             <color red="0.25490196078431371" green="0.26666666666666666" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

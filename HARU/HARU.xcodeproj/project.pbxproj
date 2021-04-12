@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F074A77262476B600A25FD4 /* AddPictureDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F074A76262476B600A25FD4 /* AddPictureDiaryViewController.swift */; };
 		1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185B925B4579100C4743F /* Data.xcdatamodeld */; };
 		1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */; };
 		1F3A783E260B901B009CFF49 /* DiaryCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */; };
@@ -97,6 +98,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F074A76262476B600A25FD4 /* AddPictureDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPictureDiaryViewController.swift; sourceTree = "<group>"; };
 		1F3185BA25B4579100C4743F /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				1FF7AFB1261CADBA00C9B1FA /* DeveloperInfoViewController.swift */,
 				1FF7AFB4261CADCA00C9B1FA /* AppInfoViewController.swift */,
 				EA5FA85E261F421E009A42EC /* DiaryWritingViewController.swift */,
+				1F074A76262476B600A25FD4 /* AddPictureDiaryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				EADDEF6425FEF0A900703E5F /* AddEventTableViewModel.swift in Sources */,
 				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
 				1FC15E1725ED0DE80021B16B /* DiaryCollectionTableViewController.swift in Sources */,
+				1F074A77262476B600A25FD4 /* AddPictureDiaryViewController.swift in Sources */,
 				EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */,
 				EA8617D126134ACB005E4078 /* CalendarSelectCell.swift in Sources */,
 				EA8617D426134BAD005E4078 /* CalendarSelectTableViewController.swift in Sources */,
