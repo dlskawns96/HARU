@@ -123,31 +123,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Afc-0W-eLb">
-                                <rect key="frame" x="0.0" y="74" width="414" height="734"/>
-                            </mapView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="a0r-Qo-bIb">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <searchBar contentMode="redraw" placeholder="검색.." translatesAutoresizingMaskIntoConstraints="NO" id="a0r-Qo-bIb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uVn-kw-rJF">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultCell" id="3SI-86-vga">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3SI-86-vga" id="3VF-68-uzN">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mX9-ZA-yxg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="mX9-ZA-yxg" firstAttribute="trailing" secondItem="Afc-0W-eLb" secondAttribute="trailing" id="3UK-nY-3Rl"/>
-                            <constraint firstItem="mX9-ZA-yxg" firstAttribute="bottom" secondItem="Afc-0W-eLb" secondAttribute="bottom" id="5CV-57-aCU"/>
-                            <constraint firstItem="mX9-ZA-yxg" firstAttribute="bottom" secondItem="a0r-Qo-bIb" secondAttribute="bottom" constant="764" id="L5N-4U-VN0"/>
-                            <constraint firstItem="Afc-0W-eLb" firstAttribute="top" secondItem="a0r-Qo-bIb" secondAttribute="bottom" constant="30" id="O98-sD-nNy"/>
-                            <constraint firstItem="Afc-0W-eLb" firstAttribute="leading" secondItem="mX9-ZA-yxg" secondAttribute="leading" id="YXY-r0-Pq5"/>
+                            <constraint firstItem="uVn-kw-rJF" firstAttribute="leading" secondItem="mX9-ZA-yxg" secondAttribute="leading" id="4nt-VH-2vn"/>
                             <constraint firstItem="a0r-Qo-bIb" firstAttribute="top" secondItem="mX9-ZA-yxg" secondAttribute="top" id="cGv-EE-e8o"/>
                             <constraint firstItem="mX9-ZA-yxg" firstAttribute="trailing" secondItem="a0r-Qo-bIb" secondAttribute="trailing" id="hOc-5R-YkS"/>
                             <constraint firstItem="a0r-Qo-bIb" firstAttribute="leading" secondItem="mX9-ZA-yxg" secondAttribute="leading" id="iac-SG-QTn"/>
+                            <constraint firstItem="uVn-kw-rJF" firstAttribute="top" secondItem="a0r-Qo-bIb" secondAttribute="bottom" id="mXr-qX-Nsc"/>
+                            <constraint firstItem="mX9-ZA-yxg" firstAttribute="trailing" secondItem="uVn-kw-rJF" secondAttribute="trailing" id="nVL-8d-uF2"/>
+                            <constraint firstItem="mX9-ZA-yxg" firstAttribute="bottom" secondItem="uVn-kw-rJF" secondAttribute="bottom" id="y6K-fK-i0y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Nsq-yi-aZM"/>
                     <connections>
-                        <outlet property="mapView" destination="Afc-0W-eLb" id="jZ4-jP-tXm"/>
                         <outlet property="searchBar" destination="a0r-Qo-bIb" id="GDo-UW-Dve"/>
+                        <outlet property="searchResultTable" destination="uVn-kw-rJF" id="9Sx-vr-4Xl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K9e-Sv-2D5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

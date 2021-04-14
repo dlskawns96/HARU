@@ -89,6 +89,14 @@ class AddNewEventViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    // prepare for segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LocationSet" {
+            let vc = segue.destination as! LocationViewController
+            vc.delegate = self
+        }
+    }
+    
     func setCalendarDropDown() {
         var titles: [String] = []
         for calendar in calendars {
@@ -141,6 +149,14 @@ extension AddNewEventViewController: AddEventTableViewModelDelegate {
     func didElementChanged() {
         cells = []
         tableView.reloadData()
+    }
+}
+
+// MARK: - LocationViewControllerDelegate
+extension AddNewEventViewController: LocationViewControllerDelegate {
+    func searchFinished(coordinate: CLLocationCoordinate2D, name: String) {
+        print(coordinate)
+        print(name)
     }
 }
 
