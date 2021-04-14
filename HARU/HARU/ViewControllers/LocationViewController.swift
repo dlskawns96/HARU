@@ -31,7 +31,7 @@ class LocationViewController: UIViewController {
 }
 
 protocol LocationViewControllerDelegate {
-    func searchFinished(coordinate: CLLocationCoordinate2D, name: String)
+    func searchFinished(mapItem: MKMapItem, name: String)
 }
 
 extension LocationViewController: UISearchBarDelegate {
@@ -93,9 +93,9 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
                 return
             }
             guard let placeMark = response?.mapItems[0].placemark else { return }
-            let coordinate = placeMark.coordinate
-            self.delegate?.searchFinished(coordinate: coordinate, name: "\(placeMark.locality ?? selectedResult.title)")
-            self.dismiss(animated: true, completion: nil)
+            let mapItem = MKMapItem(placemark: placeMark)
+            self.delegate?.searchFinished(mapItem: mapItem, name: "\(selectedResult.title)")
+            self.navigationController?.popViewController(animated: true)
         })
     }
 }

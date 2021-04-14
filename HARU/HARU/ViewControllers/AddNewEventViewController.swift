@@ -8,6 +8,7 @@
 import UIKit
 import EventKit
 import DropDown
+import MapKit
 
 class AddNewEventViewController: UIViewController {
     fileprivate var cellControllers = [[AddEventCellController]]()
@@ -154,9 +155,9 @@ extension AddNewEventViewController: AddEventTableViewModelDelegate {
 
 // MARK: - LocationViewControllerDelegate
 extension AddNewEventViewController: LocationViewControllerDelegate {
-    func searchFinished(coordinate: CLLocationCoordinate2D, name: String) {
-        print(coordinate)
-        print(name)
+    func searchFinished(mapItem: MKMapItem, name: String) {
+        AddEventTableViewModel.newEvent.location = name
+        AddEventTableViewModel.newEvent.structuredLocation = EKStructuredLocation(title: name)
     }
 }
 

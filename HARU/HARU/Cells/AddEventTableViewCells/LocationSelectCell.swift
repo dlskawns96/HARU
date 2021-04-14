@@ -9,6 +9,7 @@ import UIKit
 
 class LocationSelectCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var locationNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,6 +44,8 @@ class LocationSelectCellController: AddEventCellController {
     func cellFromTableView(_ tableView: UITableView, forIndexPath indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).cellIdentifier, for: indexPath) as! LocationSelectCell
         cell.titleLabel.text = cellItem.titleString
+        cell.locationNameLabel.text = AddEventTableViewModel.newEvent.location ?? ""
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     
