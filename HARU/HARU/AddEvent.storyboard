@@ -108,11 +108,51 @@
                         <outlet property="navigationBar" destination="Dj2-xp-hE1" id="Ohh-z1-QsR"/>
                         <outlet property="tableView" destination="DVZ-Ft-jf1" id="bOR-2g-EcQ"/>
                         <segue destination="B2c-lb-u0F" kind="push" identifier="AlarmSet" id="zoz-J7-yw3"/>
+                        <segue destination="ZS9-3p-lDG" kind="show" identifier="LocationSet" id="eIK-Ac-uMF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H2w-T7-VDk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2417" y="479"/>
+        </scene>
+        <!--Location View Controller-->
+        <scene sceneID="sMt-e8-1iY">
+            <objects>
+                <viewController id="ZS9-3p-lDG" customClass="LocationViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nRe-Bq-oE5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Afc-0W-eLb">
+                                <rect key="frame" x="0.0" y="74" width="414" height="734"/>
+                            </mapView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="a0r-Qo-bIb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mX9-ZA-yxg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mX9-ZA-yxg" firstAttribute="trailing" secondItem="Afc-0W-eLb" secondAttribute="trailing" id="3UK-nY-3Rl"/>
+                            <constraint firstItem="mX9-ZA-yxg" firstAttribute="bottom" secondItem="Afc-0W-eLb" secondAttribute="bottom" id="5CV-57-aCU"/>
+                            <constraint firstItem="mX9-ZA-yxg" firstAttribute="bottom" secondItem="a0r-Qo-bIb" secondAttribute="bottom" constant="764" id="L5N-4U-VN0"/>
+                            <constraint firstItem="Afc-0W-eLb" firstAttribute="top" secondItem="a0r-Qo-bIb" secondAttribute="bottom" constant="30" id="O98-sD-nNy"/>
+                            <constraint firstItem="Afc-0W-eLb" firstAttribute="leading" secondItem="mX9-ZA-yxg" secondAttribute="leading" id="YXY-r0-Pq5"/>
+                            <constraint firstItem="a0r-Qo-bIb" firstAttribute="top" secondItem="mX9-ZA-yxg" secondAttribute="top" id="cGv-EE-e8o"/>
+                            <constraint firstItem="mX9-ZA-yxg" firstAttribute="trailing" secondItem="a0r-Qo-bIb" secondAttribute="trailing" id="hOc-5R-YkS"/>
+                            <constraint firstItem="a0r-Qo-bIb" firstAttribute="leading" secondItem="mX9-ZA-yxg" secondAttribute="leading" id="iac-SG-QTn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Nsq-yi-aZM"/>
+                    <connections>
+                        <outlet property="mapView" destination="Afc-0W-eLb" id="jZ4-jP-tXm"/>
+                        <outlet property="searchBar" destination="a0r-Qo-bIb" id="GDo-UW-Dve"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K9e-Sv-2D5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3150.7246376811595" y="-179.46428571428569"/>
         </scene>
         <!--Event Alarm Select Table View Controller-->
         <scene sceneID="mP0-O4-J6l">

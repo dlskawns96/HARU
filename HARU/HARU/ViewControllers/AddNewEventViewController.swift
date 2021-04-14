@@ -213,6 +213,8 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
         } else if indexPath.section == 2 {
             if indexPath.row == 0 {
                 self.performSegue(withIdentifier: "AlarmSet", sender: nil)
+            } else if indexPath.row == 1 {
+                self.performSegue(withIdentifier: "LocationSet", sender: nil)
             }
         }
     }

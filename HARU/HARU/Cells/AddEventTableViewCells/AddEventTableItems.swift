@@ -72,3 +72,12 @@ class AlarmItem: AddEventCellItem {
         self.titleString = title
     }
 }
+
+class LocationSelectItem: AddEventCellItem {
+    var itemType: ItemType = .locationSelectItem
+    var titleString: String
+    
+    init(title: String) {
+        self.titleString = title
+    }
+}
