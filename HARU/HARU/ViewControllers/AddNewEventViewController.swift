@@ -8,6 +8,7 @@
 import UIKit
 import EventKit
 import DropDown
+import MapKit
 
 class AddNewEventViewController: UIViewController {
     fileprivate var cellControllers = [[AddEventCellController]]()
@@ -89,6 +90,14 @@ class AddNewEventViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    // prepare for segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LocationSet" {
+            let vc = segue.destination as! LocationViewController
+            vc.delegate = self
+        }
+    }
+    
     func setCalendarDropDown() {
         var titles: [String] = []
         for calendar in calendars {
@@ -141,6 +150,14 @@ extension AddNewEventViewController: AddEventTableViewModelDelegate {
     func didElementChanged() {
         cells = []
         tableView.reloadData()
+    }
+}
+
+// MARK: - LocationViewControllerDelegate
+extension AddNewEventViewController: LocationViewControllerDelegate {
+    func searchFinished(mapItem: MKMapItem, name: String) {
+        AddEventTableViewModel.newEvent.location = name
+        AddEventTableViewModel.newEvent.structuredLocation = EKStructuredLocation(title: name)
     }
 }
 
@@ -213,6 +230,8 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
         } else if indexPath.section == 2 {
             if indexPath.row == 0 {
                 self.performSegue(withIdentifier: "AlarmSet", sender: nil)
+            } else if indexPath.row == 1 {
+                self.performSegue(withIdentifier: "LocationSet", sender: nil)
             }
         }
     }

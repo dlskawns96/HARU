@@ -23,7 +23,7 @@ class AddEventTableViewModel {
         
         let section1: [AddEventCellItem] = [TextFieldItem(title: "타이틀")]
         let section2: [AddEventCellItem] = [CalendarItem(title: "캘린더"), TextItem(isStartDate: true, title: "시작"), TextItem(isStartDate: false, title: "종료")]
-        let section3: [AddEventCellItem] = [AlarmItem(title: "알림")]
+        let section3: [AddEventCellItem] = [AlarmItem(title: "알림"), LocationSelectItem(title: "위치")]
         let section4: [AddEventCellItem] = [EventNoteItem(title: "노트")]
         
         let items: [[AddEventCellItem]] = [section1, section2, section3, section4]
@@ -36,7 +36,7 @@ class AddEventTableViewModel {
         
         let section1: [AddEventCellItem] = [TextFieldItem(title: "타이틀")]
         let section2: [AddEventCellItem] = [CalendarItem(title: "캘린더"), TextItem(isStartDate: true, title: "시작"), TextItem(isStartDate: false, title: "종료")]
-        let section3: [AddEventCellItem] = [AlarmItem(title: "알림")]
+        let section3: [AddEventCellItem] = [AlarmItem(title: "알림"), LocationSelectItem(title: "위치")]
         let section4: [AddEventCellItem] = [EventNoteItem(title: "노트")]
         
         let items: [[AddEventCellItem]] = [section1, section2, section3, section4]
