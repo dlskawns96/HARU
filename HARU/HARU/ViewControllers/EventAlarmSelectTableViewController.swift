@@ -32,7 +32,6 @@ class EventAlarmSelectTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        EventAlarmSelectTableViewController.selectedIndex = IndexPath(row: 0, section: 0)
     }
     
     func removeExistingAlarm() {
@@ -68,8 +67,8 @@ class EventAlarmSelectTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! EventAlarmSelectTableViewCell
-        cell.checkMarkImage.isHidden.toggle()
         EventAlarmSelectTableViewController.selectedIndex = indexPath
+        AddEventTableViewModel.alarmIndex = indexPath
         var alarm = EKAlarm()
         switch indexPath.section {
         case 0:
@@ -88,9 +87,9 @@ class EventAlarmSelectTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventAlarmSelectTableViewCell", for: indexPath) as! EventAlarmSelectTableViewCell
         cell.titleLabel.text = EventAlarmSelectTableViewController.items[indexPath.section][indexPath.row]
         if indexPath == EventAlarmSelectTableViewController.selectedIndex {
-            cell.checkMarkImage.isHidden = false
+            cell.accessoryType = .checkmark
         } else {
-            cell.checkMarkImage.isHidden = true
+            cell.accessoryType = .none
         }
         return cell
     }
@@ -98,7 +97,6 @@ class EventAlarmSelectTableViewController: UITableViewController {
 
 class EventAlarmSelectTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var checkMarkImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -112,14 +110,9 @@ class EventAlarmSelectTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        checkIfSelected()
-    }
-    
-    func checkIfSelected() {
     }
     
     func configureCell() {
-        checkIfSelected()
     }
 
 }
