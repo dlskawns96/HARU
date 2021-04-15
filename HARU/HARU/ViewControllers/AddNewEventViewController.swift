@@ -73,7 +73,7 @@ class AddNewEventViewController: UIViewController {
         tableView.removeExtraLine()
         
         tableView.keyboardDismissMode = .onDrag
-        EventAlarmSelectTableViewController.selectedIndex = IndexPath(row: 0, section: 0)
+        EventAlarmSelectTableViewController.selectedIndex = AddEventTableViewModel.alarmIndex
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,6 +95,8 @@ class AddNewEventViewController: UIViewController {
         if segue.identifier == "LocationSet" {
             let vc = segue.destination as! LocationViewController
             vc.delegate = self
+        } else if segue.identifier == "AlarmSet" {
+            EventAlarmSelectTableViewController.selectedIndex = AddEventTableViewModel.alarmIndex
         }
     }
     
@@ -125,6 +127,27 @@ class AddNewEventViewController: UIViewController {
                                       bundle: nil)
         return storyboard.instantiateInitialViewController() as? AddNewEventViewController
     }
+    
+    // MARK: - Private functions
+    private func deleteStartDateCalendar() {
+        items[1].remove(at: 2)
+        isStartDateCalendarInserted = false
+    }
+    
+    private func deleteEndDateCalendar() {
+        items[1].remove(at: 3)
+        isEndDateCalendarInserted = false
+    }
+    
+    private func insertStartDateCalendar() {
+        dataSource.addCalendarEditItem(title: "시작 날짜", vc: self)
+        isStartDateCalendarInserted = true
+    }
+    
+    private func insertEndDateCalendar() {
+        dataSource.addCalendarEditItem(title: "종료 날짜", vc: self)
+        isEndDateCalendarInserted = true
+    }
 }
 
 // MARK: - UI 동작 reaction
@@ -153,6 +176,17 @@ extension AddNewEventViewController: AddEventTableViewModelDelegate {
     }
 }
 
+extension AddNewEventViewController: CalendarEditCellDelegate {
+    func calendarDidSelect(isStart: Bool) {
+        if isStart {
+            deleteStartDateCalendar()
+            cellOffset -= 1
+        } else {
+            deleteEndDateCalendar()
+        }
+    }
+}
+
 // MARK: - LocationViewControllerDelegate
 extension AddNewEventViewController: LocationViewControllerDelegate {
     func searchFinished(mapItem: MKMapItem, name: String) {
@@ -172,13 +206,6 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
             return CGFloat(200.0)
         }
         return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44.0))
-        returnedView.backgroundColor = .white
-        
-        return returnedView
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -202,28 +229,22 @@ extension AddNewEventViewController: UITableViewDelegate, UITableViewDataSource 
             } else if indexPath.row == 1 {
                 if !isStartDateCalendarInserted {
                     if isEndDateCalendarInserted {
-                        items[1].remove(at: 3)
-                        isEndDateCalendarInserted = false
+                        deleteEndDateCalendar()
                     }
-                    dataSource.addCalendarEditItem(title: "시작 날짜")
-                    isStartDateCalendarInserted = true
+                    insertStartDateCalendar()
                     cellOffset += 1
                 } else {
-                    items[1].remove(at: 2)
-                    isStartDateCalendarInserted = false
+                    deleteStartDateCalendar()
                     cellOffset -= 1
                 }
             } else if indexPath.row == 2 + cellOffset {
                 if !isEndDateCalendarInserted {
                     if isStartDateCalendarInserted {
-                        items[1].remove(at: 2)
-                        isStartDateCalendarInserted = false
+                        deleteStartDateCalendar()
                     }
-                    dataSource.addCalendarEditItem(title: "종료 날짜")
-                    isEndDateCalendarInserted = true
+                    insertEndDateCalendar()
                 } else {
-                    items[1].remove(at: 3)
-                    isEndDateCalendarInserted = false
+                    deleteEndDateCalendar()
                 }
                 cellOffset = 0
             }

@@ -14,6 +14,7 @@ class CalendarEditCell: UITableViewCell {
     @IBOutlet weak var minuteTF: UITextField!
     @IBOutlet weak var fsCalendar: FSCalendar!
     var tableView: UITableView?
+    var delegate: CalendarEditCellDelegate?
     
     var titleString: String? {
         didSet {
@@ -98,6 +99,11 @@ class CalendarEditCell: UITableViewCell {
         }
         tableView?.reloadData()
     }
+}
+
+// MARK: - Delegate
+protocol CalendarEditCellDelegate: class {
+    func calendarDidSelect(isStart: Bool)
 }
 
 // MARK: - TextField
@@ -209,18 +215,20 @@ extension CalendarEditCell: FSCalendarDelegate, FSCalendarDataSource, FSCalendar
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        var isStart = false
         if self.titleString == "시작 날짜" {
             if AddEventTableViewModel.newEvent.endDate.compare(date) == .orderedAscending {
                 AddEventTableViewModel.newEvent.endDate = AddEventTableViewModel.newEvent.startDate.adjust(hour: nil, minute: nil, second: nil, day: date.component(.day), month: date.component(.month))
             }
             AddEventTableViewModel.newEvent.startDate = AddEventTableViewModel.newEvent.startDate.adjust(hour: nil, minute: nil, second: nil, day: date.component(.day), month: date.component(.month))
+            isStart = true
         } else {
             if AddEventTableViewModel.newEvent.startDate.compare(date) == .orderedDescending {
                 AddEventTableViewModel.newEvent.startDate = AddEventTableViewModel.newEvent.endDate.adjust(hour: nil, minute: nil, second: nil, day: date.component(.day), month: date.component(.month))
             }
             AddEventTableViewModel.newEvent.endDate = AddEventTableViewModel.newEvent.endDate.adjust(hour: nil, minute: nil, second: nil, day: date.component(.day), month: date.component(.month))
         }
-        tableView?.reloadData()
+        delegate?.calendarDidSelect(isStart: isStart)
         calendar.reloadData()
     }
 }
@@ -247,6 +255,7 @@ class CalendarEditCellController: AddEventCellController {
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).cellIdentifier, for: indexPath) as! CalendarEditCell
         cell.titleString = cellItem.titleString
         cell.tableView = tableView
+        cell.delegate = cellItem.vc
         return cell
     }
     

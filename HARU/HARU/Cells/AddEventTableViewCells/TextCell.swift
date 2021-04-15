@@ -80,6 +80,7 @@ class AlarmCellController: AddEventCellController {
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).cellIdentifier, for: indexPath) as! TextCell
         cell.titleLabel.text = cellItem.titleString
         cell.contentLabel.text = EventAlarmSelectTableViewController.items[EventAlarmSelectTableViewController.selectedIndex.section][EventAlarmSelectTableViewController.selectedIndex.row]
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     

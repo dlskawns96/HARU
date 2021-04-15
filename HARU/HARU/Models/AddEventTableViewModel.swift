@@ -10,6 +10,7 @@ import EventKit
 
 class AddEventTableViewModel {
     static var newEvent = EKEvent(eventStore: EventHandler.ekEventStore!)
+    static var alarmIndex = IndexPath(row: 0, section: 0)
     weak var delegate: AddEventTableViewModelDelegate?
     
     func initData(selectedDate: Date, calendar: EKCalendar) {
@@ -44,8 +45,8 @@ class AddEventTableViewModel {
         delegate?.didLoadData(items: items)
     }
     
-    func addCalendarEditItem(title: String) {
-        let item: AddEventCellItem = CalendarEditItem(title: title)
+    func addCalendarEditItem(title: String, vc: AddNewEventViewController) {
+        let item: AddEventCellItem = CalendarEditItem(title: title, vc: vc)
         delegate?.calenadrEditItemAdded(item: item)
     }
     
