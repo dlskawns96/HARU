@@ -64,6 +64,7 @@
 		EA7393FA25E7967E00FEA2C7 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393F925E7967E00FEA2C7 /* EventDetailViewController.swift */; };
 		EA7393FD25E796C700FEA2C7 /* EventDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393FC25E796C700FEA2C7 /* EventDetailTableViewCell.swift */; };
 		EA73940025E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393FF25E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift */; };
+		EA73C139262C62A40075AF6D /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73C138262C62A40075AF6D /* LocationTableViewCell.swift */; };
 		EA7CA1FA2612EB3C004F2004 /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7CA1F92612EB3C004F2004 /* AlertTableViewCell.swift */; };
 		EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F83692594749C008B8ED5 /* AppDelegate.swift */; };
 		EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F836B2594749C008B8ED5 /* SceneDelegate.swift */; };
@@ -159,6 +160,7 @@
 		EA7393F925E7967E00FEA2C7 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		EA7393FC25E796C700FEA2C7 /* EventDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewCell.swift; sourceTree = "<group>"; };
 		EA7393FF25E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarButtonTableViewCell.swift; sourceTree = "<group>"; };
+		EA73C138262C62A40075AF6D /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		EA7CA1F92612EB3C004F2004 /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		EA7F83662594749C008B8ED5 /* HARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7F83692594749C008B8ED5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				EA7393FF25E7C94300FEA2C7 /* CalendarButtonTableViewCell.swift */,
 				EA7CA1F92612EB3C004F2004 /* AlertTableViewCell.swift */,
 				EA8617D026134ACB005E4078 /* CalendarSelectCell.swift */,
+				EA73C138262C62A40075AF6D /* LocationTableViewCell.swift */,
 			);
 			path = EventDetailTableViewCells;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				EADDEF6425FEF0A900703E5F /* AddEventTableViewModel.swift in Sources */,
 				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
 				1FC15E1725ED0DE80021B16B /* DiaryCollectionTableViewController.swift in Sources */,
+				EA73C139262C62A40075AF6D /* LocationTableViewCell.swift in Sources */,
 				EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */,
 				EA8617D126134ACB005E4078 /* CalendarSelectCell.swift in Sources */,
 				EA8617D426134BAD005E4078 /* CalendarSelectTableViewController.swift in Sources */,

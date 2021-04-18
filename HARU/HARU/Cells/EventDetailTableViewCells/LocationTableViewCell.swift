@@ -1,14 +1,15 @@
 //
-//  AlertTableViewCell.swift
+//  LocationTableViewCell.swift
 //  HARU
 //
-//  Created by Lee Nam Jun on 2021/03/30.
+//  Created by Lee Nam Jun on 2021/04/18.
 //
 
 import UIKit
 
-class AlertTableViewCell: UITableViewCell {
-    @IBOutlet weak var alertStatusLabel: UILabel!
+class LocationTableViewCell: UITableViewCell {
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,8 +26,8 @@ class AlertTableViewCell: UITableViewCell {
         configureCell()
     }
     
-    func configureCell() {
-        alertStatusLabel.text = "없음"
-        self.accessoryType = .disclosureIndicator
+    private func configureCell() {
+        locationLabel.text = EventDetailViewController.event.location
     }
+
 }
