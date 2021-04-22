@@ -28,6 +28,7 @@ class LocationTableViewCell: UITableViewCell {
     
     private func configureCell() {
         mapView.mapType = .standard
+        mapView.isUserInteractionEnabled = false
         mapView.centerToLocation((EventDetailViewController.event.structuredLocation?.geoLocation)!)
         let annotation = MKPointAnnotation()
         annotation.title = EventDetailViewController.event.structuredLocation?.title
