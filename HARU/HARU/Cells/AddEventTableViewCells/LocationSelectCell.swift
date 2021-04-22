@@ -44,7 +44,7 @@ class LocationSelectCellController: AddEventCellController {
     func cellFromTableView(_ tableView: UITableView, forIndexPath indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).cellIdentifier, for: indexPath) as! LocationSelectCell
         cell.titleLabel.text = cellItem.titleString
-        cell.locationNameLabel.text = AddEventTableViewModel.newEvent.location ?? ""
+        cell.locationNameLabel.text = AddEventTableViewModel.newEvent.structuredLocation?.title ?? ""
         cell.accessoryType = .disclosureIndicator
         return cell
     }

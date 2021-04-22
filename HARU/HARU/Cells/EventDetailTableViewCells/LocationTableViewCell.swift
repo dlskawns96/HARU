@@ -6,10 +6,10 @@
 //
 
 import UIKit
+import MapKit
 
 class LocationTableViewCell: UITableViewCell {
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var mapView: MKMapView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +27,12 @@ class LocationTableViewCell: UITableViewCell {
     }
     
     private func configureCell() {
-        locationLabel.text = EventDetailViewController.event.location
+        mapView.mapType = .standard
+        mapView.centerToLocation((EventDetailViewController.event.structuredLocation?.geoLocation)!)
+        let annotation = MKPointAnnotation()
+        annotation.title = EventDetailViewController.event.structuredLocation?.title
+        annotation.coordinate = (EventDetailViewController.event.structuredLocation?.geoLocation!.coordinate)!
+        mapView.addAnnotation(annotation)
     }
 
 }

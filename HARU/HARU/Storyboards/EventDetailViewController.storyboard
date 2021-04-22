@@ -204,27 +204,29 @@
                                     <outlet property="alertStatusLabel" destination="Ncz-FU-edz" id="jsQ-8t-0t0"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LocationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationTableViewCell" rowHeight="80.5" id="l5p-af-09u" customClass="LocationTableViewCell" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="439" width="414" height="80.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LocationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationTableViewCell" id="l5p-af-09u" customClass="LocationTableViewCell" customModule="HARU" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="439" width="414" height="194.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l5p-af-09u" id="UrK-7p-Dud">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="194.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="C0E-SS-Sae" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                            <rect key="frame" x="10" y="10" width="394" height="60.5"/>
+                                            <rect key="frame" x="10" y="10" width="394" height="174.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXp-uO-XKx">
-                                                    <rect key="frame" x="330.5" y="20" width="41.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jok-jS-7AC">
+                                                    <rect key="frame" x="12" y="12" width="370" height="150.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="qd7-Gl-Tv7"/>
+                                                    </constraints>
+                                                </mapView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="SXp-uO-XKx" firstAttribute="top" secondItem="C0E-SS-Sae" secondAttribute="top" constant="20" symbolic="YES" id="gVy-fm-i4y"/>
-                                                <constraint firstAttribute="bottom" secondItem="SXp-uO-XKx" secondAttribute="bottom" constant="19.5" id="nXh-7F-t6v"/>
+                                                <constraint firstItem="jok-jS-7AC" firstAttribute="top" secondItem="C0E-SS-Sae" secondAttribute="top" constant="12" id="Cib-F5-VCv"/>
+                                                <constraint firstItem="jok-jS-7AC" firstAttribute="leading" secondItem="C0E-SS-Sae" secondAttribute="leading" constant="12" id="JFp-CE-NwB"/>
+                                                <constraint firstAttribute="bottom" secondItem="jok-jS-7AC" secondAttribute="bottom" constant="12" id="Q4S-b7-XkS"/>
+                                                <constraint firstAttribute="trailing" secondItem="jok-jS-7AC" secondAttribute="trailing" constant="12" id="ybC-cq-uA6"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
@@ -241,27 +243,16 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="장소" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEX-Cd-ue3">
-                                            <rect key="frame" x="30" y="29" width="29.5" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="C0E-SS-Sae" firstAttribute="leading" secondItem="UrK-7p-Dud" secondAttribute="leading" constant="10" id="3tn-Ka-MzM"/>
-                                        <constraint firstItem="CEX-Cd-ue3" firstAttribute="top" secondItem="UrK-7p-Dud" secondAttribute="top" constant="29" id="5T0-Qm-c9G"/>
                                         <constraint firstAttribute="trailing" secondItem="C0E-SS-Sae" secondAttribute="trailing" constant="10" id="6oh-LA-N9R"/>
-                                        <constraint firstItem="C0E-SS-Sae" firstAttribute="leading" secondItem="CEX-Cd-ue3" secondAttribute="leading" constant="-20" id="C5Q-ZD-baO"/>
-                                        <constraint firstAttribute="trailing" secondItem="SXp-uO-XKx" secondAttribute="trailing" constant="32" id="g8d-a4-sec"/>
                                         <constraint firstAttribute="bottom" secondItem="C0E-SS-Sae" secondAttribute="bottom" constant="10" id="pGS-RJ-Qbb"/>
-                                        <constraint firstAttribute="bottom" secondItem="CEX-Cd-ue3" secondAttribute="bottom" constant="30.5" id="qOs-d5-cdQ"/>
                                         <constraint firstItem="C0E-SS-Sae" firstAttribute="top" secondItem="UrK-7p-Dud" secondAttribute="top" constant="10" id="tpa-OZ-9zd"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="locationLabel" destination="SXp-uO-XKx" id="aBw-4u-smo"/>
-                                    <outlet property="titleLabel" destination="CEX-Cd-ue3" id="09G-Ca-wAw"/>
+                                    <outlet property="mapView" destination="jok-jS-7AC" id="4tq-gQ-94u"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
