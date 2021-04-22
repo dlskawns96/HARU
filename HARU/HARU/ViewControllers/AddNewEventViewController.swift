@@ -190,8 +190,10 @@ extension AddNewEventViewController: CalendarEditCellDelegate {
 // MARK: - LocationViewControllerDelegate
 extension AddNewEventViewController: LocationViewControllerDelegate {
     func searchFinished(mapItem: MKMapItem, name: String) {
-        AddEventTableViewModel.newEvent.location = name
-        AddEventTableViewModel.newEvent.structuredLocation = EKStructuredLocation(title: name)
+        let structuredLocation = EKStructuredLocation(mapItem: mapItem)
+        structuredLocation.geoLocation = mapItem.placemark.location
+        structuredLocation.title = name
+        AddEventTableViewModel.newEvent.structuredLocation = structuredLocation
     }
 }
 

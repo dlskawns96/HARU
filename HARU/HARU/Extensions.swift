@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import EventKit
+import MapKit
 
 extension Date {
     var startOfDay: Date {
@@ -268,4 +269,17 @@ extension NSAttributedString {
         
         return a.copy() as! NSAttributedString
     }
+}
+
+extension MKMapView {
+  func centerToLocation(
+    _ location: CLLocation,
+    regionRadius: CLLocationDistance = 1000
+  ) {
+    let coordinateRegion = MKCoordinateRegion(
+      center: location.coordinate,
+      latitudinalMeters: regionRadius,
+      longitudinalMeters: regionRadius)
+    setRegion(coordinateRegion, animated: true)
+  }
 }
