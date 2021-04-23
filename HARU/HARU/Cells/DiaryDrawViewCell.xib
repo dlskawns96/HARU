@@ -27,11 +27,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EsO-o9-p5L">
+                                <rect key="frame" x="0.0" y="0.0" width="310" height="390"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5mg-QD-TMg" firstAttribute="top" secondItem="SRr-5W-RvX" secondAttribute="top" constant="176" id="DIn-Ti-Y2g"/>
                             <constraint firstItem="5mg-QD-TMg" firstAttribute="leading" secondItem="SRr-5W-RvX" secondAttribute="leading" constant="34" id="GZI-nj-0c7"/>
+                            <constraint firstItem="EsO-o9-p5L" firstAttribute="top" secondItem="SRr-5W-RvX" secondAttribute="top" id="IGw-f4-sAh"/>
+                            <constraint firstItem="EsO-o9-p5L" firstAttribute="leading" secondItem="SRr-5W-RvX" secondAttribute="leading" id="ZYi-95-4x3"/>
+                            <constraint firstAttribute="trailing" secondItem="EsO-o9-p5L" secondAttribute="trailing" id="jEz-Yj-RID"/>
+                            <constraint firstAttribute="bottom" secondItem="EsO-o9-p5L" secondAttribute="bottom" id="p1x-Jk-NCi"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -67,6 +74,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="diaryImage" destination="EsO-o9-p5L" id="PHD-1q-7r8"/>
                 <outlet property="titleLabel" destination="5mg-QD-TMg" id="Ew8-Ox-TJT"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="75"/>

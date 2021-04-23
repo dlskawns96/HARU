@@ -166,7 +166,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="HARU" largeTitleDisplayMode="always" id="ohc-xO-gFm">
-                        <barButtonItem key="leftBarButtonItem" title="그림일기" id="tI8-pV-39L"/>
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="jwz-0M-SVQ">
                                 <color key="tintColor" name="MainUIColor"/>
@@ -462,7 +461,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3of-FT-baJ" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="12" y="100" width="390" height="400"/>
+                                <rect key="frame" x="12" y="75" width="390" height="400"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -489,41 +488,41 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SfU-Xd-Dsl">
-                                <rect key="frame" x="12" y="100" width="390" height="400"/>
+                                <rect key="frame" x="12" y="75" width="390" height="400"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="BfB-j4-AhE"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCF-c6-nCM">
-                                <rect key="frame" x="360" y="550" width="34" height="30"/>
+                                <rect key="frame" x="360" y="525" width="34" height="30"/>
                                 <state key="normal" title="clear"/>
                                 <connections>
                                     <action selector="clearBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="tAp-pD-jnr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkj-TT-p0t">
-                                <rect key="frame" x="20" y="550" width="30" height="30"/>
+                                <rect key="frame" x="20" y="525" width="30" height="30"/>
                                 <state key="normal" title="Red"/>
                                 <connections>
                                     <action selector="redBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="am3-Ef-eSn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdj-xs-Lbo">
-                                <rect key="frame" x="105" y="550" width="31" height="30"/>
+                                <rect key="frame" x="105" y="525" width="31" height="30"/>
                                 <state key="normal" title="Blue"/>
                                 <connections>
                                     <action selector="blueBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="7cg-Hs-Klz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQo-KK-ydI">
-                                <rect key="frame" x="281" y="550" width="38" height="30"/>
+                                <rect key="frame" x="281" y="525" width="38" height="30"/>
                                 <state key="normal" title="Black"/>
                                 <connections>
                                     <action selector="blackBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="Lme-TE-ah3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtD-BX-hp7">
-                                <rect key="frame" x="186" y="550" width="42" height="30"/>
+                                <rect key="frame" x="186" y="525" width="42" height="30"/>
                                 <state key="normal" title="Green"/>
                                 <connections>
                                     <action selector="greenBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="AcR-W4-hHY"/>
@@ -546,11 +545,11 @@
                             <constraint firstItem="ZtD-BX-hp7" firstAttribute="top" secondItem="3of-FT-baJ" secondAttribute="bottom" constant="50" id="eao-hs-Pa3"/>
                             <constraint firstItem="BCF-c6-nCM" firstAttribute="top" secondItem="3of-FT-baJ" secondAttribute="bottom" constant="50" id="i4X-so-KQY"/>
                             <constraint firstItem="3of-FT-baJ" firstAttribute="leading" secondItem="1U0-MJ-Pah" secondAttribute="leading" constant="12" id="n58-Yd-cRW"/>
-                            <constraint firstItem="3of-FT-baJ" firstAttribute="top" secondItem="2SF-vn-RuW" secondAttribute="top" constant="100" id="oO0-DN-TeN"/>
+                            <constraint firstItem="3of-FT-baJ" firstAttribute="top" secondItem="2SF-vn-RuW" secondAttribute="top" constant="75" id="oO0-DN-TeN"/>
                             <constraint firstItem="zQo-KK-ydI" firstAttribute="top" secondItem="3of-FT-baJ" secondAttribute="bottom" constant="50" id="rWU-AI-DMm"/>
                             <constraint firstItem="1U0-MJ-Pah" firstAttribute="trailing" secondItem="BCF-c6-nCM" secondAttribute="trailing" constant="20" id="wLH-dD-jHd"/>
                             <constraint firstItem="SfU-Xd-Dsl" firstAttribute="centerX" secondItem="2SF-vn-RuW" secondAttribute="centerX" id="xVm-bP-Hob"/>
-                            <constraint firstItem="SfU-Xd-Dsl" firstAttribute="top" secondItem="2SF-vn-RuW" secondAttribute="top" constant="100" id="xl7-ok-8UY"/>
+                            <constraint firstItem="SfU-Xd-Dsl" firstAttribute="top" secondItem="2SF-vn-RuW" secondAttribute="top" constant="75" id="xl7-ok-8UY"/>
                             <constraint firstItem="1U0-MJ-Pah" firstAttribute="trailing" secondItem="3of-FT-baJ" secondAttribute="trailing" constant="12" id="zui-Us-Q2t"/>
                         </constraints>
                     </view>

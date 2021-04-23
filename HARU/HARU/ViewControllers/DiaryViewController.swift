@@ -9,6 +9,7 @@ import UIKit
 
 class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPickerViewDelegate {
         
+    static var image: UIImage?
     var selectedDate: Date?
     var dSelectedDate: String?
     var dToday: String?
@@ -289,6 +290,7 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource {
 //        cell.selectionStyle = .none
         let cell = tableView.dequeueReusableCell(withIdentifier: "diarydrawCell", for: indexPath) as! DiaryDrawViewCell
         cell.titleLabel.text = dataArray[indexPath.row].content
+        cell.diaryImage.image = DiaryViewController.image
         cell.selectionStyle = .none
         return cell
     }

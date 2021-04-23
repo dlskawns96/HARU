@@ -11,6 +11,7 @@ class DiaryDrawViewCell: UITableViewCell {
 
    
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var diaryImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

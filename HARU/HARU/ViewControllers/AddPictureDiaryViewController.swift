@@ -38,7 +38,21 @@ class AddPictureDiaryViewController : UIViewController {
     }
     
     @IBAction func finishBtnClicked(_ sender: Any) {
-        // 구현해야함
+
+        let alert = UIAlertController(title: "알림", message: "그림 일기를 저장할까요?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] (action) in
+            self?.saveBtn()
+        }
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func saveBtn(){
+        //그림 일기 저장 구현
+        DiaryViewController.image = imageView.image
+        // 닫기
+        self.navigationController?.popViewController(animated: true)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 현재 발생한 터치 이벤트를 가지고 옴
@@ -103,8 +117,14 @@ class AddPictureDiaryViewController : UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         // 폰을 흔드는 모션이 발생하면
         if motion == .motionShake {
-            // 이미지 뷰의 이미지를 삭제함
-            imageView.image = nil
+            let alert = UIAlertController(title: "알림", message: "그림 일기를 삭제할까요?", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] (action) in
+                self?.imageView.image = nil
+            }
+            alert.addAction(okAction)
+
+            present(alert, animated: true, completion: nil)
+
         }
     }
     override func viewDidLoad() {
