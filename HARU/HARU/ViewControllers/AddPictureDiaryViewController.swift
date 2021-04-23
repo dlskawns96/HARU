@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Foundation
 
 class AddPictureDiaryViewController : UIViewController {
     
@@ -16,12 +15,27 @@ class AddPictureDiaryViewController : UIViewController {
     // 선의 두께를 2.0으로 설정
     var lineSize:CGFloat = 2.0
     // 선의 색상을 빨간색으로 설정
-    var lineColor = UIColor.red.cgColor
+    var lineColor = UIColor.black.cgColor
     
     @IBAction func clearBtnClicked(_ sender: Any) {
         imageView.image = nil
     }
     
+    @IBAction func redBtnClicked(_ sender: Any) {
+        lineColor = UIColor.red.cgColor
+    }
+    
+    @IBAction func greenBtnClicked(_ sender: Any) {
+        lineColor = UIColor.green.cgColor
+    }
+    
+    @IBAction func blueBtnClicked(_ sender: Any) {
+        lineColor = UIColor.blue.cgColor
+    }
+    
+    @IBAction func blackBtnClicked(_ sender: Any) {
+        lineColor = UIColor.black.cgColor
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 현재 발생한 터치 이벤트를 가지고 옴
         let touch = touches.first! as UITouch
