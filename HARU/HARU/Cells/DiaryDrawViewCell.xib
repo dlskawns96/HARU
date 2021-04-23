@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRr-5W-RvX" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                        <rect key="frame" x="5" y="5" width="310" height="390"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mg-QD-TMg">
                                 <rect key="frame" x="34" y="176" width="42" height="21"/>
@@ -43,14 +43,26 @@
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" name="MainUIColor"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                <point key="value" x="0.0" y="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="SRr-5W-RvX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="RDU-7r-BN8"/>
-                    <constraint firstItem="SRr-5W-RvX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XFc-WZ-PYo"/>
-                    <constraint firstAttribute="bottom" secondItem="SRr-5W-RvX" secondAttribute="bottom" id="b0S-FY-Uef"/>
-                    <constraint firstAttribute="trailing" secondItem="SRr-5W-RvX" secondAttribute="trailing" id="iHj-L4-CG5"/>
+                    <constraint firstItem="SRr-5W-RvX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="RDU-7r-BN8"/>
+                    <constraint firstItem="SRr-5W-RvX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="XFc-WZ-PYo"/>
+                    <constraint firstAttribute="bottom" secondItem="SRr-5W-RvX" secondAttribute="bottom" constant="5" id="b0S-FY-Uef"/>
+                    <constraint firstAttribute="trailing" secondItem="SRr-5W-RvX" secondAttribute="trailing" constant="5" id="iHj-L4-CG5"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
