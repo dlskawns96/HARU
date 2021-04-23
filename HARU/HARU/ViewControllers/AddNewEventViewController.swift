@@ -73,7 +73,6 @@ class AddNewEventViewController: UIViewController {
         tableView.removeExtraLine()
         
         tableView.keyboardDismissMode = .onDrag
-        EventAlarmSelectTableViewController.selectedIndex = AddEventTableViewModel.alarmIndex
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +95,8 @@ class AddNewEventViewController: UIViewController {
             let vc = segue.destination as! LocationViewController
             vc.delegate = self
         } else if segue.identifier == "AlarmSet" {
-            EventAlarmSelectTableViewController.selectedIndex = AddEventTableViewModel.alarmIndex
+            let vc = segue.destination as! EventAlarmSelectTableViewController
+            vc.isModifying = false
         }
     }
     

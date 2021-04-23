@@ -41,6 +41,11 @@ class EventDetailViewController: UITableViewController {
             }
             vc.originalEvent = EventDetailViewController.event
             vc.isModifying = true
+        } else if segue.identifier == "EditAlert" {
+            guard let vc = segue.destination as? EventAlarmSelectTableViewController else {
+                return
+            }
+            vc.isModifying = true
         }
     }
     

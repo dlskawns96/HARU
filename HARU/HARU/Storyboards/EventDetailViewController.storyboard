@@ -269,7 +269,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="fRB-mp-dkF" kind="show" identifier="EditCalendar" id="gfR-c8-FUx"/>
-                        <segue destination="GGa-CV-Bm0" kind="push" identifier="EditAlert" id="dYk-vw-BwP"/>
+                        <segue destination="kcY-iE-No8" kind="show" identifier="EditAlert" id="vH5-CM-lDz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hN8-qH-RK6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -342,34 +342,51 @@
             </objects>
             <point key="canvasLocation" x="2089.8550724637685" y="-360.26785714285711"/>
         </scene>
-        <!--EditAlert-->
-        <scene sceneID="Cpv-9p-RUe">
+        <!--Event Alarm Select Table View Controller-->
+        <scene sceneID="J7Y-UZ-Jpx">
             <objects>
-                <tableViewController title="EditAlert" id="GGa-CV-Bm0" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="uUB-Rl-odM">
+                <tableViewController id="kcY-iE-No8" customClass="EventAlarmSelectTableViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VPe-zS-1bt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Q9y-5c-zCK">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventAlarmSelectTableViewCell" rowHeight="43.5" id="8rY-wa-WRL" customClass="EventAlarmSelectTableViewCell" customModule="HARU" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q9y-5c-zCK" id="yPM-p7-PjS">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8rY-wa-WRL" id="qlj-P4-7pe">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="없음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfi-OO-Sl0">
+                                            <rect key="frame" x="20" y="11" width="30" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jfi-OO-Sl0" firstAttribute="leading" secondItem="qlj-P4-7pe" secondAttribute="leading" constant="20" symbolic="YES" id="Gzs-ju-SdO"/>
+                                        <constraint firstAttribute="bottom" secondItem="jfi-OO-Sl0" secondAttribute="bottom" constant="11.5" id="rOa-Tz-P43"/>
+                                        <constraint firstItem="jfi-OO-Sl0" firstAttribute="top" secondItem="qlj-P4-7pe" secondAttribute="top" constant="11" id="wTC-Dg-qJk"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="jfi-OO-Sl0" id="eLa-VC-Ga7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
-                            <outlet property="dataSource" destination="GGa-CV-Bm0" id="lFh-TX-81K"/>
-                            <outlet property="delegate" destination="GGa-CV-Bm0" id="VZC-oK-2EM"/>
+                            <outlet property="dataSource" destination="kcY-iE-No8" id="Ey9-a4-I9t"/>
+                            <outlet property="delegate" destination="kcY-iE-No8" id="5wR-en-RRL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="o13-6I-T3i"/>
+                    <navigationItem key="navigationItem" id="wh8-YL-WQy"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bHC-sn-sEv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dGR-8A-vrw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2090" y="338"/>
+            <point key="canvasLocation" x="2090" y="312"/>
         </scene>
     </scenes>
     <resources>

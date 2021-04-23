@@ -19,6 +19,7 @@ class ScheduleTableViewModel {
         
         for event in dateEvents {
             let scheduleTableViewItem = ScheduleTableViewItem(event: event)
+            
             data.append(scheduleTableViewItem)
         }
         delegate?.didLoadData(data: data)
