@@ -252,6 +252,9 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             addCheck = false
         }
         
+        let nibName = UINib(nibName: "DiaryDrawViewCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "diarydrawCell")
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -281,8 +284,11 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = dataArray[indexPath.row].content
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        cell.textLabel?.text = dataArray[indexPath.row].content
+//        cell.selectionStyle = .none
+        let cell = tableView.dequeueReusableCell(withIdentifier: "diarydrawCell", for: indexPath) as! DiaryDrawViewCell
+        cell.titleLabel.text = dataArray[indexPath.row].content
         cell.selectionStyle = .none
         return cell
     }
@@ -336,6 +342,16 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource {
         action.backgroundColor = .systemBlue
 
         return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 400
     }
 }
 

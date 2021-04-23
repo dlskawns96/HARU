@@ -36,6 +36,10 @@ class AddPictureDiaryViewController : UIViewController {
     @IBAction func blackBtnClicked(_ sender: Any) {
         lineColor = UIColor.black.cgColor
     }
+    
+    @IBAction func finishBtnClicked(_ sender: Any) {
+        // 구현해야함
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 현재 발생한 터치 이벤트를 가지고 옴
         let touch = touches.first! as UITouch
