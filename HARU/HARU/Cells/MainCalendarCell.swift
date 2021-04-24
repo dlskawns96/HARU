@@ -23,6 +23,12 @@ class MainCalendarCell: FSCalendarCell {
         self.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
     }
     
+    func initCell() {
+        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    }
+    
     func insertTodayCirlce() {
         let circleImageView = UIImageView(image: UIImage(named: "circle")!)
         self.addSubview(circleImageView)
@@ -31,15 +37,15 @@ class MainCalendarCell: FSCalendarCell {
         self.circleImageView.translatesAutoresizingMaskIntoConstraints = false
         self.circleImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.circleImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        self.circleImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -5).isActive = true
+        self.circleImageView.centerYAnchor.constraint(equalTo: self.titleLabel.centerYAnchor).isActive = true
         self.circleImageView.widthAnchor.constraint(equalTo: self.circleImageView.heightAnchor, multiplier: 1.5).isActive = true
     }
     
     
     func configureCell(with item: MainCalendarCellItem) {
-        
+        initCell()
         if item.numOfEvents != 0 {
-            let posY = 50
+            let posY = Int(self.titleLabel.frame.maxY)
             for idx in 0..<item.eventsToIndicate.count {
                 if item.eventsToIndicate[idx] == nil {
                     continue

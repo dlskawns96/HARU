@@ -147,6 +147,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Spring" translatesAutoresizingMaskIntoConstraints="NO" id="ixv-B5-uBg">
+                                <rect key="frame" x="20" y="135" width="374" height="15"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -158,9 +161,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="27V-Gr-hcq" secondAttribute="trailing" constant="20" id="69k-Xd-3XO"/>
                             <constraint firstItem="27V-Gr-hcq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AUL-NV-huN"/>
                             <constraint firstItem="1Je-HY-9MJ" firstAttribute="centerX" secondItem="27V-Gr-hcq" secondAttribute="centerX" id="K47-35-2ZA"/>
+                            <constraint firstItem="27V-Gr-hcq" firstAttribute="top" secondItem="ixv-B5-uBg" secondAttribute="bottom" constant="-10" id="QZb-gv-xkH"/>
+                            <constraint firstItem="ixv-B5-uBg" firstAttribute="leading" secondItem="27V-Gr-hcq" secondAttribute="leading" id="VQ4-K0-FFo"/>
                             <constraint firstItem="27V-Gr-hcq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aBW-eC-F1F"/>
                             <constraint firstItem="7j4-GB-lXf" firstAttribute="top" secondItem="27V-Gr-hcq" secondAttribute="bottom" constant="20" id="b3d-q0-65A"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7j4-GB-lXf" secondAttribute="bottom" id="f7x-QF-K7a"/>
+                            <constraint firstItem="ixv-B5-uBg" firstAttribute="trailing" secondItem="27V-Gr-hcq" secondAttribute="trailing" id="gtE-OH-Shk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="27V-Gr-hcq" secondAttribute="bottom" constant="70" id="oVd-iM-mGO"/>
                             <constraint firstItem="1Je-HY-9MJ" firstAttribute="centerY" secondItem="27V-Gr-hcq" secondAttribute="centerY" id="zvF-JP-fjV"/>
                         </constraints>
@@ -784,6 +790,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Spring" width="177" height="15"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <image name="lined_note" width="372" height="600"/>
         <image name="plus" catalog="system" width="128" height="113"/>
