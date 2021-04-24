@@ -26,10 +26,10 @@ class DiaryTableViewModel {
 
     }
 
-    func requestEvaluation(date: String) -> [Int]{
+    func requestEvaluation(date: String) -> [Float]{
         
         var list = [Diary]()
-        var evaluation_array = [0, 0, 0]
+        var evaluation_array: [Float] = [0,0,0]
         var bad: Int = 0
         var good: Int = 0
         var best: Int = 0
@@ -55,12 +55,11 @@ class DiaryTableViewModel {
         }
         
         if bad+good+best != 0 {
-            
-            evaluation_array[0] = bad/(bad+good+best)
-            evaluation_array[1] = good/(bad+good+best)
-            evaluation_array[2] = best/(bad+good+best)
+            evaluation_array[0] = Float(Double(bad)/Double((bad+good+best)))
+            evaluation_array[1] = Float(Double(good)/Double((bad+good+best)))
+            evaluation_array[2] = Float(Double(best)/Double((bad+good+best)))
         }
-
+        
         return evaluation_array
     }
     func requestDiaryCollection(date: String) {

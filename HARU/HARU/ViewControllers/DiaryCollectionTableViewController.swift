@@ -27,7 +27,7 @@ class DiaryCollectionTableViewController: UIViewController {
     
     var list = [Diary]()
     
-    var evaluationArray = [Int]()
+    var evaluationArray = [Float]()
     var currentYear = Date()
     var dateFormatter = DateFormatter()
     var Rtoken: NSObjectProtocol?
@@ -55,10 +55,11 @@ class DiaryCollectionTableViewController: UIViewController {
         evaluationArray = dataSource.requestEvaluation(date: dateFormatter.string(from: currentYear))
         
         // 1 😱 2 😀 3 🥰
-        badProgress.progress = Float(evaluationArray[0])
-        goodProgress.progress = Float(evaluationArray[1])
-        bestProgress.progress = Float(evaluationArray[2])
+        badProgress.progress = evaluationArray[0]
+        goodProgress.progress = evaluationArray[1]
+        bestProgress.progress = evaluationArray[2]
     }
+    
     @IBAction func lastMonthBtnClicked(_ sender: Any) {
         centerLabel.text = comments.randomElement()
         currentYear = currentYear.adjust(.month, offset: -1)
@@ -74,6 +75,7 @@ class DiaryCollectionTableViewController: UIViewController {
         dataSource.requestDiaryCollection(date: dateFormatter.string(from: currentYear))
         
     }
+    
     @IBAction func nextMonthBtnClicked(_ sender: Any) {
         centerLabel.text = comments.randomElement()
         currentYear = currentYear.adjust(.month, offset: 1)

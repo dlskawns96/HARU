@@ -155,11 +155,76 @@
             </objects>
             <point key="canvasLocation" x="-94.20289855072464" y="1055.3571428571429"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="j8P-Vl-okE">
+            <objects>
+                <navigationController storyboardIdentifier="AddDiaryController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qaz-3I-8li" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rQm-hY-I2v">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PIF-lj-Gj2" kind="relationship" relationship="rootViewController" id="PQ0-tf-dR7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bNj-5J-P2O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="803" y="1055"/>
+        </scene>
+        <!--새 일기-->
+        <scene sceneID="i6g-Qw-XXu">
+            <objects>
+                <viewController id="PIF-lj-Gj2" customClass="AddDiaryController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7r6-2d-twh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hPU-6U-9bp">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="b7g-CJ-MwR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="hPU-6U-9bp" secondAttribute="bottom" id="KUV-za-V2V"/>
+                            <constraint firstItem="hPU-6U-9bp" firstAttribute="top" secondItem="7r6-2d-twh" secondAttribute="top" id="a7C-Wo-xz5"/>
+                            <constraint firstItem="hPU-6U-9bp" firstAttribute="leading" secondItem="b7g-CJ-MwR" secondAttribute="leading" id="ovP-9b-9ud"/>
+                            <constraint firstItem="hPU-6U-9bp" firstAttribute="trailing" secondItem="b7g-CJ-MwR" secondAttribute="trailing" id="xcx-38-0RT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="새 일기" id="fOp-xe-BvN">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="s7V-DO-kmE">
+                            <connections>
+                                <action selector="cancleBtn:" destination="PIF-lj-Gj2" id="uFz-3b-lhC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="RbG-57-GFD">
+                            <connections>
+                                <action selector="saveBtn:" destination="PIF-lj-Gj2" id="CDU-vd-eRB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="diaryTextView" destination="hPU-6U-9bp" id="4kc-yM-MSR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uoe-mZ-7p2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1680" y="1055"/>
+        </scene>
     </scenes>
     <resources>
         <namedColor name="MainUIColor">
             <color red="0.25490196078431371" green="0.26666666666666666" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
