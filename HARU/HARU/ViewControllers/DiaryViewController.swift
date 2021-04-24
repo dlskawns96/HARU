@@ -9,12 +9,15 @@ import UIKit
 
 class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPickerViewDelegate {
         
+    @IBOutlet weak var pictureDiary: UIImageView!
+    @IBOutlet weak var shadowView: ShadowView!
+    
     static var image: UIImage?
     var selectedDate: Date?
     var dSelectedDate: String?
     var dToday: String?
     
-    @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var badBtn: UIButton!
     @IBOutlet weak var goodBtn: UIButton!
     @IBOutlet weak var bestBtn: UIButton!
@@ -41,7 +44,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     let dataSource = DiaryTableViewModel()
     var dataArray = [Diary]() {
         didSet {
-            tableView.reloadData()
+            //tableView.reloadData()
         }
     }
     
@@ -131,49 +134,59 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         }
     }
     
-    @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        
-        let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-        
-        if dataArray.count != 0 && content != " " {
-            
-            var touchPoint = CGPoint()
-            
-            if gestureRecognizer.state == UIGestureRecognizer.State.began {
-                touchPoint = gestureRecognizer.location(in: self.tableView)
-            }
-            let alert = UIAlertController(title:
-                                            "삭제 확인", message: "일기를 삭제할까요?", preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "삭제", style: .destructive) { [self] (action) in
-                let indexPath = self.tableView.indexPathForRow(at: touchPoint)
-                let target = CoreDataManager.diaryList[indexPath!.row]
-                dataSource.deleteDiary(diary: target, date: (AD?.selectedDate)!)
-                self.tableView.reloadData()
-                self.buttonInit()
-                self.setComment()
-            
-            }
-            alert.addAction(okAction)
-            
-            let cancleAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-            alert.addAction(cancleAction)
-            
-            present(alert, animated: true, completion: nil)
-        }
+//    @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
+//
+//        let content = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+//
+//        if dataArray.count != 0 && content != " " {
+//
+//            var touchPoint = CGPoint()
+//
+//            if gestureRecognizer.state == UIGestureRecognizer.State.began {
+//                touchPoint = gestureRecognizer.location(in: self.tableView)
+//            }
+//            let alert = UIAlertController(title:
+//                                            "삭제 확인", message: "일기를 삭제할까요?", preferredStyle: .alert)
+//
+//            let okAction = UIAlertAction(title: "삭제", style: .destructive) { [self] (action) in
+//                let indexPath = self.tableView.indexPathForRow(at: touchPoint)
+//                let target = CoreDataManager.diaryList[indexPath!.row]
+//                dataSource.deleteDiary(diary: target, date: (AD?.selectedDate)!)
+//                self.tableView.reloadData()
+//                self.buttonInit()
+//                self.setComment()
+//
+//            }
+//            alert.addAction(okAction)
+//
+//            let cancleAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+//            alert.addAction(cancleAction)
+//
+//            present(alert, animated: true, completion: nil)
+//        }
+//    }
+    
+    @objc func goPage(sender: UIGestureRecognizer) {
+        print("ok")
+        performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         CoreDataManager.shared.fetchDiary()
-        tableView.reloadData()
+        //tableView.reloadData()
         
         dataSource.requestDiary(date: (AD?.selectedDate)!)
         dSelectedDate = AD?.selectedDate
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dToday = dateFormatter.string(from: today as Date)
         
+        pictureDiary.image = DiaryViewController.image
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(goPage(sender:)))
+        self.shadowView.addGestureRecognizer(gesture)
+
         let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
         
         if evaluation == 1 {
@@ -202,8 +215,8 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         super.viewDidLoad()
         
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+//        self.tableView.dataSource = self
+//        self.tableView.delegate = self
         
         dataSource.delegate = self
     
@@ -216,9 +229,9 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         evaluationView.borderColor = ThemeVariables.mainUIColor
 
         
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
-        longPressGesture.delegate = self
-        self.tableView.addGestureRecognizer(longPressGesture)
+//        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
+//        longPressGesture.delegate = self
+        //self.tableView.addGestureRecognizer(longPressGesture)
         
         token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) { [self]_ in
             dataSource.requestDiary(date: (AD?.selectedDate)!)
@@ -226,7 +239,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         }
         
         Etoken = NotificationCenter.default.addObserver(forName: DiaryViewController.newEvaluation, object: nil, queue: OperationQueue.main) {_ in
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         }
         
         Ctoken = NotificationCenter.default.addObserver(forName: AddDiaryController.updateComment, object: nil, queue: OperationQueue.main) {_ in
@@ -253,8 +266,8 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             addCheck = false
         }
         
-        let nibName = UINib(nibName: "DiaryDrawViewCell", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "diarydrawCell")
+//        let nibName = UINib(nibName: "DiaryDrawViewCell", bundle: nil)
+//        tableView.register(nibName, forCellReuseIdentifier: "diarydrawCell")
         
     }
     
@@ -278,84 +291,71 @@ extension DiaryViewController {
     static let newEvaluation = Notification.Name(rawValue: "newEvaluation")
 }
 
-extension DiaryViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        cell.textLabel?.text = dataArray[indexPath.row].content
-//        cell.selectionStyle = .none
-        let cell = tableView.dequeueReusableCell(withIdentifier: "diarydrawCell", for: indexPath) as! DiaryDrawViewCell
-        cell.titleLabel.text = dataArray[indexPath.row].content
-        cell.diaryImage.image = DiaryViewController.image
-        cell.selectionStyle = .none
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        
-        let content = dataArray[indexPath.row].content
-        
-        if content != " " {
-            return true
-        }
-        else {
-            return false
-        }
-       
-    }
-    
-//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//        return .delete
+//extension DiaryViewController: UITableViewDelegate, UITableViewDataSource {
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return dataArray.count
 //    }
 //
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+///        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+///       cell.textLabel?.text = dataArray[indexPath.row].content
+///       cell.selectionStyle = .none
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "diarydrawCell", for: indexPath) as! DiaryDrawViewCell
+//        cell.titleLabel.text = dataArray[indexPath.row].content
+//        cell.diaryImage.image = DiaryViewController.image
+//        cell.selectionStyle = .none
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//
+//        let content = dataArray[indexPath.row].content
+//
+//        if content != " " {
+//            return true
+//        }
+//        else {
+//            return false
+//        }
+//
+//    }
+
+//    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let action = UIContextualAction(style: .destructive, title: "삭제", handler: { [self](action, view, completionHandler) in
 //            let target = CoreDataManager.diaryList[indexPath.row]
 //            dataSource.deleteDiary(diary: target, date: (AD?.selectedDate)!)
 //            buttonInit()
 //            setComment()
+//        })
+//        action.backgroundColor = .systemRed
+//
+//        return UISwipeActionsConfiguration(actions: [action])
+//    }
+//
+//    // trailing swipe
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let action = UIContextualAction(style: .normal, title: "수정", handler: { [self](action, view, completionHandler) in
+//            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
+//            self.present(controller, animated: true, completion: nil)
+//
+//            AddDiaryController.editTarget = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
+//        })
+//        action.backgroundColor = .systemBlue
+//
+//        return UISwipeActionsConfiguration(actions: [action])
+//    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if indexPath.section == 0 {
+//            performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
 //        }
 //    }
-
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .destructive, title: "삭제", handler: { [self](action, view, completionHandler) in
-            let target = CoreDataManager.diaryList[indexPath.row]
-            dataSource.deleteDiary(diary: target, date: (AD?.selectedDate)!)
-            buttonInit()
-            setComment()
-        })
-        action.backgroundColor = .systemRed
-
-        return UISwipeActionsConfiguration(actions: [action])
-    }
-
-    // trailing swipe
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "수정", handler: { [self](action, view, completionHandler) in
-            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
-            self.present(controller, animated: true, completion: nil)
-            
-            AddDiaryController.editTarget = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-        })
-        action.backgroundColor = .systemBlue
-
-        return UISwipeActionsConfiguration(actions: [action])
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
-    }
-}
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 400
+//    }
+//}
 
 extension DiaryViewController: DiaryTableViewModelDelegate {
     func didLoadData(data: [Diary]) {
