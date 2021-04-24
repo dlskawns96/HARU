@@ -176,7 +176,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         CoreDataManager.shared.fetchDiary()
         //tableView.reloadData()
-        
+
         dataSource.requestDiary(date: (AD?.selectedDate)!)
         dSelectedDate = AD?.selectedDate
         dateFormatter.dateFormat = "yyyy-MM-dd"

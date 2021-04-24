@@ -21,8 +21,13 @@ class DiaryCollectionTableViewController: UIViewController {
     @IBOutlet weak var centerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var bestProgress: UIProgressView!
+    @IBOutlet weak var goodProgress: UIProgressView!
+    @IBOutlet weak var badProgress: UIProgressView!
+    
     var list = [Diary]()
     
+    var evaluationArray = [Int]()
     var currentYear = Date()
     var dateFormatter = DateFormatter()
     var Rtoken: NSObjectProtocol?
@@ -33,6 +38,7 @@ class DiaryCollectionTableViewController: UIViewController {
     var dataArray = [Diary]() {
         didSet {
             tableView.reloadData()
+            setProgress()
             
             if dataArray.count > 0 {
                 centerLabel.text = comments.randomElement()
@@ -44,6 +50,15 @@ class DiaryCollectionTableViewController: UIViewController {
         }
     }
     
+    func setProgress() {
+        dateFormatter.dateFormat = "yyyy-MM"
+        evaluationArray = dataSource.requestEvaluation(date: dateFormatter.string(from: currentYear))
+        
+        // 1 😱 2 😀 3 🥰
+        badProgress.progress = Float(evaluationArray[0])
+        goodProgress.progress = Float(evaluationArray[1])
+        bestProgress.progress = Float(evaluationArray[2])
+    }
     @IBAction func lastMonthBtnClicked(_ sender: Any) {
         centerLabel.text = comments.randomElement()
         currentYear = currentYear.adjust(.month, offset: -1)
@@ -81,7 +96,9 @@ class DiaryCollectionTableViewController: UIViewController {
         
         dateFormatter.dateFormat = "yyyy-MM"
         dataSource.requestDiaryCollection(date: dateFormatter.string(from: currentYear))
-
+        
+        setProgress()
+        
         if dataArray.count > 0 {
             centerLabel.isHidden = true
         }
