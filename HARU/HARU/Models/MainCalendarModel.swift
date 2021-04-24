@@ -18,34 +18,43 @@ class MainCalendarModel {
     static let mainCalendarEventModifiedNoti = Notification.Name("mainCalendarEventModifiedNoti")
     
     func initData(date: Date) {
+        let group = DispatchGroup()
+        group.enter()
+        
         var dataArray = [[[MainCalendarCellItem]]]()
         
-        // nil 없이 Date까지 다 저장하기
-        // 10년 전으로 가서 10년 후가 될 때까지 반복
-        var currentYear = date.adjust(.year, offset: -3)
-        var currentMonth = currentYear
-        var daysInMonth = [Date]()
-        var monthlyEvents = [[EKEvent]]()
-        
-        MainCalendarModel.startYear = self.calendar.component(.year, from: currentYear)
-        
-        for year in 0...3 {
-            print("Load events... CurrentYear:", currentYear.toString(dateFormat: "yyyy-MM-dd"))
-            currentMonth = currentYear.adjust(hour: 0, minute: 0, second: 0, day: 1, month: 1)
-            dataArray.append([])
-            for month in 0...11 {
-                dataArray[year].append([])
-                daysInMonth = currentMonth.datesOfMonth
-                monthlyEvents = calendarLoader.loadEvents(ofMonth: currentMonth)
-                for day in 0..<daysInMonth.count {
-                    let item = MainCalendarCellItem(events: monthlyEvents[day], date: daysInMonth[day])
-                    dataArray[year][month].append(item)
+        DispatchQueue.main.async {
+            // nil 없이 Date까지 다 저장하기
+            // 10년 전으로 가서 10년 후가 될 때까지 반복
+            var currentYear = date.adjust(.year, offset: -3)
+            var currentMonth = currentYear
+            var daysInMonth = [Date]()
+            var monthlyEvents = [[EKEvent]]()
+            
+            MainCalendarModel.startYear = self.calendar.component(.year, from: currentYear)
+            
+            for year in 0...3 {
+                print("Load events... CurrentYear:", currentYear.toString(dateFormat: "yyyy-MM-dd"))
+                currentMonth = currentYear.adjust(hour: 0, minute: 0, second: 0, day: 1, month: 1)
+                dataArray.append([])
+                for month in 0...11 {
+                    dataArray[year].append([])
+                    daysInMonth = currentMonth.datesOfMonth
+                    monthlyEvents = self.calendarLoader.loadEvents(ofMonth: currentMonth)
+                    for day in 0..<daysInMonth.count {
+                        let item = MainCalendarCellItem(events: monthlyEvents[day], date: daysInMonth[day])
+                        dataArray[year][month].append(item)
+                    }
+                    currentMonth = currentMonth.adjust(.month, offset: 1)
                 }
-                currentMonth = currentMonth.adjust(.month, offset: 1)
+                currentYear = currentYear.adjust(.year, offset: 1)
             }
-            currentYear = currentYear.adjust(.year, offset: 1)
+            group.leave()
         }
-        delegate?.didLoadData(data: dataArray)
+        
+        group.notify(queue: .main) {
+            self.delegate?.didLoadData(data: dataArray)
+        }
     }
     
     func eventAdded(event: EKEvent, items: [MainCalendarCellItem]) {
