@@ -7,6 +7,7 @@
 
 import UIKit
 import EventKit
+import MapKit
 
 class EventDetailViewController: UITableViewController {
     static var event = EKEvent(eventStore: EventHandler.ekEventStore!)
@@ -41,6 +42,16 @@ class EventDetailViewController: UITableViewController {
             }
             vc.originalEvent = EventDetailViewController.event
             vc.isModifying = true
+        } else if segue.identifier == "EditAlert" {
+            guard let vc = segue.destination as? EventAlarmSelectTableViewController else {
+                return
+            }
+            vc.isModifying = true
+        } else if segue.identifier == "LocationSet" {
+            guard let vc = segue.destination as? LocationViewController else {
+                return
+            }
+            vc.delegate = self
         }
     }
     
@@ -93,7 +104,27 @@ extension EventDetailViewController {
             self.performSegue(withIdentifier: "EditCalendar", sender: self)
         } else if indexPath.row == 2 {
             self.performSegue(withIdentifier: "EditAlert", sender: self)
+        } else if indexPath.row == 3 {
+            self.performSegue(withIdentifier: "LocationSet", sender: self)
         }
+    }
+}
+
+extension EventDetailViewController: LocationViewControllerDelegate {
+    func searchFinished(mapItem: MKMapItem, name: String) {
+        let structuredLocation = EKStructuredLocation(mapItem: mapItem)
+        structuredLocation.geoLocation = mapItem.placemark.location
+        structuredLocation.title = name
+        EventDetailViewController.event.structuredLocation = structuredLocation
+        
+        do {
+            try EventHandler.ekEventStore?.save(EventDetailViewController.event, span: .thisEvent)
+        } catch {
+            print("Event Location Modifying error")
+        }
+        EventDetailViewController.delegate?.eventChanged(event: EventDetailViewController.event)
+        tableView.reloadData()
+        print("Event Location Modified")
     }
 }
 

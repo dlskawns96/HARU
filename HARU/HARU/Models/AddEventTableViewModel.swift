@@ -10,7 +10,6 @@ import EventKit
 
 class AddEventTableViewModel {
     static var newEvent = EKEvent(eventStore: EventHandler.ekEventStore!)
-    static var alarmIndex = IndexPath(row: 0, section: 0)
     weak var delegate: AddEventTableViewModelDelegate?
     
     func initData(selectedDate: Date, calendar: EKCalendar) {
@@ -20,6 +19,8 @@ class AddEventTableViewModel {
         newEvent.startDate = selectedDate
         newEvent.endDate = selectedDate.adjust(.hour, offset: 1)
         newEvent.calendar = calendar
+        newEvent.alarms?.removeAll()
+        print(newEvent)
         AddEventTableViewModel.newEvent = newEvent
         
         let section1: [AddEventCellItem] = [TextFieldItem(title: "타이틀")]
