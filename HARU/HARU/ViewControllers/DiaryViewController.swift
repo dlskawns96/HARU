@@ -21,9 +21,8 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     @IBOutlet weak var badBtn: UIButton!
     @IBOutlet weak var goodBtn: UIButton!
     @IBOutlet weak var bestBtn: UIButton!
-    @IBOutlet weak var centerLabel: UILabel!
     @IBOutlet var myView: UIView!
-    @IBOutlet weak var evaluationView: UIView!
+    @IBOutlet weak var evaluationView: ShadowView!
     
     var layerMaxXMaxYCorner: CACornerMask = []
     var layerMaxXMinYCorner: CACornerMask = []
@@ -75,27 +74,27 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
 //                centerLabel.text = comments.randomElement()
 //            }
 //        }
-        if dSelectedDate == dToday {
-            if dataArray.count >= 1 && dataArray[0].content != " " {
-                centerLabel.isHidden = true
-            } else {
-                centerLabel.isHidden = false
-                centerLabel.text = able_comments.randomElement()
-            }
-        } else {
-            if dSelectedDate! < dToday! {
-                if dataArray.count >= 1 && dataArray[0].content != " " {
-                    centerLabel.isHidden = true
-                } else {
-                    centerLabel.isHidden = false
-                    centerLabel.text = comments.randomElement()
-                }
-            }
-            else {
-                centerLabel.isHidden = false
-                centerLabel.text = future_comments.randomElement()
-            }
-        }
+//        if dSelectedDate == dToday {
+//            if dataArray.count >= 1 && dataArray[0].content != " " {
+//                centerLabel.isHidden = true
+//            } else {
+//                centerLabel.isHidden = false
+//                centerLabel.text = able_comments.randomElement()
+//            }
+//        } else {
+//            if dSelectedDate! < dToday! {
+//                if dataArray.count >= 1 && dataArray[0].content != " " {
+//                    centerLabel.isHidden = true
+//                } else {
+//                    centerLabel.isHidden = false
+//                    centerLabel.text = comments.randomElement()
+//                }
+//            }
+//            else {
+//                centerLabel.isHidden = false
+//                centerLabel.text = future_comments.randomElement()
+//            }
+//        }
     }
     
     // 평가
