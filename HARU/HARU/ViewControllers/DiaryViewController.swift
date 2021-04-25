@@ -8,9 +8,21 @@
 import UIKit
 
 class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPickerViewDelegate {
-        
+     
+    // 그림 일기
     @IBOutlet weak var pictureDiary: UIImageView!
     @IBOutlet weak var shadowView: ShadowView!
+    @IBOutlet weak var squaredPaper: UIImageView!
+    
+    // 일기
+    @IBOutlet weak var textView: LinedTextView!
+    var attributes: [NSAttributedString.Key: Any]!
+    let kerns: [[NSAttributedString.Key: Any]] = [[.kern: 20], [.kern: 40]]
+    var font: UIFont!
+    
+    var curPosition = 0.0
+    var lineHeight = CGFloat()
+    
     
     static var image: UIImage?
     var selectedDate: Date?
@@ -170,6 +182,15 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
     }
     
+    func setTextViewPosition() {
+        textView.backgroundColor = .lightGray
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.leadingAnchor.constraint(equalTo: squaredPaper.leadingAnchor).isActive = true
+        textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        textView.topAnchor.constraint(equalTo: squaredPaper.topAnchor).isActive = true
+        textView.bottomAnchor.constraint(equalTo: squaredPaper.bottomAnchor).isActive = true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -226,6 +247,11 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         evaluationView.borderWidth = 5
         evaluationView.backgroundColor = ThemeVariables.mainUIColor
         evaluationView.borderColor = ThemeVariables.mainUIColor
+        
+        let fontSize = squaredPaper.bounds.width / 30.0
+        lineHeight = squaredPaper.bounds.height / 30.0
+        
+        textView.delegate = self
 
         
 //        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture))
@@ -359,5 +385,11 @@ extension DiaryViewController {
 extension DiaryViewController: DiaryTableViewModelDelegate {
     func didLoadData(data: [Diary]) {
         dataArray = data
+    }
+}
+
+extension DiaryViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+//        textView.typingAttributes = attributes
     }
 }
