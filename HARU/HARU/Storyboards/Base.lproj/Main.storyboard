@@ -13,9 +13,10 @@
         <scene sceneID="P1o-sR-52b">
             <objects>
                 <navigationController id="Alw-vf-R3e" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dFF-Ai-Yu2">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="dFF-Ai-Yu2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="MainUIColor"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" name="MainUIColor"/>
                         </textAttributes>
@@ -28,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="-919" y="28"/>
         </scene>
-        <!--HARU-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-HY-9MJ" userLabel="캘린더 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="20" y="140" width="374" height="652"/>
+                                <rect key="frame" x="20" y="40" width="374" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
@@ -58,7 +59,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27V-Gr-hcq" customClass="FSCalendar">
-                                <rect key="frame" x="20" y="140" width="374" height="652"/>
+                                <rect key="frame" x="20" y="40" width="374" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
@@ -82,10 +83,10 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7j4-GB-lXf" userLabel="버튼 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="20" y="812" width="374" height="50"/>
+                                <rect key="frame" x="20" y="734" width="374" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79b-Cj-d5s" userLabel="일정모음버튼">
-                                        <rect key="frame" x="20" y="0.0" width="124.5" height="50"/>
+                                        <rect key="frame" x="20" y="0.0" width="124.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="일정">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -100,7 +101,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-Mp-TZa" userLabel="일기모음버튼">
-                                        <rect key="frame" x="229.5" y="0.0" width="124.5" height="50"/>
+                                        <rect key="frame" x="229.5" y="0.0" width="124.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="일기">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -148,7 +149,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Spring" translatesAutoresizingMaskIntoConstraints="NO" id="ixv-B5-uBg">
-                                <rect key="frame" x="20" y="135" width="374" height="15"/>
+                                <rect key="frame" x="20" y="35" width="374" height="15"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -163,29 +164,29 @@
                             <constraint firstItem="1Je-HY-9MJ" firstAttribute="centerX" secondItem="27V-Gr-hcq" secondAttribute="centerX" id="K47-35-2ZA"/>
                             <constraint firstItem="27V-Gr-hcq" firstAttribute="top" secondItem="ixv-B5-uBg" secondAttribute="bottom" constant="-10" id="QZb-gv-xkH"/>
                             <constraint firstItem="ixv-B5-uBg" firstAttribute="leading" secondItem="27V-Gr-hcq" secondAttribute="leading" id="VQ4-K0-FFo"/>
-                            <constraint firstItem="27V-Gr-hcq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aBW-eC-F1F"/>
-                            <constraint firstItem="7j4-GB-lXf" firstAttribute="top" secondItem="27V-Gr-hcq" secondAttribute="bottom" constant="20" id="b3d-q0-65A"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7j4-GB-lXf" secondAttribute="bottom" id="f7x-QF-K7a"/>
+                            <constraint firstItem="27V-Gr-hcq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="aBW-eC-F1F"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7j4-GB-lXf" secondAttribute="bottom" constant="10" id="f7x-QF-K7a"/>
                             <constraint firstItem="ixv-B5-uBg" firstAttribute="trailing" secondItem="27V-Gr-hcq" secondAttribute="trailing" id="gtE-OH-Shk"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="27V-Gr-hcq" secondAttribute="bottom" constant="70" id="oVd-iM-mGO"/>
+                            <constraint firstItem="7j4-GB-lXf" firstAttribute="top" secondItem="27V-Gr-hcq" secondAttribute="bottom" constant="30" id="iAu-Is-CiP"/>
                             <constraint firstItem="1Je-HY-9MJ" firstAttribute="centerY" secondItem="27V-Gr-hcq" secondAttribute="centerY" id="zvF-JP-fjV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="HARU" largeTitleDisplayMode="always" id="ohc-xO-gFm">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="ohc-xO-gFm">
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="jwz-0M-SVQ">
-                                <color key="tintColor" name="MainUIColor"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="lS7-mp-G4g" kind="show" id="f6N-d4-4NH"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="plus.square.fill" catalog="system" id="aAM-El-QhD">
-                                <color key="tintColor" name="MainUIColor"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="onAddEventBtnClicked:" destination="BYZ-38-t0r" id="9a9-sa-imJ"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="TEST" id="3oc-It-chY">
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="WAC-kK-gea" kind="show" id="YcI-M2-AQU"/>
                                 </connections>
@@ -283,7 +284,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
-                                <rect key="frame" x="50" y="98" width="314" height="32"/>
+                                <rect key="frame" x="50" y="10" width="314" height="32"/>
                                 <color key="backgroundColor" name="MainUIColor"/>
                                 <segments>
                                     <segment title="일정"/>
@@ -294,13 +295,13 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mbs-x2-jbM">
-                                <rect key="frame" x="0.0" y="149" width="414" height="713"/>
+                                <rect key="frame" x="0.0" y="61" width="414" height="713"/>
                                 <connections>
                                     <segue destination="qpH-h7-Zcs" kind="embed" identifier="ScheduleViewSegue" id="4Hp-Sn-6s8"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5e-RQ-CTY">
-                                <rect key="frame" x="0.0" y="149" width="414" height="713"/>
+                                <rect key="frame" x="0.0" y="61" width="414" height="713"/>
                                 <connections>
                                     <segue destination="OmN-bU-GkM" kind="embed" identifier="DiaryViewSegue" id="umG-JP-t3P"/>
                                 </connections>
@@ -428,12 +429,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qC-pl-lvZ" customClass="LinedTextView" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="10" y="150" width="394" height="702"/>
+                                <rect key="frame" x="10" y="10" width="394" height="754"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lined_note" translatesAutoresizingMaskIntoConstraints="NO" id="TA6-78-5Qa" userLabel="Lined note">
-                                <rect key="frame" x="10" y="150" width="394" height="702"/>
+                                <rect key="frame" x="10" y="10" width="394" height="754"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="10b-0B-hp7"/>
