@@ -28,5 +28,6 @@ class CalendarButtonTableViewCell: UITableViewCell {
     func configureCell() {
         buttonContentLabel.text = EventDetailViewController.event.calendar.title
         calendarView.backgroundColor = UIColor(cgColor: EventDetailViewController.event.calendar.cgColor)
+        self.accessoryType = .disclosureIndicator
     }
 }

@@ -9,39 +9,39 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextCell" id="KGk-i7-Jjw" customClass="TextCell" customModule="HARU" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationSelectCell" id="KGk-i7-Jjw" customClass="LocationSelectCell" customModule="HARU" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igl-fS-HCQ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KP-ih-b3e">
                         <rect key="frame" x="16" y="12.5" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiz-Su-DXo">
-                        <rect key="frame" x="262" y="12.5" width="42" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1j-rq-LwF">
+                        <rect key="frame" x="262" y="12" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="tiz-Su-DXo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AEa-n6-yga"/>
-                    <constraint firstAttribute="trailing" secondItem="tiz-Su-DXo" secondAttribute="trailing" constant="16" id="RjJ-n2-ybu"/>
-                    <constraint firstItem="Igl-fS-HCQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UeZ-4f-u5n"/>
-                    <constraint firstItem="Igl-fS-HCQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="z6V-KQ-lHW"/>
+                    <constraint firstAttribute="trailing" secondItem="c1j-rq-LwF" secondAttribute="trailing" constant="16" id="Ajp-sd-qL1"/>
+                    <constraint firstItem="3KP-ih-b3e" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FtO-5T-reK"/>
+                    <constraint firstItem="c1j-rq-LwF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XtM-Jv-tWQ"/>
+                    <constraint firstItem="3KP-ih-b3e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="vxr-NZ-hT2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="contentLabel" destination="tiz-Su-DXo" id="QVJ-za-Z6g"/>
-                <outlet property="titleLabel" destination="Igl-fS-HCQ" id="VXj-Q5-qVA"/>
+                <outlet property="locationNameLabel" destination="c1j-rq-LwF" id="4Nw-tl-qg5"/>
+                <outlet property="titleLabel" destination="3KP-ih-b3e" id="KhC-I5-Niw"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="112.83482142857142"/>
+            <point key="canvasLocation" x="-3833.3333333333335" y="50.558035714285715"/>
         </tableViewCell>
     </objects>
 </document>

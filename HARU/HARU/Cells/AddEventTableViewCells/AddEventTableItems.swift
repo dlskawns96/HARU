@@ -48,9 +48,10 @@ class SwitchItem: AddEventCellItem {
 class CalendarEditItem: AddEventCellItem {
     var itemType: ItemType = .calendarEditItem
     var titleString: String
-    
-    init(title: String) {
+    var vc: AddNewEventViewController
+    init(title: String, vc: AddNewEventViewController) {
         self.titleString = title
+        self.vc = vc
     }
 }
 
@@ -66,6 +67,15 @@ class EventNoteItem: AddEventCellItem {
 
 class AlarmItem: AddEventCellItem {
     var itemType: ItemType = .alarmItem
+    var titleString: String
+    
+    init(title: String) {
+        self.titleString = title
+    }
+}
+
+class LocationSelectItem: AddEventCellItem {
+    var itemType: ItemType = .locationSelectItem
     var titleString: String
     
     init(title: String) {

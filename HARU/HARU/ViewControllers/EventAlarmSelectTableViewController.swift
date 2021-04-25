@@ -10,13 +10,11 @@ import EventKit
 import AFDateHelper
 
 class EventAlarmSelectTableViewController: UITableViewController {
+    var isModifying = false
     static let items = [["없음"], ["이벤트 당시", "5분 전", "10분 전", "15분 전", "30분 전", "1시간 전", "2시간 전", "1일 전", "2일 전", "1주 전"]]
     
-    struct Time {
-        var type: DateComponentType
-        var offset: Int
-    }
     
+    var event: EKEvent!
     let alarmTime = [Time(type: DateComponentType.minute, offset: 0),
                      Time(type: DateComponentType.minute, offset: -5),
                      Time(type: DateComponentType.minute, offset: -10),
@@ -32,13 +30,29 @@ class EventAlarmSelectTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        EventAlarmSelectTableViewController.selectedIndex = IndexPath(row: 0, section: 0)
+        if !isModifying {
+            event = AddEventTableViewModel.newEvent
+        } else {
+            event = EventDetailViewController.event
+        }
+        guard let index = event.getAlarmIndex() else {
+            EventAlarmSelectTableViewController.selectedIndex = IndexPath(row: 0, section: 0)
+            return
+        }
+        EventAlarmSelectTableViewController.selectedIndex = index
     }
     
     func removeExistingAlarm() {
-        if AddEventTableViewModel.newEvent.hasAlarms {
-            let alarm = (AddEventTableViewModel.newEvent.alarms?.first)!
-            AddEventTableViewModel.newEvent.removeAlarm(alarm)
+        if event.hasAlarms {
+            let alarm = (event.alarms?.first)!
+            event.removeAlarm(alarm)
+        }
+        if isModifying {
+            do {
+                try EventHandler.ekEventStore?.save(event, span: .thisEvent)
+            } catch {
+                print("Event Alarm Modifying Error")
+            }
         }
     }
 
@@ -67,17 +81,22 @@ class EventAlarmSelectTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! EventAlarmSelectTableViewCell
-        cell.checkMarkImage.isHidden.toggle()
         EventAlarmSelectTableViewController.selectedIndex = indexPath
         var alarm = EKAlarm()
         switch indexPath.section {
         case 0:
             removeExistingAlarm()
         case 1:
-            alarm = EKAlarm(absoluteDate: AddEventTableViewModel.newEvent.startDate.adjust(alarmTime[indexPath.row].type, offset: alarmTime[indexPath.row].offset))
+            alarm = EKAlarm(absoluteDate: event.startDate.adjust(alarmTime[indexPath.row].type, offset: alarmTime[indexPath.row].offset))
             removeExistingAlarm()
-            AddEventTableViewModel.newEvent.addAlarm(alarm)
+            event.addAlarm(alarm)
+            if isModifying {
+                do {
+                    try EventHandler.ekEventStore?.save(event, span: .thisEvent)
+                } catch {
+                    print("Event Alarm Modifying Error")
+                }
+            }
         default:
             return
         }
@@ -88,9 +107,9 @@ class EventAlarmSelectTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventAlarmSelectTableViewCell", for: indexPath) as! EventAlarmSelectTableViewCell
         cell.titleLabel.text = EventAlarmSelectTableViewController.items[indexPath.section][indexPath.row]
         if indexPath == EventAlarmSelectTableViewController.selectedIndex {
-            cell.checkMarkImage.isHidden = false
+            cell.accessoryType = .checkmark
         } else {
-            cell.checkMarkImage.isHidden = true
+            cell.accessoryType = .none
         }
         return cell
     }
@@ -98,7 +117,6 @@ class EventAlarmSelectTableViewController: UITableViewController {
 
 class EventAlarmSelectTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var checkMarkImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -112,14 +130,9 @@ class EventAlarmSelectTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        checkIfSelected()
-    }
-    
-    func checkIfSelected() {
     }
     
     func configureCell() {
-        checkIfSelected()
     }
 
 }

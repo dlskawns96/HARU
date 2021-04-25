@@ -79,7 +79,13 @@ class AlarmCellController: AddEventCellController {
     func cellFromTableView(_ tableView: UITableView, forIndexPath indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).cellIdentifier, for: indexPath) as! TextCell
         cell.titleLabel.text = cellItem.titleString
-        cell.contentLabel.text = EventAlarmSelectTableViewController.items[EventAlarmSelectTableViewController.selectedIndex.section][EventAlarmSelectTableViewController.selectedIndex.row]
+        cell.accessoryType = .disclosureIndicator
+        guard let index = AddEventTableViewModel.newEvent.getAlarmIndex() else {
+            cell.contentLabel.text = "없음"
+            return cell
+        }
+        cell.contentLabel.text = EventAlarmSelectTableViewController.items[index.section][index.row]
+        
         return cell
     }
     

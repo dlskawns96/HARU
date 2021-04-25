@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 import EventKit
+import MapKit
+import AFDateHelper
+
+struct Time {
+    var type: DateComponentType
+    var offset: Int
+}
 
 extension Date {
     var startOfDay: Date {
@@ -206,8 +213,34 @@ extension CALayer {
 }
 
 extension EKEvent {
-    private static var calendarIndex = [String:Int]()
+    func getAlarmIndex() -> IndexPath? {
+        let alarmTime = [Time(type: DateComponentType.minute, offset: 0),
+                         Time(type: DateComponentType.minute, offset: 5),
+                         Time(type: DateComponentType.minute, offset: 10),
+                         Time(type: DateComponentType.minute, offset: 15),
+                         Time(type: DateComponentType.minute, offset: 30),
+                         Time(type: DateComponentType.hour, offset: 1),
+                         Time(type: DateComponentType.hour, offset: 2),
+                         Time(type: DateComponentType.day, offset: 1),
+                         Time(type: DateComponentType.day, offset: 2),
+                         Time(type: DateComponentType.day, offset: 7)]
+        if !self.hasAlarms {
+            return nil
+        }
+        var idx = 0
+        var indexPath = IndexPath(row: 0, section: 0)
+        for time in alarmTime {
+            if self.alarms?.first?.absoluteDate?.adjust(time.type, offset: time.offset).compare(self.startDate) == ComparisonResult.orderedSame {
+                break
+            }
+            idx += 1
+        }
+        indexPath.section = 1
+        indexPath.row = idx
+        return indexPath
+    }
     
+    private static var calendarIndex = [String:Int]()
     var calendarIndex: Int {
         get {
             let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
@@ -218,6 +251,16 @@ extension EKEvent {
             EKEvent.calendarIndex[tmpAddress] = newValue
         }
     }
+    
+//    private static var alarmIndex: IndexPath?
+//    var alarmIndex: IndexPath? {
+//        get {
+//            return EKEvent.alarmIndex ?? nil
+//        }
+//        set(newValue) {
+//            EKEvent.alarmIndex = newValue
+//        }
+//    }
 }
 
 extension UITextField {
@@ -268,4 +311,17 @@ extension NSAttributedString {
         
         return a.copy() as! NSAttributedString
     }
+}
+
+extension MKMapView {
+  func centerToLocation(
+    _ location: CLLocation,
+    regionRadius: CLLocationDistance = 1000
+  ) {
+    let coordinateRegion = MKCoordinateRegion(
+      center: location.coordinate,
+      latitudinalMeters: regionRadius,
+      longitudinalMeters: regionRadius)
+    setRegion(coordinateRegion, animated: true)
+  }
 }

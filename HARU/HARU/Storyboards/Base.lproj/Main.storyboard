@@ -446,6 +446,7 @@
                     <navigationItem key="navigationItem" id="Rpg-JY-Pnl"/>
                     <connections>
                         <outlet property="squaredPaper" destination="TA6-78-5Qa" id="wfE-yX-z1H"/>
+                        <outlet property="textView" destination="8qC-pl-lvZ" id="M2W-jD-qa7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSD-ax-hWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

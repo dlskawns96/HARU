@@ -11,7 +11,6 @@ import EventKit
 class CalendarSelectCell: UITableViewCell {
     @IBOutlet var calendarView: UIView!
     @IBOutlet var calendarTitleLabel: UILabel!
-    @IBOutlet var checkMarkImage: UIImageView!
     var calendar: EKCalendar!
     
     override func awakeFromNib() {
@@ -31,9 +30,9 @@ class CalendarSelectCell: UITableViewCell {
     
     func checkIfSelected() {
         if calendar.calendarIdentifier ==  EventDetailViewController.event.calendar.calendarIdentifier {
-            checkMarkImage.isHidden = false
+            self.accessoryType = .checkmark
         } else {
-            checkMarkImage.isHidden = true
+            self.accessoryType = .none
         }
     }
     
