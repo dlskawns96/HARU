@@ -96,8 +96,9 @@ class ViewController: UIViewController {
         fsCalendar.appearance.headerMinimumDissolvedAlpha = 0.0
         fsCalendar.appearance.headerDateFormat = "YYYY년 M월"
         fsCalendar.appearance.headerTitleColor = .black
-        fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
+        fsCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 18)
         fsCalendar.appearance.borderRadius = 0
+        fsCalendar.weekdayHeight = 40
         fsCalendar.today = nil
         for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
             weekday.borderWidth = 1.0
@@ -187,6 +188,8 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         
         if !dataArray.isEmpty {
             customCell.configureCell(with: dataArray[self.calendar.component(.year, from: date) - MainCalendarModel.startYear][self.calendar.component(.month, from: date)-1][self.calendar.component(.day, from: date)-1])
+        } else {
+            customCell.initCell()
         }
     }
     
@@ -194,7 +197,6 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         guard let cell = calendar.dequeueReusableCell(withIdentifier: "MainCalednarCell", for: date, at: position) as? MainCalendarCell else {
             return calendar.dequeueReusableCell(withIdentifier: "MainCalednarCell", for: date, at: position)
         }
-        
         return cell
     }
     
