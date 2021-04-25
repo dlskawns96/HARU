@@ -22,17 +22,25 @@ class TextFieldCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    @IBAction func textFieldChanged(_ sender: Any) {
+        if textField.text != "" {
+            TextFieldCellController.getChangedValue(value: textField.text!)
+        } else {
+            TextFieldCellController.getChangedValue(value: "새로운 이벤트")
+        }
+    }
 }
 
 extension TextFieldCell: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == self.textField {
-            let value = textField.text!
-            if value != "" {
-                TextFieldCellController.getChangedValue(value: value)
-            }
-        }
-    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        if textField == self.textField {
+//            let value = textField.text!
+//            if value != "" {
+//                TextFieldCellController.getChangedValue(value: value)
+//            }
+//        }
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
