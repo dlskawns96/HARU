@@ -45,7 +45,7 @@ class MainCalendarCell: FSCalendarCell {
     func configureCell(with item: MainCalendarCellItem) {
         initCell()
         if item.numOfEvents != 0 {
-            let posY = Int(self.titleLabel.frame.maxY)
+            let posY = Int(self.titleLabel.frame.maxY * 1.5)
             for idx in 0..<item.eventsToIndicate.count {
                 if item.eventsToIndicate[idx] == nil {
                     continue

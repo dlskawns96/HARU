@@ -64,7 +64,6 @@ class SelectDateController : UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor  = UIColor(named: "MainUIColor")
-        
     }
     
     @IBAction func indexChanged(_ sender: Any) {
