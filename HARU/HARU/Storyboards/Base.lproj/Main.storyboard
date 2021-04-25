@@ -767,43 +767,56 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4C-mN-WTF" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="398" height="100"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1c-Ul-jKT">
-                                                        <rect key="frame" x="203" y="35" width="30" height="30"/>
-                                                        <state key="normal" title="😱"/>
-                                                        <connections>
-                                                            <action selector="badBtn:" destination="OmN-bU-GkM" eventType="touchUpInside" id="rlW-RO-vpc"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fq9-4P-fyA">
-                                                        <rect key="frame" x="334" y="35" width="30" height="30"/>
+                                                        <rect key="frame" x="344" y="23" width="54" height="54"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="54" id="7tj-oq-1Wn"/>
+                                                            <constraint firstAttribute="height" constant="54" id="tsB-Tj-ERw"/>
+                                                        </constraints>
                                                         <state key="normal" title="🥰"/>
                                                         <connections>
                                                             <action selector="bestBtn:" destination="OmN-bU-GkM" eventType="touchUpInside" id="AC6-g4-6tS"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 하루는 어땠나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoZ-yh-mrB">
-                                                        <rect key="frame" x="20" y="39.5" width="150" height="21"/>
+                                                        <rect key="frame" x="20" y="39.5" width="149.5" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5X-Of-cw8">
-                                                        <rect key="frame" x="268" y="35" width="30" height="30"/>
+                                                        <rect key="frame" x="278" y="23" width="54" height="54"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="54" id="YkF-bo-2c9"/>
+                                                            <constraint firstAttribute="width" constant="54" id="wca-zk-hQZ"/>
+                                                        </constraints>
                                                         <state key="normal" title="😊"/>
                                                         <connections>
                                                             <action selector="goodBtn:" destination="OmN-bU-GkM" eventType="touchUpInside" id="f2B-tm-bln"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1c-Ul-jKT">
+                                                        <rect key="frame" x="212" y="23" width="54" height="54"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="54" id="34t-N3-PFG"/>
+                                                            <constraint firstAttribute="width" constant="54" id="q3i-GD-u2t"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <state key="normal" title="😱"/>
+                                                        <connections>
+                                                            <action selector="badBtn:" destination="OmN-bU-GkM" eventType="touchUpInside" id="rlW-RO-vpc"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" name="MainUIColor"/>
                                                 <constraints>
                                                     <constraint firstItem="a5X-Of-cw8" firstAttribute="centerY" secondItem="G4C-mN-WTF" secondAttribute="centerY" id="3NI-Fc-fEE"/>
-                                                    <constraint firstItem="m1c-Ul-jKT" firstAttribute="leading" secondItem="NoZ-yh-mrB" secondAttribute="trailing" constant="33" id="8Rt-Lg-ugO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fq9-4P-fyA" secondAttribute="trailing" id="EXU-jv-zoo"/>
                                                     <constraint firstItem="fq9-4P-fyA" firstAttribute="centerY" secondItem="G4C-mN-WTF" secondAttribute="centerY" id="M07-nn-L5b"/>
-                                                    <constraint firstItem="a5X-Of-cw8" firstAttribute="leading" secondItem="m1c-Ul-jKT" secondAttribute="trailing" constant="35" id="P3E-Nh-eI1"/>
-                                                    <constraint firstItem="fq9-4P-fyA" firstAttribute="leading" secondItem="a5X-Of-cw8" secondAttribute="trailing" constant="36" id="Pz8-vD-z5j"/>
+                                                    <constraint firstItem="a5X-Of-cw8" firstAttribute="leading" secondItem="m1c-Ul-jKT" secondAttribute="trailing" constant="12" id="QM8-ov-0ft"/>
                                                     <constraint firstAttribute="height" constant="100" id="aGd-12-Bt9"/>
                                                     <constraint firstItem="NoZ-yh-mrB" firstAttribute="centerY" secondItem="G4C-mN-WTF" secondAttribute="centerY" id="cfw-8j-IRV"/>
+                                                    <constraint firstItem="fq9-4P-fyA" firstAttribute="leading" secondItem="a5X-Of-cw8" secondAttribute="trailing" constant="12" id="go6-Ds-mf2"/>
                                                     <constraint firstItem="m1c-Ul-jKT" firstAttribute="centerY" secondItem="G4C-mN-WTF" secondAttribute="centerY" id="jTt-Yo-oy8"/>
                                                     <constraint firstItem="NoZ-yh-mrB" firstAttribute="leading" secondItem="G4C-mN-WTF" secondAttribute="leading" constant="20" id="xcu-ag-zqy"/>
                                                 </constraints>
