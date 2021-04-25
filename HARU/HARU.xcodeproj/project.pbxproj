@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F074A77262476B600A25FD4 /* AddPictureDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F074A76262476B600A25FD4 /* AddPictureDiaryViewController.swift */; };
 		1F3185BB25B4579100C4743F /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185B925B4579100C4743F /* Data.xcdatamodeld */; };
 		1F3185C025B45AFE00C4743F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */; };
 		1F3A783E260B901B009CFF49 /* DiaryCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */; };
 		1F3A783F260B901B009CFF49 /* DiaryCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F3A783D260B901B009CFF49 /* DiaryCollectionTableViewCell.xib */; };
+		1F5FBE632632C5750060F0D7 /* DiaryDrawViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FBE612632C5750060F0D7 /* DiaryDrawViewCell.swift */; };
+		1F5FBE642632C5750060F0D7 /* DiaryDrawViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FBE622632C5750060F0D7 /* DiaryDrawViewCell.xib */; };
 		1F65E68D26218032001533C2 /* AppVersionCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F65E68B26218032001533C2 /* AppVersionCellTableViewCell.swift */; };
 		1F65E68E26218032001533C2 /* AppVersionCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F65E68C26218032001533C2 /* AppVersionCellTableViewCell.xib */; };
 		1F6E74B225F3673100650C8C /* DiaryTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */; };
@@ -102,10 +105,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F074A76262476B600A25FD4 /* AddPictureDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPictureDiaryViewController.swift; sourceTree = "<group>"; };
 		1F3185BA25B4579100C4743F /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		1F3185BF25B45AFE00C4743F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1F3A783C260B901B009CFF49 /* DiaryCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		1F3A783D260B901B009CFF49 /* DiaryCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaryCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		1F5FBE612632C5750060F0D7 /* DiaryDrawViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDrawViewCell.swift; sourceTree = "<group>"; };
+		1F5FBE622632C5750060F0D7 /* DiaryDrawViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaryDrawViewCell.xib; sourceTree = "<group>"; };
 		1F65E68B26218032001533C2 /* AppVersionCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionCellTableViewCell.swift; sourceTree = "<group>"; };
 		1F65E68C26218032001533C2 /* AppVersionCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppVersionCellTableViewCell.xib; sourceTree = "<group>"; };
 		1F6E74B125F3673100650C8C /* DiaryTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewModel.swift; sourceTree = "<group>"; };
@@ -389,6 +395,8 @@
 				1F7A7C17261F44DE000C6963 /* DeveloperInfoCellTableViewCell.xib */,
 				1F65E68B26218032001533C2 /* AppVersionCellTableViewCell.swift */,
 				1F65E68C26218032001533C2 /* AppVersionCellTableViewCell.xib */,
+				1F5FBE612632C5750060F0D7 /* DiaryDrawViewCell.swift */,
+				1F5FBE622632C5750060F0D7 /* DiaryDrawViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -415,6 +423,7 @@
 				1FF7AFB1261CADBA00C9B1FA /* DeveloperInfoViewController.swift */,
 				1FF7AFB4261CADCA00C9B1FA /* AppInfoViewController.swift */,
 				EA5FA85E261F421E009A42EC /* DiaryWritingViewController.swift */,
+				1F074A76262476B600A25FD4 /* AddPictureDiaryViewController.swift */,
 				EA2427412627186000DCD80F /* LocationViewController.swift */,
 			);
 			path = ViewControllers;
@@ -509,6 +518,7 @@
 				EA7F83732594749D008B8ED5 /* Assets.xcassets in Resources */,
 				EAA1A26725E2ABBF003B0D8A /* EventCollectionTableViewCell.xib in Resources */,
 				1F7A7C19261F44DE000C6963 /* DeveloperInfoCellTableViewCell.xib in Resources */,
+				1F5FBE642632C5750060F0D7 /* DiaryDrawViewCell.xib in Resources */,
 				EAFBE0882612D6B300DE9C9A /* EventDetailViewController.storyboard in Resources */,
 				1F7A7C4B261F5CB2000C6963 /* DiaryCollection.storyboard in Resources */,
 				EA7F83712594749C008B8ED5 /* Main.storyboard in Resources */,
@@ -584,6 +594,7 @@
 				EAF5DD7D25F5E27300763AF5 /* MainCalendarCell.swift in Sources */,
 				EAF22839261BF27C000E062F /* EventAlarmSelectTableViewController.swift in Sources */,
 				EAE46E3B25DEA3EF001EF03C /* SetCalendarTableViewCell.swift in Sources */,
+				1F5FBE632632C5750060F0D7 /* DiaryDrawViewCell.swift in Sources */,
 				EA0E06D22603398D00B1B431 /* AddEventTableItems.swift in Sources */,
 				EACCB58D25DA4C8F00733906 /* SetDateTableViewCell.swift in Sources */,
 				EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */,
@@ -595,6 +606,7 @@
 				EADDEF6425FEF0A900703E5F /* AddEventTableViewModel.swift in Sources */,
 				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
 				1FC15E1725ED0DE80021B16B /* DiaryCollectionTableViewController.swift in Sources */,
+				1F074A77262476B600A25FD4 /* AddPictureDiaryViewController.swift in Sources */,
 				EA73C139262C62A40075AF6D /* LocationTableViewCell.swift in Sources */,
 				EA9BC3682632EB8B00DFBE67 /* HaruEvent.swift in Sources */,
 				EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */,

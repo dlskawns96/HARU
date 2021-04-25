@@ -22,11 +22,46 @@ class DiaryTableViewModel {
                 data.append(diary)
             }
         }
-        
         delegate?.didLoadData(data: data)
 
     }
-    
+
+    func requestEvaluation(date: String) -> [Float]{
+        
+        var list = [Diary]()
+        var evaluation_array: [Float] = [0,0,0]
+        var bad: Int = 0
+        var good: Int = 0
+        var best: Int = 0
+        
+        for item in CoreDataManager.diaryList {
+            let endIdx:String.Index = (item.date?.index(item.date!.startIndex, offsetBy: 6))!
+            if item.date![item.date!.startIndex...endIdx] == date {
+                list.append(item)
+            }
+        }
+        
+        // 1 😱 2 😀 3 🥰
+        for item in list {
+            if item.evaluation == 1 {
+                bad += 1
+            }
+            else if item.evaluation == 2 {
+                good += 1
+            }
+            else if item.evaluation == 3 {
+                best += 1
+            }
+        }
+        
+        if bad+good+best != 0 {
+            evaluation_array[0] = Float(Double(bad)/Double((bad+good+best)))
+            evaluation_array[1] = Float(Double(good)/Double((bad+good+best)))
+            evaluation_array[2] = Float(Double(best)/Double((bad+good+best)))
+        }
+        
+        return evaluation_array
+    }
     func requestDiaryCollection(date: String) {
         var diaries = [Diary]()
         diaries = CoreDataManager.returnDiaryCollection(date: date)
