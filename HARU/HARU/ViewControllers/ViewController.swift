@@ -23,7 +23,6 @@ class ViewController: UIViewController {
     var labels: [UILabel] = []
     var calendarLoader: CalendarLoader!
     
-    var token: NSObjectProtocol?
     var selectedDate = Date()
     
     let calendar = Calendar.current
@@ -32,6 +31,16 @@ class ViewController: UIViewController {
     var dataArray = [[[MainCalendarCellItem]]]() {
         didSet {
             fsCalendar.reloadData()
+        }
+    }
+    
+    var state = UIApplication.shared.applicationState {
+        didSet {
+            print("@@@@")
+            if state == .active {
+                
+                fsCalendar.reloadData()
+            }
         }
     }
     
@@ -56,9 +65,7 @@ class ViewController: UIViewController {
     }
     
     deinit {
-        if let token = token {
-            NotificationCenter.default.removeObserver(token)
-        }
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Button Actions
@@ -119,6 +126,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(onEventAddedNotification(notification:)), name:MainCalendarModel.mainCalendarAddEventNoti, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onEventRemovedNotification(notification:)), name:EventHandler.eventRemovedNoti, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onEventModifiedNotification(notification:)), name:MainCalendarModel.mainCalendarEventModifiedNoti, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onWillEnterForegroundNotification(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     // MARK: - Notification Handlers
@@ -137,6 +145,10 @@ class ViewController: UIViewController {
     @objc func onEventModifiedNotification(notification: Notification) {
         let event = notification.userInfo!["event"] as! EKEvent
         dataSource?.eventModified(event: event)
+    }
+    
+    @objc func onWillEnterForegroundNotification(notification: Notification) {
+//        fsCalendar.reloadData()
     }
     
     func getItemsOfDate(startDate: Date, endDate: Date) -> [MainCalendarCellItem] {
@@ -185,11 +197,9 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         guard let customCell = cell as? MainCalendarCell else {
             return
         }
-        
+        customCell.cellDate = date
         if !dataArray.isEmpty {
             customCell.configureCell(with: dataArray[self.calendar.component(.year, from: date) - MainCalendarModel.startYear][self.calendar.component(.month, from: date)-1][self.calendar.component(.day, from: date)-1])
-        } else {
-            customCell.initCell()
         }
     }
     
@@ -197,6 +207,7 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         guard let cell = calendar.dequeueReusableCell(withIdentifier: "MainCalednarCell", for: date, at: position) as? MainCalendarCell else {
             return calendar.dequeueReusableCell(withIdentifier: "MainCalednarCell", for: date, at: position)
         }
+//        cell.cellDate = date
         return cell
     }
     
