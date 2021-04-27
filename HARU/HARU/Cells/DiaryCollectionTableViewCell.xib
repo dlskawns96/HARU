@@ -11,18 +11,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="diaryCollectionViewCell" id="KGk-i7-Jjw" customClass="DiaryCollectionTableViewCell" customModule="HARU" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="diaryCollectionViewCell" rowHeight="94" id="KGk-i7-Jjw" customClass="DiaryCollectionTableViewCell" customModule="HARU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdA-w4-koK" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                        <rect key="frame" x="7" y="5" width="306" height="50"/>
+                        <rect key="frame" x="7" y="15" width="306" height="64"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdC-Mr-bUw">
-                                <rect key="frame" x="92" y="5" width="204" height="40"/>
+                                <rect key="frame" x="92" y="10" width="204" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -31,7 +31,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PII-5p-uVX">
-                                <rect key="frame" x="95" y="6" width="196" height="38"/>
+                                <rect key="frame" x="95" y="10" width="196" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNZ-f8-bg5">
-                                <rect key="frame" x="25" y="14.5" width="42" height="21"/>
+                                <rect key="frame" x="25" y="21.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="MainUIColor"/>
                                 <nil key="highlightedColor"/>
@@ -51,15 +51,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="TNZ-f8-bg5" firstAttribute="leading" secondItem="EdA-w4-koK" secondAttribute="leading" constant="25" id="2ef-Kj-bN4"/>
-                            <constraint firstItem="fdC-Mr-bUw" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="5" id="5Fx-Po-NRd"/>
+                            <constraint firstItem="fdC-Mr-bUw" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="10" id="5Fx-Po-NRd"/>
                             <constraint firstItem="fdC-Mr-bUw" firstAttribute="leading" secondItem="TNZ-f8-bg5" secondAttribute="trailing" constant="25" id="6A4-Gq-iLU"/>
+                            <constraint firstItem="TNZ-f8-bg5" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="21.5" id="9ac-PB-c8r"/>
                             <constraint firstItem="PII-5p-uVX" firstAttribute="leading" secondItem="EdA-w4-koK" secondAttribute="leading" constant="95" id="EVw-8c-K9b"/>
-                            <constraint firstAttribute="bottom" secondItem="PII-5p-uVX" secondAttribute="bottom" constant="6" id="Edi-q6-9aY"/>
-                            <constraint firstItem="PII-5p-uVX" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="6" id="TBB-fS-TJj"/>
+                            <constraint firstAttribute="bottom" secondItem="PII-5p-uVX" secondAttribute="bottom" constant="10" id="Edi-q6-9aY"/>
+                            <constraint firstItem="PII-5p-uVX" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="10" id="TBB-fS-TJj"/>
+                            <constraint firstAttribute="bottom" secondItem="PII-5p-uVX" secondAttribute="bottom" constant="10" id="VWJ-TM-DSv"/>
                             <constraint firstItem="TNZ-f8-bg5" firstAttribute="centerY" secondItem="EdA-w4-koK" secondAttribute="centerY" id="Vz0-rZ-QaT"/>
+                            <constraint firstAttribute="bottom" secondItem="TNZ-f8-bg5" secondAttribute="bottom" constant="21.5" id="jbe-Ni-04E"/>
                             <constraint firstAttribute="trailing" secondItem="fdC-Mr-bUw" secondAttribute="trailing" constant="10" id="k4G-iM-fZT"/>
                             <constraint firstAttribute="trailing" secondItem="PII-5p-uVX" secondAttribute="trailing" constant="15" id="m1x-TQ-94e"/>
-                            <constraint firstAttribute="bottom" secondItem="fdC-Mr-bUw" secondAttribute="bottom" constant="5" id="v96-gq-TF4"/>
+                            <constraint firstItem="PII-5p-uVX" firstAttribute="top" secondItem="EdA-w4-koK" secondAttribute="top" constant="10" id="mlS-JI-I5r"/>
+                            <constraint firstAttribute="bottom" secondItem="fdC-Mr-bUw" secondAttribute="bottom" constant="10" id="v96-gq-TF4"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
@@ -82,8 +86,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="EdA-w4-koK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="31y-v9-9tf"/>
-                    <constraint firstItem="EdA-w4-koK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Ngv-NA-Qcz"/>
-                    <constraint firstAttribute="bottom" secondItem="EdA-w4-koK" secondAttribute="bottom" constant="5" id="lhg-iu-rFQ"/>
+                    <constraint firstItem="EdA-w4-koK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Ngv-NA-Qcz"/>
+                    <constraint firstAttribute="bottom" secondItem="EdA-w4-koK" secondAttribute="bottom" constant="15" id="lhg-iu-rFQ"/>
                     <constraint firstAttribute="trailing" secondItem="EdA-w4-koK" secondAttribute="trailing" constant="7" id="wCN-vz-xW6"/>
                 </constraints>
             </tableViewCellContentView>
@@ -93,7 +97,7 @@
                 <outlet property="myLabel" destination="PII-5p-uVX" id="BI0-7R-a9J"/>
                 <outlet property="shadowView" destination="EdA-w4-koK" id="yvf-lv-5Le"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="79.6875"/>
+            <point key="canvasLocation" x="137.68115942028987" y="91.071428571428569"/>
         </tableViewCell>
     </objects>
     <resources>
