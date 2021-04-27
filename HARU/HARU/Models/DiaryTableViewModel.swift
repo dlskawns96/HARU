@@ -25,6 +25,19 @@ class DiaryTableViewModel {
         delegate?.didLoadData(data: data)
 
     }
+    
+    // 달력에서 평가 리턴
+    func requestEvaluation(selectedDate: Date) -> Int{
+        var evaluation: Int = 0
+
+        for item in CoreDataManager.diaryList {
+            if Calendar.current.isDate(item.date2!, equalTo: selectedDate, toGranularity: .day) {
+                evaluation = Int(item.evaluation)
+            }
+        }
+
+        return evaluation
+    }
 
     func requestEvaluation(date: String) -> [Float]{
         
@@ -62,6 +75,7 @@ class DiaryTableViewModel {
         
         return evaluation_array
     }
+    
     func requestDiaryCollection(date: String) {
         var diaries = [Diary]()
         diaries = CoreDataManager.returnDiaryCollection(date: date)
