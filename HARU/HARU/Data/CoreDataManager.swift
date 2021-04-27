@@ -100,6 +100,10 @@ class CoreDataManager {
         
     }
     
+//    static func returnDiaryCollection(of month: Date) -> [Diary] {
+//
+//    }
+    
     func saveEvaluation(_ evaluation: Int16?, _ date: String?) {
 
         var yes: Bool = true

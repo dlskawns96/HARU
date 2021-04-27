@@ -48,7 +48,7 @@ class AddNewEventViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = ThemeVariables.mainUIColor
         self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+//        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
 
         isCellLoaded = false
         

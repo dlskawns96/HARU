@@ -24,6 +24,10 @@
 	<string></string>
 	<key>NSRemindersUsageDescription</key>
 	<string>app need your agreement to access reminder</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>나눔손글씨 다행체.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

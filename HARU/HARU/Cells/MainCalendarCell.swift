@@ -12,6 +12,13 @@ class MainCalendarCell: FSCalendarCell {
     static var currentMonth = Date()
     let gregorian = Calendar.current
     weak var circleImageView: UIImageView!
+    var evaluationLabel: UILabel!
+    
+    var cellDate: Date? {
+        didSet {
+            indicateToday(date: cellDate!)
+        }
+    }
     
     required init!(coder aDecoder: NSCoder!) {
         fatalError("init(coder:) has not been implemented")
@@ -21,29 +28,59 @@ class MainCalendarCell: FSCalendarCell {
         super.init(frame: frame)
         self.borderWidth = 1
         self.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+        initCell()
+        insertTodayCirlce()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
     }
     
     func initCell() {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-        self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 5).isActive = true
+        self.titleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+        self.titleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        let evaluationLabel = UILabel()
+        evaluationLabel.text = ""
+        evaluationLabel.font = .systemFont(ofSize: 12.5)
+        self.evaluationLabel = evaluationLabel
+        self.contentView.addSubview(self.evaluationLabel)
+        self.evaluationLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.evaluationLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        self.evaluationLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
+        
+//        if cellDate != nil {
+//            indicateToday(date: cellDate!)
+//        }
     }
     
-    func insertTodayCirlce() {
+    private func indicateToday(date: Date) {
+        if self.gregorian.isDateInToday(date) {
+            self.borderColor = UIColor(named: "MainUIColor")
+//            self.circleImageView.isHidden = false
+//            self.circleImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+//            self.circleImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+//            self.circleImageView.widthAnchor.constraint(equalTo: self.circleImageView.heightAnchor, multiplier: 1.5).isActive = true
+//            self.circleImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        } else {
+//            self.circleImageView.isHidden = true
+            self.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+        }
+    }
+    
+    private func insertTodayCirlce() {
         let circleImageView = UIImageView(image: UIImage(named: "circle")!)
         self.addSubview(circleImageView)
         self.circleImageView = circleImageView
-        self.circleImageView.isHidden = false
         self.circleImageView.translatesAutoresizingMaskIntoConstraints = false
-        self.circleImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        self.circleImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        self.circleImageView.centerYAnchor.constraint(equalTo: self.titleLabel.centerYAnchor).isActive = true
-        self.circleImageView.widthAnchor.constraint(equalTo: self.circleImageView.heightAnchor, multiplier: 1.5).isActive = true
+        self.circleImageView.isHidden = true
+        self.circleImageView.backgroundColor = .red
     }
     
-    
     func configureCell(with item: MainCalendarCellItem) {
-        initCell()
+//        initCell()
+//        indicateToday(date: item.date!)
         if item.numOfEvents != 0 {
             let posY = Int(self.titleLabel.frame.maxY * 1.5)
             for idx in 0..<item.eventsToIndicate.count {
@@ -72,19 +109,6 @@ class MainCalendarCell: FSCalendarCell {
             for view in self.subviews {
                 if view is UILabel {
                     view.removeFromSuperview()
-                }
-            }
-            
-        }
-        
-        // 날짜가 오늘일 경우 표시
-        if self.gregorian.isDateInToday(item.date!) {
-            insertTodayCirlce()
-        } else {
-            for view in self.subviews {
-                if view is UIImageView {
-                    view.removeFromSuperview()
-                    break
                 }
             }
         }
