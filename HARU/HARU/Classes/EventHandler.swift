@@ -9,19 +9,20 @@ import Foundation
 import EventKit
 
 class EventHandler {
-    static var ekEventStore: EKEventStore?
+    static var ekEventStore = EKEventStore()
     static let eventRemovedNoti = Notification.Name("eventRemovedNoti")
+    static var ekCalendars: [EKCalendar]?
     var event: EKEvent? = nil
     
     init() {
-        event = EKEvent(eventStore: EventHandler.ekEventStore!)
+        event = EKEvent(eventStore: EventHandler.ekEventStore)
     }
     
     func removeEvent(event: EKEvent) -> Bool {
         do {
             print("Event to remove", event)
-            let ev = EventHandler.ekEventStore?.event(withIdentifier: event.eventIdentifier)
-            try EventHandler.ekEventStore!.remove(ev!, span: .thisEvent, commit: true)
+            let ev = EventHandler.ekEventStore.event(withIdentifier: event.eventIdentifier)
+            try EventHandler.ekEventStore.remove(ev!, span: .thisEvent, commit: true)
             NotificationCenter.default.post(name: EventHandler.eventRemovedNoti, object: nil, userInfo: ["startDate": event.startDate, "endDate": event.endDate])
             print("event removed")
             return true
