@@ -32,9 +32,16 @@ class CoreDataManager {
     
     // 다이어리 저장
     func saveDiary(_ content: String?, _ date: String?) {
+        var date_ver_Date = Date()
+        let dateFormatter = DateFormatter()
         let newDiary = Diary(context: mainContext)
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        date_ver_Date = dateFormatter.date(from: date!)!
+        
         newDiary.content = content
         newDiary.date = date
+        newDiary.date2 = date_ver_Date
         
         CoreDataManager.diaryList.insert(newDiary, at: 0)
         saveContext()
@@ -106,11 +113,18 @@ class CoreDataManager {
     
     func saveEvaluation(_ evaluation: Int16?, _ date: String?) {
 
+        var date_ver_Date = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        date_ver_Date = dateFormatter.date(from: date!)!
+        
         var yes: Bool = true
         // 다이어리를 이미 작성했을 때 평가 부분만 추가
         for item in CoreDataManager.diaryList {
             if item.date == date {
                 item.evaluation = evaluation!
+                item.date2 = date_ver_Date
                 yes = false
                 break
             }
@@ -121,6 +135,7 @@ class CoreDataManager {
             let newDiary = Diary(context: mainContext)
             newDiary.evaluation = evaluation!
             newDiary.date = date
+            newDiary.date2 = date_ver_Date
             newDiary.content = " "
 
             CoreDataManager.diaryList.insert(newDiary, at: 0)
