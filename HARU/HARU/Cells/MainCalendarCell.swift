@@ -12,6 +12,7 @@ class MainCalendarCell: FSCalendarCell {
     static var currentMonth = Date()
     let gregorian = Calendar.current
     weak var circleImageView: UIImageView!
+    var evaluationLabel: UILabel!
     
     var cellDate: Date? {
         didSet {
@@ -40,6 +41,15 @@ class MainCalendarCell: FSCalendarCell {
         self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 5).isActive = true
         self.titleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
         self.titleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        let evaluationLabel = UILabel()
+        evaluationLabel.text = ""
+        evaluationLabel.font = .systemFont(ofSize: 12.5)
+        self.evaluationLabel = evaluationLabel
+        self.contentView.addSubview(self.evaluationLabel)
+        self.evaluationLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.evaluationLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        self.evaluationLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
+        
 //        if cellDate != nil {
 //            indicateToday(date: cellDate!)
 //        }

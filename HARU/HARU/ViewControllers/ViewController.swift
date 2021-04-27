@@ -62,6 +62,7 @@ class ViewController: UIViewController {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.isTranslucent = false
         fsCalendar.deselect(selectedDate)
+//        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "나눔손글씨 다행체", size: 27)!]
     }
     
     deinit {
