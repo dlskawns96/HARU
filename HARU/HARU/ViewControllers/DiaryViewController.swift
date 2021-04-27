@@ -24,7 +24,6 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     // Diary View
     @IBOutlet weak var textView: LinedTextView!
     
-    
     var attributes: [NSAttributedString.Key: Any]!
     let kerns: [[NSAttributedString.Key: Any]] = [[.kern: 20], [.kern: 40]]
     var font: UIFont!
@@ -144,6 +143,11 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         else {
             buttonInit()
         }
+        
+        if dataArray.count > 0 {
+            textView.text = dataArray[0].content
+        }
+    
     }
 
     override func viewDidLoad() {
@@ -163,6 +167,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         lineHeight = squaredPaper.bounds.height / 30.0
         
         textView.delegate = self
+        textView.tintColor = ThemeVariables.mainUIColor
 
         token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) { [self]_ in
             dataSource.requestDiary(date: (AD?.selectedDate)!)
@@ -213,6 +218,16 @@ extension DiaryViewController: DiaryTableViewModelDelegate {
 
 extension DiaryViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-//        textView.typingAttributes = attributes
+        textView.tintColor = ThemeVariables.mainUIColor
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if dataArray.count > 0 {
+            CoreDataManager.shared.updateDiary(textView.text, dSelectedDate)
+            NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
+        }
+        else {
+            dataSource.saveDiary(content: textView.text, date: dSelectedDate!)
+            NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
+        }        
     }
 }
