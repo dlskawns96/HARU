@@ -27,15 +27,14 @@ class DiaryTableViewModel {
     }
     
     // 달력에서 평가 리턴
-    func requestEvaluation(selectedDate: Date) -> Int{
+    static func requestEvaluation(selectedDate: Date) -> Int{
         var evaluation: Int = 0
 
         for item in CoreDataManager.diaryList {
-            if Calendar.current.isDate(item.date2!, equalTo: selectedDate, toGranularity: .day) {
+            if selectedDate.compare(.isSameDay(as: item.date2!)) {
                 evaluation = Int(item.evaluation)
             }
         }
-
         return evaluation
     }
 

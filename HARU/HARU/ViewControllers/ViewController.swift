@@ -38,9 +38,7 @@ class ViewController: UIViewController {
     
     var state = UIApplication.shared.applicationState {
         didSet {
-            print("@@@@")
             if state == .active {
-                
                 fsCalendar.reloadData()
             }
         }
@@ -54,7 +52,7 @@ class ViewController: UIViewController {
         } else {
             authorizationCheck()
         }
-        
+        CoreDataManager.shared.fetchDiary()
         self.initFSCalendar()
         self.registerObservers()
         EventDetailViewController.delegate = self

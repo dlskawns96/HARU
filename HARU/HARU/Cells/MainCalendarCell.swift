@@ -13,10 +13,12 @@ class MainCalendarCell: FSCalendarCell {
     let gregorian = Calendar.current
     weak var circleImageView: UIImageView!
     var evaluationLabel: UILabel!
+    var evaluations = ["😱", "😀", "🥰"]
     
     var cellDate: Date? {
         didSet {
             indicateToday(date: cellDate!)
+            indicateEvaluation()
         }
     }
     
@@ -66,6 +68,15 @@ class MainCalendarCell: FSCalendarCell {
         } else {
 //            self.circleImageView.isHidden = true
             self.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+        }
+    }
+    
+    private func indicateEvaluation() {
+        let eval = DiaryTableViewModel.requestEvaluation(selectedDate: cellDate!)
+        if eval != 0 {
+            self.evaluationLabel.text = evaluations[eval - 1]
+        } else {
+            self.evaluationLabel.text = ""
         }
     }
     
