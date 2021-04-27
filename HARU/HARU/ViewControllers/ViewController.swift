@@ -27,6 +27,8 @@ class ViewController: UIViewController {
     
     let calendar = Calendar.current
     
+    var calendarAuth = EKEventStore.authorizationStatus(for: .event)
+    
     var dataSource: MainCalendarModel?
     var dataArray = [[[MainCalendarCellItem]]]() {
         didSet {
@@ -47,11 +49,11 @@ class ViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        EventHandler.ekEventStore = EKEventStore()
-        calendarLoader = CalendarLoader()
-        dataSource = MainCalendarModel()
-        dataSource?.delegate = self
-        dataSource?.initData(date: Date())
+        if calendarAuth == .authorized {
+            loadEventData()
+        } else {
+            authorizationCheck()
+        }
         
         self.initFSCalendar()
         self.registerObservers()
@@ -128,6 +130,37 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(onEventRemovedNotification(notification:)), name:EventHandler.eventRemovedNoti, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onEventModifiedNotification(notification:)), name:MainCalendarModel.mainCalendarEventModifiedNoti, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onWillEnterForegroundNotification(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    private func loadEventData() {
+        EventHandler.ekCalendars = EventHandler.ekEventStore.calendars(for: .event).filter({(cal: EKCalendar) -> Bool in
+            return cal.allowsContentModifications
+        })
+        calendarLoader = CalendarLoader()
+        dataSource = MainCalendarModel()
+        dataSource?.delegate = self
+        dataSource?.initData(date: Date())
+    }
+    
+    private func authorizationCheck() {
+        switch EKEventStore.authorizationStatus(for: .event) {
+        case .authorized:
+            self.calendarAuth = .authorized
+        case .denied:
+            print("Access denied")
+        case .notDetermined:
+            EventHandler.ekEventStore.requestAccess(to: .event, completion: { (granted: Bool, NSError) -> Void in
+                if granted {
+                    self.calendarAuth = .authorized
+                    self.loadEventData()
+                } else {
+                    self.calendarAuth = .denied
+                    print("Access denied")
+                }
+            })
+        default:
+            print("Case Default")
+        }
     }
     
     // MARK: - Notification Handlers

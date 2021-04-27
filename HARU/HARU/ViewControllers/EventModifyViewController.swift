@@ -52,7 +52,7 @@ class EventModifyViewController: UITableViewController {
         
         initTableView()
         hideKeyboard()
-        newEvent = EKEvent(eventStore: eventStore!)
+        newEvent = EKEvent(eventStore: eventStore)
         newEvent.calendar = calendars.filter({(cal: EKCalendar) -> Bool in
             return cal.calendarIdentifier == originalCalendar!.calendarIdentifier
         }).first
@@ -62,7 +62,7 @@ class EventModifyViewController: UITableViewController {
     
     func initTableView() {
         tableView.sectionIndexColor = .lightGray
-        calendars = eventStore!.calendars(for: .event)
+        calendars = eventStore.calendars(for: .event)
     }
     
     @IBAction func cancelBtnClicked(_ sender: Any) {
@@ -76,7 +76,7 @@ class EventModifyViewController: UITableViewController {
         
         do {
             event?.title = eventTitleTF.text
-            try eventStore!.save(event!, span: .thisEvent)
+            try eventStore.save(event!, span: .thisEvent)
             self.dismiss(animated: true, completion: nil)
         } catch {
             print("Event Modify Error")

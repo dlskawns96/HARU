@@ -9,11 +9,11 @@ import Foundation
 import EventKit
 
 class AddEventTableViewModel {
-    static var newEvent = EKEvent(eventStore: EventHandler.ekEventStore!)
+    static var newEvent = EKEvent(eventStore: EventHandler.ekEventStore)
     weak var delegate: AddEventTableViewModelDelegate?
     
     func initData(selectedDate: Date, calendar: EKCalendar) {
-        let newEvent = EKEvent(eventStore: EventHandler.ekEventStore!)
+        let newEvent = EKEvent(eventStore: EventHandler.ekEventStore)
         
         newEvent.title = "새로운 이벤트"
         newEvent.startDate = selectedDate
@@ -61,12 +61,12 @@ class AddEventTableViewModel {
     }
     
     func saveNewEvent() {
-        let calendars = EventHandler.ekEventStore!.calendars(for: .event)
+        let calendars = EventHandler.ekEventStore.calendars(for: .event)
         
         for calendar in calendars {
             if calendar.title == AddEventTableViewModel.newEvent.calendar.title {
                 do {
-                    try EventHandler.ekEventStore!.save(AddEventTableViewModel.newEvent, span: .thisEvent)
+                    try EventHandler.ekEventStore.save(AddEventTableViewModel.newEvent, span: .thisEvent)
                 } catch {
                     print("Error saving event in calendar")
                     return
@@ -80,7 +80,7 @@ class AddEventTableViewModel {
     
     func modifyEvent() {
         do {
-            try EventHandler.ekEventStore!.save(AddEventTableViewModel.newEvent, span: .thisEvent)
+            try EventHandler.ekEventStore.save(AddEventTableViewModel.newEvent, span: .thisEvent)
         } catch {
             print("Error saving event in calendar")
             return

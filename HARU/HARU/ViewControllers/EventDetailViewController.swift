@@ -10,7 +10,7 @@ import EventKit
 import MapKit
 
 class EventDetailViewController: UITableViewController {
-    static var event = EKEvent(eventStore: EventHandler.ekEventStore!)
+    static var event = EKEvent(eventStore: EventHandler.ekEventStore)
     var dateFormatter = DateFormatter()
     static var delegate: EventDetailViewDelegate?
     
@@ -118,7 +118,7 @@ extension EventDetailViewController: LocationViewControllerDelegate {
         EventDetailViewController.event.structuredLocation = structuredLocation
         
         do {
-            try EventHandler.ekEventStore?.save(EventDetailViewController.event, span: .thisEvent)
+            try EventHandler.ekEventStore.save(EventDetailViewController.event, span: .thisEvent)
         } catch {
             print("Event Location Modifying error")
         }

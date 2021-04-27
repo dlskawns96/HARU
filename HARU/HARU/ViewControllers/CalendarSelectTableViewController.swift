@@ -46,7 +46,7 @@ class CalendarSelectTableViewController: UITableViewController {
         EventDetailViewController.event.calendar = calendars[indexPath.row]
         do {
             EventDetailViewController.delegate?.eventChanged(event: EventDetailViewController.event)
-            try EventHandler.ekEventStore?.save(EventDetailViewController.event, span: .thisEvent)
+            try EventHandler.ekEventStore.save(EventDetailViewController.event, span: .thisEvent)
         } catch {
             
         }

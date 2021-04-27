@@ -49,7 +49,7 @@ class EventAlarmSelectTableViewController: UITableViewController {
         }
         if isModifying {
             do {
-                try EventHandler.ekEventStore?.save(event, span: .thisEvent)
+                try EventHandler.ekEventStore.save(event, span: .thisEvent)
             } catch {
                 print("Event Alarm Modifying Error")
             }
@@ -92,7 +92,7 @@ class EventAlarmSelectTableViewController: UITableViewController {
             event.addAlarm(alarm)
             if isModifying {
                 do {
-                    try EventHandler.ekEventStore?.save(event, span: .thisEvent)
+                    try EventHandler.ekEventStore.save(event, span: .thisEvent)
                 } catch {
                     print("Event Alarm Modifying Error")
                 }
