@@ -1,4 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-HARU/Pods-HARU-frameworks.sh
-${BUILT_PRODUCTS_DIR}/AFDateHelper/AFDateHelper.framework
-${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
-${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
+${BUILT_PRODUCTS_DIR}/AFDateHelper-framework/AFDateHelper.framework
+${BUILT_PRODUCTS_DIR}/DropDown-framework/DropDown.framework
+${BUILT_PRODUCTS_DIR}/FSCalendar-framework/FSCalendar.framework

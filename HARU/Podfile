@@ -1,12 +1,26 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'HARU' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for HARU
+# Pods for HARU
+def requirePods
   pod 'AFDateHelper'
   pod 'DropDown'
   pod 'FSCalendar'
+end
+
+target 'HARU' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  requirePods
+end
+
+target 'HARUTests' do
+    inherit! :search_paths
+    requirePods
+end
+
+target 'HARUUITests' do
+  inherit! :search_paths
+  requirePods
+  # Pods for testing
 end
