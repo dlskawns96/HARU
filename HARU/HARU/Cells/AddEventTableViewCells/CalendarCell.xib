@@ -44,11 +44,13 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="XKd-vM-0Aw" secondAttribute="bottom" constant="12" id="4AQ-Ft-BAP"/>
                     <constraint firstItem="XKd-vM-0Aw" firstAttribute="leading" secondItem="KrE-A5-VCr" secondAttribute="trailing" constant="8" symbolic="YES" id="4iI-6a-bAG"/>
-                    <constraint firstItem="bsA-Za-1X5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8EK-Gu-oWW"/>
-                    <constraint firstItem="XKd-vM-0Aw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="RpU-9X-7xK"/>
+                    <constraint firstItem="XKd-vM-0Aw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12.5" id="MTT-1I-rKZ"/>
+                    <constraint firstItem="bsA-Za-1X5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12.5" id="b8g-1L-xB9"/>
                     <constraint firstAttribute="trailing" secondItem="XKd-vM-0Aw" secondAttribute="trailing" constant="16" id="fAD-Du-att"/>
                     <constraint firstItem="KrE-A5-VCr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gmB-Oq-2zI"/>
+                    <constraint firstAttribute="bottom" secondItem="bsA-Za-1X5" secondAttribute="bottom" constant="12" id="imS-E8-r7L"/>
                     <constraint firstItem="bsA-Za-1X5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="n5j-GQ-fOZ"/>
                 </constraints>
             </tableViewCellContentView>

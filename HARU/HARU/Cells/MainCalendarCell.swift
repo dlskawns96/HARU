@@ -90,17 +90,17 @@ class MainCalendarCell: FSCalendarCell {
     }
     
     func configureCell(with item: MainCalendarCellItem) {
-//        initCell()
-//        indicateToday(date: item.date!)
+        indicateEvaluation()
         if item.numOfEvents != 0 {
-            let posY = Int(self.titleLabel.frame.maxY * 1.5)
+            let height = Double(self.bounds.height / 5.0)
+            let posY = height * 2.0
             for idx in 0..<item.eventsToIndicate.count {
                 if item.eventsToIndicate[idx] == nil {
                     continue
                 } else {
-                    var lab = UILabel(frame: CGRect(x: 0, y: Int(posY + idx * 15), width: Int(self.bounds.width + 0.5), height: 15))
+                    var lab = UILabel(frame: CGRect(x: 0.0, y: posY + Double(idx) * height, width: Double(self.bounds.width), height: height))
                     if item.date!.isSameAs(as: .day, from: item.eventsToIndicate[idx]!.startDate) && !item.date!.isSameAs(as: .day, from: item.eventsToIndicate[idx]!.endDate){
-                         lab = UILabel(frame: CGRect(x: 0, y: Int(posY + idx * 15), width: Int(self.bounds.width * 2), height: 15))
+                        lab = UILabel(frame: CGRect(x: 0.0, y: posY + Double(idx) * height, width: Double(self.bounds.width) * 2.0, height: height))
                     } else if item.date!.isSameAs(as: .day, from: item.eventsToIndicate[idx]!.startDate.adjust(.day, offset: 1)) && !item.date!.isSunday() {
                         continue
                     }
@@ -113,7 +113,7 @@ class MainCalendarCell: FSCalendarCell {
                         lab.textColor = UIColor.init(named: "#32C77F")
                     }
                     self.addSubview(lab)
-                    lab.backgroundColor = UIColor(cgColor: item.eventsToIndicate[idx]!.calendar.cgColor)
+                    lab.backgroundColor = UIColor(cgColor: item.eventsToIndicate[idx]!.calendar.cgColor).withAlphaComponent(0.75)
                 }
             }
         } else {
@@ -130,7 +130,7 @@ struct MainCalendarCellItem {
     var events: [EKEvent]?
     var date: Date?
     var dateFormatter = DateFormatter()
-    var eventsToIndicate: [EKEvent?] = [nil, nil, nil, nil]
+    var eventsToIndicate: [EKEvent?] = [nil, nil, nil]
     
     init(events: [EKEvent], date: Date) {
         self.events = events
