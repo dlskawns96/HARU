@@ -72,46 +72,21 @@ class SelectDateController : UIViewController {
         case 0:
             scheduleView.isHidden = false
             diaryView.isHidden = true
+            addBtn.isHidden = false
             addBtn.isEnabled = true
 
         case 1:
             scheduleView.isHidden = true
             diaryView.isHidden = false
-            
+            addBtn.isHidden = true
 
-
-            if selectedDate!.compare(.isToday) {
-                addBtn.isEnabled = true
-            } else {
-
-                addBtn.isEnabled = false
-            }
-        
-//            if dSelectedDate == dToday {
-//                addBtn.isEnabled = true
-//            } else {
-//
-//                addBtn.isEnabled = false
-//            }
-            
         default:
             break
         }
     }
     
     @IBAction func addBtn(_ sender: Any) {
-        switch segment.selectedSegmentIndex {
-        case 0:
-            self.performSegue(withIdentifier: "AddNewEventViewController", sender: nil)
-        case 1:
-            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
-            self.present(controller, animated: true, completion: nil)
-            
-            AddDiaryController.editTarget = CoreDataManager.returnDiary(date: (AD?.selectedDate)!)
-        default:
-            break
-        }
-        
+        self.performSegue(withIdentifier: "AddNewEventViewController", sender: nil)
     }
 }
 
