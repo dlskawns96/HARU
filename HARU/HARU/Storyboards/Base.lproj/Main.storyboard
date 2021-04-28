@@ -39,7 +39,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-HY-9MJ" userLabel="캘린더 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -156,15 +156,25 @@
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Spring" translatesAutoresizingMaskIntoConstraints="NO" id="ixv-B5-uBg">
                                 <rect key="frame" x="20" y="25" width="374" height="15"/>
+                                <gestureRecognizers/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzx-sY-wDp" userLabel="TodayButton">
+                                <rect key="frame" x="20" y="0.0" width="374" height="30"/>
+                                <connections>
+                                    <action selector="onHeaderTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h1G-MR-fRZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7j4-GB-lXf" secondAttribute="trailing" constant="20" id="0Ic-Oe-Da8"/>
                             <constraint firstItem="7j4-GB-lXf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2AE-Me-eRz"/>
+                            <constraint firstItem="Nzx-sY-wDp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5Vu-Iq-0tl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="27V-Gr-hcq" secondAttribute="trailing" constant="20" id="69k-Xd-3XO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Nzx-sY-wDp" secondAttribute="trailing" constant="20" id="6Ip-jp-KqM"/>
                             <constraint firstItem="27V-Gr-hcq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AUL-NV-huN"/>
+                            <constraint firstItem="Nzx-sY-wDp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="HAP-Ph-mlP"/>
                             <constraint firstItem="7j4-GB-lXf" firstAttribute="top" secondItem="27V-Gr-hcq" secondAttribute="bottom" constant="35" id="Jf0-qi-uwk"/>
                             <constraint firstItem="27V-Gr-hcq" firstAttribute="top" secondItem="ixv-B5-uBg" secondAttribute="bottom" constant="-10" id="QZb-gv-xkH"/>
                             <constraint firstItem="1Je-HY-9MJ" firstAttribute="top" secondItem="27V-Gr-hcq" secondAttribute="top" id="SXn-Js-K3q"/>
@@ -286,7 +296,7 @@
             <objects>
                 <viewController storyboardIdentifier="SelectDateController" id="Nzo-Wt-ceS" customClass="SelectDateController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gqT-Gu-Dfh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
@@ -431,7 +441,7 @@
             <objects>
                 <viewController id="WAC-kK-gea" customClass="DiaryWritingViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cUw-HG-0lg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qC-pl-lvZ" customClass="LinedTextView" customModule="HARU" customModuleProvider="target">
