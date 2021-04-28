@@ -86,6 +86,10 @@ class ViewController: UIViewController {
         self.present(controller!, animated: true, completion: nil)
     }
     
+    @IBAction func onHeaderTapped(_ sender: Any) {
+        fsCalendar.select(Date(), scrollToDate: true)
+    }
+    
     // MARK: - Functions
     private func getWeekDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()
@@ -108,6 +112,9 @@ class ViewController: UIViewController {
         fsCalendar.appearance.borderRadius = 0
         fsCalendar.weekdayHeight = 40
         fsCalendar.today = nil
+        fsCalendar.appearance.selectionColor = .clear
+        fsCalendar.appearance.titleSelectionColor = nil
+        
         for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
             weekday.borderWidth = 1.0
             weekday.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
@@ -264,15 +271,28 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         calendar.reloadData()
-    }
-    
-    
-    func configureCell(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
+        // 미리 로드해둔 일정을 지나면 다시 로드
+        if !dataArray.isEmpty {
+            // 2달
+            if Int(calendar.currentPage.timeIntervalSince(dataArray.first!.first!.first!.date!)) <= 5259600 {
+                dataSource?.loadOlderData(date: calendar.currentPage)
+            } else if Int(dataArray.last!.last!.last!.date!.timeIntervalSince(calendar.currentPage)) <= 5259600 {
+                dataSource?.loadNewerData(date: calendar.currentPage)
+            }
+        }
         
     }
 }
 
 extension ViewController: MainCalendarModelDelegate {
+    func newerItemAdded(datas: [[[MainCalendarCellItem]]]) {
+        dataArray += datas
+    }
+    
+    func olderItemAdded(datas: [[[MainCalendarCellItem]]]) {
+        dataArray = datas + dataArray
+    }
+    
     func didLoadData(data: [[[MainCalendarCellItem]]]) {
         dataArray = data
     }

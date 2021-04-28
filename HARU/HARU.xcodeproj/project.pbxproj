@@ -56,6 +56,7 @@
 		EA2427422627186000DCD80F /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2427412627186000DCD80F /* LocationViewController.swift */; };
 		EA2D6F3626240BB700237000 /* LinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2D6F3526240BB700237000 /* LinedTextView.swift */; };
 		EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3A414825B66CA40074282C /* AddEvent.storyboard */; };
+		EA4B090D263989DF0022368B /* HARUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4B090C263989DF0022368B /* HARUUITests.swift */; };
 		EA50F77925F06B510003095D /* ScheduleTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */; };
 		EA5CBB9026076EF500B24542 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */; };
 		EA5FA857261F2DC2009A42EC /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5FA851261F2DC2009A42EC /* circle@2x.png */; };
@@ -101,6 +102,16 @@
 		EAFBE0882612D6B300DE9C9A /* EventDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFBE0872612D6B300DE9C9A /* EventDetailViewController.storyboard */; };
 		EAFE1BA125CD183F0084B31C /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE1BA025CD183F0084B31C /* EventHandler.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA4B090F263989DF0022368B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA7F835E2594749C008B8ED5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA7F83652594749C008B8ED5;
+			remoteInfo = HARU;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1F074A76262476B600A25FD4 /* AddPictureDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPictureDiaryViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +165,9 @@
 		EA2427412627186000DCD80F /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		EA2D6F3526240BB700237000 /* LinedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinedTextView.swift; sourceTree = "<group>"; };
 		EA3A414825B66CA40074282C /* AddEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddEvent.storyboard; path = HARU/AddEvent.storyboard; sourceTree = SOURCE_ROOT; };
+		EA4B090A263989DF0022368B /* HARUUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HARUUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA4B090C263989DF0022368B /* HARUUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HARUUITests.swift; sourceTree = "<group>"; };
+		EA4B090E263989DF0022368B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewModel.swift; sourceTree = "<group>"; };
 		EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		EA5FA851261F2DC2009A42EC /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
@@ -204,6 +218,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EA4B0907263989DF0022368B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA7F83632594749C008B8ED5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -259,6 +280,15 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		EA4B090B263989DF0022368B /* HARUUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EA4B090C263989DF0022368B /* HARUUITests.swift */,
+				EA4B090E263989DF0022368B /* Info.plist */,
+			);
+			path = HARUUITests;
+			sourceTree = "<group>";
+		};
 		EA50F77725F06B3D0003095D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +316,7 @@
 				EADDEF5425FCE88800703E5F /* HARU-Bridging-Header.h */,
 				EA7F83682594749C008B8ED5 /* HARU */,
 				EA5FA850261F2DC2009A42EC /* Resources */,
+				EA4B090B263989DF0022368B /* HARUUITests */,
 				EA7F83672594749C008B8ED5 /* Products */,
 				43A1F05D4F2035B392D1F5DC /* Pods */,
 				FBACACBB553BC2094FE0DC7F /* Frameworks */,
@@ -296,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7F83662594749C008B8ED5 /* HARU.app */,
+				EA4B090A263989DF0022368B /* HARUUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -426,6 +458,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EA4B0909263989DF0022368B /* HARUUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA4B0913263989DF0022368B /* Build configuration list for PBXNativeTarget "HARUUITests" */;
+			buildPhases = (
+				EA4B0906263989DF0022368B /* Sources */,
+				EA4B0907263989DF0022368B /* Frameworks */,
+				EA4B0908263989DF0022368B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA4B0910263989DF0022368B /* PBXTargetDependency */,
+			);
+			name = HARUUITests;
+			productName = HARUUITests;
+			productReference = EA4B090A263989DF0022368B /* HARUUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		EA7F83652594749C008B8ED5 /* HARU */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA7F837A2594749D008B8ED5 /* Build configuration list for PBXNativeTarget "HARU" */;
@@ -451,9 +501,13 @@
 		EA7F835E2594749C008B8ED5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
+					EA4B0909263989DF0022368B = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = EA7F83652594749C008B8ED5;
+					};
 					EA7F83652594749C008B8ED5 = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -473,11 +527,19 @@
 			projectRoot = "";
 			targets = (
 				EA7F83652594749C008B8ED5 /* HARU */,
+				EA4B0909263989DF0022368B /* HARUUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EA4B0908263989DF0022368B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA7F83642594749C008B8ED5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -554,6 +616,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EA4B0906263989DF0022368B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA4B090D263989DF0022368B /* HARUUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA7F83622594749C008B8ED5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -631,6 +701,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		EA4B0910263989DF0022368B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA7F83652594749C008B8ED5 /* HARU */;
+			targetProxy = EA4B090F263989DF0022368B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		EA7F836F2594749C008B8ED5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -651,6 +729,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EA4B0911263989DF0022368B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				INFOPLIST_FILE = HARUUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LNJ.HARUUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HARU;
+			};
+			name = Debug;
+		};
+		EA4B0912263989DF0022368B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				INFOPLIST_FILE = HARUUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LNJ.HARUUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HARU;
+			};
+			name = Release;
+		};
 		EA7F83782594749D008B8ED5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -812,6 +930,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EA4B0913263989DF0022368B /* Build configuration list for PBXNativeTarget "HARUUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA4B0911263989DF0022368B /* Debug */,
+				EA4B0912263989DF0022368B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EA7F83612594749C008B8ED5 /* Build configuration list for PBXProject "HARU" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
