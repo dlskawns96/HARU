@@ -30,10 +30,12 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="3KP-ih-b3e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12.5" id="9RS-Vx-yi1"/>
                     <constraint firstAttribute="trailing" secondItem="c1j-rq-LwF" secondAttribute="trailing" constant="16" id="Ajp-sd-qL1"/>
-                    <constraint firstItem="3KP-ih-b3e" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FtO-5T-reK"/>
-                    <constraint firstItem="c1j-rq-LwF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XtM-Jv-tWQ"/>
+                    <constraint firstAttribute="bottom" secondItem="3KP-ih-b3e" secondAttribute="bottom" constant="12" id="ftC-g2-hGl"/>
+                    <constraint firstItem="c1j-rq-LwF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="lyt-KK-E1K"/>
                     <constraint firstItem="3KP-ih-b3e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="vxr-NZ-hT2"/>
+                    <constraint firstAttribute="bottom" secondItem="c1j-rq-LwF" secondAttribute="bottom" constant="12" id="y4q-m5-RKT"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

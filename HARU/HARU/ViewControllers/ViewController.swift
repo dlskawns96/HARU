@@ -38,9 +38,7 @@ class ViewController: UIViewController {
     
     var state = UIApplication.shared.applicationState {
         didSet {
-            print("@@@@")
             if state == .active {
-                
                 fsCalendar.reloadData()
             }
         }
@@ -54,7 +52,7 @@ class ViewController: UIViewController {
         } else {
             authorizationCheck()
         }
-        
+        CoreDataManager.shared.fetchDiary()
         self.initFSCalendar()
         self.registerObservers()
         EventDetailViewController.delegate = self
@@ -130,6 +128,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(onEventRemovedNotification(notification:)), name:EventHandler.eventRemovedNoti, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onEventModifiedNotification(notification:)), name:MainCalendarModel.mainCalendarEventModifiedNoti, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onWillEnterForegroundNotification(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNewEvaluationNotification(notification: )), name: DiaryViewController.newEvaluation, object: nil)
     }
     
     private func loadEventData() {
@@ -183,6 +182,10 @@ class ViewController: UIViewController {
     
     @objc func onWillEnterForegroundNotification(notification: Notification) {
 //        fsCalendar.reloadData()
+    }
+    
+    @objc func onNewEvaluationNotification(notification: Notification) {
+        fsCalendar.reloadData()
     }
     
     func getItemsOfDate(startDate: Date, endDate: Date) -> [MainCalendarCellItem] {

@@ -30,9 +30,11 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="tiz-Su-DXo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AEa-n6-yga"/>
+                    <constraint firstItem="tiz-Su-DXo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12.5" id="4IW-WP-egp"/>
+                    <constraint firstAttribute="bottom" secondItem="Igl-fS-HCQ" secondAttribute="bottom" constant="12" id="Pjc-gz-WZt"/>
                     <constraint firstAttribute="trailing" secondItem="tiz-Su-DXo" secondAttribute="trailing" constant="16" id="RjJ-n2-ybu"/>
-                    <constraint firstItem="Igl-fS-HCQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UeZ-4f-u5n"/>
+                    <constraint firstAttribute="bottom" secondItem="tiz-Su-DXo" secondAttribute="bottom" constant="12" id="Ti3-GN-t0t"/>
+                    <constraint firstItem="Igl-fS-HCQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12.5" id="ZEU-V6-cjg"/>
                     <constraint firstItem="Igl-fS-HCQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="z6V-KQ-lHW"/>
                 </constraints>
             </tableViewCellContentView>
