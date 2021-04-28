@@ -1,0 +1,6 @@
+module Pods_HARUTests {
+  umbrella header "Pods-HARUTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
