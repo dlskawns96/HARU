@@ -39,7 +39,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-HY-9MJ" userLabel="캘린더 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -296,7 +296,7 @@
             <objects>
                 <viewController storyboardIdentifier="SelectDateController" id="Nzo-Wt-ceS" customClass="SelectDateController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gqT-Gu-Dfh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
@@ -441,7 +441,7 @@
             <objects>
                 <viewController id="WAC-kK-gea" customClass="DiaryWritingViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cUw-HG-0lg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qC-pl-lvZ" customClass="LinedTextView" customModule="HARU" customModuleProvider="target">
@@ -517,63 +517,79 @@
                                     <constraint firstAttribute="height" constant="400" id="BfB-j4-AhE"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCF-c6-nCM">
-                                <rect key="frame" x="360" y="527" width="34" height="30"/>
-                                <state key="normal" title="clear"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCF-c6-nCM">
+                                <rect key="frame" x="347" y="527" width="47" height="471"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="mKB-eB-dBs"/>
+                                </constraints>
+                                <state key="normal" image="Pen"/>
                                 <connections>
                                     <action selector="eraserBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="hPU-GK-pcH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkj-TT-p0t">
-                                <rect key="frame" x="20" y="527" width="30" height="30"/>
-                                <state key="normal" title="Red"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkj-TT-p0t">
+                                <rect key="frame" x="20" y="527" width="47" height="471"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="1rA-bI-3of"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" image="Pen"/>
                                 <connections>
                                     <action selector="redBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="am3-Ef-eSn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdj-xs-Lbo">
-                                <rect key="frame" x="105" y="527" width="31" height="30"/>
-                                <state key="normal" title="Blue"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdj-xs-Lbo">
+                                <rect key="frame" x="82" y="527" width="47" height="471"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="hSM-2l-CV5"/>
+                                </constraints>
+                                <state key="normal" image="Pen"/>
                                 <connections>
                                     <action selector="blueBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="7cg-Hs-Klz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQo-KK-ydI">
-                                <rect key="frame" x="281" y="527" width="38" height="30"/>
-                                <state key="normal" title="Black"/>
-                                <connections>
-                                    <action selector="blackBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="Lme-TE-ah3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtD-BX-hp7">
-                                <rect key="frame" x="186" y="527" width="42" height="30"/>
-                                <state key="normal" title="Green"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtD-BX-hp7">
+                                <rect key="frame" x="144" y="527" width="47" height="471"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="Jah-94-2aK"/>
+                                </constraints>
+                                <state key="normal" image="Pen"/>
                                 <connections>
                                     <action selector="greenBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="AcR-W4-hHY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQo-KK-ydI">
+                                <rect key="frame" x="206" y="527" width="47" height="471"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="3w2-tY-vHQ"/>
+                                </constraints>
+                                <state key="normal" image="Pen"/>
+                                <connections>
+                                    <action selector="blackBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="Lme-TE-ah3"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1U0-MJ-Pah"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bkj-TT-p0t" firstAttribute="leading" secondItem="1U0-MJ-Pah" secondAttribute="leading" constant="20" id="2mP-DL-tyo"/>
                             <constraint firstItem="3of-FT-baJ" firstAttribute="centerX" secondItem="2SF-vn-RuW" secondAttribute="centerX" id="42I-w8-7WZ"/>
+                            <constraint firstItem="mdj-xs-Lbo" firstAttribute="leading" secondItem="bkj-TT-p0t" secondAttribute="trailing" constant="15" id="5zo-zz-LFt"/>
                             <constraint firstItem="mdj-xs-Lbo" firstAttribute="top" secondItem="3of-FT-baJ" secondAttribute="bottom" constant="50" id="9Of-8v-q6S"/>
-                            <constraint firstItem="ZtD-BX-hp7" firstAttribute="centerX" secondItem="3of-FT-baJ" secondAttribute="centerX" id="HZb-BK-Wjd"/>
+                            <constraint firstItem="bkj-TT-p0t" firstAttribute="leading" secondItem="1U0-MJ-Pah" secondAttribute="leading" constant="20" id="DAh-c9-UPe"/>
                             <constraint firstItem="bkj-TT-p0t" firstAttribute="top" secondItem="3of-FT-baJ" secondAttribute="bottom" constant="50" id="IUS-5f-KCF"/>
+                            <constraint firstItem="zQo-KK-ydI" firstAttribute="leading" secondItem="ZtD-BX-hp7" secondAttribute="trailing" constant="15" id="Lgt-ID-28W"/>
                             <constraint firstItem="1U0-MJ-Pah" firstAttribute="trailing" secondItem="SfU-Xd-Dsl" secondAttribute="trailing" constant="12" id="NLW-EA-INq"/>
+                            <constraint firstItem="1U0-MJ-Pah" firstAttribute="trailing" secondItem="BCF-c6-nCM" secondAttribute="trailing" constant="20" id="Q1A-9y-vgI"/>
                             <constraint firstItem="SfU-Xd-Dsl" firstAttribute="leading" secondItem="1U0-MJ-Pah" secondAttribute="leading" constant="12" id="Rzh-Mb-pI7"/>
-                            <constraint firstItem="ZtD-BX-hp7" firstAttribute="leading" secondItem="mdj-xs-Lbo" secondAttribute="trailing" constant="50" id="YB4-sI-EjI"/>
                             <constraint firstItem="SfU-Xd-Dsl" firstAttribute="bottom" secondItem="3of-FT-baJ" secondAttribute="bottom" constant="-2" id="aIS-Ze-Z1r"/>
-                            <constraint firstItem="zQo-KK-ydI" firstAttribute="leading" secondItem="ZtD-BX-hp7" secondAttribute="trailing" constant="53" id="dsH-gd-pf3"/>
                             <constraint firstItem="ZtD-BX-hp7" firstAttribute="top" secondItem="3of-FT-baJ" secondAttribute="bottom" constant="50" id="eao-hs-Pa3"/>
                             <constraint firstItem="BCF-c6-nCM" firstAttribute="top" secondItem="3of-FT-baJ" secondAttribute="bottom" constant="50" id="i4X-so-KQY"/>
                             <constraint firstItem="3of-FT-baJ" firstAttribute="leading" secondItem="1U0-MJ-Pah" secondAttribute="leading" constant="10" id="n58-Yd-cRW"/>
                             <constraint firstItem="3of-FT-baJ" firstAttribute="top" secondItem="SfU-Xd-Dsl" secondAttribute="top" constant="-2" id="oO0-DN-TeN"/>
                             <constraint firstItem="zQo-KK-ydI" firstAttribute="top" secondItem="3of-FT-baJ" secondAttribute="bottom" constant="50" id="rWU-AI-DMm"/>
-                            <constraint firstItem="1U0-MJ-Pah" firstAttribute="trailing" secondItem="BCF-c6-nCM" secondAttribute="trailing" constant="20" id="wLH-dD-jHd"/>
                             <constraint firstItem="SfU-Xd-Dsl" firstAttribute="centerX" secondItem="2SF-vn-RuW" secondAttribute="centerX" id="xVm-bP-Hob"/>
                             <constraint firstItem="SfU-Xd-Dsl" firstAttribute="top" secondItem="2SF-vn-RuW" secondAttribute="top" constant="75" id="xl7-ok-8UY"/>
+                            <constraint firstItem="ZtD-BX-hp7" firstAttribute="leading" secondItem="mdj-xs-Lbo" secondAttribute="trailing" constant="15" id="zC4-Iy-98u"/>
                             <constraint firstItem="1U0-MJ-Pah" firstAttribute="trailing" secondItem="3of-FT-baJ" secondAttribute="trailing" constant="10" id="zui-Us-Q2t"/>
                         </constraints>
                     </view>
@@ -585,7 +601,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="blackBtn" destination="zQo-KK-ydI" id="jeh-RW-DXS"/>
+                        <outlet property="blueBtn" destination="mdj-xs-Lbo" id="7RR-8c-3DZ"/>
+                        <outlet property="eraserBtn" destination="BCF-c6-nCM" id="HCg-1o-uI3"/>
+                        <outlet property="greenBtn" destination="ZtD-BX-hp7" id="7RP-Zc-BGg"/>
                         <outlet property="imageView" destination="SfU-Xd-Dsl" id="qcb-s5-lAT"/>
+                        <outlet property="redBtn" destination="bkj-TT-p0t" id="XyZ-B7-fD4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdx-3b-0Bo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -967,6 +988,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Pen" width="93" height="471"/>
         <image name="Spring" width="177" height="15"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <image name="lined_note" width="372" height="600"/>
