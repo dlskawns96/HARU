@@ -19,28 +19,55 @@ class AddPictureDiaryViewController : UIViewController {
     // 선의 색상을 빨간색으로 설정
     var lineColor = UIColor.black.cgColor
     
-    @IBAction func clearBtnClicked(_ sender: Any) {
-        imageView.image = nil
+    var originalX: Double!
+    var origianlY: Double!
+    
+    // Pen
+    @IBOutlet weak var redBtn: UIButton!
+    @IBOutlet weak var blueBtn: UIButton!
+    @IBOutlet weak var greenBtn: UIButton!
+    @IBOutlet weak var blackBtn: UIButton!
+    @IBOutlet weak var eraserBtn: UIButton!
+    
+    @IBAction func eraserBtnClicked(_ sender: Any) {
+        lineColor = UIColor.white.cgColor
+        lineSize = 5.0
+        
+        setBtnYPosition()
+        eraserBtn.frame.origin.y = CGFloat(origianlY - 25)
+        
     }
     
     @IBAction func redBtnClicked(_ sender: Any) {
         lineColor = UIColor.red.cgColor
+        lineSize = 2.0
+        
+        setBtnYPosition()
+        redBtn.frame.origin.y = CGFloat(origianlY - 25)
     }
     
     @IBAction func greenBtnClicked(_ sender: Any) {
         lineColor = UIColor.green.cgColor
+        lineSize = 2.0
+        
+        setBtnYPosition()
+        greenBtn.frame.origin.y = CGFloat(origianlY - 25)
     }
     
     @IBAction func blueBtnClicked(_ sender: Any) {
         lineColor = UIColor.blue.cgColor
+        lineSize = 2.0
+        
+        setBtnYPosition()
+        blueBtn.frame.origin.y = CGFloat(origianlY - 25)
     }
     
     @IBAction func blackBtnClicked(_ sender: Any) {
         lineColor = UIColor.black.cgColor
-    }
-    
-    @IBAction func backBtnClicked(_ sender: Any) {
-
+        lineSize = 2.0
+        
+        setBtnYPosition()
+        blackBtn.frame.origin.y = CGFloat(origianlY - 25)
     }
     
     @IBAction func finishBtnClicked(_ sender: Any) {
@@ -54,12 +81,21 @@ class AddPictureDiaryViewController : UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func setBtnYPosition() {
+        redBtn.frame.origin.y = CGFloat(origianlY)
+        blueBtn.frame.origin.y = CGFloat(origianlY)
+        greenBtn.frame.origin.y = CGFloat(origianlY)
+        blackBtn.frame.origin.y = CGFloat(origianlY)
+        eraserBtn.frame.origin.y = CGFloat(origianlY)
+    }
+    
     func saveBtn(){
         //그림 일기 저장 구현
         DiaryViewController.image = imageView.image
         // 닫기
         self.navigationController?.popViewController(animated: true)
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 현재 발생한 터치 이벤트를 가지고 옴
         let touch = touches.first! as UITouch
@@ -140,7 +176,30 @@ class AddPictureDiaryViewController : UIViewController {
 
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        origianlY = Double(redBtn.frame.origin.y)
+        
+        let penImg = UIImage(named: "Pen")?.withRenderingMode(.alwaysTemplate)
+        
+        redBtn.setImage(penImg, for: .normal)
+        redBtn.tintColor = UIColor.red
+        
+        blueBtn.setImage(penImg, for: .normal)
+        blueBtn.tintColor = UIColor.blue
+        
+        greenBtn.setImage(penImg, for: .normal)
+        greenBtn.tintColor = UIColor.green
+        
+        blackBtn.setImage(penImg, for: .normal)
+        blackBtn.tintColor = UIColor.black
+
     }
 }
