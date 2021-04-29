@@ -1,9 +1,10 @@
-# HARU
-## 당신의 하루를 소중히 하는 캘린더 🗓
-### HARU는 우리의 하루를 소중하게 여기는 캘린더, 일기 어플리케이션 입니다.
+# HARU 
+<img height="200" src="https://user-images.githubusercontent.com/22260098/116566810-044ca680-a942-11eb-984c-e4d25df780fd.png">
+## 당신의 하루를 소중히 하는 캘린더, 그림일기 🗓
+### HARU는 우리의 하루를 소중하게 여기는 캘린더, 그림일기 어플리케이션 입니다.
 <p>
-<img height="500" src="https://user-images.githubusercontent.com/22260098/111943685-44d22c80-8b19-11eb-8890-c54f571fbe56.png">
-<img height="500" src="https://user-images.githubusercontent.com/22260098/111943319-8b735700-8b18-11eb-8560-3e112f294885.png">
+<img height="500" src="https://user-images.githubusercontent.com/22260098/111943685-44d22c80-8b19-11eb-8890-c54f571fbe56.png">&nbsp
+<img height="500" src="https://user-images.githubusercontent.com/22260098/116567417-90f76480-a942-11eb-8217-8f5c86198f02.png">
 </p>
 
 <br>
@@ -12,7 +13,7 @@
  
 ### 불필요한 요소 없이 한눈에 일정을 등록하고 확인하세요 😃
 <p>
-<img height="500" src="https://user-images.githubusercontent.com/22260098/111943690-4865b380-8b19-11eb-876b-aa3e208055ef.png"> &nbsp
+<img height="500" src="https://user-images.githubusercontent.com/22260098/116566670-e97a3200-a941-11eb-898a-20d3ea4713b7.png"> &nbsp
 <img height="500" src="https://user-images.githubusercontent.com/22260098/111943701-4d2a6780-8b19-11eb-8775-cf780c2c075d.png"> &nbsp
 <img height="500" src="https://user-images.githubusercontent.com/22260098/111944318-b6f74100-8b1a-11eb-9530-fd69c270f9d9.gif">
 </p>
