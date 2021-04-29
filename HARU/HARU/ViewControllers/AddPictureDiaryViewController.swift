@@ -19,28 +19,29 @@ class AddPictureDiaryViewController : UIViewController {
     // 선의 색상을 빨간색으로 설정
     var lineColor = UIColor.black.cgColor
     
-    @IBAction func clearBtnClicked(_ sender: Any) {
-        imageView.image = nil
+    @IBAction func eraserBtnClicked(_ sender: Any) {
+        lineColor = UIColor.white.cgColor
+        lineSize = 5.0
     }
     
     @IBAction func redBtnClicked(_ sender: Any) {
         lineColor = UIColor.red.cgColor
+        lineSize = 2.0
     }
     
     @IBAction func greenBtnClicked(_ sender: Any) {
         lineColor = UIColor.green.cgColor
+        lineSize = 2.0
     }
     
     @IBAction func blueBtnClicked(_ sender: Any) {
         lineColor = UIColor.blue.cgColor
+        lineSize = 2.0
     }
     
     @IBAction func blackBtnClicked(_ sender: Any) {
         lineColor = UIColor.black.cgColor
-    }
-    
-    @IBAction func backBtnClicked(_ sender: Any) {
-
+        lineSize = 2.0
     }
     
     @IBAction func finishBtnClicked(_ sender: Any) {
