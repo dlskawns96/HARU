@@ -106,11 +106,7 @@ class CoreDataManager {
         return list
         
     }
-    
-//    static func returnDiaryCollection(of month: Date) -> [Diary] {
-//
-//    }
-    
+
     func saveEvaluation(_ evaluation: Int16?, _ date: String?) {
 
         var date_ver_Date = Date()
@@ -143,7 +139,49 @@ class CoreDataManager {
         
         saveContext()
     }
+
+//    func returnImageURL(path: String) -> Diary{
+//        var diary: Diary
+//
+//        for item in CoreDataManager.diaryList {
+//            if item.
+//        }
+//    }
     
+    func saveImageURL(path: String) {
+        
+        var check: Bool = true
+        
+        var date_ver_Date = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        date_ver_Date = dateFormatter.date(from: path)!
+
+        // 다이어리 이미 있을때
+        for item in CoreDataManager.diaryList {
+            if item.date == path {
+                item.imagePath = path
+                check = false
+                break
+            }
+        }
+        
+        // 다이어리 없을 때
+        if check {
+            let newDiary = Diary(context: mainContext)
+            newDiary.date = path
+            newDiary.date2 = date_ver_Date
+            newDiary.imagePath = path
+            newDiary.content = " "
+            newDiary.evaluation = 0
+        
+            CoreDataManager.diaryList.insert(newDiary, at: 0)
+        }
+        
+        saveContext()
+    }
+
     static func returnDiaryEvaluation(date:String) -> Int {
         
         var evaluation: Int = 0

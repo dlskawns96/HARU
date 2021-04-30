@@ -108,6 +108,10 @@ class DiaryTableViewModel {
         SettingViewController.deleteCheck = true
         
     }
+    
+    func savePictureDiary() {
+        
+    }
 
 }
 

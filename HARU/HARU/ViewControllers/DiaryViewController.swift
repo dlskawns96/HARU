@@ -53,6 +53,8 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     let today = NSDate()
     
     let dataSource = DiaryTableViewModel()
+    let imageDataSource = PictureDiaryModel()
+    
     var dataArray = [Diary]() {
         didSet {
             //tableView.reloadData()
@@ -124,7 +126,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dToday = dateFormatter.string(from: today as Date)
         
-        pictureDiary.image = DiaryViewController.image
+        //pictureDiary.image = DiaryViewController.image
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(AddPictureDiary(sender:)))
         self.shadowView.addGestureRecognizer(gesture)
@@ -146,8 +148,13 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         if dataArray.count > 0 {
             textView.text = dataArray[0].content
+            
+            if dataArray[0].imagePath != nil {
+                let image = imageDataSource.loadImage(path: dSelectedDate!)
+                pictureDiary.image = image
+            }
+
         }
-    
     }
 
     override func viewDidLoad() {

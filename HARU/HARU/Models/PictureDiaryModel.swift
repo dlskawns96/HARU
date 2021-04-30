@@ -19,10 +19,12 @@ class PictureDiaryModel {
             
         }
 
-        let imageURL = directoryURL.appendingPathComponent("20210430.png")
+        let imageURL = directoryURL.appendingPathComponent(path+".png")
+        
         do {
             let pngImageData = image.pngData()
             try pngImageData?.write(to: imageURL)
+            CoreDataManager.shared.saveImageURL(path: path)
             
         } catch let e {
             print(e.localizedDescription)
@@ -34,7 +36,7 @@ class PictureDiaryModel {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let directoryURL = documentsURL.appendingPathComponent("HARU")
-        let imagePath = directoryURL.appendingPathComponent(path)
+        let imagePath = directoryURL.appendingPathComponent(path+".png")
 
         let image = UIImage(contentsOfFile: imagePath.path)
         return image!
