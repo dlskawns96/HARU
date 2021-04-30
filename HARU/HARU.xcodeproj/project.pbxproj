@@ -31,6 +31,7 @@
 		1FCA59C0261B4363005DDE0E /* NotificationSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCA59BE261B4363005DDE0E /* NotificationSettingCell.xib */; };
 		1FCC4C7525F799CE0064D687 /* EventCollectionTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */; };
 		1FE2522E2606440400E28D7C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2522D2606440400E28D7C /* SettingViewController.swift */; };
+		1FE44065263BE5FE00151DE2 /* PictureDiaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE44064263BE5FE00151DE2 /* PictureDiaryModel.swift */; };
 		1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6078D2597514100A0882D /* SelectDateController.swift */; };
 		1FF13FC925BB129D008624D8 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF13FC825BB129D008624D8 /* DiaryViewController.swift */; };
 		1FF13FCC25BB12B6008624D8 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF13FCB25BB12B6008624D8 /* ScheduleViewController.swift */; };
@@ -138,6 +139,7 @@
 		1FCA59BE261B4363005DDE0E /* NotificationSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSettingCell.xib; sourceTree = "<group>"; };
 		1FCC4C7425F799CE0064D687 /* EventCollectionTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventCollectionTableViewController.storyboard; sourceTree = "<group>"; };
 		1FE2522D2606440400E28D7C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		1FE44064263BE5FE00151DE2 /* PictureDiaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureDiaryModel.swift; sourceTree = "<group>"; };
 		1FE6078D2597514100A0882D /* SelectDateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateController.swift; sourceTree = "<group>"; };
 		1FF13FC825BB129D008624D8 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1FF13FCB25BB12B6008624D8 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				EAF7F1BC25F4A6100029E787 /* EventCollectionTableViewModel.swift */,
 				EAF5DD7F25F5E41000763AF5 /* MainCalendarModel.swift */,
 				EADDEF6325FEF0A900703E5F /* AddEventTableViewModel.swift */,
+				1FE44064263BE5FE00151DE2 /* PictureDiaryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				EA66C24025E282820043A992 /* EventCollectionTableViewController.swift in Sources */,
 				EA7F836A2594749C008B8ED5 /* AppDelegate.swift in Sources */,
 				1F65E68D26218032001533C2 /* AppVersionCellTableViewCell.swift in Sources */,
+				1FE44065263BE5FE00151DE2 /* PictureDiaryModel.swift in Sources */,
 				EA2427422627186000DCD80F /* LocationViewController.swift in Sources */,
 				EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */,
 				1F985A2A25FF9634008E59A2 /* RoundUIView.swift in Sources */,

@@ -29,6 +29,13 @@ class AddPictureDiaryViewController : UIViewController {
     @IBOutlet weak var blackBtn: UIButton!
     @IBOutlet weak var eraserBtn: UIButton!
     
+    let dataSource = PictureDiaryModel()
+    
+    var selectedDate: String!
+    let dateFormatter = DateFormatter()
+    let AD = UIApplication.shared.delegate as? AppDelegate
+    
+    
     @IBAction func eraserBtnClicked(_ sender: Any) {
         lineColor = UIColor.white.cgColor
         lineSize = 5.0
@@ -91,11 +98,13 @@ class AddPictureDiaryViewController : UIViewController {
     
     func saveBtn(){
         //그림 일기 저장 구현
-        DiaryViewController.image = imageView.image
+        dataSource.saveImage(image: imageView.image!, path: selectedDate)
+        //dataSource.loadImage()
+        //DiaryViewController.image = imageView.image
         // 닫기
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 현재 발생한 터치 이벤트를 가지고 옴
         let touch = touches.first! as UITouch
@@ -180,6 +189,7 @@ class AddPictureDiaryViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
+        selectedDate = AD?.selectedDate
     }
     
     override func viewDidLoad() {
