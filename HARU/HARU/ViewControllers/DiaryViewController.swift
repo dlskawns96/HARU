@@ -104,6 +104,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     }
 
     @objc func AddPictureDiary(sender: UIGestureRecognizer) {
+        AddPictureDiaryViewController.image = pictureDiary.image
         performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
     }
     

@@ -15,7 +15,7 @@ class PictureDiaryModel {
         do {
             try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: false, attributes: nil)
         } catch let e {
-            print(e.localizedDescription)
+            //print(e.localizedDescription)
             
         }
 

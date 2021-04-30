@@ -9,6 +9,7 @@ import UIKit
 
 class AddPictureDiaryViewController : UIViewController {
     
+    static var image: UIImage!
     @IBOutlet weak var imageView: UIImageView!
     
     var lastLine: CGPoint!
@@ -190,6 +191,7 @@ class AddPictureDiaryViewController : UIViewController {
         super.viewWillAppear(true)
 
         selectedDate = AD?.selectedDate
+        imageView.image = AddPictureDiaryViewController.image
     }
     
     override func viewDidLoad() {
