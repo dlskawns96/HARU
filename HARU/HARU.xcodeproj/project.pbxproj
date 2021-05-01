@@ -52,6 +52,8 @@
 		EA0E06CF26032CF000B1B431 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0E06CD26032CF000B1B431 /* SwitchCell.xib */; };
 		EA0E06D22603398D00B1B431 /* AddEventTableItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E06D12603398D00B1B431 /* AddEventTableItems.swift */; };
 		EA1219B52594C255007EDE8E /* CalendarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1219B42594C255007EDE8E /* CalendarLoader.swift */; };
+		EA1B75E3263D8BA500DFB346 /* PushNotiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1B75E2263D8BA500DFB346 /* PushNotiHandler.swift */; };
+		EA1B75E4263D8BA500DFB346 /* PushNotiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1B75E2263D8BA500DFB346 /* PushNotiHandler.swift */; };
 		EA24273B262705C600DCD80F /* LocationSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA242739262705C600DCD80F /* LocationSelectCell.swift */; };
 		EA24273C262705C600DCD80F /* LocationSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA24273A262705C600DCD80F /* LocationSelectCell.xib */; };
 		EA2427422627186000DCD80F /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2427412627186000DCD80F /* LocationViewController.swift */; };
@@ -162,6 +164,8 @@
 		EA0E06CD26032CF000B1B431 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		EA0E06D12603398D00B1B431 /* AddEventTableItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventTableItems.swift; sourceTree = "<group>"; };
 		EA1219B42594C255007EDE8E /* CalendarLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarLoader.swift; path = HARU/Classes/CalendarLoader.swift; sourceTree = SOURCE_ROOT; };
+		EA1B75CD263D7E9500DFB346 /* HARU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HARU.entitlements; sourceTree = "<group>"; };
+		EA1B75E2263D8BA500DFB346 /* PushNotiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotiHandler.swift; sourceTree = "<group>"; };
 		EA242739262705C600DCD80F /* LocationSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectCell.swift; sourceTree = "<group>"; };
 		EA24273A262705C600DCD80F /* LocationSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationSelectCell.xib; sourceTree = "<group>"; };
 		EA2427412627186000DCD80F /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				EA0E06B52603258800B1B431 /* AddEventCellControllerFactory.swift */,
 				EA2D6F3526240BB700237000 /* LinedTextView.swift */,
 				EA9BC3672632EB8B00DFBE67 /* HaruEvent.swift */,
+				EA1B75E2263D8BA500DFB346 /* PushNotiHandler.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 		EA7F83682594749C008B8ED5 /* HARU */ = {
 			isa = PBXGroup;
 			children = (
+				EA1B75CD263D7E9500DFB346 /* HARU.entitlements */,
 				EA50F77725F06B3D0003095D /* Models */,
 				EAD77DF425D814D90020C182 /* Cells */,
 				EA07FBF125B906BE003B2529 /* Classes */,
@@ -623,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA1B75E4263D8BA500DFB346 /* PushNotiHandler.swift in Sources */,
 				EA4B090D263989DF0022368B /* HARUUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -695,6 +702,7 @@
 				EAC9678F260B87B700A12DA6 /* EmptyTableViewCell.swift in Sources */,
 				1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */,
 				EACD3B362611E93F00AC840E /* EventNoteCell.swift in Sources */,
+				EA1B75E3263D8BA500DFB346 /* PushNotiHandler.swift in Sources */,
 				1FE2522E2606440400E28D7C /* SettingViewController.swift in Sources */,
 				1FF7AFB2261CADBA00C9B1FA /* DeveloperInfoViewController.swift in Sources */,
 				EAD77DF625D814F30020C182 /* TitleSetTableViewCell.swift in Sources */,
@@ -895,15 +903,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8C7RC2WQ7N;
+				CODE_SIGN_ENTITLEMENTS = HARU/HARU.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8RLH6CULJ3;
 				INFOPLIST_FILE = HARU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HARU-2";
+				MARKETING_VERSION = 0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARU.HARU.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "HARU HARU Debug";
 				SWIFT_OBJC_BRIDGING_HEADER = "HARU-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -916,15 +928,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8C7RC2WQ7N;
+				CODE_SIGN_ENTITLEMENTS = HARU/HARU.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8RLH6CULJ3;
 				INFOPLIST_FILE = HARU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HARU-2";
+				MARKETING_VERSION = 0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARU.HARU.release;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "HARU HARU Release";
 				SWIFT_OBJC_BRIDGING_HEADER = "HARU-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
