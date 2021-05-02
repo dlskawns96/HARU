@@ -97,7 +97,7 @@ class CoreDataManager {
         for item in CoreDataManager.diaryList {
             let endIdx:String.Index = (item.date?.index(item.date!.startIndex, offsetBy: 6))!
             if item.date![item.date!.startIndex...endIdx] == date {
-                if item.content != " " {
+                if item.content!.filter({$0 != " " && $0 != "\n"}).count > 0 {
                     list.append(item)
                 }
             }
