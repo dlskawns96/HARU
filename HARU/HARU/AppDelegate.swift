@@ -17,11 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var selectedDate: String?
     var selectedDateEvents: [EKEvent]?  // 선택한 날짜의 이벤트들 저장
     let userNotificationCenter = UNUserNotificationCenter.current()
+    let notificationTitle = "오늘 하루를 기록하세요"
+    let notificationMessages = ["오늘은 무슨 일이 있었나요?", "오늘 하루는 어땠나요?", "오늘도 수고하셨어요"]
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         registerForRemoteNotifications()
-        sendNotification(seconds: 60)
+        if UserDefaults.standard.bool(forKey: "NotificationSwitchState") {
+            sendNotification(date: getNotificationTime())
+        }
+        
         return true
     }
     
@@ -43,24 +48,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DropDown.startListeningToKeyboard()
     }
     
+    private func getNotificationTime() -> DateComponents {
+        var dateComponent = DateComponents()
+        dateComponent.hour = 9
+        dateComponent.minute = 0
+//        guard let date = UserDefaults.standard.object(forKey: "DiaryNotificationDate") as? Date else {
+//            return dateComponent
+//        }
+//        dateComponent.hour = Calendar.current.component(.hour, from: date)
+//        dateComponent.minute = Calendar.current.component(.minute, from: date)
+        return dateComponent
+    }
+    
     private func registerForRemoteNotifications() {
-        
-        // 1. 푸시 center (유저에게 권한 요청 용도)
-        let center = UNUserNotificationCenter.current()
-        center.delegate = self // push처리에 대한 delegate - UNUserNotificationCenterDelegate
-        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
-        center.requestAuthorization(options: options) { (granted, error) in
-            
-            guard granted else {
-                return
+        userNotificationCenter.getNotificationSettings { [self] (settings) in
+            if(settings.authorizationStatus == .authorized) {
+                print("Notification Auth: true")
+            } else {
+                let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+                userNotificationCenter.requestAuthorization(options: options, completionHandler: { (didAllow, Error) in
+                    print("Notification Auth: allowed")
+                    UserDefaults.standard.set(true, forKey: "NotificationSwitchState")
+                    sendNotification(date: getNotificationTime())
+                })
             }
-            
-            DispatchQueue.main.async {
-                // 2. APNs에 디바이스 토큰 등록
-                UIApplication.shared.registerForRemoteNotifications()
-                print("@@@")
-            }
-        }
+        }        
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -71,14 +83,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 토큰 등록 실패 시 호출
     }
     
-    func sendNotification(seconds: Double) {
+    func sendNotification(date: DateComponents) {
+        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+        
+        print("Notification Set:", date)
         let notificationContent = UNMutableNotificationContent()
+        
+        notificationContent.title = notificationTitle
+        notificationContent.body = notificationMessages.randomElement()!
 
-        notificationContent.title = "알림 테스트"
-        notificationContent.body = "이것은 알림을 테스트 하는 것이다"
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: true)
-        let request = UNNotificationRequest(identifier: "testNotification",
+        userNotificationCenter.removeAllDeliveredNotifications()
+        let request = UNNotificationRequest(identifier: "DiaryNotification",
                                             content: notificationContent,
                                             trigger: trigger)
 
@@ -93,13 +108,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
     // 3. 앱이 foreground상태 일 때, 알림이 온 경우 어떻게 표현할 것인지 처리
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        // 푸시가 오면 alert, badge, sound표시를 하라는 의미
-        completionHandler([.banner, .badge, .sound])
-    }
+//    func userNotificationCenter(_ center: UNUserNotificationCenter,
+//                                willPresent notification: UNNotification,
+//                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//
+//        // 푸시가 오면 alert, badge, sound표시를 하라는 의미
+//        completionHandler([.banner, .badge, .sound])
+//    }
     
     // push가 온 경우 처리
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
