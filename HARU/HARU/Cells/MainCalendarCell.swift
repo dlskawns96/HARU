@@ -29,7 +29,7 @@ class MainCalendarCell: FSCalendarCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.borderWidth = 1
-        self.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+        self.borderColor = UIColor.lightGray.withAlphaComponent(0.25)
         initCell()
         insertTodayCirlce()
     }
@@ -51,23 +51,14 @@ class MainCalendarCell: FSCalendarCell {
         self.evaluationLabel.translatesAutoresizingMaskIntoConstraints = false
         self.evaluationLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
         self.evaluationLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
-        
-//        if cellDate != nil {
-//            indicateToday(date: cellDate!)
-//        }
+    
     }
     
     private func indicateToday(date: Date) {
         if self.gregorian.isDateInToday(date) {
             self.borderColor = UIColor(named: "MainUIColor")
-//            self.circleImageView.isHidden = false
-//            self.circleImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
-//            self.circleImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
-//            self.circleImageView.widthAnchor.constraint(equalTo: self.circleImageView.heightAnchor, multiplier: 1.5).isActive = true
-//            self.circleImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         } else {
-//            self.circleImageView.isHidden = true
-            self.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+            self.borderColor = UIColor.lightGray.withAlphaComponent(0.25)
         }
     }
     
@@ -91,9 +82,15 @@ class MainCalendarCell: FSCalendarCell {
     
     func configureCell(with item: MainCalendarCellItem) {
         indicateEvaluation()
+        for view in self.subviews {
+            if view is UILabel {
+                view.removeFromSuperview()
+            }
+        }
         if item.numOfEvents != 0 {
             let height = Double(self.bounds.height / 5.0)
             let posY = height * 2.0
+            
             for idx in 0..<item.eventsToIndicate.count {
                 if item.eventsToIndicate[idx] == nil {
                     continue
@@ -114,12 +111,6 @@ class MainCalendarCell: FSCalendarCell {
                     }
                     self.addSubview(lab)
                     lab.backgroundColor = UIColor(cgColor: item.eventsToIndicate[idx]!.calendar.cgColor).withAlphaComponent(0.75)
-                }
-            }
-        } else {
-            for view in self.subviews {
-                if view is UILabel {
-                    view.removeFromSuperview()
                 }
             }
         }

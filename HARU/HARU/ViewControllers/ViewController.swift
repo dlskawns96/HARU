@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     var dataArray = [[[MainCalendarCellItem]]]() {
         didSet {
             fsCalendar.reloadData()
+            fsCalendar.isUserInteractionEnabled = true
         }
     }
     
@@ -52,10 +53,7 @@ class ViewController: UIViewController {
         } else {
             authorizationCheck()
         }
-        
-        
-
-        
+        fsCalendar.isUserInteractionEnabled = false
         CoreDataManager.shared.fetchDiary()
         self.initFSCalendar()
         self.registerObservers()
@@ -66,7 +64,6 @@ class ViewController: UIViewController {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.isTranslucent = false
         fsCalendar.deselect(selectedDate)
-//        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "나눔손글씨 다행체", size: 27)!]
     }
     
     deinit {
@@ -84,8 +81,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func DiaryCollectionBtnClicked(_ sender: Any) {
-//        guard let controller = storyboard?.instantiateViewController(identifier: "DiaryCollectionTableViewController") as UINavigationController? else { return }
-//        self.present(controller, animated: true, completion: nil)
         let controller = DiaryCollectionTableViewController.storyboardInstance()
         self.present(controller!, animated: true, completion: nil)
     }
@@ -121,7 +116,7 @@ class ViewController: UIViewController {
         
         for weekday in fsCalendar.calendarWeekdayView.weekdayLabels {
             weekday.borderWidth = 1.0
-            weekday.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+            weekday.borderColor = UIColor.lightGray.withAlphaComponent(0.25)
             if weekday.text == "일" {
                 weekday.textColor = .red
             } else if weekday.text == "토" {
