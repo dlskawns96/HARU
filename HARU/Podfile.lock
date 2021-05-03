@@ -1,13 +1,14 @@
 PODS:
   - AFDateHelper (4.3.0)
   - DropDown (2.3.13)
-  - Firebase/Analytics (7.9.0):
-    - Firebase/Core
   - Firebase/Core (7.9.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (~> 7.9.0)
   - Firebase/CoreOnly (7.9.0):
     - FirebaseCore (= 7.9.0)
+  - Firebase/Messaging (7.9.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 7.9.0)
   - FirebaseAnalytics (7.9.0):
     - FirebaseCore (~> 7.0)
     - FirebaseInstallations (~> 7.0)
@@ -31,6 +32,18 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
     - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (7.11.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+  - FirebaseMessaging (7.9.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstanceID (~> 7.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Reachability (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
   - FSCalendar (2.8.2)
   - GoogleAppMeasurement (7.9.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
@@ -71,7 +84,8 @@ PODS:
 DEPENDENCIES:
   - AFDateHelper
   - DropDown
-  - Firebase/Analytics
+  - Firebase/Core
+  - Firebase/Messaging
   - FSCalendar
 
 SPEC REPOS:
@@ -83,6 +97,8 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
     - FSCalendar
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -98,6 +114,8 @@ SPEC CHECKSUMS:
   FirebaseCore: 0798738ad1ae0fda67e17c7b9081241c431c6859
   FirebaseCoreDiagnostics: 3d36e05da74cb8b7ce30e6594a8f201b982c725c
   FirebaseInstallations: 5e777e6640fa060405cc7632447b6c5ca5af4742
+  FirebaseInstanceID: ad5135045a498d7775903efd39762d2cdfa1be27
+  FirebaseMessaging: 5f83f200a251c44f647f36cb43e557be09889e8d
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   GoogleAppMeasurement: 120eec8803fe65a4a7475fb3d3d59a61d0e1a866
   GoogleDataTransport: b006084b73915a42c28a3466961a4edda3065da6
@@ -105,6 +123,6 @@ SPEC CHECKSUMS:
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: 84c3325fa1203a2d4e9eac41ad97146c65d768f7
+PODFILE CHECKSUM: 864a721a291c71e6432f439ce978486adfff92b0
 
 COCOAPODS: 1.10.0

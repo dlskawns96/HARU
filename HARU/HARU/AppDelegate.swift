@@ -9,6 +9,9 @@ import UIKit
 import CoreData
 import DropDown
 import EventKit
+import Firebase
+import FirebaseMessaging
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,11 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let notificationMessages = ["오늘은 무슨 일이 있었나요?", "오늘 하루는 어땠나요?", "오늘도 수고하셨어요"]
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        registerForRemoteNotifications()
-        if UserDefaults.standard.bool(forKey: "NotificationSwitchState") {
-            sendNotification(date: getNotificationTime())
-        }
+        
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions,completionHandler: {_, _ in })
+        application.registerForRemoteNotifications()
         
         return true
     }
@@ -52,11 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var dateComponent = DateComponents()
         dateComponent.hour = 9
         dateComponent.minute = 0
-//        guard let date = UserDefaults.standard.object(forKey: "DiaryNotificationDate") as? Date else {
-//            return dateComponent
-//        }
-//        dateComponent.hour = Calendar.current.component(.hour, from: date)
-//        dateComponent.minute = Calendar.current.component(.minute, from: date)
+        //        guard let date = UserDefaults.standard.object(forKey: "DiaryNotificationDate") as? Date else {
+        //            return dateComponent
+        //        }
+        //        dateComponent.hour = Calendar.current.component(.hour, from: date)
+        //        dateComponent.minute = Calendar.current.component(.minute, from: date)
         return dateComponent
     }
     
@@ -76,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // 토큰 등록 성공 시 호출
+        Messaging.messaging().apnsToken = deviceToken
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -91,12 +96,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         notificationContent.title = notificationTitle
         notificationContent.body = notificationMessages.randomElement()!
-
+        
         userNotificationCenter.removeAllDeliveredNotifications()
         let request = UNNotificationRequest(identifier: "DiaryNotification",
                                             content: notificationContent,
                                             trigger: trigger)
-
+        
         userNotificationCenter.add(request) { error in
             if let error = error {
                 print("Notification Error: ", error)
@@ -106,23 +111,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
-    
-    // 3. 앱이 foreground상태 일 때, 알림이 온 경우 어떻게 표현할 것인지 처리
-//    func userNotificationCenter(_ center: UNUserNotificationCenter,
-//                                willPresent notification: UNNotification,
-//                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//
-//        // 푸시가 오면 alert, badge, sound표시를 하라는 의미
-//        completionHandler([.banner, .badge, .sound])
-//    }
-    
-    // push가 온 경우 처리
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-        // deep link처리 시 아래 url값 가지고 처리
-        let url = response.notification.request.content.userInfo
-        print("url = \(url)")
-        
-        // if url.containts("receipt")...
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("\(#function)")
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(fcmToken)")
+        let dataDict:[String: String] = ["token": fcmToken!]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
 }
