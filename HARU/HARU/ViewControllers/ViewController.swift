@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var fsCalendar: FSCalendar!
     @IBOutlet weak var eventsCollectionBtn: UIButton!
     @IBOutlet weak var diaryCollectionBtn: UIButton!
+    @IBOutlet var buttonShadowView: ShadowView!
     
     var eventStartDates: [NSDate] = []
     var eventEndDates: [NSDate] = []
@@ -48,6 +49,8 @@ class ViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        buttonShadowView.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
         if calendarAuth == .authorized {
             loadEventData()
         } else {
@@ -135,6 +138,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(onEventModifiedNotification(notification:)), name:MainCalendarModel.mainCalendarEventModifiedNoti, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onWillEnterForegroundNotification(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onNewEvaluationNotification(notification: )), name: DiaryViewController.newEvaluation, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onMainColorChangedNotification(notification: )), name: AppDelegate.colorChanged, object: nil)
     }
     
     private func loadEventData() {
@@ -192,6 +196,11 @@ class ViewController: UIViewController {
     
     @objc func onNewEvaluationNotification(notification: Notification) {
         fsCalendar.reloadData()
+    }
+    
+    @objc func onMainColorChangedNotification(notification: Notification) {
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        buttonShadowView.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
     }
     
     func getItemsOfDate(startDate: Date, endDate: Date) -> [MainCalendarCellItem] {

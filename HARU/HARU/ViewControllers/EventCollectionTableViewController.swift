@@ -36,6 +36,9 @@ class EventCollectionTableViewController: UIViewController {
     var tableViews = [UITableView]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         

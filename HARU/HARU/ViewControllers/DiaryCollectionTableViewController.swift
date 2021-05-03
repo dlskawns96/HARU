@@ -128,9 +128,7 @@ class DiaryCollectionTableViewController: UIViewController {
         lastMonthBtn.title = "< " + dateFormatter.string(from: Date().adjust(.month, offset: -1))
         nextMonthBtn.title = dateFormatter.string(from: Date().adjust(.month, offset: 1)) + " >"
         
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = ThemeVariables.mainUIColor
-        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: AppDelegate.MAIN_COLOR)
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         Rtoken = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in

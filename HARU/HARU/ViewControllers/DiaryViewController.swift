@@ -170,14 +170,14 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         evaluationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
         evaluationView.borderWidth = 5
-        evaluationView.backgroundColor = ThemeVariables.mainUIColor
-        evaluationView.borderColor = ThemeVariables.mainUIColor
+        evaluationView.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        evaluationView.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
         let fontSize = squaredPaper.bounds.width / 30.0
         lineHeight = squaredPaper.bounds.height / 30.0
         
         textView.delegate = self
-        textView.tintColor = ThemeVariables.mainUIColor
+        textView.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
 
         token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) { [self]_ in
             dataSource.requestDiary(date: (AD?.selectedDate)!)
@@ -228,7 +228,7 @@ extension DiaryViewController: DiaryTableViewModelDelegate {
 
 extension DiaryViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.tintColor = ThemeVariables.mainUIColor
+        textView.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if dataArray.count > 0 {

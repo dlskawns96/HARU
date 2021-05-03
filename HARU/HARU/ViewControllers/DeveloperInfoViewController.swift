@@ -23,7 +23,7 @@ class DeveloperInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        closeBtn.tintColor = ThemeVariables.mainUIColor
+        closeBtn.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
         tableView.dataSource = self
         tableView.delegate = self

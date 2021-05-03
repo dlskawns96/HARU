@@ -92,6 +92,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79b-Cj-d5s" userLabel="일정모음버튼">
                                         <rect key="frame" x="20" y="0.0" width="124.5" height="45"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="일정">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -107,6 +108,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-Mp-TZa" userLabel="일기모음버튼">
                                         <rect key="frame" x="229.5" y="0.0" width="124.5" height="45"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="일기">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -204,6 +206,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonShadowView" destination="7j4-GB-lXf" id="O7A-Tw-cM2"/>
                         <outlet property="diaryCollectionBtn" destination="uEc-Mp-TZa" id="630-uJ-zse"/>
                         <outlet property="eventsCollectionBtn" destination="79b-Cj-d5s" id="ZUd-Q4-gNq"/>
                         <outlet property="fsCalendar" destination="27V-Gr-hcq" id="xKt-ee-Ozf"/>

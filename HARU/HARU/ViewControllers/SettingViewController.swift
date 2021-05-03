@@ -74,17 +74,18 @@ class SettingViewController: UIViewController {
         tableView.delegate = self
         
         composeView.mailComposeDelegate = self
-
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = ThemeVariables.mainUIColor
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         var nibName = UINib(nibName: "NotificationSettingCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "notificationSettingCell")
         
         nibName = UINib(nibName: "AppVersionCellTableViewCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "appVersionCell")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "themeSetView" {
+            
+        }
     }
 }
 
@@ -97,6 +98,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.section {
+        case 0:
+            performSegue(withIdentifier: "themeSetView", sender: nil)
         case 2:
             let alert = UIAlertController(title: "알림", message: "모든 다이어리를 정말 삭제하시겠습니까?", preferredStyle: .alert)
             
@@ -138,16 +141,14 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.label.text = setting[indexPath.section][indexPath.row]
             cell.notificationSwitch.isOn = UserDefaults.standard.bool(forKey: "switchState")
             return cell
-        }
-        else if indexPath.section == 3 && indexPath.row == 3 {
+        } else if indexPath.section == 3 && indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "appVersionCell", for: indexPath) as! AppVersionCellTableViewCell
             cell.label.text = setting[indexPath.section][indexPath.row]
             cell.versionLabel.text = appVersion
             cell.versionLabel.textColor = .systemGray2
             cell.accessoryType = .disclosureIndicator
             return cell
-        }
-        else {
+        } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for:indexPath)
             let text: String = setting[indexPath.section][indexPath.row]
             cell.textLabel?.text = text

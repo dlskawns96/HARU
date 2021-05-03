@@ -56,7 +56,7 @@ class MainCalendarCell: FSCalendarCell {
     
     private func indicateToday(date: Date) {
         if self.gregorian.isDateInToday(date) {
-            self.borderColor = UIColor(named: "MainUIColor")
+            self.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
         } else {
             self.borderColor = UIColor.lightGray.withAlphaComponent(0.25)
         }

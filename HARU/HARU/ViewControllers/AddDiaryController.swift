@@ -31,12 +31,6 @@ class AddDiaryController : UIViewController {
         }
         
         diaryTextView.delegate = self
-        
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = ThemeVariables.mainUIColor
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-
     }
     
     override func viewWillAppear(_ animated: Bool) {

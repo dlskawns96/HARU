@@ -61,9 +61,6 @@ class SelectDateController : UIViewController {
         isModalInPresentation = true
         self.presentationController?.delegate = self
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.barTintColor  = UIColor(named: "MainUIColor")
         self.navigationItem.title = dateFormatter.string(from: selectedDate!)
     }
     
