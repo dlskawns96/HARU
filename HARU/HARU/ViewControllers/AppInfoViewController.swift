@@ -24,7 +24,7 @@ class AppInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        closeBtn.tintColor = ThemeVariables.mainUIColor
+        closeBtn.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
         appImageView.image = UIImage(named: "appImage")
         appVersion.text = "Current Version : 0.0.0"

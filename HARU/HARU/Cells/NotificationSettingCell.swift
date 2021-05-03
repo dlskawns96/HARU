@@ -13,7 +13,7 @@ class NotificationSettingCell: UITableViewCell {
     @IBOutlet weak var notificationSwitch: UISwitch!
     
     @IBAction func notificationSwitchClicked(_ sender: Any) {
-        UserDefaults.standard.set(notificationSwitch.isOn, forKey: "NotificationSwitchState")
+        UserDefaults.standard.set(notificationSwitch.isOn, forKey: "NotificationAllowState")
     }
     
     override func awakeFromNib() {

@@ -45,9 +45,6 @@ class AddNewEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = ThemeVariables.mainUIColor
-        self.navigationController?.navigationBar.tintColor = .white
 //        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
 
         isCellLoaded = false

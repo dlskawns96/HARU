@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Alw-vf-R3e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Alw-vf-R3e">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -92,6 +92,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79b-Cj-d5s" userLabel="일정모음버튼">
                                         <rect key="frame" x="20" y="0.0" width="124.5" height="45"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="일정">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -107,6 +108,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-Mp-TZa" userLabel="일기모음버튼">
                                         <rect key="frame" x="229.5" y="0.0" width="124.5" height="45"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="일기">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -201,15 +203,10 @@
                                     <action selector="onAddEventBtnClicked:" destination="BYZ-38-t0r" id="9a9-sa-imJ"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="TEST" id="3oc-It-chY">
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="WAC-kK-gea" kind="show" id="YcI-M2-AQU"/>
-                                </connections>
-                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonShadowView" destination="7j4-GB-lXf" id="O7A-Tw-cM2"/>
                         <outlet property="diaryCollectionBtn" destination="uEc-Mp-TZa" id="630-uJ-zse"/>
                         <outlet property="eventsCollectionBtn" destination="79b-Cj-d5s" id="ZUd-Q4-gNq"/>
                         <outlet property="fsCalendar" destination="27V-Gr-hcq" id="xKt-ee-Ozf"/>
@@ -436,46 +433,6 @@
             </objects>
             <point key="canvasLocation" x="605" y="-759"/>
         </scene>
-        <!--Diary Writing View Controller-->
-        <scene sceneID="RI6-Or-lOA">
-            <objects>
-                <viewController id="WAC-kK-gea" customClass="DiaryWritingViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cUw-HG-0lg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qC-pl-lvZ" customClass="LinedTextView" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="10" y="10" width="394" height="754"/>
-                                <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                            </textView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lined_note" translatesAutoresizingMaskIntoConstraints="NO" id="TA6-78-5Qa" userLabel="Lined note">
-                                <rect key="frame" x="10" y="10" width="394" height="754"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="10b-0B-hp7"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="TA6-78-5Qa" firstAttribute="leading" secondItem="cUw-HG-0lg" secondAttribute="leading" constant="10" id="Mqo-l3-IRL"/>
-                            <constraint firstItem="8qC-pl-lvZ" firstAttribute="bottom" secondItem="TA6-78-5Qa" secondAttribute="bottom" id="Rcf-uS-uQg"/>
-                            <constraint firstItem="8qC-pl-lvZ" firstAttribute="leading" secondItem="TA6-78-5Qa" secondAttribute="leading" id="Wsv-Qc-wZ3"/>
-                            <constraint firstItem="TA6-78-5Qa" firstAttribute="top" secondItem="10b-0B-hp7" secondAttribute="top" constant="10" id="XHf-7Y-Gda"/>
-                            <constraint firstItem="10b-0B-hp7" firstAttribute="trailing" secondItem="TA6-78-5Qa" secondAttribute="trailing" constant="10" id="cZH-6E-ZM5"/>
-                            <constraint firstItem="8qC-pl-lvZ" firstAttribute="top" secondItem="TA6-78-5Qa" secondAttribute="top" id="epu-0v-JbX"/>
-                            <constraint firstItem="10b-0B-hp7" firstAttribute="bottom" secondItem="TA6-78-5Qa" secondAttribute="bottom" constant="10" id="uv4-yQ-rlv"/>
-                            <constraint firstItem="8qC-pl-lvZ" firstAttribute="trailing" secondItem="TA6-78-5Qa" secondAttribute="trailing" id="vje-Ib-PkT"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Rpg-JY-Pnl"/>
-                    <connections>
-                        <outlet property="squaredPaper" destination="TA6-78-5Qa" id="wfE-yX-z1H"/>
-                        <outlet property="textView" destination="8qC-pl-lvZ" id="M2W-jD-qa7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GSD-ax-hWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="0.0" y="-681"/>
-        </scene>
         <!--Add Picture Diary View Controller-->
         <scene sceneID="Eo5-MV-SYS">
             <objects>
@@ -667,7 +624,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduleTableViewCell" rowHeight="80" id="SFs-5j-fcc" customClass="ScheduleTableViewCell" customModule="HARU" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="390" height="80"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="390" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SFs-5j-fcc" id="1Xn-d5-VwU">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="80"/>

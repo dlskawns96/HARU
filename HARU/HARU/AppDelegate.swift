@@ -16,6 +16,15 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    static let colorChanged = Notification.Name(rawValue: "MainColorChanged")
+    
+    static var MAIN_COLOR = "MainUIColor" {
+        didSet {
+            UserDefaults.standard.setValue(AppDelegate.MAIN_COLOR, forKey: "MAIN_COLOR")
+            NotificationCenter.default.post(name: AppDelegate.colorChanged, object: nil)
+        }
+    }
+    
     var window: UIWindow?
     var selectedDate: String?
     var selectedDateEvents: [EKEvent]?  // 선택한 날짜의 이벤트들 저장
@@ -25,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        UserDefaults.standard.register(defaults: ["NotificationAllowState" : true, "MAIN_COLOR" : "MainUIColor_04"])
+        AppDelegate.MAIN_COLOR = UserDefaults.standard.string(forKey: "MAIN_COLOR")!
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
