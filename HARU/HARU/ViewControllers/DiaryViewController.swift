@@ -46,7 +46,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     var Etoken: NSObjectProtocol?
     var Ctoken: NSObjectProtocol?
     
-    var addCheck = true
+    var todayCheck = true
     
     let AD = UIApplication.shared.delegate as? AppDelegate
     let dateFormatter = DateFormatter()
@@ -75,7 +75,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
 
     // 평가
     @IBAction func badBtn(_ sender: Any) {
-        if addCheck {
+        if todayCheck {
             setBtnSize(badBtnSize: 45, goodBtnSize: 15, bestBtnSize: 15)
             
             CoreDataManager.shared.saveEvaluation(1, AD?.selectedDate)
@@ -85,7 +85,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     }
     
     @IBAction func goodBtn(_ sender: Any) {
-        if addCheck {
+        if todayCheck {
             setBtnSize(badBtnSize: 15, goodBtnSize: 45, bestBtnSize: 15)
             
             CoreDataManager.shared.saveEvaluation(2, AD?.selectedDate)
@@ -95,7 +95,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     }
     
     @IBAction func bestBtn(_ sender: Any) {
-        if addCheck {
+        if todayCheck {
             setBtnSize(badBtnSize: 15, goodBtnSize: 15, bestBtnSize: 45)
             
             CoreDataManager.shared.saveEvaluation(3, AD?.selectedDate)
@@ -104,8 +104,10 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     }
 
     @objc func AddPictureDiary(sender: UIGestureRecognizer) {
-        AddPictureDiaryViewController.image = pictureDiary.image
-        performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
+        if todayCheck {
+            AddPictureDiaryViewController.image = pictureDiary.image
+            performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
+        }
     }
     
     func setTextViewPosition() {
@@ -190,10 +192,10 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         }
         
         if selectedDate!.compare(.isToday) {
-            addCheck = true
+            todayCheck = true
         }
         else {
-            addCheck = false
+            todayCheck = false
         }
         
     }

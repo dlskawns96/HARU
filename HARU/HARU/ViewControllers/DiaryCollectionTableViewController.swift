@@ -171,31 +171,31 @@ extension DiaryCollectionTableViewController: UITableViewDelegate, UITableViewDa
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let today = NSDate()
-        let selectedDate = dataArray[indexPath.section].date
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-
-        let todayString = dateFormatter.string(from: today as Date)
-
-        if selectedDate! >= todayString {
-            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
-            self.present(controller, animated: true, completion: nil)
-
-            AddDiaryController.editTarget = dataArray[indexPath.section].content
-            AddDiaryController.selectedDate = dataArray[indexPath.section].date
-            AddDiaryController.check = true
-            
-        }
-        else {
-            let alert = UIAlertController(title: "알림", message: "지난 하루는 수정이 불가능해요!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in }
-            alert.addAction(okAction)
-            present(alert, animated: false, completion: nil)
-        }
-
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        let today = NSDate()
+//        let selectedDate = dataArray[indexPath.section].date
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//
+//        let todayString = dateFormatter.string(from: today as Date)
+//
+//        if selectedDate! >= todayString {
+//            guard let controller = self.storyboard?.instantiateViewController(identifier: "AddDiaryController") else { return }
+//            self.present(controller, animated: true, completion: nil)
+//
+//            AddDiaryController.editTarget = dataArray[indexPath.section].content
+//            AddDiaryController.selectedDate = dataArray[indexPath.section].date
+//            AddDiaryController.check = true
+//
+//        }
+//        else {
+//            let alert = UIAlertController(title: "알림", message: "지난 하루는 수정이 불가능해요!", preferredStyle: .alert)
+//            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in }
+//            alert.addAction(okAction)
+//            present(alert, animated: false, completion: nil)
+//        }
+//
+//    }
 //
     func numberOfSections(in tableView: UITableView) -> Int {
         return dataArray.count

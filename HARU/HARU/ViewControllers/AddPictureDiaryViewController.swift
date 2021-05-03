@@ -15,9 +15,9 @@ class AddPictureDiaryViewController : UIViewController {
     var lastLine: CGPoint!
     var lastContext: CGContext!
     var lastPoint: CGPoint!
-    // 선의 두께를 2.0으로 설정
+
     var lineSize:CGFloat = 2.0
-    // 선의 색상을 빨간색으로 설정
+
     var lineColor = UIColor.black.cgColor
     
     var originalX: Double!
@@ -100,16 +100,12 @@ class AddPictureDiaryViewController : UIViewController {
     func saveBtn(){
         //그림 일기 저장 구현
         dataSource.saveImage(image: imageView.image!, path: selectedDate)
-        //dataSource.loadImage()
-        //DiaryViewController.image = imageView.image
         // 닫기
         self.navigationController?.popViewController(animated: true)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // 현재 발생한 터치 이벤트를 가지고 옴
         let touch = touches.first! as UITouch
-        // 터치된 위치를 lastPoint에 할당
         lastPoint = touch.location(in: imageView)
     }
     
@@ -118,35 +114,23 @@ class AddPictureDiaryViewController : UIViewController {
         UIGraphicsBeginImageContext(imageView.frame.size)
         
         let context = UIGraphicsGetCurrentContext()
-        // 선 색상을 설정
         context!.setStrokeColor(lineColor)
-        // 선 끝 모양을 라운드로 설정
         context!.setLineCap(CGLineCap.round)
-        // 선 두께를 설정
         context!.setLineWidth(lineSize)
         
-        // 현재 발생한 터치 이벤트를 가지고 옴
         let touch = touches.first! as UITouch
-        // 터치된 좌표를 currPoint로 가지고 옴
         let currPoint = touch.location(in: imageView)
         
-        // 현재 imgView에 있는 전체 이미지를 imgView의 크기로 그림
         imageView.image?.draw(in: CGRect(x: 0, y: 0, width: imageView.frame.size.width, height: imageView.frame.size.height))
         
-        // lastPoint 위치로 시작 위치를 이동
         context!.move(to: CGPoint(x: lastPoint.x, y: lastPoint.y))
-        // lastPoint에서 currPoint까지 선을 추가
         context!.addLine(to: CGPoint(x: currPoint.x, y: currPoint.y))
-        // 추가한 선을 콘텍스트에 그림
         context!.strokePath()
         
         lastContext = context
-        // 현재 콘텍스트에 그려진 이미지를 가지고 와서 이미지 뷰에 할당
         imageView.image = UIGraphicsGetImageFromCurrentImageContext()
-        // 그림 그리기를 끝냄
         UIGraphicsEndImageContext()
         
-        // 현재 터치된 위치를 lastPoint라는 변수에 할당
         lastPoint = currPoint
     }
     
