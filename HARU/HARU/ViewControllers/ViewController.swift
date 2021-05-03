@@ -52,6 +52,10 @@ class ViewController: UIViewController {
         } else {
             authorizationCheck()
         }
+        
+        
+
+        
         CoreDataManager.shared.fetchDiary()
         self.initFSCalendar()
         self.registerObservers()

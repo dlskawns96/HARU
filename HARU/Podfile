@@ -6,6 +6,8 @@ def requirePods
   pod 'AFDateHelper'
   pod 'DropDown'
   pod 'FSCalendar'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 end
 
 target 'HARU' do
@@ -14,13 +16,13 @@ target 'HARU' do
   requirePods
 end
 
-target 'HARUTests' do
-    inherit! :search_paths
-    requirePods
-end
-
-target 'HARUUITests' do
-  inherit! :search_paths
-  requirePods
-  # Pods for testing
-end
+#target 'HARUTests' do
+#    inherit! :search_paths
+#    requirePods
+#end
+#
+#target 'HARUUITests' do
+#  inherit! :search_paths
+#  requirePods
+#  # P ods for testing
+#end
