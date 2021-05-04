@@ -25,10 +25,16 @@ class AddPictureDiaryViewController : UIViewController {
     
     // Pen
     @IBOutlet weak var redBtn: UIButton!
-    @IBOutlet weak var blueBtn: UIButton!
     @IBOutlet weak var greenBtn: UIButton!
-    @IBOutlet weak var blackBtn: UIButton!
+    @IBOutlet weak var blueBtn: UIButton!
+    @IBOutlet weak var indigoBtn: UIButton!
+    
     @IBOutlet weak var eraserBtn: UIButton!
+    
+    @IBOutlet weak var yellowBtn: UIButton!
+    @IBOutlet weak var orangeBtn: UIButton!
+    @IBOutlet weak var darkgrayBtn: UIButton!
+    @IBOutlet weak var blackBtn: UIButton!
     
     let dataSource = PictureDiaryModel()
     
@@ -40,42 +46,46 @@ class AddPictureDiaryViewController : UIViewController {
     @IBAction func eraserBtnClicked(_ sender: Any) {
         lineColor = UIColor.white.cgColor
         lineSize = 5.0
-        
-        setBtnYPosition()
-        eraserBtn.frame.origin.y = CGFloat(origianlY - 25)
-        
     }
     
     @IBAction func redBtnClicked(_ sender: Any) {
         lineColor = UIColor.red.cgColor
         lineSize = 2.0
-        
-        setBtnYPosition()
-        redBtn.frame.origin.y = CGFloat(origianlY - 25)
     }
     
     @IBAction func greenBtnClicked(_ sender: Any) {
         lineColor = UIColor.green.cgColor
         lineSize = 2.0
-        
-        setBtnYPosition()
-        greenBtn.frame.origin.y = CGFloat(origianlY - 25)
     }
     
     @IBAction func blueBtnClicked(_ sender: Any) {
         lineColor = UIColor.blue.cgColor
         lineSize = 2.0
-        
-        setBtnYPosition()
-        blueBtn.frame.origin.y = CGFloat(origianlY - 25)
+    }
+    
+    @IBAction func indigoBtnClicked(_ sender: Any) {
+        lineColor = UIColor.systemIndigo.cgColor
+        lineSize = 2.0
+    }
+    
+    @IBAction func yellowBtnClicked(_ sender: Any) {
+        lineColor = UIColor.yellow.cgColor
+        lineSize = 2.0
+    }
+    
+    @IBAction func darkgrayBtnClicked(_ sender: Any) {
+        lineColor = UIColor.darkGray.cgColor
+        lineSize = 2.0
+    }
+    
+    @IBAction func orangeBtnClicked(_ sender: Any) {
+        lineColor = UIColor.orange.cgColor
+        lineSize = 2.0
     }
     
     @IBAction func blackBtnClicked(_ sender: Any) {
         lineColor = UIColor.black.cgColor
         lineSize = 2.0
-        
-        setBtnYPosition()
-        blackBtn.frame.origin.y = CGFloat(origianlY - 25)
     }
     
     @IBAction func finishBtnClicked(_ sender: Any) {
@@ -88,15 +98,7 @@ class AddPictureDiaryViewController : UIViewController {
 
         present(alert, animated: true, completion: nil)
     }
-    
-    func setBtnYPosition() {
-        redBtn.frame.origin.y = CGFloat(origianlY)
-        blueBtn.frame.origin.y = CGFloat(origianlY)
-        greenBtn.frame.origin.y = CGFloat(origianlY)
-        blackBtn.frame.origin.y = CGFloat(origianlY)
-        eraserBtn.frame.origin.y = CGFloat(origianlY)
-    }
-    
+
     func saveBtn(){
         //그림 일기 저장 구현
         dataSource.saveImage(image: imageView.image!, path: selectedDate)
@@ -180,22 +182,5 @@ class AddPictureDiaryViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        origianlY = Double(redBtn.frame.origin.y)
-        
-        let penImg = UIImage(named: "Pen")?.withRenderingMode(.alwaysTemplate)
-        
-        redBtn.setImage(penImg, for: .normal)
-        redBtn.tintColor = UIColor.red
-        
-        blueBtn.setImage(penImg, for: .normal)
-        blueBtn.tintColor = UIColor.blue
-        
-        greenBtn.setImage(penImg, for: .normal)
-        greenBtn.tintColor = UIColor.green
-        
-        blackBtn.setImage(penImg, for: .normal)
-        blackBtn.tintColor = UIColor.black
-
     }
 }
