@@ -11,6 +11,8 @@ import EventKit
 class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cellTitle: UILabel!
+    @IBOutlet var emptyLabel: UILabel!
+    
     var tableViewData = [EventCollectionTableViewItem]()
     var delegate: EventCollectionViewCellDelegate?
     
@@ -18,6 +20,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         tableView.delegate = self
         tableView.dataSource = self
+        cellTitle.textColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
         let nibName = UINib(nibName: EventCollectionTableViewCell.cellIdentifier, bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: EventCollectionTableViewCell.cellIdentifier)
@@ -25,23 +28,16 @@ class EventCollectionViewCell: UICollectionViewCell {
         tableView.removeExtraLine()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        
         tableView.clipsToBounds = false
     }
 }
 
 extension EventCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableViewData.count == 0 { return 1}
         return tableViewData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableViewData.count == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as! EmptyTableViewCell
-            return cell
-        }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCollectionTableViewCell", for: indexPath) as! EventCollectionTableViewCell
         
         cell.configureCell(with: tableViewData[indexPath.row])
@@ -53,9 +49,6 @@ extension EventCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableViewData.count == 0 {
-            return 660
-        }
         return 100.0
     }
 }

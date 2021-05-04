@@ -102,8 +102,12 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
         }
         cell.delegate = self
         cell.cellTitle.text = String(indexPath.item + 1) + "월"
+        if dataArray[indexPath.item].isEmpty {
+            cell.emptyLabel.isHidden = false
+        }
         cell.tableViewData = dataArray[indexPath.item]
         cell.tableView.reloadData()
+        
         
         return cell
     }

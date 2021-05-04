@@ -51,6 +51,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = UIColor(named: AppDelegate.MAIN_COLOR)
         buttonShadowView.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        self.navigationController?.navigationBar.tintColor = .white
         if calendarAuth == .authorized {
             loadEventData()
         } else {
@@ -201,6 +202,7 @@ class ViewController: UIViewController {
     @objc func onMainColorChangedNotification(notification: Notification) {
         self.navigationController?.navigationBar.barTintColor = UIColor(named: AppDelegate.MAIN_COLOR)
         buttonShadowView.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        fsCalendar.reloadData()
     }
     
     func getItemsOfDate(startDate: Date, endDate: Date) -> [MainCalendarCellItem] {
