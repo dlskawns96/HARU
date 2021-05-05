@@ -14,6 +14,7 @@ class EventCollectionTableViewController: UIViewController {
     @IBOutlet weak var titleLabel: UINavigationItem!
     @IBOutlet weak var lastYearBtn: UIBarButtonItem!
     @IBOutlet weak var nextYearBtn: UIBarButtonItem!
+    var isInitial = true
     
     static func storyboardInstance() -> UINavigationController? {
         let storyboard = UIStoryboard(name: "EventCollectionTableViewController",
@@ -52,17 +53,20 @@ class EventCollectionTableViewController: UIViewController {
         
         collectionView.layoutIfNeeded()
         dataSource.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         dataSource.requestData(ofYear: currentYear)
-        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        collectionView.scrollToItem(at:IndexPath(item: Calendar.current.component(.month, from: Date()) - 1, section: 0), at: .right, animated: true)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if isInitial {
+            collectionView.scrollToItem(at:IndexPath(item: Calendar.current.component(.month, from: Date()) - 1, section: 0), at: .right, animated: false)
+            isInitial.toggle()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -104,10 +108,11 @@ extension EventCollectionTableViewController: UICollectionViewDataSource, UIColl
         cell.cellTitle.text = String(indexPath.item + 1) + "월"
         if dataArray[indexPath.item].isEmpty {
             cell.emptyLabel.isHidden = false
+        } else {
+            cell.emptyLabel.isHidden = true
         }
         cell.tableViewData = dataArray[indexPath.item]
         cell.tableView.reloadData()
-        
         
         return cell
     }
