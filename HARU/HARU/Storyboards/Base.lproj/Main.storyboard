@@ -687,27 +687,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CoV-fe-KaO" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                <rect key="frame" x="12" y="44" width="390" height="657"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
-                                        <point key="value" x="0.0" y="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
-                                        <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mqt-Xo-iXr">
                                 <rect key="frame" x="12" y="44" width="390" height="657"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -782,16 +761,12 @@
                         <viewLayoutGuide key="safeArea" id="fdx-95-gfG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CoV-fe-KaO" firstAttribute="top" secondItem="mqt-Xo-iXr" secondAttribute="top" id="139-5X-OR6"/>
                             <constraint firstItem="fdx-95-gfG" firstAttribute="bottom" secondItem="mqt-Xo-iXr" secondAttribute="bottom" constant="12" id="3l7-Nk-mhN"/>
                             <constraint firstItem="fdx-95-gfG" firstAttribute="trailing" secondItem="mqt-Xo-iXr" secondAttribute="trailing" constant="12" id="5eY-aj-nDG"/>
                             <constraint firstItem="epf-Yu-c1o" firstAttribute="centerY" secondItem="fdx-95-gfG" secondAttribute="centerY" id="71w-su-82A"/>
-                            <constraint firstItem="CoV-fe-KaO" firstAttribute="trailing" secondItem="mqt-Xo-iXr" secondAttribute="trailing" id="9d7-of-5Ph"/>
-                            <constraint firstItem="CoV-fe-KaO" firstAttribute="bottom" secondItem="mqt-Xo-iXr" secondAttribute="bottom" id="Dh3-wv-3vj"/>
                             <constraint firstItem="mqt-Xo-iXr" firstAttribute="leading" secondItem="fdx-95-gfG" secondAttribute="leading" constant="12" id="KqW-aq-JXc"/>
                             <constraint firstItem="mqt-Xo-iXr" firstAttribute="top" secondItem="fdx-95-gfG" secondAttribute="top" id="jTm-sn-pOo"/>
                             <constraint firstItem="epf-Yu-c1o" firstAttribute="centerX" secondItem="fdx-95-gfG" secondAttribute="centerX" id="qXy-gX-2po"/>
-                            <constraint firstItem="CoV-fe-KaO" firstAttribute="leading" secondItem="mqt-Xo-iXr" secondAttribute="leading" id="rxV-cz-zLA"/>
                         </constraints>
                     </view>
                     <connections>
