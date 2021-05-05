@@ -128,7 +128,8 @@ class DiaryCollectionTableViewController: UIViewController {
         lastMonthBtn.title = "< " + dateFormatter.string(from: Date().adjust(.month, offset: -1))
         nextMonthBtn.title = dateFormatter.string(from: Date().adjust(.month, offset: 1)) + " >"
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        themeColorSet(color: UIColor(named: AppDelegate.MAIN_COLOR)!)
+        self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         Rtoken = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) {_ in
@@ -142,6 +143,13 @@ class DiaryCollectionTableViewController: UIViewController {
         if let Rtoken = Rtoken {
             NotificationCenter.default.removeObserver(Rtoken)
         }
+    }
+    
+    private func themeColorSet(color: UIColor) {
+        self.navigationController?.navigationBar.barTintColor = color
+        badProgress.tintColor = color
+        goodProgress.tintColor = color
+        bestProgress.tintColor = color
     }
 }
 extension DiaryCollectionTableViewController: UITableViewDelegate, UITableViewDataSource {

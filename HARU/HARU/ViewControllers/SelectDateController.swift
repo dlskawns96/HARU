@@ -62,6 +62,7 @@ class SelectDateController : UIViewController {
         self.presentationController?.delegate = self
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         self.navigationItem.title = dateFormatter.string(from: selectedDate!)
+        segment.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
     }
     
     @IBAction func indexChanged(_ sender: Any) {
