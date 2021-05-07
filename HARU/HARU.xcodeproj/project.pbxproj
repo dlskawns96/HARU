@@ -62,7 +62,6 @@
 		EA50F77925F06B510003095D /* ScheduleTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */; };
 		EA5CBB9026076EF500B24542 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */; };
 		EA5FA857261F2DC2009A42EC /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5FA851261F2DC2009A42EC /* circle@2x.png */; };
-		EA5FA85F261F421E009A42EC /* DiaryWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5FA85E261F421E009A42EC /* DiaryWritingViewController.swift */; };
 		EA66C24025E282820043A992 /* EventCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66C23F25E282820043A992 /* EventCollectionTableViewController.swift */; };
 		EA7393FA25E7967E00FEA2C7 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393F925E7967E00FEA2C7 /* EventDetailViewController.swift */; };
 		EA7393FD25E796C700FEA2C7 /* EventDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7393FC25E796C700FEA2C7 /* EventDetailTableViewCell.swift */; };
@@ -176,7 +175,6 @@
 		EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewModel.swift; sourceTree = "<group>"; };
 		EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		EA5FA851261F2DC2009A42EC /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
-		EA5FA85E261F421E009A42EC /* DiaryWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryWritingViewController.swift; sourceTree = "<group>"; };
 		EA66C23F25E282820043A992 /* EventCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewController.swift; sourceTree = "<group>"; };
 		EA7393F925E7967E00FEA2C7 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		EA7393FC25E796C700FEA2C7 /* EventDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -447,7 +445,6 @@
 				1FF7AFAE261CAA5900C9B1FA /* OpinionViewController.swift */,
 				1FF7AFB1261CADBA00C9B1FA /* DeveloperInfoViewController.swift */,
 				1FF7AFB4261CADCA00C9B1FA /* AppInfoViewController.swift */,
-				EA5FA85E261F421E009A42EC /* DiaryWritingViewController.swift */,
 				1F074A76262476B600A25FD4 /* AddPictureDiaryViewController.swift */,
 				EA2427412627186000DCD80F /* LocationViewController.swift */,
 				EAA4D68F263FD63F005D83AC /* ThemeSelectViewController.swift */,
@@ -662,7 +659,6 @@
 				EA0E06D22603398D00B1B431 /* AddEventTableItems.swift in Sources */,
 				EACCB58D25DA4C8F00733906 /* SetDateTableViewCell.swift in Sources */,
 				EA7F836E2594749C008B8ED5 /* ViewController.swift in Sources */,
-				EA5FA85F261F421E009A42EC /* DiaryWritingViewController.swift in Sources */,
 				1F3A783E260B901B009CFF49 /* DiaryCollectionTableViewCell.swift in Sources */,
 				1FCA59BF261B4363005DDE0E /* NotificationSettingCell.swift in Sources */,
 				1FE6078E2597514100A0882D /* SelectDateController.swift in Sources */,

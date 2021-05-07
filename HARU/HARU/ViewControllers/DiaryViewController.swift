@@ -8,7 +8,8 @@
 import UIKit
 
 class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPickerViewDelegate {
-     
+    @IBOutlet var scrollView: UIScrollView!
+    
     // Evaluation View
     @IBOutlet weak var badBtn: UIButton!
     @IBOutlet weak var goodBtn: UIButton!
@@ -24,12 +25,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     // Diary View
     @IBOutlet weak var textView: LinedTextView!
     
-    var attributes: [NSAttributedString.Key: Any]!
-    let kerns: [[NSAttributedString.Key: Any]] = [[.kern: 20], [.kern: 40]]
-    var font: UIFont!
-    
-    var curPosition = 0.0
-    var lineHeight = CGFloat()
+    var scrollOffset: CGFloat?
     
     static var image: UIImage?
     var selectedDate: Date?
@@ -110,15 +106,6 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         }
     }
     
-    func setTextViewPosition() {
-        textView.backgroundColor = .lightGray
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.leadingAnchor.constraint(equalTo: squaredPaper.leadingAnchor).isActive = true
-        textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        textView.topAnchor.constraint(equalTo: squaredPaper.topAnchor).isActive = true
-        textView.bottomAnchor.constraint(equalTo: squaredPaper.bottomAnchor).isActive = true
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -173,9 +160,6 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         evaluationView.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
         evaluationView.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
-        let fontSize = squaredPaper.bounds.width / 30.0
-        lineHeight = squaredPaper.bounds.height / 30.0
-        
         textView.delegate = self
         textView.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
 
@@ -198,6 +182,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             todayCheck = false
         }
         
+        scrollOffset = textView.bounds.height / 2.0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -228,8 +213,19 @@ extension DiaryViewController: DiaryTableViewModelDelegate {
 
 extension DiaryViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        DispatchQueue.main.async {
+            let val = textView.caretRect(for: textView.selectedTextRange!.start)
+            self.scrollView.contentOffset = CGPoint(x: 0, y: self.scrollOffset! + val.origin.y)
+        }
     }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            let val = textView.caretRect(for: textView.selectedTextRange!.start)
+            self.scrollView.contentOffset = CGPoint(x: 0, y: self.scrollOffset! + val.origin.y)
+        }
+    }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if dataArray.count > 0 {
             CoreDataManager.shared.updateDiary(textView.text, dSelectedDate)

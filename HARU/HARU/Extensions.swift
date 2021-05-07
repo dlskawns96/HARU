@@ -264,8 +264,8 @@ extension EKEvent {
 }
 
 extension UITextField {
-    func setupTextFields() {
-        let toolbar = UIToolbar()
+    func addDoneButton() {
+        let toolbar = UIToolbar(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                         target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "Done", style: .done,
@@ -283,11 +283,11 @@ extension UITextField {
 }
 
 extension UITextView {
-    func setupTextFields() {
-        let toolbar = UIToolbar()
+    func addDoneButton() {
+        let toolbar = UIToolbar(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                         target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .done,
+        let doneButton = UIBarButtonItem(title: "완료", style: .done,
                                          target: self, action: #selector(doneButtonTapped))
         
         toolbar.setItems([flexSpace, doneButton], animated: true)
