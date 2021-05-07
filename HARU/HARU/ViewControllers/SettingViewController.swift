@@ -34,7 +34,7 @@ class SettingViewController: UIViewController {
     }
     
     func composeEmail() {
-        composeView.setToRecipients(["chosiyeonn@gmail.com"])
+        composeView.setToRecipients(["chosiyeonn@gmail.com", "dlskawns96@gmail.com"])
         composeView.setSubject("[HARU] 의견 보내기 :-)")
         composeView.setMessageBody("Some Message", isHTML: false)
         
