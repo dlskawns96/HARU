@@ -39,7 +39,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-HY-9MJ" userLabel="캘린더 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -293,7 +293,7 @@
             <objects>
                 <viewController storyboardIdentifier="SelectDateController" id="Nzo-Wt-ceS" customClass="SelectDateController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gqT-Gu-Dfh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
@@ -937,35 +937,56 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GS8-Op-hMf" customClass="LinedTextView" customModule="HARU" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrT-RB-jwQ" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
                                                 <rect key="frame" x="12" y="558" width="390" height="700"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                                        <point key="value" x="0.0" y="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paper_2" translatesAutoresizingMaskIntoConstraints="NO" id="A1D-s1-xwT" userLabel="Paper Image">
+                                                <rect key="frame" x="12" y="558" width="390" height="700"/>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" keyboardDismissMode="onDrag" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GS8-Op-hMf" customClass="LinedTextView" customModule="HARU" customModuleProvider="target">
+                                                <rect key="frame" x="12" y="558" width="390" height="700"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="700" id="yea-LU-t0h"/>
                                                 </constraints>
                                                 <attributedString key="attributedText"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textView>
-                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lined_note" translatesAutoresizingMaskIntoConstraints="NO" id="A1D-s1-xwT" userLabel="Lined note">
-                                                <rect key="frame" x="12" y="558" width="390" height="700"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="700" id="ce9-5U-eTL"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="UrT-RB-jwQ" firstAttribute="bottom" secondItem="GS8-Op-hMf" secondAttribute="bottom" id="6gd-PN-Sbh"/>
+                                            <constraint firstItem="A1D-s1-xwT" firstAttribute="bottom" secondItem="GS8-Op-hMf" secondAttribute="bottom" id="70d-qM-lOM"/>
                                             <constraint firstAttribute="trailing" secondItem="GS8-Op-hMf" secondAttribute="trailing" constant="12" id="7vf-70-IvV"/>
-                                            <constraint firstAttribute="trailing" secondItem="A1D-s1-xwT" secondAttribute="trailing" constant="12" id="9oB-Yw-2ny"/>
-                                            <constraint firstItem="A1D-s1-xwT" firstAttribute="top" secondItem="h8g-ci-iRl" secondAttribute="bottom" constant="25" id="Gel-Mf-XYt"/>
+                                            <constraint firstItem="UrT-RB-jwQ" firstAttribute="top" secondItem="GS8-Op-hMf" secondAttribute="top" id="KeX-aU-eKr"/>
+                                            <constraint firstItem="UrT-RB-jwQ" firstAttribute="trailing" secondItem="GS8-Op-hMf" secondAttribute="trailing" id="N1q-5g-oP8"/>
                                             <constraint firstItem="G4C-mN-WTF" firstAttribute="leading" secondItem="5H4-br-sgy" secondAttribute="leading" constant="8" id="ONm-cI-H6A"/>
+                                            <constraint firstItem="A1D-s1-xwT" firstAttribute="leading" secondItem="GS8-Op-hMf" secondAttribute="leading" id="Q3L-zH-mUc"/>
                                             <constraint firstAttribute="trailing" secondItem="h8g-ci-iRl" secondAttribute="trailing" constant="12" id="ZYe-eM-BHd"/>
                                             <constraint firstItem="GS8-Op-hMf" firstAttribute="top" secondItem="h8g-ci-iRl" secondAttribute="bottom" constant="25" id="aLX-Yw-dBr"/>
                                             <constraint firstAttribute="height" constant="1200" id="bSE-YF-yEu"/>
-                                            <constraint firstItem="A1D-s1-xwT" firstAttribute="leading" secondItem="5H4-br-sgy" secondAttribute="leading" constant="12" id="f1g-zL-Gun"/>
                                             <constraint firstAttribute="trailing" secondItem="G4C-mN-WTF" secondAttribute="trailing" constant="8" id="hYJ-Tm-uGj"/>
                                             <constraint firstItem="h8g-ci-iRl" firstAttribute="top" secondItem="G4C-mN-WTF" secondAttribute="bottom" constant="25" id="iNq-E2-Pnn"/>
+                                            <constraint firstItem="UrT-RB-jwQ" firstAttribute="leading" secondItem="GS8-Op-hMf" secondAttribute="leading" id="p8W-ZH-rZG"/>
                                             <constraint firstItem="h8g-ci-iRl" firstAttribute="leading" secondItem="5H4-br-sgy" secondAttribute="leading" constant="12" id="uJ1-OU-gtP"/>
+                                            <constraint firstItem="A1D-s1-xwT" firstAttribute="trailing" secondItem="GS8-Op-hMf" secondAttribute="trailing" id="us8-It-KGI"/>
                                             <constraint firstItem="GS8-Op-hMf" firstAttribute="leading" secondItem="5H4-br-sgy" secondAttribute="leading" constant="12" id="vEH-pW-63R"/>
+                                            <constraint firstItem="A1D-s1-xwT" firstAttribute="top" secondItem="GS8-Op-hMf" secondAttribute="top" id="xRb-oa-JgD"/>
                                             <constraint firstItem="G4C-mN-WTF" firstAttribute="top" secondItem="5H4-br-sgy" secondAttribute="top" constant="8" id="zOC-dY-b5d"/>
                                         </constraints>
                                     </view>
@@ -997,6 +1018,7 @@
                         <outlet property="goodBtn" destination="a5X-Of-cw8" id="fre-kA-CEg"/>
                         <outlet property="myView" destination="ykE-pX-lDu" id="CyG-qA-xfr"/>
                         <outlet property="pictureDiary" destination="zcG-UG-ZFw" id="4sU-2X-u4S"/>
+                        <outlet property="scrollView" destination="oZd-QS-OVY" id="Vp9-b2-eaG"/>
                         <outlet property="shadowView" destination="h8g-ci-iRl" id="eUG-pi-AWh"/>
                         <outlet property="squaredPaper" destination="A1D-s1-xwT" id="Ysb-1W-i8J"/>
                         <outlet property="textView" destination="GS8-Op-hMf" id="XrH-z3-8QC"/>
@@ -1011,7 +1033,7 @@
     <resources>
         <image name="Spring" width="177" height="15"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
-        <image name="lined_note" width="372" height="600"/>
+        <image name="paper_2" width="5000" height="7000"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
         <namedColor name="MainUIColor">
