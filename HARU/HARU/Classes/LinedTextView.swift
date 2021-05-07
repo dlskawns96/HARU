@@ -9,7 +9,7 @@ import UIKit
 
 class LinedTextView: UITextView {
     
-    var attributes: [NSAttributedString.Key: Any]?
+    static var attributes: [NSAttributedString.Key: Any]?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -23,13 +23,13 @@ class LinedTextView: UITextView {
         style.maximumLineHeight = 50.0
         style.minimumLineHeight = 50.0
         
-        self.attributes = [
+        LinedTextView.attributes = [
             .paragraphStyle: style,
             .font: font
         ]
         
-        self.attributedText = NSAttributedString(string: "", attributes: attributes)
-        self.typingAttributes = attributes!
+        self.attributedText = NSAttributedString(string: "", attributes: LinedTextView.attributes)
+        self.typingAttributes = LinedTextView.attributes!
         func draw(_ rect: CGRect) {
             
         }
@@ -69,7 +69,7 @@ class LinedTextView: UITextView {
         // Set the line offset from the baseline.
         let baselineOffset: CGFloat = (self.font?.pointSize)! / 2.0
         
-        let style = self.attributes![.paragraphStyle] as! NSMutableParagraphStyle
+        let style = LinedTextView.attributes![.paragraphStyle] as! NSMutableParagraphStyle
         // Iterate over numberOfLines and draw a line in the textView
         for x in 1..<Int(numberOfLines) {
             //0.5f offset lines up line with pixel boundary

@@ -958,7 +958,7 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paper_2" translatesAutoresizingMaskIntoConstraints="NO" id="A1D-s1-xwT" userLabel="Paper Image">
                                                 <rect key="frame" x="12" y="558" width="390" height="700"/>
                                             </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" keyboardDismissMode="onDrag" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GS8-Op-hMf" customClass="LinedTextView" customModule="HARU" customModuleProvider="target">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GS8-Op-hMf" customClass="LinedTextView" customModule="HARU" customModuleProvider="target">
                                                 <rect key="frame" x="12" y="558" width="390" height="700"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
