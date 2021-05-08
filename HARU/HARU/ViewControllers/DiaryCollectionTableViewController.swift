@@ -172,6 +172,7 @@ extension DiaryCollectionTableViewController: UITableViewDelegate, UITableViewDa
         let startIdx: String.Index = date!.index(date!.startIndex, offsetBy: 8)
         
         cell.dateLabel.text = String(date![startIdx...])
+        cell.dateLabel.textColor = UIColor(named: AppDelegate.MAIN_COLOR)
         cell.selectionStyle = .none
         cell.myLabel.sizeToFit()
         return cell
