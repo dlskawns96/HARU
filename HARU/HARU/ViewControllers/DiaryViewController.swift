@@ -162,10 +162,10 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         textView.delegate = self
         textView.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
-        
+
         shadowView.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
         pictureDiary.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
-
+        
         token = NotificationCenter.default.addObserver(forName: AddDiaryController.newDiary, object: nil, queue: OperationQueue.main) { [self]_ in
             dataSource.requestDiary(date: (AD?.selectedDate)!)
         }
@@ -183,6 +183,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         }
         else {
             todayCheck = false
+            textView.isUserInteractionEnabled = false
         }
         
         scrollOffset = textView.bounds.height / 2.0
