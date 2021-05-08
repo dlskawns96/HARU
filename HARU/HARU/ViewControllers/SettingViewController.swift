@@ -72,7 +72,8 @@ class SettingViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        
+        //tableView.separatorInset.left = 0
+
         composeView.mailComposeDelegate = self
         
         var nibName = UINib(nibName: "NotificationSettingCell", bundle: nil)
@@ -153,6 +154,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             let text: String = setting[indexPath.section][indexPath.row]
             cell.textLabel?.text = text
             cell.accessoryType = .disclosureIndicator
+            cell.separatorInset.left = 0
             
             if indexPath.section == 2 {
                 cell.textLabel?.textColor = .red
