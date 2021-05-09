@@ -11,6 +11,7 @@ class AddPictureDiaryViewController : UIViewController {
     
     static var image: UIImage!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var shadowView: ShadowView!
     
     var lastLine: CGPoint!
     var lastContext: CGContext!
@@ -178,6 +179,9 @@ class AddPictureDiaryViewController : UIViewController {
 
         selectedDate = AD?.selectedDate
         imageView.image = AddPictureDiaryViewController.image
+        
+        imageView.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        shadowView.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
     }
     
     override func viewDidLoad() {

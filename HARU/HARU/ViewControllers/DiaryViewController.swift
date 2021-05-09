@@ -145,6 +145,9 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             }
 
         }
+        
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        self.navigationItem.title = dateFormatter.string(from: DiaryViewController.selectedDate!)
     }
 
     override func viewDidLoad() {
