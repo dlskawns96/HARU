@@ -64,28 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DropDown.startListeningToKeyboard()
     }
     
-    private func getNotificationTime() -> DateComponents {
-        var dateComponent = DateComponents()
-        dateComponent.hour = 9
-        dateComponent.minute = 0
-        //        guard let date = UserDefaults.standard.object(forKey: "DiaryNotificationDate") as? Date else {
-        //            return dateComponent
-        //        }
-        //        dateComponent.hour = Calendar.current.component(.hour, from: date)
-        //        dateComponent.minute = Calendar.current.component(.minute, from: date)
-        return dateComponent
-    }
-    
     private func registerForRemoteNotifications() {
         userNotificationCenter.getNotificationSettings { [self] (settings) in
             if(settings.authorizationStatus == .authorized) {
                 print("Notification Auth: true")
             } else {
-                let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+                let options: UNAuthorizationOptions = [.alert, .sound]
                 userNotificationCenter.requestAuthorization(options: options, completionHandler: { (didAllow, Error) in
                     print("Notification Auth: allowed")
                     UserDefaults.standard.set(true, forKey: "NotificationSwitchState")
-                    sendNotification(date: getNotificationTime())
                 })
             }
         }        
@@ -98,38 +85,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         // 토큰 등록 실패 시 호출
     }
-    
-    func sendNotification(date: DateComponents) {
-        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
-        
-        print("Notification Set:", date)
-        let notificationContent = UNMutableNotificationContent()
-        
-        notificationContent.title = notificationTitle
-        notificationContent.body = notificationMessages.randomElement()!
-        
-        userNotificationCenter.removeAllDeliveredNotifications()
-        let request = UNNotificationRequest(identifier: "DiaryNotification",
-                                            content: notificationContent,
-                                            trigger: trigger)
-        
-        userNotificationCenter.add(request) { error in
-            if let error = error {
-                print("Notification Error: ", error)
-            }
-        }
-    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    // Foreground일 때 알람이 오면
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("\(#function)")
     }
+    
+    // Notification을 터치했을 때
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+      ) {
+        completionHandler()
+      }
 }
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase registration token: \(fcmToken)")
         let dataDict:[String: String] = ["token": fcmToken!]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }

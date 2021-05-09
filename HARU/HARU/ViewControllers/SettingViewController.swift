@@ -19,8 +19,8 @@ class SettingViewController: UIViewController {
     
     var appVersion = "0.0.0"
     let dataSource = DiaryTableViewModel()
-    let header: [String] = ["설정", "알림", "서비스", "지원"]
-    let setting: [[String]] = [["테마 설정"], ["다이어리 알림 받기"], ["다이어리 전체 지우기"], ["앱 평가하기", "의견 보내기", "개발자 정보", "앱 정보"]]
+    let header: [String] = ["설정", "서비스", "지원"]
+    let setting: [[String]] = [["테마 설정"], ["다이어리 전체 지우기"], ["앱 평가하기", "의견 보내기", "개발자 정보", "앱 정보"]]
     
     private func checkEmailAvailability() {
         
@@ -101,7 +101,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             performSegue(withIdentifier: "themeSetView", sender: nil)
-        case 2:
+        case 1:
             let alert = UIAlertController(title: "알림", message: "모든 다이어리를 정말 삭제하시겠습니까?", preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] (action) in
@@ -113,7 +113,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             alert.addAction(cancleAction)
             
             present(alert, animated: true, completion: nil)
-        case 3:
+        case 2:
             switch indexPath.row {
             case 0:
                 print("앱 평가")
@@ -137,12 +137,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "notificationSettingCell", for: indexPath) as! NotificationSettingCell
-            cell.label.text = setting[indexPath.section][indexPath.row]
-            cell.notificationSwitch.isOn = UserDefaults.standard.bool(forKey: "switchState")
-            return cell
-        } else if indexPath.section == 3 && indexPath.row == 3 {
+        if indexPath.section == 2 && indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "appVersionCell", for: indexPath) as! AppVersionCellTableViewCell
             cell.label.text = setting[indexPath.section][indexPath.row]
             cell.versionLabel.text = appVersion
@@ -156,7 +151,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.accessoryType = .disclosureIndicator
             cell.separatorInset.left = 0
             
-            if indexPath.section == 2 {
+            if indexPath.section == 1 {
                 cell.textLabel?.textColor = .red
             }
             return cell
