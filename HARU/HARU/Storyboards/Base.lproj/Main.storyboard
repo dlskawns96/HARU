@@ -39,7 +39,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-HY-9MJ" userLabel="캘린더 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -212,11 +212,12 @@
                         <outlet property="fsCalendar" destination="27V-Gr-hcq" id="xKt-ee-Ozf"/>
                         <segue destination="Nzo-Wt-ceS" kind="push" identifier="ShowSelectDateView" id="mLi-mm-fZ3"/>
                         <segue destination="jEk-3h-0pM" kind="show" identifier="AddNewEventViewController" id="2ck-ER-epP"/>
+                        <segue destination="OmN-bU-GkM" kind="show" identifier="AddNewDiaryViewController" id="rW8-uH-4Dj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8.6956521739130448" y="28.125"/>
+            <point key="canvasLocation" x="-94" y="27"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IHZ-vI-6ht">
@@ -293,7 +294,7 @@
             <objects>
                 <viewController storyboardIdentifier="SelectDateController" id="Nzo-Wt-ceS" customClass="SelectDateController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gqT-Gu-Dfh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
@@ -438,7 +439,7 @@
             <objects>
                 <viewController storyboardIdentifier="PictureDiaryView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2bn-nU-ixO" customClass="AddPictureDiaryViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2SF-vn-RuW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3of-FT-baJ" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -475,16 +476,16 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0tA-Xo-1fb">
-                                <rect key="frame" x="15" y="492" width="384" height="132"/>
+                                <rect key="frame" x="15" y="492" width="384" height="193"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Ac-Th-W25">
-                                        <rect key="frame" x="0.0" y="0.0" width="282.5" height="132"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="282.5" height="193"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="P4d-Hn-WLy">
-                                                <rect key="frame" x="0.0" y="0.0" width="282.5" height="61"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="282.5" height="91.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HT-36-Lxn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="61"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="91.5"/>
                                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -496,7 +497,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEn-9S-OWD">
-                                                        <rect key="frame" x="73" y="0.0" width="63" height="61"/>
+                                                        <rect key="frame" x="73" y="0.0" width="63" height="91.5"/>
                                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                         <color key="tintColor" systemColor="systemGreenColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -509,7 +510,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tR-hr-KJ7">
-                                                        <rect key="frame" x="146" y="0.0" width="63.5" height="61"/>
+                                                        <rect key="frame" x="146" y="0.0" width="63.5" height="91.5"/>
                                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -521,7 +522,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbJ-YE-2tq">
-                                                        <rect key="frame" x="219.5" y="0.0" width="63" height="61"/>
+                                                        <rect key="frame" x="219.5" y="0.0" width="63" height="91.5"/>
                                                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -535,10 +536,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-xe-Q1a">
-                                                <rect key="frame" x="0.0" y="71" width="282.5" height="61"/>
+                                                <rect key="frame" x="0.0" y="101.5" width="282.5" height="91.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tp-Ah-a7O">
-                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="61"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="91.5"/>
                                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -550,7 +551,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSc-B2-YIO">
-                                                        <rect key="frame" x="73" y="0.0" width="63" height="61"/>
+                                                        <rect key="frame" x="73" y="0.0" width="63" height="91.5"/>
                                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -562,7 +563,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDU-2U-PCL">
-                                                        <rect key="frame" x="146" y="0.0" width="63.5" height="61"/>
+                                                        <rect key="frame" x="146" y="0.0" width="63.5" height="91.5"/>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -574,7 +575,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4B5-vq-uCC">
-                                                        <rect key="frame" x="219.5" y="0.0" width="63" height="61"/>
+                                                        <rect key="frame" x="219.5" y="0.0" width="63" height="91.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -594,7 +595,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-Fp-TgR">
-                                        <rect key="frame" x="292.5" y="0.0" width="91.5" height="132"/>
+                                        <rect key="frame" x="292.5" y="0.0" width="91.5" height="193"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <state key="normal" title="Eraser">
                                             <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -805,11 +806,11 @@
             <objects>
                 <viewController storyboardIdentifier="diaryViewController" id="OmN-bU-GkM" customClass="DiaryViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ykE-pX-lDu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZd-QS-OVY">
-                                <rect key="frame" x="0.0" y="44" width="414" height="620"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5H4-br-sgy">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
@@ -1010,6 +1011,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="6BS-t4-Upq"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="badBtn" destination="m1c-Ul-jKT" id="7NH-EU-s9u"/>
@@ -1030,6 +1032,9 @@
             <point key="canvasLocation" x="1589.8550724637682" y="937.83482142857133"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="rW8-uH-4Dj"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Spring" width="177" height="15"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>

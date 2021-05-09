@@ -74,9 +74,52 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    // MARK: - Add Button Functions
+    
+    func diaryActionClicked() {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let AD = UIApplication.shared.delegate as? AppDelegate
+        AD?.selectedDate = dateFormatter.string(from: self.selectedDate)
+
+        DiaryViewController.selectedDate = Date()
+        
+        self.performSegue(withIdentifier: "AddNewDiaryViewController", sender: nil)
+
+    }
+    
+    func eventActionClicked() {
+        self.performSegue(withIdentifier: "AddNewEventViewController", sender: nil)
+    }
+    
+    func cancelBtnClicked() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Button Actions
     @IBAction func onAddEventBtnClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "AddNewEventViewController", sender: nil)
+        let alert = UIAlertController(title:
+                                        "알림", message: "어떤 것을 추가하실 건가요?", preferredStyle: .actionSheet)
+       
+        let eventAction = UIAlertAction(title: "일정", style: .default) { [weak self] (action) in
+            self?.eventActionClicked()
+        }
+        alert.addAction(eventAction)
+        
+        let diaryAction = UIAlertAction(title: "다이어리", style: .default) { [weak self] (action) in
+            self?.diaryActionClicked()
+        }
+        alert.addAction(diaryAction)
+        
+        let cancleAction = UIAlertAction(title: "취소", style: .cancel) { [weak self] (action) in
+            self?.cancelBtnClicked()
+        }
+        alert.addAction(cancleAction)
+        
+        present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func onEventCollectionBtnClicked(_ sender: Any) {

@@ -45,7 +45,7 @@ class SelectDateController : UIViewController {
             guard let controller = segue.destination as? DiaryViewController else {
                 return
             }
-            controller.selectedDate = self.selectedDate
+            DiaryViewController.selectedDate = self.selectedDate
         }
         
         // 날짜 설정

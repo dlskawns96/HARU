@@ -28,7 +28,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     var scrollOffset: CGFloat?
     
     static var image: UIImage?
-    var selectedDate: Date?
+    static var selectedDate: Date?
     var dSelectedDate: String?
     var dToday: String?
     
@@ -178,7 +178,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             
         }
         
-        if selectedDate!.compare(.isToday) {
+        if DiaryViewController.selectedDate!.compare(.isToday) {
             todayCheck = true
         }
         else {
