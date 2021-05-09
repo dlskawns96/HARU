@@ -20,8 +20,8 @@ class LinedTextView: UITextView {
         self.font = UIFont.systemFont(ofSize: fontSize)
         
         let style = NSMutableParagraphStyle()
-        style.maximumLineHeight = 50.0
-        style.minimumLineHeight = 50.0
+        style.maximumLineHeight = 40.0
+        style.minimumLineHeight = 40.0
         
         LinedTextView.attributes = [
             .paragraphStyle: style,
@@ -64,14 +64,14 @@ class LinedTextView: UITextView {
         
         //Find the number of lines in our textView + add a bit more height to draw lines in the empty part of the view
         //        let numberOfLines = (self.contentSize.height + self.bounds.size.height) / self.font!.lineHeight
-        let numberOfLines = 20
+        let numberOfLines = 17
         
         // Set the line offset from the baseline.
         let baselineOffset: CGFloat = (self.font?.pointSize)! / 2.0
         
         let style = LinedTextView.attributes![.paragraphStyle] as! NSMutableParagraphStyle
         // Iterate over numberOfLines and draw a line in the textView
-        for x in 1..<Int(numberOfLines) {
+        for x in 1..<Int(numberOfLines + 1) {
             //0.5f offset lines up line with pixel boundary
             
             context.move(to: CGPoint(x: self.bounds.origin.x, y: style.minimumLineHeight * CGFloat(x) + baselineOffset))

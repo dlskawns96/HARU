@@ -243,4 +243,23 @@ extension DiaryViewController: UITextViewDelegate {
             NotificationCenter.default.post(name: AddDiaryController.newDiary, object: nil)
         }        
     }
+    
+    func sizeOfString (string: String, constrainedToWidth width: Double, font: UIFont) -> CGSize {
+        return (string as NSString).boundingRect(with: CGSize(width: width,
+                                                              height: .greatestFiniteMagnitude),
+                                                 options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                                 attributes: [NSAttributedString.Key.font: font],
+            context: nil).size
+    }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        var textWidth = textView.frame.inset(by: textView.textContainerInset).width
+        textWidth -= 2.0 * textView.textContainer.lineFragmentPadding;
+
+        let boundingRect = sizeOfString(string: newText, constrainedToWidth: Double(textWidth), font: textView.font!)
+        let numberOfLines = boundingRect.height / textView.font!.lineHeight;
+
+        return numberOfLines <= 17;
+    }
 }
