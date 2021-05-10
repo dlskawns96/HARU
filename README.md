@@ -21,10 +21,22 @@
 
 <br>
 
-### 오늘 하루를 평가하고 기록하세요 ✏️
-#### 평가와 기록은 오늘만 가능해요. <br> 지나간 날의 기분과 기억은 지나가게 두세요 👋
+## 오늘 하루를 평가하고 텍스트와 그림으로 기록하세요 ✏️
+### 평가와 기록은 오늘만 가능해요. <br> 지나간 날의 기분과 기억은 지나가게 두세요 👋
 <p>
-<img height="500" src="https://user-images.githubusercontent.com/63833392/112439079-06907380-8d8c-11eb-9abb-acb8eb2be597.png"> &nbsp
- <img height="500" src="https://user-images.githubusercontent.com/63833392/112439001-f24c7680-8d8b-11eb-824e-b5dc9d3c92a0.png"> &nbsp
-<img height="500" src="https://user-images.githubusercontent.com/63833392/112438992-eb256880-8d8b-11eb-8c81-e00dbd84e2a6.png"> 
+<img height="500" src="https://user-images.githubusercontent.com/63833392/117619885-c99d0680-b1aa-11eb-878c-948b79a775df.png"> &nbsp
+ <img height="500" src="https://user-images.githubusercontent.com/63833392/117620378-6a8bc180-b1ab-11eb-81c8-408030ffa79c.png"> &nbsp
+ <img height="500" src="https://user-images.githubusercontent.com/63833392/117620568-9018cb00-b1ab-11eb-8bfb-39b640918317.png"> &nbsp
+ <img height="500" src="https://user-images.githubusercontent.com/63833392/117620610-9ad36000-b1ab-11eb-88d9-37fdb475c869.png"> &nbsp
 </p>
+<p>
+<img height="500" src="https://user-images.githubusercontent.com/63833392/117620660-a757b880-b1ab-11eb-8d3e-e6f7038f6827.png"> &nbsp
+<img height="500" src="https://user-images.githubusercontent.com/63833392/117620742-bb9bb580-b1ab-11eb-9322-c8487a7f264a.png"> &nbsp
+<img height="500" src="https://user-images.githubusercontent.com/63833392/117621464-9c515800-b1ac-11eb-9845-7e435095c680.png"> &nbsp
+<img height="500" src="https://user-images.githubusercontent.com/63833392/117621268-64e2ab80-b1ac-11eb-9e05-3aa4a5f38638.png"> &nbsp
+ </p>
+ 
+ <br>
+ 
+ ## 평가와 일기 내용은 한번에 확인할 수 있어요 😃
+<img height="500" src="https://user-images.githubusercontent.com/63833392/117621841-fa7e3b00-b1ac-11eb-936e-5fa8c06eaf26.png">
