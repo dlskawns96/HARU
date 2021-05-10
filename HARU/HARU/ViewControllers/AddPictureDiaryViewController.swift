@@ -11,6 +11,7 @@ class AddPictureDiaryViewController : UIViewController {
     
     static var image: UIImage!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var shadowView: ShadowView!
     
     var lastLine: CGPoint!
     var lastContext: CGContext!
@@ -36,6 +37,17 @@ class AddPictureDiaryViewController : UIViewController {
     @IBOutlet weak var darkgrayBtn: UIButton!
     @IBOutlet weak var blackBtn: UIButton!
     
+    // Pen Shadow View
+    @IBOutlet weak var redBtnShadowView: ShadowView!
+    @IBOutlet weak var greenBtnShadowView: ShadowView!
+    @IBOutlet weak var blueBtnShadowView: ShadowView!
+    @IBOutlet weak var indigoBtnShadowView: ShadowView!
+    
+    @IBOutlet weak var yellowBtnShadowView: ShadowView!
+    @IBOutlet weak var orangeBtnShadowView: ShadowView!
+    @IBOutlet weak var darkgrayShadowView: ShadowView!
+    @IBOutlet weak var blackBtnShadowView: ShadowView!
+    
     let dataSource = PictureDiaryModel()
     
     var selectedDate: String!
@@ -49,43 +61,102 @@ class AddPictureDiaryViewController : UIViewController {
     }
     
     @IBAction func redBtnClicked(_ sender: Any) {
+        penBtnInit()
+        penBtnClicked(redBtnShadowView, UIColor.red)
         lineColor = UIColor.red.cgColor
         lineSize = 2.0
     }
     
     @IBAction func greenBtnClicked(_ sender: Any) {
+        penBtnInit()
+        penBtnClicked(greenBtnShadowView, UIColor.green)
         lineColor = UIColor.green.cgColor
         lineSize = 2.0
     }
     
     @IBAction func blueBtnClicked(_ sender: Any) {
+        penBtnInit()
+        penBtnClicked(blueBtnShadowView, UIColor.blue)
         lineColor = UIColor.blue.cgColor
         lineSize = 2.0
     }
     
     @IBAction func indigoBtnClicked(_ sender: Any) {
+        penBtnInit()
+        penBtnClicked(indigoBtnShadowView, UIColor.systemIndigo)
         lineColor = UIColor.systemIndigo.cgColor
         lineSize = 2.0
     }
     
     @IBAction func yellowBtnClicked(_ sender: Any) {
+        penBtnInit()
+        penBtnClicked(yellowBtnShadowView, UIColor.yellow)
         lineColor = UIColor.yellow.cgColor
         lineSize = 2.0
     }
     
     @IBAction func darkgrayBtnClicked(_ sender: Any) {
+        penBtnInit()
+        penBtnClicked(darkgrayShadowView, UIColor.darkGray)
         lineColor = UIColor.darkGray.cgColor
         lineSize = 2.0
     }
     
     @IBAction func orangeBtnClicked(_ sender: Any) {
+        penBtnInit()
+        penBtnClicked(orangeBtnShadowView, UIColor.orange)
         lineColor = UIColor.orange.cgColor
         lineSize = 2.0
     }
     
     @IBAction func blackBtnClicked(_ sender: Any) {
+        penBtnInit()
+        penBtnClicked(blackBtnShadowView, UIColor.black)
         lineColor = UIColor.black.cgColor
         lineSize = 2.0
+    }
+
+    func penBtnClicked(_ BtnShadowView: ShadowView, _ color: UIColor) {
+        BtnShadowView.shadowColor = color
+        BtnShadowView.shadowBlur = 12
+        BtnShadowView.shadowOffset = CGPoint(x: 0, y: 2)
+        BtnShadowView.shadowOpacity = 1
+    }
+    
+    func penBtnInit() {
+        
+        redBtnShadowView.shadowOpacity = 0
+        redBtnShadowView.shadowBlur = 0
+        redBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+        
+        greenBtnShadowView.shadowOpacity = 0
+        greenBtnShadowView.shadowBlur = 0
+        greenBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+        
+        blueBtnShadowView.shadowOpacity = 0
+        blueBtnShadowView.shadowBlur = 0
+        blueBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+        
+        indigoBtnShadowView.shadowOpacity = 0
+        indigoBtnShadowView.shadowBlur = 0
+        indigoBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+        
+        yellowBtnShadowView.shadowOpacity = 0
+        yellowBtnShadowView.shadowBlur = 0
+        yellowBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+        
+        orangeBtnShadowView.shadowOpacity = 0
+        orangeBtnShadowView.shadowBlur = 0
+        orangeBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+        
+        darkgrayShadowView.shadowOpacity = 0
+        darkgrayShadowView.shadowBlur = 0
+        darkgrayShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+        
+        blackBtnShadowView.shadowOpacity = 0
+        blackBtnShadowView.shadowBlur = 0
+        blackBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+        
     }
     
     @IBAction func finishBtnClicked(_ sender: Any) {
@@ -178,6 +249,10 @@ class AddPictureDiaryViewController : UIViewController {
 
         selectedDate = AD?.selectedDate
         imageView.image = AddPictureDiaryViewController.image
+        shadowView.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        
+        redBtnShadowView.shadowBlur = 0
+        redBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
     }
     
     override func viewDidLoad() {
