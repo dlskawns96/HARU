@@ -39,7 +39,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-HY-9MJ" userLabel="캘린더 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -294,7 +294,7 @@
             <objects>
                 <viewController storyboardIdentifier="SelectDateController" id="Nzo-Wt-ceS" customClass="SelectDateController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gqT-Gu-Dfh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
@@ -439,7 +439,7 @@
             <objects>
                 <viewController storyboardIdentifier="PictureDiaryView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2bn-nU-ixO" customClass="AddPictureDiaryViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2SF-vn-RuW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3of-FT-baJ" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -476,7 +476,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0tA-Xo-1fb">
-                                <rect key="frame" x="15" y="492" width="384" height="193"/>
+                                <rect key="frame" x="15" y="492" width="384" height="132"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Ac-Th-W25">
                                         <rect key="frame" x="0.0" y="0.0" width="229.5" height="193"/>
@@ -616,6 +616,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-xe-Q1a">
+
                                                 <rect key="frame" x="0.0" y="101.5" width="229.5" height="91.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7h-Cb-Qwz" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -993,11 +994,11 @@
             <objects>
                 <viewController storyboardIdentifier="diaryViewController" id="OmN-bU-GkM" customClass="DiaryViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ykE-pX-lDu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZd-QS-OVY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="620"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5H4-br-sgy">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
@@ -1248,7 +1249,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rW8-uH-4Dj"/>
+        <segue reference="umG-JP-t3P"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Spring" width="177" height="15"/>

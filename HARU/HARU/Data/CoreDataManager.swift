@@ -148,6 +148,18 @@ class CoreDataManager {
 //        }
 //    }
     
+    func deleteImage(path: String) {
+        // 다이어리 이미 있을때
+        for item in CoreDataManager.diaryList {
+            if item.date == path {
+                item.imagePath = nil
+                break
+            }
+        }
+        
+        saveContext()
+    }
+    
     func saveImageURL(path: String) {
         
         var check: Bool = true
