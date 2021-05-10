@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        UserDefaults.standard.register(defaults: ["NotificationAllowState" : true, "MAIN_COLOR" : "MainUIColor_04"])
+        UserDefaults.standard.register(defaults: ["NotificationAllowState" : true, "MAIN_COLOR" : "MainUIColor_04", "directoryState": true])
         AppDelegate.MAIN_COLOR = UserDefaults.standard.string(forKey: "MAIN_COLOR")!
         FirebaseApp.configure()
         Messaging.messaging().delegate = self

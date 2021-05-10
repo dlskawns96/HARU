@@ -266,6 +266,11 @@ class AddPictureDiaryViewController : UIViewController {
         eraserBackgroundView.layer.maskedCorners = [CACornerMask.layerMaxXMaxYCorner, CACornerMask.layerMinXMaxYCorner]
       
         penBtnInit()
+        
+        blackBtnShadowView.shadowColor = UIColor.black
+        blackBtnShadowView.shadowOpacity = 1
+        blackBtnShadowView.shadowBlur = 12
+        blackBtnShadowView.shadowOffset = CGPoint(x: 0, y: 2)
     }
     
     override func viewDidLoad() {

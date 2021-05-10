@@ -12,10 +12,14 @@ class PictureDiaryModel {
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let directoryURL = documentsURL.appendingPathComponent("HARU")
         
-        do {
-            try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: false, attributes: nil)
-        } catch let e {
-            print(e.localizedDescription)
+    
+        if UserDefaults.standard.bool(forKey: "directoryState") == true {
+            do {
+                try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: false, attributes: nil)
+                UserDefaults.standard.set(false, forKey: "directoryState")
+            } catch let e {
+                print(e.localizedDescription)
+            }
         }
 
         let imageURL = directoryURL.appendingPathComponent(path+".png")
