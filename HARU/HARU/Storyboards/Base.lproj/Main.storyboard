@@ -479,16 +479,16 @@
                                 <rect key="frame" x="15" y="492" width="384" height="193"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Ac-Th-W25">
-                                        <rect key="frame" x="0.0" y="0.0" width="330.5" height="193"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="229.5" height="193"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="P4d-Hn-WLy">
-                                                <rect key="frame" x="0.0" y="0.0" width="330.5" height="91.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="229.5" height="91.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qwp-Xx-Dsr" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="91.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HT-36-Lxn">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="91.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -526,10 +526,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xv5-zw-bW9" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="85" y="0.0" width="75" height="91.5"/>
+                                                        <rect key="frame" x="60" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEn-9S-OWD">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="91.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -556,10 +556,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NCL-zb-aLT" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="170" y="0.0" width="75" height="91.5"/>
+                                                        <rect key="frame" x="120" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tR-hr-KJ7">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="91.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -585,10 +585,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0h0-fh-AJB" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="255" y="0.0" width="75.5" height="91.5"/>
+                                                        <rect key="frame" x="180" y="0.0" width="49.5" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbJ-YE-2tq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75.5" height="91.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -616,13 +616,13 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-xe-Q1a">
-                                                <rect key="frame" x="0.0" y="101.5" width="330.5" height="91.5"/>
+                                                <rect key="frame" x="0.0" y="101.5" width="229.5" height="91.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7h-Cb-Qwz" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="91.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tp-Ah-a7O">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="91.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -648,10 +648,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfu-Qq-cRa" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="85" y="0.0" width="75" height="91.5"/>
+                                                        <rect key="frame" x="60" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSc-B2-YIO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="91.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -677,10 +677,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBQ-ll-CzA" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="170" y="0.0" width="75" height="91.5"/>
+                                                        <rect key="frame" x="120" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDU-2U-PCL">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="91.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -706,10 +706,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgB-IA-0YG" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="255" y="0.0" width="75.5" height="91.5"/>
+                                                        <rect key="frame" x="180" y="0.0" width="49.5" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4B5-vq-uCC">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75.5" height="91.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="91.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -742,27 +742,44 @@
                                             <constraint firstItem="P4d-Hn-WLy" firstAttribute="top" secondItem="6Ac-Th-W25" secondAttribute="top" id="NLr-QR-G1W"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-Fp-TgR">
-                                        <rect key="frame" x="340.5" y="0.0" width="43.5" height="193"/>
-                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                        <state key="normal" title="지우개">
-                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbG-uZ-Lqf" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                        <rect key="frame" x="239.5" y="0.0" width="144.5" height="193"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-Fp-TgR">
+                                                <rect key="frame" x="0.0" y="0.0" width="144.5" height="193"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <state key="normal" title="지우개">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="eraserBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="9dz-Ko-iBG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="b19-Fp-TgR" secondAttribute="trailing" id="41I-9l-npg"/>
+                                            <constraint firstAttribute="bottom" secondItem="b19-Fp-TgR" secondAttribute="bottom" id="fRp-CU-pQ9"/>
+                                            <constraint firstItem="b19-Fp-TgR" firstAttribute="leading" secondItem="HbG-uZ-Lqf" secondAttribute="leading" id="tmN-bJ-SSl"/>
+                                            <constraint firstItem="b19-Fp-TgR" firstAttribute="top" secondItem="HbG-uZ-Lqf" secondAttribute="top" id="yok-nZ-SdC"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="opaqueSeparatorColor"/>
-                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="eraserBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="9dz-Ko-iBG"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -799,6 +816,7 @@
                         <outlet property="darkgrayBtn" destination="qDU-2U-PCL" id="rYf-wf-i0P"/>
                         <outlet property="darkgrayShadowView" destination="iBQ-ll-CzA" id="76u-LP-RLG"/>
                         <outlet property="eraserBtn" destination="b19-Fp-TgR" id="Edk-XU-U9R"/>
+                        <outlet property="eraserBtnShadowView" destination="HbG-uZ-Lqf" id="A5M-XJ-JFs"/>
                         <outlet property="greenBtn" destination="mEn-9S-OWD" id="OiS-1e-0f2"/>
                         <outlet property="greenBtnShadowView" destination="xv5-zw-bW9" id="Xqw-vD-htV"/>
                         <outlet property="imageView" destination="SfU-Xd-Dsl" id="qcb-s5-lAT"/>

@@ -43,6 +43,8 @@ class AddPictureDiaryViewController : UIViewController {
     @IBOutlet weak var blueBtnShadowView: ShadowView!
     @IBOutlet weak var indigoBtnShadowView: ShadowView!
     
+    @IBOutlet weak var eraserBtnShadowView: ShadowView!
+    
     @IBOutlet weak var yellowBtnShadowView: ShadowView!
     @IBOutlet weak var orangeBtnShadowView: ShadowView!
     @IBOutlet weak var darkgrayShadowView: ShadowView!
@@ -56,6 +58,8 @@ class AddPictureDiaryViewController : UIViewController {
     
     
     @IBAction func eraserBtnClicked(_ sender: Any) {
+        penBtnInit()
+        penBtnClicked(eraserBtnShadowView, UIColor.gray)
         lineColor = UIColor.white.cgColor
         lineSize = 5.0
     }
@@ -125,6 +129,10 @@ class AddPictureDiaryViewController : UIViewController {
     
     func penBtnInit() {
         
+        eraserBtnShadowView.shadowOpacity = 0
+        eraserBtnShadowView.shadowBlur = 0
+        eraserBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+       
         redBtnShadowView.shadowOpacity = 0
         redBtnShadowView.shadowBlur = 0
         redBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
@@ -251,8 +259,7 @@ class AddPictureDiaryViewController : UIViewController {
         imageView.image = AddPictureDiaryViewController.image
         shadowView.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
-        redBtnShadowView.shadowBlur = 0
-        redBtnShadowView.shadowOffset = CGPoint(x: 0, y: 0)
+        penBtnInit()
     }
     
     override func viewDidLoad() {
