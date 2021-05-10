@@ -12,6 +12,7 @@ class AddPictureDiaryViewController : UIViewController {
     static var image: UIImage!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shadowView: ShadowView!
+    @IBOutlet weak var eraserBackgroundView: UIView!
     
     var lastLine: CGPoint!
     var lastContext: CGContext!
@@ -61,7 +62,7 @@ class AddPictureDiaryViewController : UIViewController {
         penBtnInit()
         penBtnClicked(eraserBtnShadowView, UIColor.gray)
         lineColor = UIColor.white.cgColor
-        lineSize = 5.0
+        lineSize = 35.0
     }
     
     @IBAction func redBtnClicked(_ sender: Any) {
@@ -259,6 +260,11 @@ class AddPictureDiaryViewController : UIViewController {
         imageView.image = AddPictureDiaryViewController.image
         shadowView.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
+        eraserBackgroundView.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        eraserBackgroundView.clipsToBounds = true
+        eraserBackgroundView.layer.cornerRadius = 20
+        eraserBackgroundView.layer.maskedCorners = [CACornerMask.layerMaxXMaxYCorner, CACornerMask.layerMinXMaxYCorner]
+      
         penBtnInit()
     }
     
