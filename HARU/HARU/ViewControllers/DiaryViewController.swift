@@ -51,6 +51,9 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
     let dataSource = DiaryTableViewModel()
     let imageDataSource = PictureDiaryModel()
     
+    // 이미지 선택
+    let imagePicker = UIImagePickerController()
+    
     var dataArray = [Diary]() {
         didSet {
             //tableView.reloadData()
@@ -68,7 +71,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         goodBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: CGFloat(goodBtnSize))
         bestBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: CGFloat(bestBtnSize))
     }
-
+    
     // 평가
     @IBAction func badBtn(_ sender: Any) {
         if todayCheck {
@@ -87,7 +90,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             CoreDataManager.shared.saveEvaluation(2, AD?.selectedDate)
             NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
         }
-    
+        
     }
     
     @IBAction func bestBtn(_ sender: Any) {
@@ -98,19 +101,74 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
         }
     }
-
+    
     @objc func AddPictureDiary(sender: UIGestureRecognizer) {
         if todayCheck {
-            AddPictureDiaryViewController.image = pictureDiary.image
-            performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
+            // 사진을 업로드 할지 그림을 그릴지 선택지 주기
+            let alert = UIAlertController(title:
+                                            "선택", message: "어떤 것을 추가하실 건가요?", preferredStyle: .actionSheet)
+            
+            let eventAction = UIAlertAction(title: "사진 추가하기", style: .default) { [weak self] (action) in
+                self?.selectPhotoSource()
+            }
+            alert.addAction(eventAction)
+            
+            let diaryAction = UIAlertAction(title: "그림 그리기", style: .default) {_ in
+                AddPictureDiaryViewController.image = self.pictureDiary.image
+                self.performSegue(withIdentifier: "AddPictureDiaryView", sender: nil)
+            }
+            alert.addAction(diaryAction)
+            
+            let cancleAction = UIAlertAction(title: "취소", style: .cancel) { [weak self] (action) in
+                //                self?.cancelBtnClicked()
+                self?.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(cancleAction)
+            
+            present(alert, animated: true, completion: nil)
+            
+            
         }
+    }
+    
+    private func selectPhotoSource() {
+        let alert = UIAlertController(title:
+                                        nil, message: nil, preferredStyle: .actionSheet)
+        
+        let selectLibrary = UIAlertAction(title: "라이브러리", style: .default) { _ in
+            self.openLibrary()
+        }
+        
+        let selectCamera = UIAlertAction(title: "사진 찍기", style: .default) { _ in
+            self.openCamera()
+        }
+        
+        let cancleAction = UIAlertAction(title: "취소", style: .cancel) { [weak self] (action) in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(selectLibrary)
+        alert.addAction(selectCamera)
+        alert.addAction(cancleAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func openLibrary() {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.modalPresentationStyle = .fullScreen
+        present(imagePicker, animated: false, completion: nil)
+    }
+    
+    private func openCamera() {
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: false, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         CoreDataManager.shared.fetchDiary()
-
+        
         dataSource.requestDiary(date: (AD?.selectedDate)!)
         dSelectedDate = AD?.selectedDate
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -120,7 +178,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(AddPictureDiary(sender:)))
         self.shadowView.addGestureRecognizer(gesture)
-
+        
         let evaluation = CoreDataManager.returnDiaryEvaluation(date: (AD?.selectedDate)!)
         
         if evaluation == 1 {
@@ -143,18 +201,19 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
                 let image = imageDataSource.loadImage(path: dSelectedDate!)
                 pictureDiary.image = image
             }
-
+            
         }
         
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         self.navigationItem.title = dateFormatter.string(from: DiaryViewController.selectedDate!)
     }
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         dataSource.delegate = self
-    
+        imagePicker.delegate = self
+        
         myView.backgroundColor = .white
         evaluationView.layer.cornerRadius = 10
         evaluationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -165,7 +224,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         
         textView.delegate = self
         textView.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
-
+        
         shadowView.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
         pictureDiary.borderColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
@@ -174,7 +233,7 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         }
         
         Etoken = NotificationCenter.default.addObserver(forName: DiaryViewController.newEvaluation, object: nil, queue: OperationQueue.main) {_ in
-
+            
         }
         
         Ctoken = NotificationCenter.default.addObserver(forName: AddDiaryController.updateComment, object: nil, queue: OperationQueue.main) {_ in
@@ -249,17 +308,43 @@ extension DiaryViewController: UITextViewDelegate {
                                                               height: .greatestFiniteMagnitude),
                                                  options: NSStringDrawingOptions.usesLineFragmentOrigin,
                                                  attributes: [NSAttributedString.Key.font: font],
-            context: nil).size
+                                                 context: nil).size
     }
-
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         var textWidth = textView.frame.inset(by: textView.textContainerInset).width
         textWidth -= 2.0 * textView.textContainer.lineFragmentPadding;
-
+        
         let boundingRect = sizeOfString(string: newText, constrainedToWidth: Double(textWidth), font: textView.font!)
         let numberOfLines = boundingRect.height / textView.font!.lineHeight;
-
+        
         return numberOfLines <= 17;
     }
 }
+
+extension DiaryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            let dataSource = PictureDiaryModel()
+            dataSource.saveImage(image: fixOrientation(img: image), path: dSelectedDate!)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func fixOrientation(img: UIImage) -> UIImage {
+        if (img.imageOrientation == .up) {
+            return img
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(img.size, false, img.scale)
+        let rect = CGRect(x: 0, y: 0, width: img.size.width, height: img.size.height)
+        img.draw(in: rect)
+        
+        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return normalizedImage
+    }
+}
+
