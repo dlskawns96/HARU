@@ -479,113 +479,262 @@
                                 <rect key="frame" x="15" y="492" width="384" height="132"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Ac-Th-W25">
-                                        <rect key="frame" x="0.0" y="0.0" width="282.5" height="132"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="229.5" height="193"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="P4d-Hn-WLy">
-                                                <rect key="frame" x="0.0" y="0.0" width="282.5" height="61"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="229.5" height="91.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HT-36-Lxn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="61"/>
-                                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qwp-Xx-Dsr" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HT-36-Lxn">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
+                                                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="redBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="3kZ-nB-a1Z"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="5HT-36-Lxn" secondAttribute="bottom" id="8VF-dg-NaK"/>
+                                                            <constraint firstItem="5HT-36-Lxn" firstAttribute="leading" secondItem="Qwp-Xx-Dsr" secondAttribute="leading" id="mRW-My-ySc"/>
+                                                            <constraint firstItem="5HT-36-Lxn" firstAttribute="top" secondItem="Qwp-Xx-Dsr" secondAttribute="top" id="msV-i0-2vz"/>
+                                                            <constraint firstAttribute="trailing" secondItem="5HT-36-Lxn" secondAttribute="trailing" id="txH-dq-72g"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                                                <point key="value" x="0.0" y="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xv5-zw-bW9" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                                        <rect key="frame" x="60" y="0.0" width="50" height="91.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEn-9S-OWD">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
+                                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="greenBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="0wE-p1-fXt"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="mEn-9S-OWD" firstAttribute="top" secondItem="xv5-zw-bW9" secondAttribute="top" id="BWX-sr-IaU"/>
+                                                            <constraint firstItem="mEn-9S-OWD" firstAttribute="leading" secondItem="xv5-zw-bW9" secondAttribute="leading" id="PSN-uZ-viY"/>
+                                                            <constraint firstAttribute="bottom" secondItem="mEn-9S-OWD" secondAttribute="bottom" id="X02-gV-q5i"/>
+                                                            <constraint firstAttribute="trailing" secondItem="mEn-9S-OWD" secondAttribute="trailing" id="fnT-Ee-2f8"/>
+                                                        </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="20"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="redBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="3kZ-nB-a1Z"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEn-9S-OWD">
-                                                        <rect key="frame" x="73" y="0.0" width="63" height="61"/>
-                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NCL-zb-aLT" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                                        <rect key="frame" x="120" y="0.0" width="50" height="91.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tR-hr-KJ7">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
+                                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="blueBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="5S5-8X-7fM"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="8tR-hr-KJ7" firstAttribute="top" secondItem="NCL-zb-aLT" secondAttribute="top" id="D0G-7i-14h"/>
+                                                            <constraint firstAttribute="bottom" secondItem="8tR-hr-KJ7" secondAttribute="bottom" id="DqS-6T-ps1"/>
+                                                            <constraint firstItem="8tR-hr-KJ7" firstAttribute="leading" secondItem="NCL-zb-aLT" secondAttribute="leading" id="cal-sv-L8W"/>
+                                                            <constraint firstAttribute="trailing" secondItem="8tR-hr-KJ7" secondAttribute="trailing" id="yzo-dh-fZM"/>
+                                                        </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="20"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="greenBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="0wE-p1-fXt"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tR-hr-KJ7">
-                                                        <rect key="frame" x="146" y="0.0" width="63.5" height="61"/>
-                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0h0-fh-AJB" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                                        <rect key="frame" x="180" y="0.0" width="49.5" height="91.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbJ-YE-2tq">
+                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="91.5"/>
+                                                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="indigoBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="vbb-o3-AcP"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="CbJ-YE-2tq" secondAttribute="bottom" id="Vgs-X4-6SY"/>
+                                                            <constraint firstAttribute="trailing" secondItem="CbJ-YE-2tq" secondAttribute="trailing" id="YRC-4M-DTU"/>
+                                                            <constraint firstItem="CbJ-YE-2tq" firstAttribute="top" secondItem="0h0-fh-AJB" secondAttribute="top" id="bba-Uc-kEr"/>
+                                                            <constraint firstItem="CbJ-YE-2tq" firstAttribute="leading" secondItem="0h0-fh-AJB" secondAttribute="leading" id="hq3-aP-w6h"/>
+                                                        </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="20"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="blueBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="5S5-8X-7fM"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbJ-YE-2tq">
-                                                        <rect key="frame" x="219.5" y="0.0" width="63" height="61"/>
-                                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="20"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="indigoBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="vbb-o3-AcP"/>
-                                                        </connections>
-                                                    </button>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-xe-Q1a">
-                                                <rect key="frame" x="0.0" y="71" width="282.5" height="61"/>
+
+                                                <rect key="frame" x="0.0" y="101.5" width="229.5" height="91.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tp-Ah-a7O">
-                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="61"/>
-                                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7h-Cb-Qwz" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tp-Ah-a7O">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
+                                                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="yellowBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="Pmv-Y8-Spx"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="7Tp-Ah-a7O" firstAttribute="leading" secondItem="m7h-Cb-Qwz" secondAttribute="leading" id="7Gi-TO-rxv"/>
+                                                            <constraint firstItem="7Tp-Ah-a7O" firstAttribute="top" secondItem="m7h-Cb-Qwz" secondAttribute="top" id="Dt6-yN-Fca"/>
+                                                            <constraint firstAttribute="trailing" secondItem="7Tp-Ah-a7O" secondAttribute="trailing" id="Hgt-Zc-s8N"/>
+                                                            <constraint firstAttribute="bottom" secondItem="7Tp-Ah-a7O" secondAttribute="bottom" id="WCG-eK-EWF"/>
+                                                        </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="20"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="yellowBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="Pmv-Y8-Spx"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSc-B2-YIO">
-                                                        <rect key="frame" x="73" y="0.0" width="63" height="61"/>
-                                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfu-Qq-cRa" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                                        <rect key="frame" x="60" y="0.0" width="50" height="91.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSc-B2-YIO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
+                                                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="orangeBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="XaA-aw-iDS"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="rSc-B2-YIO" firstAttribute="leading" secondItem="bfu-Qq-cRa" secondAttribute="leading" id="4SI-uQ-u5G"/>
+                                                            <constraint firstAttribute="trailing" secondItem="rSc-B2-YIO" secondAttribute="trailing" id="Civ-A3-hdb"/>
+                                                            <constraint firstAttribute="bottom" secondItem="rSc-B2-YIO" secondAttribute="bottom" id="VCi-c9-a8g"/>
+                                                            <constraint firstItem="rSc-B2-YIO" firstAttribute="top" secondItem="bfu-Qq-cRa" secondAttribute="top" id="aFk-VO-ha3"/>
+                                                        </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="20"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="orangeBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="XaA-aw-iDS"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDU-2U-PCL">
-                                                        <rect key="frame" x="146" y="0.0" width="63.5" height="61"/>
-                                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBQ-ll-CzA" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                                        <rect key="frame" x="120" y="0.0" width="50" height="91.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDU-2U-PCL">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
+                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="darkgrayBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="7od-24-7LS"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="qDU-2U-PCL" firstAttribute="leading" secondItem="iBQ-ll-CzA" secondAttribute="leading" id="Pmt-FP-IiG"/>
+                                                            <constraint firstItem="qDU-2U-PCL" firstAttribute="top" secondItem="iBQ-ll-CzA" secondAttribute="top" id="p8N-0b-ns2"/>
+                                                            <constraint firstAttribute="bottom" secondItem="qDU-2U-PCL" secondAttribute="bottom" id="pzB-WN-WZh"/>
+                                                            <constraint firstAttribute="trailing" secondItem="qDU-2U-PCL" secondAttribute="trailing" id="tUK-cy-q2y"/>
+                                                        </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="20"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="darkgrayBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="7od-24-7LS"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4B5-vq-uCC">
-                                                        <rect key="frame" x="219.5" y="0.0" width="63" height="61"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgB-IA-0YG" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                                        <rect key="frame" x="180" y="0.0" width="49.5" height="91.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4B5-vq-uCC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="91.5"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="blackBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="OjS-7g-P99"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="4B5-vq-uCC" secondAttribute="trailing" id="6Lj-4h-zcJ"/>
+                                                            <constraint firstItem="4B5-vq-uCC" firstAttribute="leading" secondItem="VgB-IA-0YG" secondAttribute="leading" id="aGz-21-bT4"/>
+                                                            <constraint firstItem="4B5-vq-uCC" firstAttribute="top" secondItem="VgB-IA-0YG" secondAttribute="top" id="mjo-6Z-eT9"/>
+                                                            <constraint firstAttribute="bottom" secondItem="4B5-vq-uCC" secondAttribute="bottom" id="sql-nr-j7l"/>
+                                                        </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="20"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="blackBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="OjS-7g-P99"/>
-                                                        </connections>
-                                                    </button>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -594,27 +743,55 @@
                                             <constraint firstItem="P4d-Hn-WLy" firstAttribute="top" secondItem="6Ac-Th-W25" secondAttribute="top" id="NLr-QR-G1W"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-Fp-TgR">
-                                        <rect key="frame" x="292.5" y="0.0" width="91.5" height="132"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbG-uZ-Lqf" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                        <rect key="frame" x="239.5" y="0.0" width="144.5" height="193"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-Rb-hjT">
+                                                <rect key="frame" x="0.0" y="50" width="144.5" height="143"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-Fp-TgR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="144.5" height="143"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" systemColor="opaqueSeparatorColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="eraserBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="9dz-Ko-iBG"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="b19-Fp-TgR" secondAttribute="trailing" id="ABL-OT-BWP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="b19-Fp-TgR" secondAttribute="bottom" id="BEU-eu-mHm"/>
+                                                    <constraint firstItem="b19-Fp-TgR" firstAttribute="leading" secondItem="Avb-Rb-hjT" secondAttribute="leading" id="FdD-Jg-sun"/>
+                                                    <constraint firstItem="b19-Fp-TgR" firstAttribute="top" secondItem="Avb-Rb-hjT" secondAttribute="top" id="wew-Sn-dYP"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                        <state key="normal" title="Eraser">
-                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Avb-Rb-hjT" secondAttribute="trailing" id="EpE-HU-kHZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="Avb-Rb-hjT" secondAttribute="bottom" id="InY-uZ-PBO"/>
+                                            <constraint firstItem="Avb-Rb-hjT" firstAttribute="leading" secondItem="HbG-uZ-Lqf" secondAttribute="leading" id="Isl-db-YJe"/>
+                                            <constraint firstItem="Avb-Rb-hjT" firstAttribute="top" secondItem="HbG-uZ-Lqf" secondAttribute="top" constant="50" id="NpO-zm-6sA"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="opaqueSeparatorColor"/>
-                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="eraserBtnClicked:" destination="2bn-nU-ixO" eventType="touchUpInside" id="9dz-Ko-iBG"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -645,16 +822,26 @@
                     </navigationItem>
                     <connections>
                         <outlet property="blackBtn" destination="4B5-vq-uCC" id="e79-aG-U08"/>
+                        <outlet property="blackBtnShadowView" destination="VgB-IA-0YG" id="rQW-hJ-Gh1"/>
                         <outlet property="blueBtn" destination="8tR-hr-KJ7" id="p8r-tX-a6k"/>
+                        <outlet property="blueBtnShadowView" destination="NCL-zb-aLT" id="Crs-pP-Vi6"/>
                         <outlet property="darkgrayBtn" destination="qDU-2U-PCL" id="rYf-wf-i0P"/>
+                        <outlet property="darkgrayShadowView" destination="iBQ-ll-CzA" id="76u-LP-RLG"/>
+                        <outlet property="eraserBackgroundView" destination="Avb-Rb-hjT" id="nrN-Z0-AEV"/>
                         <outlet property="eraserBtn" destination="b19-Fp-TgR" id="Edk-XU-U9R"/>
+                        <outlet property="eraserBtnShadowView" destination="HbG-uZ-Lqf" id="A5M-XJ-JFs"/>
                         <outlet property="greenBtn" destination="mEn-9S-OWD" id="OiS-1e-0f2"/>
+                        <outlet property="greenBtnShadowView" destination="xv5-zw-bW9" id="Xqw-vD-htV"/>
                         <outlet property="imageView" destination="SfU-Xd-Dsl" id="qcb-s5-lAT"/>
                         <outlet property="indigoBtn" destination="CbJ-YE-2tq" id="7ib-VO-5t8"/>
+                        <outlet property="indigoBtnShadowView" destination="0h0-fh-AJB" id="DYD-Ir-gm1"/>
                         <outlet property="orangeBtn" destination="rSc-B2-YIO" id="rV3-SW-zex"/>
+                        <outlet property="orangeBtnShadowView" destination="bfu-Qq-cRa" id="iTI-Tj-xsb"/>
                         <outlet property="redBtn" destination="5HT-36-Lxn" id="ulp-S9-RS9"/>
-                        <outlet property="shadowView" destination="3of-FT-baJ" id="roN-W4-zmI"/>
+                        <outlet property="redBtnShadowView" destination="Qwp-Xx-Dsr" id="IZg-c8-ub8"/>
+                        <outlet property="shadowView" destination="3of-FT-baJ" id="Dlm-fP-ofK"/>
                         <outlet property="yellowBtn" destination="7Tp-Ah-a7O" id="uMQ-Ba-DYk"/>
+                        <outlet property="yellowBtnShadowView" destination="m7h-Cb-Qwz" id="TwI-HE-OP3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdx-3b-0Bo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1099,6 +1286,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
