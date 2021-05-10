@@ -1003,10 +1003,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4C-mN-WTF" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="8" width="398" height="100"/>
+                                                <rect key="frame" x="12" y="8" width="390" height="100"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fq9-4P-fyA">
-                                                        <rect key="frame" x="339" y="23" width="54" height="54"/>
+                                                        <rect key="frame" x="331" y="23" width="54" height="54"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="54" id="7tj-oq-1Wn"/>
                                                             <constraint firstAttribute="height" constant="54" id="tsB-Tj-ERw"/>
@@ -1023,7 +1023,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5X-Of-cw8">
-                                                        <rect key="frame" x="275" y="23" width="54" height="54"/>
+                                                        <rect key="frame" x="267" y="23" width="54" height="54"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="54" id="YkF-bo-2c9"/>
                                                             <constraint firstAttribute="width" constant="54" id="wca-zk-hQZ"/>
@@ -1034,7 +1034,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1c-Ul-jKT">
-                                                        <rect key="frame" x="211" y="23" width="54" height="54"/>
+                                                        <rect key="frame" x="203" y="23" width="54" height="54"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="54" id="34t-N3-PFG"/>
                                                             <constraint firstAttribute="width" constant="54" id="q3i-GD-u2t"/>
@@ -1082,6 +1082,30 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8g-ci-iRl" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
                                                 <rect key="frame" x="12" y="133" width="390" height="400"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWE-r7-Gmz" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="390" height="400"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                                                                <point key="value" x="0.0" y="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                <color key="value" systemColor="systemGray4Color"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zcG-UG-ZFw">
                                                         <rect key="frame" x="0.0" y="0.0" width="390" height="400"/>
                                                         <constraints>
@@ -1102,6 +1126,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="JWE-r7-Gmz" firstAttribute="top" secondItem="h8g-ci-iRl" secondAttribute="top" id="6wM-V0-zqu"/>
+                                                    <constraint firstAttribute="bottom" secondItem="JWE-r7-Gmz" secondAttribute="bottom" id="7cE-69-jIt"/>
+                                                    <constraint firstItem="JWE-r7-Gmz" firstAttribute="leading" secondItem="h8g-ci-iRl" secondAttribute="leading" id="DCi-XC-ZuI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="JWE-r7-Gmz" secondAttribute="trailing" id="KBP-a6-aHa"/>
                                                     <constraint firstAttribute="trailing" secondItem="zcG-UG-ZFw" secondAttribute="trailing" id="OdQ-uj-48o"/>
                                                     <constraint firstAttribute="height" constant="400" id="Ssu-n2-4UQ"/>
                                                     <constraint firstItem="zcG-UG-ZFw" firstAttribute="leading" secondItem="h8g-ci-iRl" secondAttribute="leading" id="mkf-95-fch"/>
@@ -1163,12 +1191,12 @@
                                             <constraint firstAttribute="trailing" secondItem="GS8-Op-hMf" secondAttribute="trailing" constant="12" id="7vf-70-IvV"/>
                                             <constraint firstItem="UrT-RB-jwQ" firstAttribute="top" secondItem="GS8-Op-hMf" secondAttribute="top" id="KeX-aU-eKr"/>
                                             <constraint firstItem="UrT-RB-jwQ" firstAttribute="trailing" secondItem="GS8-Op-hMf" secondAttribute="trailing" id="N1q-5g-oP8"/>
-                                            <constraint firstItem="G4C-mN-WTF" firstAttribute="leading" secondItem="5H4-br-sgy" secondAttribute="leading" constant="8" id="ONm-cI-H6A"/>
+                                            <constraint firstItem="G4C-mN-WTF" firstAttribute="leading" secondItem="5H4-br-sgy" secondAttribute="leading" constant="12" id="ONm-cI-H6A"/>
                                             <constraint firstItem="A1D-s1-xwT" firstAttribute="leading" secondItem="GS8-Op-hMf" secondAttribute="leading" id="Q3L-zH-mUc"/>
                                             <constraint firstAttribute="trailing" secondItem="h8g-ci-iRl" secondAttribute="trailing" constant="12" id="ZYe-eM-BHd"/>
                                             <constraint firstItem="GS8-Op-hMf" firstAttribute="top" secondItem="h8g-ci-iRl" secondAttribute="bottom" constant="25" id="aLX-Yw-dBr"/>
                                             <constraint firstAttribute="height" constant="1200" id="bSE-YF-yEu"/>
-                                            <constraint firstAttribute="trailing" secondItem="G4C-mN-WTF" secondAttribute="trailing" constant="8" id="hYJ-Tm-uGj"/>
+                                            <constraint firstAttribute="trailing" secondItem="G4C-mN-WTF" secondAttribute="trailing" constant="12" id="hYJ-Tm-uGj"/>
                                             <constraint firstItem="h8g-ci-iRl" firstAttribute="top" secondItem="G4C-mN-WTF" secondAttribute="bottom" constant="25" id="iNq-E2-Pnn"/>
                                             <constraint firstItem="UrT-RB-jwQ" firstAttribute="leading" secondItem="GS8-Op-hMf" secondAttribute="leading" id="p8W-ZH-rZG"/>
                                             <constraint firstItem="h8g-ci-iRl" firstAttribute="leading" secondItem="5H4-br-sgy" secondAttribute="leading" constant="12" id="uJ1-OU-gtP"/>
@@ -1216,7 +1244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5qc-32-4tn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589.8550724637682" y="937.83482142857133"/>
+            <point key="canvasLocation" x="1589.8550724637682" y="937.5"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -1242,6 +1270,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

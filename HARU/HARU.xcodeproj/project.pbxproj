@@ -520,7 +520,7 @@
 			};
 			buildConfigurationList = EA7F83612594749C008B8ED5 /* Build configuration list for PBXProject "HARU" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
