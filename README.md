@@ -40,3 +40,14 @@
  
  ## 평가와 일기 내용은 한번에 확인할 수 있어요 😃
 <img height="500" src="https://user-images.githubusercontent.com/63833392/117621841-fa7e3b00-b1ac-11eb-936e-5fa8c06eaf26.png">
+
+ <br>
+ 
+ ## 다양한 테마 컬러!
+ ### 기분에 따라 테마를 바꿔보세요 👋
+ <p>
+ <img height="500" src="https://user-images.githubusercontent.com/63833392/117622632-ce16ee80-b1ad-11eb-8f8d-40f66de14a5e.png"> &nbsp
+  <img height="500" src="https://user-images.githubusercontent.com/63833392/117622863-1209f380-b1ae-11eb-9bae-749a78fbf904.png"> &nbsp
+   <img height="500" src="https://user-images.githubusercontent.com/63833392/117623016-3c5bb100-b1ae-11eb-90eb-705efe819758.png"> &nbsp
+  <img height="500" src="https://user-images.githubusercontent.com/63833392/117623296-8d6ba500-b1ae-11eb-82f7-4b3ebbc51942.png"> &nbsp
+ </p>
