@@ -119,6 +119,13 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             }
             alert.addAction(diaryAction)
             
+            let imageDeleteAction = UIAlertAction(title: "삭제 하기", style: .destructive) { _ in
+                // 이미지 삭제
+                CoreDataManager.shared.deleteImage(path: self.dSelectedDate!)
+                self.pictureDiary.image = nil
+            }
+            alert.addAction(imageDeleteAction)
+            
             let cancleAction = UIAlertAction(title: "취소", style: .cancel) { [weak self] (action) in
                 //                self?.cancelBtnClicked()
                 self?.dismiss(animated: true, completion: nil)
