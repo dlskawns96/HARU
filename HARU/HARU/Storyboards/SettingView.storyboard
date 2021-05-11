@@ -420,6 +420,7 @@
                         <outlet property="appImageView" destination="ZFU-6z-uFW" id="HKm-nH-9y8"/>
                         <outlet property="appVersion" destination="tVw-M3-wzt" id="H6K-yo-siS"/>
                         <outlet property="closeBtn" destination="jrb-TB-YDu" id="XCg-zU-gkE"/>
+                        <outlet property="shadowView" destination="7Ke-1r-ZiI" id="ddl-7J-ZHs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4I-RD-Zfn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
