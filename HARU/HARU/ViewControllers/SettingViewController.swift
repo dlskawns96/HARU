@@ -20,7 +20,7 @@ class SettingViewController: UIViewController {
     var appVersion = "0.0.0"
     let dataSource = DiaryTableViewModel()
     let header: [String] = ["설정", "서비스", "지원"]
-    let setting: [[String]] = [["테마 설정"], ["다이어리 전체 지우기"], ["앱 평가하기", "의견 보내기", "개발자 정보", "앱 정보"]]
+    let setting: [[String]] = [["테마 설정"], ["다이어리 전체 지우기"], ["의견 보내기", "개발자 정보", "앱 정보"]]
     
     private func checkEmailAvailability() {
         
@@ -134,16 +134,16 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             present(alert, animated: true, completion: nil)
         case 2:
             switch indexPath.row {
+//            case 0:
+//                print("앱 평가")
+//                appEvaluation()
             case 0:
-                print("앱 평가")
-                appEvaluation()
-            case 1:
                 //performSegue(withIdentifier: "opinionView", sender: nil)
                 checkEmailAvailability()
-            case 2:
+            case 1:
                 print("개발자 정보")
                 performSegue(withIdentifier: "DeveloperInfoView", sender: nil)
-            case 3:
+            case 2:
                 print("앱 정보")
                 performSegue(withIdentifier: "AppInfoView", sender: nil)
             default:

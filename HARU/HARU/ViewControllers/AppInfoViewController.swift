@@ -28,7 +28,7 @@ class AppInfoViewController: UIViewController {
         closeBtn.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
         appImageView.image = UIImage(named: "appstore")
-        appVersion.text = "Current Version : 0.0.0"
+        appVersion.text = "Current Version : 1.0.0"
         appVersion.textColor = .gray
         shadowView.shadowColor = UIColor(named: AppDelegate.MAIN_COLOR)
         

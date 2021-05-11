@@ -34,7 +34,6 @@ class ViewController: UIViewController {
     var dataArray = [[[MainCalendarCellItem]]]() {
         didSet {
             fsCalendar.reloadData()
-            fsCalendar.isUserInteractionEnabled = true
         }
     }
     
@@ -57,7 +56,6 @@ class ViewController: UIViewController {
         } else {
             authorizationCheck()
         }
-        fsCalendar.isUserInteractionEnabled = false
         CoreDataManager.shared.fetchDiary()
         self.initFSCalendar()
         self.registerObservers()
@@ -91,7 +89,11 @@ class ViewController: UIViewController {
     }
     
     func eventActionClicked() {
-        self.performSegue(withIdentifier: "AddNewEventViewController", sender: nil)
+        if self.calendarAuth == .authorized {
+            self.performSegue(withIdentifier: "AddNewEventViewController", sender: nil)
+        } else {
+            requestCalendarAuth()
+        }
     }
     
     func cancelBtnClicked() {
@@ -137,6 +139,21 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Functions
+    private func requestCalendarAuth() {
+        let authController = UIAlertController(title: "캘린더 권한 요청", message: "캘린더 권한을 허용하시면 일정을 관리할 수 있습니다.", preferredStyle: .alert)
+        let getAuthAction = UIAlertAction(title: "권한 허용하러 가기", style: .default, handler: { (UIAlertAction) in
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
+        })
+        let cancelAction = UIAlertAction(title: "거부", style: .cancel, handler: {_ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        authController.addAction(getAuthAction)
+        authController.addAction(cancelAction)
+        self.present(authController, animated: true, completion: nil)
+    }
+    
     private func getWeekDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()
         return dateFormatter.weekdaySymbols[Foundation.Calendar.current.component(.weekday, from: date) - 1]
@@ -286,8 +303,12 @@ class ViewController: UIViewController {
 extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     // Implement protocols
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectedDate = date
-        self.performSegue(withIdentifier: "ShowSelectDateView", sender: nil)
+        if self.calendarAuth != .authorized {
+            requestCalendarAuth()
+        } else {
+            selectedDate = date
+            self.performSegue(withIdentifier: "ShowSelectDateView", sender: nil)
+        }
     }
     
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
