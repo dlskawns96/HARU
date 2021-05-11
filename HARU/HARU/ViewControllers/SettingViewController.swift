@@ -26,6 +26,15 @@ class SettingViewController: UIViewController {
         
         if !MFMailComposeViewController.canSendMail() {
             print("Mail services are not available")
+            
+            let alert = UIAlertController(title:
+                                            "알림", message: "디바이스에 이메일을 등록해주세요!", preferredStyle: .alert)
+           
+            let okAction = UIAlertAction(title: "확인", style: .default) { _ in }
+            alert.addAction(okAction)
+            
+            present(alert, animated: true, completion: nil)
+            
             return
         }
         else {
@@ -60,6 +69,16 @@ class SettingViewController: UIViewController {
             present(alert, animated: false, completion: nil)
         }
         
+    }
+    
+    func appEvaluation() {
+        let alert = UIAlertController(title:
+                                        "알림", message: "아직 준비되지 않은 기능이에요!", preferredStyle: .alert)
+       
+        let okAction = UIAlertAction(title: "확인", style: .default) { _ in }
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +136,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 print("앱 평가")
+                appEvaluation()
             case 1:
                 //performSegue(withIdentifier: "opinionView", sender: nil)
                 checkEmailAvailability()
