@@ -13,6 +13,7 @@ class AppInfoViewController: UIViewController {
     @IBOutlet weak var appImageView: UIImageView!
     @IBOutlet weak var appName: UILabel!
     @IBOutlet weak var appVersion: UILabel!
+    @IBOutlet weak var shadowView: ShadowView!
     
     @IBAction func closeBtnClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -26,9 +27,10 @@ class AppInfoViewController: UIViewController {
         super.viewDidLoad()
         closeBtn.tintColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
-        appImageView.image = UIImage(named: "appImage")
+        appImageView.image = UIImage(named: "appstore")
         appVersion.text = "Current Version : 0.0.0"
         appVersion.textColor = .gray
+        shadowView.shadowColor = UIColor(named: AppDelegate.MAIN_COLOR)
         
     }
 
