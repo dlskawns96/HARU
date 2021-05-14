@@ -1,5 +1,6 @@
 # 하루 
 <img height="200" src="https://user-images.githubusercontent.com/22260098/116566810-044ca680-a942-11eb-984c-e4d25df780fd.png">
+https://apps.apple.com/kr/app/%ED%95%98%EB%A3%A8/id1566826979
 
 ## 당신의 하루를 소중히 하는 캘린더, 그림일기 🗓
 ### HARU는 우리의 하루를 소중하게 여기는 캘린더, 그림일기 어플리케이션 입니다.
@@ -51,3 +52,9 @@
    <img height="500" src="https://user-images.githubusercontent.com/63833392/117623016-3c5bb100-b1ae-11eb-90eb-705efe819758.png"> &nbsp
   <img height="500" src="https://user-images.githubusercontent.com/63833392/117623296-8d6ba500-b1ae-11eb-82f7-4b3ebbc51942.png"> &nbsp
  </p>
+ 
+  <br>
+ 
+ ## 앱스토어 출시!
+ ### 한번 사용해 보실래요😘?
+https://apps.apple.com/kr/app/%ED%95%98%EB%A3%A8/id1566826979
