@@ -11,8 +11,18 @@ import DropDown
 import MapKit
 
 class AddNewEventViewController: UIViewController {
+    static func storyboardInstance() -> AddNewEventViewController? {
+        let storyboard = UIStoryboard(name: "AddEvent",
+                                      bundle: nil)
+        return storyboard.instantiateInitialViewController() as? AddNewEventViewController
+    }
+    
     fileprivate var cellControllers = [[AddEventCellController]]()
+    
+    // Cell Controller 생성을 위한 Factory
     fileprivate let cellControllerFactory = AddEventCellControllerFactory()
+    
+    // Cell에 들어갈 item
     fileprivate var items = [[AddEventCellItem]]() {
         didSet {
             cellControllers = cellControllerFactory.cellControllers(with: items)
@@ -28,11 +38,14 @@ class AddNewEventViewController: UIViewController {
     var calendars = [EKCalendar]()
     var selectedDate: Date?
     
+    // Table Cell에 들어갈 데이터를 관리하기 위한 Model
     let dataSource = AddEventTableViewModel()
     var dataArray = [AddEventTableViewItem]()
     
+    // 이벤트 추가시, 캘린더를 선택할 수 있도록하는 DropDown
     let calendarDropDown = DropDown()
     
+    // 생성된 cell들을 저장
     var cells = [UITableViewCell]()
     
     var isCellLoaded = false
@@ -97,6 +110,7 @@ class AddNewEventViewController: UIViewController {
         }
     }
     
+    // 캘린더를 선택할 수 있는 DropDown 메뉴 세팅
     func setCalendarDropDown() {
         var titles: [String] = []
         for calendar in calendars {
@@ -107,25 +121,21 @@ class AddNewEventViewController: UIViewController {
         calendarDropDown.anchorView = cells[1]
         calendarDropDown.bottomOffset = CGPoint(x: 0, y: (calendarDropDown.anchorView?.plainView.bounds.height)!)
         
-        // 커스텀셀 지정
         calendarDropDown.cellNib = UINib(nibName: "CalendarDropDownCell", bundle: nil)
+        
+        // DropDown Cell 캘린더 색 지정
         calendarDropDown.customCellConfiguration = {(index: Index, item: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? CalendarDropDownCell else { return }
             cell.CalendarColorView.backgroundColor = UIColor(cgColor: self.calendars[index].cgColor)
-            
         }
+        
+        // DropDown Cell이 선택 됐을 때
         calendarDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             dataSource.selectCalendar(newCalendar: calendars[index])
         }
     }
     
-    static func storyboardInstance() -> AddNewEventViewController? {
-        let storyboard = UIStoryboard(name: "AddEvent",
-                                      bundle: nil)
-        return storyboard.instantiateInitialViewController() as? AddNewEventViewController
-    }
-    
-    // MARK: - Private functions
+    // MARK: - 시작 날짜, 종료 날짜를 선택할 수 있는 캘린더 삽입 / 삭제
     private func deleteStartDateCalendar() {
         items[1].remove(at: 2)
         isStartDateCalendarInserted = false
@@ -145,11 +155,6 @@ class AddNewEventViewController: UIViewController {
         dataSource.addCalendarEditItem(title: "종료 날짜", vc: self)
         isEndDateCalendarInserted = true
     }
-}
-
-// MARK: - UI 동작 reaction
-extension AddNewEventViewController {
-    
 }
 
 // MARK: - Model Delegate
