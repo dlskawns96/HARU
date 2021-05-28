@@ -79,7 +79,8 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             
             CoreDataManager.shared.saveEvaluation(1, AD?.selectedDate)
             NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
-            
+        } else {
+            NotTodayAlert().showAlert(vc: self)
         }
     }
     
@@ -89,8 +90,9 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             
             CoreDataManager.shared.saveEvaluation(2, AD?.selectedDate)
             NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
+        } else {
+            NotTodayAlert().showAlert(vc: self)
         }
-        
     }
     
     @IBAction func bestBtn(_ sender: Any) {
@@ -99,6 +101,8 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             
             CoreDataManager.shared.saveEvaluation(3, AD?.selectedDate)
             NotificationCenter.default.post(name: DiaryViewController.newEvaluation, object: nil)
+        } else {
+            NotTodayAlert().showAlert(vc: self)
         }
     }
     
@@ -133,8 +137,8 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
             alert.addAction(cancleAction)
             
             present(alert, animated: true, completion: nil)
-            
-            
+        } else {
+            NotTodayAlert().showAlert(vc: self)
         }
     }
     
@@ -252,10 +256,28 @@ class DiaryViewController: UIViewController, UIGestureRecognizerDelegate, UIPick
         }
         else {
             todayCheck = false
-            textView.isUserInteractionEnabled = false
+            let button: UIButton = {
+                let button = UIButton()
+                button.backgroundColor = .clear
+                button.titleLabel?.text = nil
+                button.translatesAutoresizingMaskIntoConstraints = false
+                button.addTarget(self, action: #selector(notTodaybuttonAction), for: .touchUpInside)
+                return button
+            }()
+            textView.addSubview(button)
+            NSLayoutConstraint.activate([
+                button.centerXAnchor.constraint(equalTo: textView.centerXAnchor),
+                button.centerYAnchor.constraint(equalTo: textView.centerYAnchor),
+                button.widthAnchor.constraint(equalTo: textView.widthAnchor),
+                button.heightAnchor.constraint(equalTo: textView.heightAnchor)
+            ])
         }
         
         scrollOffset = textView.bounds.height / 2.0
+    }
+    
+    @objc func notTodaybuttonAction() {
+        NotTodayAlert().showAlert(vc: self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
