@@ -76,6 +76,7 @@
 		EA7F83762594749D008B8ED5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7F83742594749D008B8ED5 /* LaunchScreen.storyboard */; };
 		EA8617D126134ACB005E4078 /* CalendarSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8617D026134ACB005E4078 /* CalendarSelectCell.swift */; };
 		EA8617D426134BAD005E4078 /* CalendarSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8617D326134BAD005E4078 /* CalendarSelectTableViewController.swift */; };
+		EA90ED0E26612B9800A0F5CE /* AlertTextGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90ED0D26612B9800A0F5CE /* AlertTextGenerator.swift */; };
 		EAA1A26225E2997F003B0D8A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26125E2997F003B0D8A /* Extensions.swift */; };
 		EAA1A26625E2ABBF003B0D8A /* EventCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */; };
 		EAA1A26725E2ABBF003B0D8A /* EventCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */; };
@@ -191,6 +192,7 @@
 		EA7F83772594749D008B8ED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA8617D026134ACB005E4078 /* CalendarSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSelectCell.swift; sourceTree = "<group>"; };
 		EA8617D326134BAD005E4078 /* CalendarSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSelectTableViewController.swift; sourceTree = "<group>"; };
+		EA90ED0D26612B9800A0F5CE /* AlertTextGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTextGenerator.swift; sourceTree = "<group>"; };
 		EAA1A26125E2997F003B0D8A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				EAB83E9D25FA073B00EC1B8D /* ThemeVariables.swift */,
 				EA0E06B52603258800B1B431 /* AddEventCellControllerFactory.swift */,
 				EA2D6F3526240BB700237000 /* LinedTextView.swift */,
+				EA90ED0D26612B9800A0F5CE /* AlertTextGenerator.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				1F65E68D26218032001533C2 /* AppVersionCellTableViewCell.swift in Sources */,
 				1FE44065263BE5FE00151DE2 /* PictureDiaryModel.swift in Sources */,
 				EA2427422627186000DCD80F /* LocationViewController.swift in Sources */,
+				EA90ED0E26612B9800A0F5CE /* AlertTextGenerator.swift in Sources */,
 				EA7F836C2594749C008B8ED5 /* SceneDelegate.swift in Sources */,
 				1F985A2A25FF9634008E59A2 /* RoundUIView.swift in Sources */,
 				EA0E06C426032B1100B1B431 /* CalendarCell.swift in Sources */,

@@ -106,6 +106,7 @@ class AddNewEventViewController: UIViewController {
             vc.delegate = self
         } else if segue.identifier == "AlarmSet" {
             let vc = segue.destination as! EventAlarmSelectTableViewController
+            vc.delegate = self
             vc.isModifying = false
         }
     }
@@ -196,6 +197,14 @@ extension AddNewEventViewController: LocationViewControllerDelegate {
         structuredLocation.geoLocation = mapItem.placemark.location
         structuredLocation.title = name
         AddEventTableViewModel.newEvent.structuredLocation = structuredLocation
+    }
+}
+
+// MARK: - EventAlarmSelectTableViewControllerDelegate
+extension AddNewEventViewController: EventAlarmSelectTableViewControllerDelegate {
+    func didSelectAlert(offset: TimeInterval) {
+        let cell = cells[4 + cellOffset] as! TextCell
+        cell.contentLabel.text = AlertTextGenerator().getAlertText(offset: offset)
     }
 }
 

@@ -8,7 +8,9 @@
 import UIKit
 
 class AlertTableViewCell: UITableViewCell {
-    let items = [["없음"], ["이벤트 당시", "5분 전", "10분 전", "15분 전", "30분 전", "1시간 전", "2시간 전", "1일 전", "2일 전", "1주 전"]]
+    let tails = ["이벤트 당시", "분 전", "시간 전", "일 전"]
+    let times = [0, 60, 60 * 60, 60 * 60 * 24]
+    
     @IBOutlet weak var alertStatusLabel: UILabel!
     
     override func awakeFromNib() {
@@ -27,8 +29,16 @@ class AlertTableViewCell: UITableViewCell {
     }
     
     func configureCell() {
-        if let index = EventDetailViewController.event.getAlarmIndex() {
-            alertStatusLabel.text = items[index.section][index.row]
+        if EventDetailViewController.event.hasAlarms {
+            alertStatusLabel.text = AlertTextGenerator().getAlertText(offset: EventDetailViewController.event.alarms!.first!.relativeOffset)
+//
+//            for idx in stride(from: times.count - 1, to: 0, by: -1) {
+//                if -Int(EventDetailViewController.event.alarms!.first!.relativeOffset) >= times[idx] {
+//                    alertStatusLabel.text = String(-Int(EventDetailViewController.event.alarms!.first!.relativeOffset) / times[idx]) + tails[idx]
+//                    break
+//                }
+//            }
+            
         } else {
             alertStatusLabel.text = "없음"
         }
