@@ -46,6 +46,11 @@ class EventDetailViewController: UITableViewController {
             guard let vc = segue.destination as? EventAlarmSelectTableViewController else {
                 return
             }
+            if EventDetailViewController.event.hasAlarms {
+                let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! AlertTableViewCell
+                vc.currentAlert = cell.alertStatusLabel.text
+                vc.currentOffset = EventDetailViewController.event.alarms!.first!.relativeOffset
+            }
             vc.isModifying = true
         } else if segue.identifier == "LocationSet" {
             guard let vc = segue.destination as? LocationViewController else {

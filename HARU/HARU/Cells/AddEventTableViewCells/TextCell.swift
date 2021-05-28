@@ -84,7 +84,7 @@ class AlarmCellController: AddEventCellController {
             cell.contentLabel.text = "없음"
             return cell
         }
-        cell.contentLabel.text = EventAlarmSelectTableViewController.items[index.section][index.row]
+//        cell.contentLabel.text = EventAlarmSelectTableViewController.items[index.section][index.row]
         
         return cell
     }

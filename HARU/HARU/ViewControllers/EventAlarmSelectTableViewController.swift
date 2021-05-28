@@ -10,21 +10,19 @@ import EventKit
 import AFDateHelper
 
 class EventAlarmSelectTableViewController: UITableViewController {
-    var isModifying = false
-    static let items = [["없음"], ["이벤트 당시", "5분 전", "10분 전", "15분 전", "30분 전", "1시간 전", "2시간 전", "1일 전", "2일 전", "1주 전"]]
+    var items = [["없음"], ["이벤트 당시", "5분 전", "10분 전", "15분 전", "30분 전", "1시간 전", "2시간 전", "1일 전", "2일 전", "1주 전"]]
     
+    var isModifying = false
+    var currentAlert: String?
+    var currentOffset: TimeInterval?
     
     var event: EKEvent!
-    let alarmTime = [Time(type: DateComponentType.minute, offset: 0),
-                     Time(type: DateComponentType.minute, offset: -5),
-                     Time(type: DateComponentType.minute, offset: -10),
-                     Time(type: DateComponentType.minute, offset: -15),
-                     Time(type: DateComponentType.minute, offset: -30),
-                     Time(type: DateComponentType.hour, offset: -1),
-                     Time(type: DateComponentType.hour, offset: -2),
-                     Time(type: DateComponentType.day, offset: -1),
-                     Time(type: DateComponentType.day, offset: -2),
-                     Time(type: DateComponentType.day, offset: -7)]
+    var delegate: EventAlarmSelectTableViewControllerDelegate?
+    
+    var intervals = [TimeInterval(0),
+                     TimeInterval(-5 * 60), TimeInterval(-10 * 60), TimeInterval(-15 * 60), TimeInterval(-30 * 60),
+                     TimeInterval(-1 * 60 * 60), TimeInterval(-2 * 60 * 60),
+                     TimeInterval(-1 * 60 * 60 * 24), TimeInterval(-2 * 60 * 60 * 24), TimeInterval(-7 * 60 * 60 * 24)]
     
     static var selectedIndex = IndexPath(row: 0, section: 0)
     
@@ -35,11 +33,31 @@ class EventAlarmSelectTableViewController: UITableViewController {
         } else {
             event = EventDetailViewController.event
         }
-        guard let index = event.getAlarmIndex() else {
+        
+        if event.hasAlarms {
+            var interval = event.alarms!.first!.relativeOffset
+            
+            if !intervals.contains(interval) {
+                items[1].insert(currentAlert!, at: 0)
+                intervals.insert(currentOffset!, at: 0)
+                EventAlarmSelectTableViewController.selectedIndex = IndexPath(row: 0, section: 1)
+                return
+            }
+            
+            if let date = event.alarms?.first?.absoluteDate {
+                interval = date.timeIntervalSince(event.startDate)
+            }
+            var row = 0
+            for idx in 0..<intervals.count {
+                if intervals[idx] == interval {
+                    row = idx
+                    break
+                }
+            }
+            EventAlarmSelectTableViewController.selectedIndex = IndexPath(row: row, section: 1)
+        } else {
             EventAlarmSelectTableViewController.selectedIndex = IndexPath(row: 0, section: 0)
-            return
         }
-        EventAlarmSelectTableViewController.selectedIndex = index
     }
     
     func removeExistingAlarm() {
@@ -55,31 +73,25 @@ class EventAlarmSelectTableViewController: UITableViewController {
             }
         }
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return items.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }
-        return 10
+        items[section].count
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 44
-        }
         return 0
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 44
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         EventAlarmSelectTableViewController.selectedIndex = indexPath
         var alarm = EKAlarm()
@@ -87,7 +99,7 @@ class EventAlarmSelectTableViewController: UITableViewController {
         case 0:
             removeExistingAlarm()
         case 1:
-            alarm = EKAlarm(absoluteDate: event.startDate.adjust(alarmTime[indexPath.row].type, offset: alarmTime[indexPath.row].offset))
+            alarm = EKAlarm(relativeOffset: intervals[indexPath.row])
             removeExistingAlarm()
             event.addAlarm(alarm)
             if isModifying {
@@ -96,6 +108,8 @@ class EventAlarmSelectTableViewController: UITableViewController {
                 } catch {
                     print("Event Alarm Modifying Error")
                 }
+            } else {
+                delegate?.didSelectAlert(offset: intervals[indexPath.row])
             }
         default:
             return
@@ -105,7 +119,8 @@ class EventAlarmSelectTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventAlarmSelectTableViewCell", for: indexPath) as! EventAlarmSelectTableViewCell
-        cell.titleLabel.text = EventAlarmSelectTableViewController.items[indexPath.section][indexPath.row]
+        cell.titleLabel.text = items[indexPath.section][indexPath.row]
+        
         if indexPath == EventAlarmSelectTableViewController.selectedIndex {
             cell.accessoryType = .checkmark
         } else {
@@ -122,10 +137,10 @@ class EventAlarmSelectTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -134,5 +149,9 @@ class EventAlarmSelectTableViewCell: UITableViewCell {
     
     func configureCell() {
     }
+    
+}
 
+protocol EventAlarmSelectTableViewControllerDelegate {
+    func didSelectAlert(offset: TimeInterval)
 }
