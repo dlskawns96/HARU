@@ -77,6 +77,7 @@
 		EA8617D126134ACB005E4078 /* CalendarSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8617D026134ACB005E4078 /* CalendarSelectCell.swift */; };
 		EA8617D426134BAD005E4078 /* CalendarSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8617D326134BAD005E4078 /* CalendarSelectTableViewController.swift */; };
 		EA90ED0E26612B9800A0F5CE /* AlertTextGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90ED0D26612B9800A0F5CE /* AlertTextGenerator.swift */; };
+		EA90ED1026613C5E00A0F5CE /* NotTodayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90ED0F26613C5E00A0F5CE /* NotTodayAlert.swift */; };
 		EAA1A26225E2997F003B0D8A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26125E2997F003B0D8A /* Extensions.swift */; };
 		EAA1A26625E2ABBF003B0D8A /* EventCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */; };
 		EAA1A26725E2ABBF003B0D8A /* EventCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */; };
@@ -193,6 +194,7 @@
 		EA8617D026134ACB005E4078 /* CalendarSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSelectCell.swift; sourceTree = "<group>"; };
 		EA8617D326134BAD005E4078 /* CalendarSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSelectTableViewController.swift; sourceTree = "<group>"; };
 		EA90ED0D26612B9800A0F5CE /* AlertTextGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTextGenerator.swift; sourceTree = "<group>"; };
+		EA90ED0F26613C5E00A0F5CE /* NotTodayAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTodayAlert.swift; sourceTree = "<group>"; };
 		EAA1A26125E2997F003B0D8A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				EA0E06B52603258800B1B431 /* AddEventCellControllerFactory.swift */,
 				EA2D6F3526240BB700237000 /* LinedTextView.swift */,
 				EA90ED0D26612B9800A0F5CE /* AlertTextGenerator.swift */,
+				EA90ED0F26613C5E00A0F5CE /* NotTodayAlert.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				EADDEF6425FEF0A900703E5F /* AddEventTableViewModel.swift in Sources */,
 				1F84D15725A8AF0900969F09 /* HCalendar.swift in Sources */,
 				1FC15E1725ED0DE80021B16B /* DiaryCollectionTableViewController.swift in Sources */,
+				EA90ED1026613C5E00A0F5CE /* NotTodayAlert.swift in Sources */,
 				1F074A77262476B600A25FD4 /* AddPictureDiaryViewController.swift in Sources */,
 				EA73C139262C62A40075AF6D /* LocationTableViewCell.swift in Sources */,
 				EADB148725CAD54300E1D067 /* ScheduleTableViewCell.swift in Sources */,
