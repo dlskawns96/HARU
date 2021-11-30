@@ -1,5 +1,4 @@
 PODS:
-  - AFDateHelper (4.3.0)
   - DropDown (2.3.13)
   - Firebase/Core (7.9.0):
     - Firebase/CoreOnly
@@ -82,7 +81,6 @@ PODS:
   - PromisesObjC (1.2.12)
 
 DEPENDENCIES:
-  - AFDateHelper
   - DropDown
   - Firebase/Core
   - Firebase/Messaging
@@ -90,7 +88,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AFDateHelper
     - DropDown
     - Firebase
     - FirebaseAnalytics
@@ -107,7 +104,6 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  AFDateHelper: b769c07d3d4784ee9a74633285304261bb27dc52
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   Firebase: d8bd6bd34b4c7ed57bfdd056c66ff5adcdde53ab
   FirebaseAnalytics: 31b1269830dfe16687db3c60b76082c12bd6d527
@@ -123,6 +119,6 @@ SPEC CHECKSUMS:
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: 864a721a291c71e6432f439ce978486adfff92b0
+PODFILE CHECKSUM: d50918012e6e4909512855055a157bcc15ff8043
 
 COCOAPODS: 1.10.0

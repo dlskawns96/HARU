@@ -1,7 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-HARU/Pods-HARU-frameworks.sh
-${BUILT_PRODUCTS_DIR}/AFDateHelper/AFDateHelper.framework
 ${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
-${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
+${BUILT_PRODUCTS_DIR}/FSCalendar-iOS14.2/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework

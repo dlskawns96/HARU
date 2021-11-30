@@ -9,11 +9,22 @@ import Foundation
 import UIKit
 import EventKit
 import MapKit
-import AFDateHelper
 
 struct Time {
     var type: DateComponentType
     var offset: Int
+}
+
+extension EKEvent: Identifiable {
+    
+}
+
+extension UIImage {
+    static let mainIcon = UIImage(named: "appstore")!
+}
+
+extension UIColor {
+    static let mainColor = UIColor(named: "MainUIColor")!
 }
 
 extension Date {
@@ -60,11 +71,11 @@ extension Date {
         var curDate = startOfMonth
         var dates = [Date]()
         while true {
-            if curDate.compare(.isSameDay(as: endOfMonth.adjust(.day, offset: 1))) {
+            if curDate.compare(.isSameDay(as: endOfMonth.adjust(DateComponentType.day, offset: 1))) {
                 break
             }
             dates.append(curDate)
-            curDate = curDate.adjust(.day, offset: 1)
+            curDate = curDate.adjust(DateComponentType.day, offset: 1)
         }
         return dates
     }
@@ -146,13 +157,6 @@ extension UITableView {
         self.beginUpdates()
         self.deleteRows(at: [indexPath], with: animation)
         self.endUpdates()
-    }
-}
-
-extension UIView {
-    var globalFrame: CGRect? {
-        let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
-        return self.superview?.convert(self.frame, to: rootView)
     }
 }
 

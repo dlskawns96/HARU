@@ -41,6 +41,14 @@ class CalendarLoader {
         return loadedEvents
     }
     
+    func firstEventOfFuture30Days(day: Date = Date()) -> EKEvent? {
+        let start = day.adjust(hour: 0, minute: 0, second: 0)
+        let predicate = eventStore.predicateForEvents(withStart: start, end: calendar.date(byAdding: .day, value: 30, to: start)!, calendars: calendars)
+        let events = eventStore.events(matching: predicate)
+        
+        return events.first
+    }
+    
     func loadEvents(ofDay day: Date) -> [EKEvent] {
         var eventsOfDay: [EKEvent] = []
         let predicate = eventStore.predicateForEvents(withStart: day.adjust(hour: 0, minute: 0, second: 0), end: day.adjust(hour: 23, minute: 59, second: 59), calendars: calendars)
@@ -60,9 +68,10 @@ class CalendarLoader {
     
     func loadEvents(ofDay day: Date, for offset: Int) -> [[EKEvent]] {
         var eventsOfDay: [[EKEvent]] = []
-        for i in 0...offset {
-            let predicate = eventStore.predicateForEvents(withStart: day.adjust(hour: 0, minute: 0, second: 0, day:
-                                                                                    day.component(.day)! + i), end: day.adjust(hour: 23, minute: 59, second: 59, day: day.component(.day)! + i), calendars: calendars)
+        var current = calendar.date(byAdding: .day, value: -1, to: day.adjust(hour: 0, minute: 0, second: 0))!
+        for _ in 0...offset {
+            current = calendar.date(byAdding: .day, value: 1, to: current)!
+            let predicate = eventStore.predicateForEvents(withStart: current, end: current.adjust(hour: 23, minute: 59, second: 59), calendars: calendars)
             let events = eventStore.events(matching: predicate)
             eventsOfDay.append(events)
         }
@@ -87,7 +96,7 @@ class CalendarLoader {
         var eventsOfYear = [[EKEvent]]()
         let startYear = year.startOfYear
         for i in 0...11 {
-            let date = startYear.adjust(.month, offset: i)
+            let date = startYear.adjust(DateComponentType.month, offset: i)
             var eventsOfMonth: [EKEvent] = []
             
             let predicate = eventStore.predicateForEvents(withStart: date.startOfMonth, end: date.endOfMonth, calendars: calendars)

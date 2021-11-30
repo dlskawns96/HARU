@@ -38,6 +38,7 @@
 		1FF7AFAF261CAA5900C9B1FA /* OpinionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7AFAE261CAA5900C9B1FA /* OpinionViewController.swift */; };
 		1FF7AFB2261CADBA00C9B1FA /* DeveloperInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7AFB1261CADBA00C9B1FA /* DeveloperInfoViewController.swift */; };
 		1FF7AFB5261CADCA00C9B1FA /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7AFB4261CADCA00C9B1FA /* AppInfoViewController.swift */; };
+		B3DE52BEA4A49E83F25FFAE8 /* Pods_HARUWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F430EB039899C9035E541D8 /* Pods_HARUWidgetExtension.framework */; };
 		DAC709FEAA6782D0D541943E /* Pods_HARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */; };
 		EA024A0C25B7BB6200830C4A /* CalendarDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA024A0A25B7BB6200830C4A /* CalendarDropDownCell.swift */; };
 		EA024A0D25B7BB6200830C4A /* CalendarDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA024A0B25B7BB6200830C4A /* CalendarDropDownCell.xib */; };
@@ -58,6 +59,14 @@
 		EA2D6F3626240BB700237000 /* LinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2D6F3526240BB700237000 /* LinedTextView.swift */; };
 		EA33BDD5263EF0F000CD8B1F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA33BDD4263EF0EF00CD8B1F /* GoogleService-Info.plist */; };
 		EA3A414925B66CA40074282C /* AddEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3A414825B66CA40074282C /* AddEvent.storyboard */; };
+		EA45F7C527551E1D000A3FC5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA45F7C427551E1D000A3FC5 /* WidgetKit.framework */; };
+		EA45F7C727551E1D000A3FC5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA45F7C627551E1D000A3FC5 /* SwiftUI.framework */; };
+		EA45F7CA27551E1D000A3FC5 /* HARUWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA45F7C927551E1D000A3FC5 /* HARUWidget.swift */; };
+		EA45F7CC27551E20000A3FC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA45F7CB27551E20000A3FC5 /* Assets.xcassets */; };
+		EA45F7D027551E20000A3FC5 /* HARUWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA45F7C327551E1D000A3FC5 /* HARUWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EA45F7D6275529FE000A3FC5 /* CalendarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1219B42594C255007EDE8E /* CalendarLoader.swift */; };
+		EA45F7D727552A9D000A3FC5 /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE1BA025CD183F0084B31C /* EventHandler.swift */; };
+		EA45F7D827552ADD000A3FC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26125E2997F003B0D8A /* Extensions.swift */; };
 		EA4B090D263989DF0022368B /* HARUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4B090C263989DF0022368B /* HARUUITests.swift */; };
 		EA50F77925F06B510003095D /* ScheduleTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50F77825F06B510003095D /* ScheduleTableViewModel.swift */; };
 		EA5CBB9026076EF500B24542 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5CBB8F26076EF500B24542 /* EventCollectionViewCell.swift */; };
@@ -82,6 +91,9 @@
 		EAA1A26625E2ABBF003B0D8A /* EventCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */; };
 		EAA1A26725E2ABBF003B0D8A /* EventCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */; };
 		EAA4D690263FD63F005D83AC /* ThemeSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4D68F263FD63F005D83AC /* ThemeSelectViewController.swift */; };
+		EAA9916427552BC700F79156 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9916327552BC700F79156 /* DateHelper.swift */; };
+		EAA9916527552BC700F79156 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9916327552BC700F79156 /* DateHelper.swift */; };
+		EAA991662755C76300F79156 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7F83722594749D008B8ED5 /* Assets.xcassets */; };
 		EAA9C85C2636E1E20091DF3E /* 나눔손글씨 다행체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAA9C85B2636E1E20091DF3E /* 나눔손글씨 다행체.ttf */; };
 		EAB21956260472230075B72A /* CalendarEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB21954260472230075B72A /* CalendarEditCell.swift */; };
 		EAB21957260472230075B72A /* CalendarEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB21955260472230075B72A /* CalendarEditCell.xib */; };
@@ -107,6 +119,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EA45F7CE27551E20000A3FC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA7F835E2594749C008B8ED5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA45F7C227551E1D000A3FC5;
+			remoteInfo = HARUWidgetExtension;
+		};
 		EA4B090F263989DF0022368B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA7F835E2594749C008B8ED5 /* Project object */;
@@ -115,6 +134,20 @@
 			remoteInfo = HARU;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EA45F7D127551E20000A3FC5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EA45F7D027551E20000A3FC5 /* HARUWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1F074A76262476B600A25FD4 /* AddPictureDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPictureDiaryViewController.swift; sourceTree = "<group>"; };
@@ -149,8 +182,11 @@
 		1FF7AFB1261CADBA00C9B1FA /* DeveloperInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoViewController.swift; sourceTree = "<group>"; };
 		1FF7AFB4261CADCA00C9B1FA /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
 		39EBF39A9C1E3087EF09460E /* Pods-HARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARU.debug.xcconfig"; path = "Target Support Files/Pods-HARU/Pods-HARU.debug.xcconfig"; sourceTree = "<group>"; };
+		485CEF2E895C0A0DA64E3DCA /* Pods-HARUWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARUWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-HARUWidgetExtension/Pods-HARUWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		4F430EB039899C9035E541D8 /* Pods_HARUWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HARUWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54D27E88A803569AC424E619 /* Pods-HARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARU.release.xcconfig"; path = "Target Support Files/Pods-HARU/Pods-HARU.release.xcconfig"; sourceTree = "<group>"; };
 		5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1F26AEB0792C0183A8563A0 /* Pods-HARUWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HARUWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-HARUWidgetExtension/Pods-HARUWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		EA024A0A25B7BB6200830C4A /* CalendarDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDropDownCell.swift; sourceTree = "<group>"; };
 		EA024A0B25B7BB6200830C4A /* CalendarDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarDropDownCell.xib; sourceTree = "<group>"; };
 		EA0E06B52603258800B1B431 /* AddEventCellControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventCellControllerFactory.swift; sourceTree = "<group>"; };
@@ -171,6 +207,12 @@
 		EA2D6F3526240BB700237000 /* LinedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinedTextView.swift; sourceTree = "<group>"; };
 		EA33BDD4263EF0EF00CD8B1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA3A414825B66CA40074282C /* AddEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddEvent.storyboard; path = HARU/AddEvent.storyboard; sourceTree = SOURCE_ROOT; };
+		EA45F7C327551E1D000A3FC5 /* HARUWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HARUWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA45F7C427551E1D000A3FC5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		EA45F7C627551E1D000A3FC5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		EA45F7C927551E1D000A3FC5 /* HARUWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HARUWidget.swift; sourceTree = "<group>"; };
+		EA45F7CB27551E20000A3FC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA45F7CD27551E20000A3FC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA4B090A263989DF0022368B /* HARUUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HARUUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4B090C263989DF0022368B /* HARUUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HARUUITests.swift; sourceTree = "<group>"; };
 		EA4B090E263989DF0022368B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -199,6 +241,7 @@
 		EAA1A26425E2ABBF003B0D8A /* EventCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		EAA1A26525E2ABBF003B0D8A /* EventCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		EAA4D68F263FD63F005D83AC /* ThemeSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectViewController.swift; sourceTree = "<group>"; };
+		EAA9916327552BC700F79156 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		EAA9C85B2636E1E20091DF3E /* 나눔손글씨 다행체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "나눔손글씨 다행체.ttf"; sourceTree = "<group>"; };
 		EAB21954260472230075B72A /* CalendarEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEditCell.swift; sourceTree = "<group>"; };
 		EAB21955260472230075B72A /* CalendarEditCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEditCell.xib; sourceTree = "<group>"; };
@@ -225,6 +268,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EA45F7C027551E1D000A3FC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA45F7C727551E1D000A3FC5 /* SwiftUI.framework in Frameworks */,
+				EA45F7C527551E1D000A3FC5 /* WidgetKit.framework in Frameworks */,
+				B3DE52BEA4A49E83F25FFAE8 /* Pods_HARUWidgetExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA4B0907263989DF0022368B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,6 +310,8 @@
 			children = (
 				39EBF39A9C1E3087EF09460E /* Pods-HARU.debug.xcconfig */,
 				54D27E88A803569AC424E619 /* Pods-HARU.release.xcconfig */,
+				C1F26AEB0792C0183A8563A0 /* Pods-HARUWidgetExtension.debug.xcconfig */,
+				485CEF2E895C0A0DA64E3DCA /* Pods-HARUWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -264,6 +319,7 @@
 		EA07FBF125B906BE003B2529 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EAA9916327552BC700F79156 /* DateHelper.swift */,
 				EA1219B42594C255007EDE8E /* CalendarLoader.swift */,
 				EAFE1BA025CD183F0084B31C /* EventHandler.swift */,
 				EAB83E9D25FA073B00EC1B8D /* ThemeVariables.swift */,
@@ -286,6 +342,23 @@
 				1FBAC8A0261F660200A3440B /* SettingView.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		EA45F7C827551E1D000A3FC5 /* HARUWidget */ = {
+			isa = PBXGroup;
+			children = (
+				EA45F7C927551E1D000A3FC5 /* HARUWidget.swift */,
+				EA45F7CB27551E20000A3FC5 /* Assets.xcassets */,
+				EA45F7CD27551E20000A3FC5 /* Info.plist */,
+			);
+			path = HARUWidget;
+			sourceTree = "<group>";
+		};
+		EA45F7D527551F84000A3FC5 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Widget;
 			sourceTree = "<group>";
 		};
 		EA4B090B263989DF0022368B /* HARUUITests */ = {
@@ -326,6 +399,7 @@
 				EA7F83682594749C008B8ED5 /* HARU */,
 				EA5FA850261F2DC2009A42EC /* Resources */,
 				EA4B090B263989DF0022368B /* HARUUITests */,
+				EA45F7C827551E1D000A3FC5 /* HARUWidget */,
 				EA7F83672594749C008B8ED5 /* Products */,
 				43A1F05D4F2035B392D1F5DC /* Pods */,
 				FBACACBB553BC2094FE0DC7F /* Frameworks */,
@@ -337,6 +411,7 @@
 			children = (
 				EA7F83662594749C008B8ED5 /* HARU.app */,
 				EA4B090A263989DF0022368B /* HARUUITests.xctest */,
+				EA45F7C327551E1D000A3FC5 /* HARUWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,6 +419,7 @@
 		EA7F83682594749C008B8ED5 /* HARU */ = {
 			isa = PBXGroup;
 			children = (
+				EA45F7D527551F84000A3FC5 /* Widget */,
 				EA1B75CD263D7E9500DFB346 /* HARU.entitlements */,
 				EA50F77725F06B3D0003095D /* Models */,
 				EAD77DF425D814D90020C182 /* Cells */,
@@ -462,6 +538,9 @@
 			isa = PBXGroup;
 			children = (
 				5EFBBBD9CCBF5AF7E4B6810D /* Pods_HARU.framework */,
+				EA45F7C427551E1D000A3FC5 /* WidgetKit.framework */,
+				EA45F7C627551E1D000A3FC5 /* SwiftUI.framework */,
+				4F430EB039899C9035E541D8 /* Pods_HARUWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -469,6 +548,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EA45F7C227551E1D000A3FC5 /* HARUWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA45F7D427551E20000A3FC5 /* Build configuration list for PBXNativeTarget "HARUWidgetExtension" */;
+			buildPhases = (
+				4885F057BD52626DC1430DFE /* [CP] Check Pods Manifest.lock */,
+				EA45F7BF27551E1D000A3FC5 /* Sources */,
+				EA45F7C027551E1D000A3FC5 /* Frameworks */,
+				EA45F7C127551E1D000A3FC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HARUWidgetExtension;
+			productName = HARUWidgetExtension;
+			productReference = EA45F7C327551E1D000A3FC5 /* HARUWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		EA4B0909263989DF0022368B /* HARUUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA4B0913263989DF0022368B /* Build configuration list for PBXNativeTarget "HARUUITests" */;
@@ -496,10 +593,12 @@
 				EA7F83632594749C008B8ED5 /* Frameworks */,
 				EA7F83642594749C008B8ED5 /* Resources */,
 				FCD4B666BF6E8255CDE86249 /* [CP] Embed Pods Frameworks */,
+				EA45F7D127551E20000A3FC5 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EA45F7CF27551E20000A3FC5 /* PBXTargetDependency */,
 			);
 			name = HARU;
 			productName = HARU;
@@ -512,9 +611,12 @@
 		EA7F835E2594749C008B8ED5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
+					EA45F7C227551E1D000A3FC5 = {
+						CreatedOnToolsVersion = 13.0;
+					};
 					EA4B0909263989DF0022368B = {
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = EA7F83652594749C008B8ED5;
@@ -540,11 +642,21 @@
 			targets = (
 				EA7F83652594749C008B8ED5 /* HARU */,
 				EA4B0909263989DF0022368B /* HARUUITests */,
+				EA45F7C227551E1D000A3FC5 /* HARUWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EA45F7C127551E1D000A3FC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAA991662755C76300F79156 /* Assets.xcassets in Resources */,
+				EA45F7CC27551E20000A3FC5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA4B0908263989DF0022368B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -609,6 +721,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4885F057BD52626DC1430DFE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HARUWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FCD4B666BF6E8255CDE86249 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -629,6 +763,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EA45F7BF27551E1D000A3FC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAA9916527552BC700F79156 /* DateHelper.swift in Sources */,
+				EA45F7D6275529FE000A3FC5 /* CalendarLoader.swift in Sources */,
+				EA45F7D727552A9D000A3FC5 /* EventHandler.swift in Sources */,
+				EA45F7CA27551E1D000A3FC5 /* HARUWidget.swift in Sources */,
+				EA45F7D827552ADD000A3FC5 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA4B0906263989DF0022368B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -704,6 +850,7 @@
 				EA7CA1FA2612EB3C004F2004 /* AlertTableViewCell.swift in Sources */,
 				EA024A0C25B7BB6200830C4A /* CalendarDropDownCell.swift in Sources */,
 				EAC9678F260B87B700A12DA6 /* EmptyTableViewCell.swift in Sources */,
+				EAA9916427552BC700F79156 /* DateHelper.swift in Sources */,
 				1F84D15425A5F1CB00969F09 /* Alert.swift in Sources */,
 				EACD3B362611E93F00AC840E /* EventNoteCell.swift in Sources */,
 				1FE2522E2606440400E28D7C /* SettingViewController.swift in Sources */,
@@ -717,6 +864,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EA45F7CF27551E20000A3FC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA45F7C227551E1D000A3FC5 /* HARUWidgetExtension */;
+			targetProxy = EA45F7CE27551E20000A3FC5 /* PBXContainerItemProxy */;
+		};
 		EA4B0910263989DF0022368B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EA7F83652594749C008B8ED5 /* HARU */;
@@ -744,6 +896,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EA45F7D227551E20000A3FC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1F26AEB0792C0183A8563A0 /* Pods-HARUWidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HARUWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HARUWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARU.HARU.release.HARUWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EA45F7D327551E20000A3FC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 485CEF2E895C0A0DA64E3DCA /* Pods-HARUWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8RLH6CULJ3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HARUWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HARUWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HARU.HARU.release.HARUWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		EA4B0911263989DF0022368B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -904,6 +1118,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 39EBF39A9C1E3087EF09460E /* Pods-HARU.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HARU/HARU.entitlements;
@@ -930,6 +1145,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 54D27E88A803569AC424E619 /* Pods-HARU.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HARU/HARU.entitlements;
@@ -955,6 +1171,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EA45F7D427551E20000A3FC5 /* Build configuration list for PBXNativeTarget "HARUWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA45F7D227551E20000A3FC5 /* Debug */,
+				EA45F7D327551E20000A3FC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EA4B0913263989DF0022368B /* Build configuration list for PBXNativeTarget "HARUUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

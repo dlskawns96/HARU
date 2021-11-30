@@ -7,7 +7,6 @@
 
 import UIKit
 import EventKit
-import AFDateHelper
 
 class EventAlarmSelectTableViewController: UITableViewController {
     var items = [["없음"], ["이벤트 당시", "5분 전", "10분 전", "15분 전", "30분 전", "1시간 전", "2시간 전", "1일 전", "2일 전", "1주 전"]]
