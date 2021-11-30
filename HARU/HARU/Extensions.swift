@@ -329,3 +329,20 @@ extension MKMapView {
     setRegion(coordinateRegion, animated: true)
   }
 }
+
+extension UINavigationBar {
+    func setAppearance(titleColor: UIColor = .white, backgroundColor: UIColor = .mainColor) {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = backgroundColor
+        appearance.titleTextAttributes = [.foregroundColor: titleColor]
+        self.isTranslucent = false
+        self.tintColor = titleColor
+        self.standardAppearance = appearance
+        self.scrollEdgeAppearance = appearance
+        self.compactAppearance = appearance
+        if #available(iOS 15.0, *) {
+            self.compactScrollEdgeAppearance = appearance
+        }
+        self.layoutIfNeeded()
+    }
+}

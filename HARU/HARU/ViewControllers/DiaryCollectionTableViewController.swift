@@ -146,7 +146,7 @@ class DiaryCollectionTableViewController: UIViewController {
     }
     
     private func themeColorSet(color: UIColor) {
-        self.navigationController?.navigationBar.barTintColor = color
+        self.navigationController?.navigationBar.setAppearance(backgroundColor: color)
         badProgress.tintColor = color
         goodProgress.tintColor = color
         bestProgress.tintColor = color

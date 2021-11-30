@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Alw-vf-R3e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Alw-vf-R3e">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -39,7 +40,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-HY-9MJ" userLabel="캘린더 그림자" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -294,7 +295,7 @@
             <objects>
                 <viewController storyboardIdentifier="SelectDateController" id="Nzo-Wt-ceS" customClass="SelectDateController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gqT-Gu-Dfh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-2V-ho5">
@@ -439,7 +440,7 @@
             <objects>
                 <viewController storyboardIdentifier="PictureDiaryView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2bn-nU-ixO" customClass="AddPictureDiaryViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2SF-vn-RuW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3of-FT-baJ" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
@@ -476,19 +477,19 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0tA-Xo-1fb">
-                                <rect key="frame" x="15" y="492" width="384" height="132"/>
+                                <rect key="frame" x="15" y="492" width="384" height="193"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Ac-Th-W25">
-                                        <rect key="frame" x="0.0" y="0.0" width="229.5" height="132"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="229.5" height="193"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="P4d-Hn-WLy">
-                                                <rect key="frame" x="0.0" y="0.0" width="229.5" height="61"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="229.5" height="91.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qwp-Xx-Dsr" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="61"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HT-36-Lxn">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="61"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -526,10 +527,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xv5-zw-bW9" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="60" y="0.0" width="50" height="61"/>
+                                                        <rect key="frame" x="60" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEn-9S-OWD">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="61"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -556,10 +557,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NCL-zb-aLT" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="120" y="0.0" width="50" height="61"/>
+                                                        <rect key="frame" x="120" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tR-hr-KJ7">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="61"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -585,10 +586,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0h0-fh-AJB" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="180" y="0.0" width="49.5" height="61"/>
+                                                        <rect key="frame" x="180" y="0.0" width="49.5" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbJ-YE-2tq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="61"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -616,13 +617,13 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-xe-Q1a">
-                                                <rect key="frame" x="0.0" y="71" width="229.5" height="61"/>
+                                                <rect key="frame" x="0.0" y="101.5" width="229.5" height="91.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7h-Cb-Qwz" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="61"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tp-Ah-a7O">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="61"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -648,10 +649,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfu-Qq-cRa" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="60" y="0.0" width="50" height="61"/>
+                                                        <rect key="frame" x="60" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSc-B2-YIO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="61"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -677,10 +678,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBQ-ll-CzA" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="120" y="0.0" width="50" height="61"/>
+                                                        <rect key="frame" x="120" y="0.0" width="50" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDU-2U-PCL">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="61"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="91.5"/>
                                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -706,10 +707,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgB-IA-0YG" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                                        <rect key="frame" x="180" y="0.0" width="49.5" height="61"/>
+                                                        <rect key="frame" x="180" y="0.0" width="49.5" height="91.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4B5-vq-uCC">
-                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="61"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="91.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -743,13 +744,13 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbG-uZ-Lqf" customClass="ShadowView" customModule="HARU" customModuleProvider="target">
-                                        <rect key="frame" x="239.5" y="0.0" width="144.5" height="132"/>
+                                        <rect key="frame" x="239.5" y="0.0" width="144.5" height="193"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-Rb-hjT">
-                                                <rect key="frame" x="0.0" y="50" width="144.5" height="82"/>
+                                                <rect key="frame" x="0.0" y="50" width="144.5" height="143"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-Fp-TgR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="144.5" height="82"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="144.5" height="143"/>
                                                         <state key="normal">
                                                             <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -880,7 +881,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduleTableViewCell" rowHeight="80" id="SFs-5j-fcc" customClass="ScheduleTableViewCell" customModule="HARU" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="390" height="80"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="390" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SFs-5j-fcc" id="1Xn-d5-VwU">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="80"/>
@@ -993,11 +994,11 @@
             <objects>
                 <viewController storyboardIdentifier="diaryViewController" id="OmN-bU-GkM" customClass="DiaryViewController" customModule="HARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ykE-pX-lDu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZd-QS-OVY">
-                                <rect key="frame" x="0.0" y="44" width="414" height="620"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5H4-br-sgy">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
@@ -1248,7 +1249,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="umG-JP-t3P"/>
+        <segue reference="rW8-uH-4Dj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Spring" width="177" height="15"/>

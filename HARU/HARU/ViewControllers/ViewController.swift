@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barTintColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        self.navigationController?.navigationBar.setAppearance(backgroundColor: UIColor(named: AppDelegate.MAIN_COLOR)!)
         buttonShadowView.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
         self.navigationController?.navigationBar.tintColor = .white
         if calendarAuth == .authorized {
@@ -259,7 +259,7 @@ class ViewController: UIViewController {
     }
     
     @objc func onMainColorChangedNotification(notification: Notification) {
-        self.navigationController?.navigationBar.barTintColor = UIColor(named: AppDelegate.MAIN_COLOR)
+        self.navigationController?.navigationBar.setAppearance(backgroundColor: UIColor(named: AppDelegate.MAIN_COLOR)!)
         buttonShadowView.backgroundColor = UIColor(named: AppDelegate.MAIN_COLOR)
         fsCalendar.reloadData()
     }
